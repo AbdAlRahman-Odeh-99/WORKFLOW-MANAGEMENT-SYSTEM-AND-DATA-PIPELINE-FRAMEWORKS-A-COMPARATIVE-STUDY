@@ -1,0 +1,2 @@
+# Workflow-Management-System-and-Data-Pipeline-Frameworks-A-Comparative-Study
+This repository includes the configuration steps and all code that is used in the thesis entitled as: Workflow Management System and Data Pipeline Frameworks: A Comparative Study as a partial fulfilment of the requirements for the degree of M.Sc. in Data Science at The Faculty of Graduate Studies Jordan University of Science and Technology.
