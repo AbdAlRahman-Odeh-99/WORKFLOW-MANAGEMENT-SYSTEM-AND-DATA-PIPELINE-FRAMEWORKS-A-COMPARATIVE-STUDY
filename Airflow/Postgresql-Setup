@@ -1,0 +1,26 @@
+# Installing postgresql (https://www.postgresql.org/download/linux/ubuntu/)
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get -y install postgresql
+
+sudo systemctl start postgresql
+
+# Creating database and user (https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e)
+sudo -u postgres psql
+CREATE DATABASE test_db;
+CREATE USER test_user WITH PASSWORD 'test';
+GRANT ALL PRIVILEGES ON DATABASE test_db TO test_user;
+ALTER USER test_user SET search_path = public;
+
+# Updating Airflow (https://airflow.apache.org/docs/apache-airflow/stable/howto/set-up-database.html#setting-up-a-postgresql-database)
+LocalExecutor
+postgresql+psycopg2://test_user:test@localhost/test_db
+
+airflow db init
+airflow users create \
+--username admin \
+--firstname airflow \
+--lastname admin \
+--role Admin \
+--email admin@airflow.com

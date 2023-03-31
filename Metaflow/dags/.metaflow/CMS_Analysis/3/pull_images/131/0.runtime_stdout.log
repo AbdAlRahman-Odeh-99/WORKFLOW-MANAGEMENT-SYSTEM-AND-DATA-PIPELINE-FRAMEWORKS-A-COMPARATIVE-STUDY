@@ -1,0 +1,23 @@
+[MFLOG|0|2023-03-02T07:05:53.417152Z|runtime|eb55800b-bfbd-43d8-8e01-01ecab761d0c]The command is: 
+[MFLOG|0|2023-03-02T07:05:54.213781Z|runtime|aed7c5a8-e0b5-4925-8c59-1a601daf9cd8] 
+[MFLOG|0|2023-03-02T07:05:54.213959Z|runtime|01c29443-8b4d-4833-bcdc-7c99bb6f5d1e]        docker pull ubuntu:latest
+[MFLOG|0|2023-03-02T07:05:54.214050Z|runtime|d542a083-2c83-4e08-ab25-224ed5741484]        docker pull cernopendata/cernopendata-client:0.3.0
+[MFLOG|0|2023-03-02T07:05:54.214137Z|runtime|b017d227-35b2-4b30-8ec8-4a2e8bdd8bed]        docker pull cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493
+[MFLOG|0|2023-03-02T07:05:54.214238Z|runtime|b81c08f3-6e47-4feb-b235-3a9a1c551bb2]        docker pull gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+[MFLOG|0|2023-03-02T07:05:54.214339Z|runtime|c85149b4-2241-46ef-b5e1-6eaf37301e48]        
+[MFLOG|0|2023-03-02T07:05:54.214435Z|runtime|7f2b911e-f71e-449a-ac49-3e1046181d84]The output is: 
+[MFLOG|0|2023-03-02T07:05:54.214530Z|runtime|9ae52e20-ab05-4ed7-a475-5431e592d394] latest: Pulling from library/ubuntu
+[MFLOG|0|2023-03-02T07:05:54.214626Z|runtime|4e788e2e-641b-4772-a670-38299ec00571]76769433fd8a: Pulling fs layer
+[MFLOG|0|2023-03-02T07:05:54.214722Z|runtime|75dc17cf-8dec-4ed2-8f6e-83b9af68db2c]76769433fd8a: Verifying Checksum
+[MFLOG|0|2023-03-02T07:05:54.214818Z|runtime|ad7d6c2f-04e6-4d9a-9bae-09fab5572686]76769433fd8a: Download complete
+[MFLOG|0|2023-03-02T07:05:54.214914Z|runtime|a0260a35-eaf9-4840-a863-1ab97a55c10f]76769433fd8a: Pull complete
+[MFLOG|0|2023-03-02T07:05:54.215009Z|runtime|9b4b28d5-18ec-4f90-b7d2-ecc86804466e]Digest: sha256:854037bf6521e9c321c101c269272f756e481fb5f167ae032cb53da08aebcd5a
+[MFLOG|0|2023-03-02T07:05:54.215106Z|runtime|da30e675-b9dc-423d-9821-c4f7cbf7550e]Status: Downloaded newer image for ubuntu:latest
+[MFLOG|0|2023-03-02T07:05:54.215202Z|runtime|d1c046d2-6e41-46c8-a8f3-3c8e2145da4d]docker.io/library/ubuntu:latest
+[MFLOG|0|2023-03-02T07:05:54.215297Z|runtime|22ee4614-13ae-4ed7-801f-217e61154ecd]Using default tag: latest
+[MFLOG|0|2023-03-02T07:05:54.215393Z|runtime|c874104e-3f1c-4389-8722-a3e7d7824a61]latest: Pulling from cms-cloud/python-vnc
+[MFLOG|0|2023-03-02T07:05:54.215489Z|runtime|24d99e4e-bb7a-42f2-b4c3-8d6e5b5dcf90]Digest: sha256:12e122ea9ff95e0334e03cb7e832ce67986abba7c20597a6d70160f626cb0a47
+[MFLOG|0|2023-03-02T07:05:54.215584Z|runtime|0a8ea27c-a679-4e10-a276-0fc21bf12183]Status: Image is up to date for gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+[MFLOG|0|2023-03-02T07:05:54.215682Z|runtime|a00d3c98-1edd-4f69-ad47-7e1506e2c0d2]gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+[MFLOG|0|2023-03-02T07:05:54.215780Z|runtime|a394df63-4106-4ef2-8b0f-8ef8c74734ed]
+[MFLOG|0|2023-03-02T07:05:54.215875Z|runtime|6d98e33a-5479-41ae-9ef1-871eaa80e4c9]Return Code: 0

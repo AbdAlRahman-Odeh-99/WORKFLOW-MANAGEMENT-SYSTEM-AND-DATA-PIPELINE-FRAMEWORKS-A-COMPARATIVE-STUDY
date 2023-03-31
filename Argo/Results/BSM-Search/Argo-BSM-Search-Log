@@ -1,0 +1,75 @@
+Name:                bsm-search-6nxpj
+Namespace:           argo
+ServiceAccount:      default
+Status:              Succeeded
+Conditions:          
+ PodRunning          False
+ Completed           True
+Created:             Wed Mar 01 08:48:02 +0300 (11 minutes ago)
+Started:             Wed Mar 01 08:48:14 +0300 (10 minutes ago)
+Finished:            Wed Mar 01 08:59:09 +0300 (now)
+Duration:            10 minutes 55 seconds
+Progress:            51/51
+ResourcesDuration:   24m20s*(1 cpu),16m25s*(100Mi memory)
+Parameters:          
+  base-dir:          /data/BSM-Search/
+
+STEP                                                                                                               TEMPLATE              PODNAME                      DURATION  MESSAGE
+ ✔ bsm-search-6nxpj                                                                                                databkgmc                                                      
+ ├─✔ prepare-dir                                                                                                   cleanup-recreate-dir  bsm-search-6nxpj-1387868548  1m          
+ ├─✔ data(0:nevents:20000,njobs:5,type:data)                                                                       workflow-data                                                  
+ │ ├─✔ scatter                                                                                                     scatter-template      bsm-search-6nxpj-1688730878  21s         
+ │ ├─✔ run-data(0:0)                                                                                               generate              bsm-search-6nxpj-2409995185  1m          
+ │ ├─✔ run-data(1:1)                                                                                               generate              bsm-search-6nxpj-2707277069  1m          
+ │ ├─✔ run-data(2:2)                                                                                               generate              bsm-search-6nxpj-3065730441  1m          
+ │ ├─✔ run-data(3:3)                                                                                               generate              bsm-search-6nxpj-329890781   1m          
+ │ ├─✔ run-data(4:4)                                                                                               generate              bsm-search-6nxpj-688344153   1m          
+ │ ├─✔ merge-data                                                                                                  merge-root            bsm-search-6nxpj-1257875131  11s         
+ │ ├─✔ select-control(0:region:control,suffix:control,variation:nominal)                                           select                bsm-search-6nxpj-1323169645  1m          
+ │ ├─✔ select-signal(0:region:signal,suffix:signal,variation:nominal)                                              select                bsm-search-6nxpj-3958827340  54s         
+ │ ├─✔ hist-signal(0:shapevar:nominal)                                                                             histogram-weight      bsm-search-6nxpj-2394490982  58s         
+ │ ├─✔ hist-control(0:shapevar:nominal,type:qcd)                                                                   histogram-weight      bsm-search-6nxpj-1461427211  2m          
+ │ └─✔ merge-hist-all(0:inputfiles:data_hist.root qcd_hist.root)                                                   merge-explicit        bsm-search-6nxpj-3058554095  15s         
+ ├─✔ signal(0:mcweight:0.0025,nevents:40000,njobs:2,type:sig)                                                      workflow-signal                                                
+ │ ├─✔ scatter                                                                                                     scatter-template      bsm-search-6nxpj-151199909   16s         
+ │ ├─✔ run-mc(0:0)                                                                                                 generate              bsm-search-6nxpj-2568241530  18s         
+ │ ├─✔ run-mc(1:1)                                                                                                 generate              bsm-search-6nxpj-1081455030  18s         
+ │ ├─✔ merge-mc                                                                                                    merge-root            bsm-search-6nxpj-2760157698  1m          
+ │ ├─✔ select-mc(0:region:signal,suffix:nominal,variation:nominal)                                                 select                bsm-search-6nxpj-2682919663  27s         
+ │ ├─✔ hist-weight(0:shapevar:nominal)                                                                             histogram-weight      bsm-search-6nxpj-161401245   49s         
+ │ └─✔ merge-hist-all(0:inputfiles:sig_nominal_hist.root)                                                          merge-explicit        bsm-search-6nxpj-4198236815  41s         
+ ├─✔ all-bkg-mc(0:mcweight:0.01875,nevents:40000,njobs:4,type:mc1)                                                 wflow-all-mc                                                   
+ │ ├─✔ scatter                                                                                                     scatter-template      bsm-search-6nxpj-2914371032  24s         
+ │ ├─✔ run-mc(0:0)                                                                                                 generate              bsm-search-6nxpj-2234501491  59s         
+ │ ├─✔ run-mc(1:1)                                                                                                 generate              bsm-search-6nxpj-3721287991  1m          
+ │ ├─✔ run-mc(2:2)                                                                                                 generate              bsm-search-6nxpj-1501202219  1m          
+ │ ├─✔ run-mc(3:3)                                                                                                 generate              bsm-search-6nxpj-1803706983  1m          
+ │ ├─✔ merge-mc                                                                                                    merge-root            bsm-search-6nxpj-2365660985  25s         
+ │ ├─✔ select-mc(0:region:signal,suffix:shape_conv_up,variation:shape_conv_up)                                     select                bsm-search-6nxpj-3940564994  45s         
+ │ ├─✔ select-mc(1:region:signal,suffix:shape_conv_dn,variation:shape_conv_dn)                                     select                bsm-search-6nxpj-4227138697  40s         
+ │ ├─✔ select-mc(2:region:signal,suffix:nominal,variation:nominal,weight_var1_up,weight_var1_dn)                   select                bsm-search-6nxpj-1041665303  1m          
+ │ ├─✔ hist-weight(0:shapevar:nominal)                                                                             histogram-weight      bsm-search-6nxpj-313789612   1m          
+ │ ├─✔ hist-shape(0:shapevar:shape_conv_up)                                                                        histogram-shape       bsm-search-6nxpj-57099391    49s         
+ │ ├─✔ hist-shape(1:shapevar:shape_conv_dn)                                                                        histogram-shape       bsm-search-6nxpj-1423599029  48s         
+ │ ├─✔ merge-hist-shape(0:inputfiles:mc1_shape_conv_up_hist.root mc1_shape_conv_dn_hist.root)                      merge-explicit        bsm-search-6nxpj-841472322   1m          
+ │ └─✔ merge-hist-all(0:inputfiles:mc1_nominal_hist.root mc1_shape_hist.root)                                      merge-explicit        bsm-search-6nxpj-1861721354  14s         
+ ├─✔ all-bkg-mc(1:mcweight:0.0125,nevents:40000,njobs:4,type:mc2)                                                  wflow-all-mc                                                   
+ │ ├─✔ scatter                                                                                                     scatter-template      bsm-search-6nxpj-4151176639  19s         
+ │ ├─✔ run-mc(0:0)                                                                                                 generate              bsm-search-6nxpj-590234032   1m          
+ │ ├─✔ run-mc(1:1)                                                                                                 generate              bsm-search-6nxpj-561394052   1m          
+ │ ├─✔ run-mc(2:2)                                                                                                 generate              bsm-search-6nxpj-2528603392  1m          
+ │ ├─✔ run-mc(3:3)                                                                                                 generate              bsm-search-6nxpj-1217129308  1m          
+ │ ├─✔ merge-mc                                                                                                    merge-root            bsm-search-6nxpj-3710419104  37s         
+ │ ├─✔ select-mc(0:region:signal,suffix:shape_conv_up,variation:shape_conv_up)                                     select                bsm-search-6nxpj-1157210761  41s         
+ │ ├─✔ select-mc(1:region:signal,suffix:shape_conv_dn,variation:shape_conv_dn)                                     select                bsm-search-6nxpj-3825336698  56s         
+ │ ├─✔ select-mc(2:region:signal,suffix:nominal,variation:nominal,weight_var1_up,weight_var1_dn)                   select                bsm-search-6nxpj-3935792472  57s         
+ │ ├─✔ hist-shape(0:shapevar:shape_conv_up)                                                                        histogram-shape       bsm-search-6nxpj-4245676894  1m          
+ │ ├─✔ hist-weight(0:shapevar:nominal)                                                                             histogram-weight      bsm-search-6nxpj-2803329167  2m          
+ │ ├─✔ hist-shape(1:shapevar:shape_conv_dn)                                                                        histogram-shape       bsm-search-6nxpj-2951669732  1m          
+ │ ├─✔ merge-hist-shape(0:inputfiles:mc2_shape_conv_up_hist.root mc2_shape_conv_dn_hist.root)                      merge-explicit        bsm-search-6nxpj-2934049231  21s         
+ │ └─✔ merge-hist-all(0:inputfiles:mc2_nominal_hist.root mc2_shape_hist.root)                                      merge-explicit        bsm-search-6nxpj-2623777431  12s         
+ ├─✔ merge-all(0:inputfiles:mc1_merged_hist.root mc2_merged_hist.root sig_merged_hist.root data_merged_hist.root)  merge-explicit        bsm-search-6nxpj-4287825757  13s         
+ ├─✔ makews                                                                                                        makews-action         bsm-search-6nxpj-2720342151  1m          
+ └─✔ plot                                                                                                          plot-action           bsm-search-6nxpj-3416011984  16s         
+
+

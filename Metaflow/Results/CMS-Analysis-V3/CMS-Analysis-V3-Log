@@ -1,0 +1,1583 @@
+abd@abd:~/Desktop/Work/Final_Version/Metaflow/dags$ METAFLOW_SERVICE_URL=http://localhost:8080/ METAFLOW_DEFAULT_METADATA=service python3 CMS-Analysis.py run
+Metaflow 2.5.0 executing CMS_Analysis for user:abd
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint is happy!
+2023-03-02 10:05:04.439 Workflow starting (run-id 3):
+2023-03-02 10:05:04.480 [3/start/130 (pid 7475)] Task is starting.
+2023-03-02 10:05:05.264 [3/start/130 (pid 7475)] Start Flow
+2023-03-02 10:05:06.090 [3/start/130 (pid 7475)] Task finished successfully.
+2023-03-02 10:05:06.114 [3/pull_images/131 (pid 7495)] Task is starting.
+2023-03-02 10:05:53.417 [3/pull_images/131 (pid 7495)] The command is:
+2023-03-02 10:05:54.213 [3/pull_images/131 (pid 7495)] 
+2023-03-02 10:05:54.213 [3/pull_images/131 (pid 7495)] docker pull ubuntu:latest
+2023-03-02 10:05:54.214 [3/pull_images/131 (pid 7495)] docker pull cernopendata/cernopendata-client:0.3.0
+2023-03-02 10:05:54.214 [3/pull_images/131 (pid 7495)] docker pull cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493
+2023-03-02 10:05:54.214 [3/pull_images/131 (pid 7495)] docker pull gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+2023-03-02 10:05:54.214 [3/pull_images/131 (pid 7495)] 
+2023-03-02 10:05:54.214 [3/pull_images/131 (pid 7495)] The output is:
+2023-03-02 10:05:54.214 [3/pull_images/131 (pid 7495)] latest: Pulling from library/ubuntu
+2023-03-02 10:05:54.214 [3/pull_images/131 (pid 7495)] 76769433fd8a: Pulling fs layer
+2023-03-02 10:05:54.214 [3/pull_images/131 (pid 7495)] 76769433fd8a: Verifying Checksum
+2023-03-02 10:05:54.214 [3/pull_images/131 (pid 7495)] 76769433fd8a: Download complete
+2023-03-02 10:05:54.214 [3/pull_images/131 (pid 7495)] 76769433fd8a: Pull complete
+2023-03-02 10:05:54.215 [3/pull_images/131 (pid 7495)] Digest: sha256:854037bf6521e9c321c101c269272f756e481fb5f167ae032cb53da08aebcd5a
+2023-03-02 10:05:54.215 [3/pull_images/131 (pid 7495)] Status: Downloaded newer image for ubuntu:latest
+2023-03-02 10:05:54.215 [3/pull_images/131 (pid 7495)] docker.io/library/ubuntu:latest
+2023-03-02 10:05:54.215 [3/pull_images/131 (pid 7495)] Using default tag: latest
+2023-03-02 10:05:54.215 [3/pull_images/131 (pid 7495)] latest: Pulling from cms-cloud/python-vnc
+2023-03-02 10:05:54.215 [3/pull_images/131 (pid 7495)] Digest: sha256:12e122ea9ff95e0334e03cb7e832ce67986abba7c20597a6d70160f626cb0a47
+2023-03-02 10:05:54.215 [3/pull_images/131 (pid 7495)] Status: Image is up to date for gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+2023-03-02 10:05:54.215 [3/pull_images/131 (pid 7495)] gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+2023-03-02 10:05:54.215 [3/pull_images/131 (pid 7495)] 
+2023-03-02 10:05:54.215 [3/pull_images/131 (pid 7495)] Return Code: 0
+2023-03-02 10:05:54.216 [3/pull_images/131 (pid 7495)] Task finished successfully.
+2023-03-02 10:05:54.249 [3/prepare_directory/132 (pid 7854)] Task is starting.
+2023-03-02 10:05:55.812 [3/prepare_directory/132 (pid 7854)] The command is:
+2023-03-02 10:05:56.633 [3/prepare_directory/132 (pid 7854)] 
+2023-03-02 10:05:56.633 [3/prepare_directory/132 (pid 7854)] docker run         --name ubuntu         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         ubuntu:latest         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/prepare-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol &&         docker stop ubuntu &&         docker rm ubuntu
+2023-03-02 10:05:56.633 [3/prepare_directory/132 (pid 7854)] 
+2023-03-02 10:05:56.634 [3/prepare_directory/132 (pid 7854)] The output is:
+2023-03-02 10:05:56.634 [3/prepare_directory/132 (pid 7854)] pip install vector hist mplhep coffea
+2023-03-02 10:05:56.634 [3/prepare_directory/132 (pid 7854)] git clone https://github.com/cms-opendata-workshop/workshop2022-lesson-ttbarljetsanalysis-payload.git
+2023-03-02 10:05:56.634 [3/prepare_directory/132 (pid 7854)] cd workshop2022-lesson-ttbarljetsanalysis-payload
+2023-03-02 10:05:56.634 [3/prepare_directory/132 (pid 7854)] cp /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/code/ntuples.json .
+2023-03-02 10:05:56.634 [3/prepare_directory/132 (pid 7854)] python coffeaAnalysis_ttbarljets.py
+2023-03-02 10:05:56.634 [3/prepare_directory/132 (pid 7854)] mv *root /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol
+2023-03-02 10:05:56.634 [3/prepare_directory/132 (pid 7854)] ubuntu
+2023-03-02 10:05:56.634 [3/prepare_directory/132 (pid 7854)] ubuntu
+2023-03-02 10:05:56.635 [3/prepare_directory/132 (pid 7854)] 
+2023-03-02 10:05:56.635 [3/prepare_directory/132 (pid 7854)] Return Code: 0
+2023-03-02 10:05:56.641 [3/prepare_directory/132 (pid 7854)] Foreach yields 12 child steps.
+2023-03-02 10:05:56.641 [3/prepare_directory/132 (pid 7854)] Task finished successfully.
+2023-03-02 10:05:56.666 [3/file_list/133 (pid 8074)] Task is starting.
+2023-03-02 10:05:56.686 [3/file_list/134 (pid 8075)] Task is starting.
+2023-03-02 10:05:56.712 [3/file_list/135 (pid 8076)] Task is starting.
+2023-03-02 10:05:56.766 [3/file_list/136 (pid 8078)] Task is starting.
+2023-03-02 10:06:06.656 [3/file_list/133 (pid 8074)] The command is:
+2023-03-02 10:06:06.658 [3/file_list/133 (pid 8074)] 
+2023-03-02 10:06:07.613 [3/file_list/133 (pid 8074)] if ! docker stop cernopendata-client-24119 && ! docker rm cernopendata-client-24119; then
+2023-03-02 10:06:07.613 [3/file_list/133 (pid 8074)] echo "some_command returned an error"
+2023-03-02 10:06:07.614 [3/file_list/133 (pid 8074)] else
+2023-03-02 10:06:07.614 [3/file_list/133 (pid 8074)] docker stop cernopendata-client-24119 && docker rm cernopendata-client-24119
+2023-03-02 10:06:07.614 [3/file_list/133 (pid 8074)] fi &&         docker run         --rm         --name cernopendata-client-24119         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 24119 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_24119.txt;
+2023-03-02 10:06:07.614 [3/file_list/133 (pid 8074)] 
+2023-03-02 10:06:07.614 [3/file_list/133 (pid 8074)] The output is:
+2023-03-02 10:06:07.614 [3/file_list/133 (pid 8074)] some_command returned an error
+2023-03-02 10:06:07.614 [3/file_list/133 (pid 8074)] 
+2023-03-02 10:06:07.614 [3/file_list/133 (pid 8074)] Return Code: 0
+2023-03-02 10:06:07.615 [3/file_list/133 (pid 8074)] Task finished successfully.
+2023-03-02 10:06:07.634 [3/file_list/137 (pid 8791)] Task is starting.
+2023-03-02 10:06:07.756 [3/file_list/134 (pid 8075)] The command is:
+2023-03-02 10:06:09.088 [3/file_list/135 (pid 8076)] The command is:
+2023-03-02 10:06:09.217 [3/file_list/134 (pid 8075)] 
+2023-03-02 10:06:09.218 [3/file_list/134 (pid 8075)] if ! docker stop cernopendata-client-24120 && ! docker rm cernopendata-client-24120; then
+2023-03-02 10:06:09.218 [3/file_list/134 (pid 8075)] echo "some_command returned an error"
+2023-03-02 10:06:09.218 [3/file_list/134 (pid 8075)] else
+2023-03-02 10:06:09.218 [3/file_list/134 (pid 8075)] docker stop cernopendata-client-24120 && docker rm cernopendata-client-24120
+2023-03-02 10:06:09.218 [3/file_list/134 (pid 8075)] fi &&         docker run         --rm         --name cernopendata-client-24120         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 24120 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_24120.txt;
+2023-03-02 10:06:09.218 [3/file_list/134 (pid 8075)] 
+2023-03-02 10:06:09.219 [3/file_list/134 (pid 8075)] The output is:
+2023-03-02 10:06:09.219 [3/file_list/134 (pid 8075)] some_command returned an error
+2023-03-02 10:06:09.219 [3/file_list/134 (pid 8075)] 
+2023-03-02 10:06:09.219 [3/file_list/134 (pid 8075)] Return Code: 0
+2023-03-02 10:06:09.220 [3/file_list/134 (pid 8075)] Task finished successfully.
+2023-03-02 10:06:09.303 [3/file_list/138 (pid 8984)] Task is starting.
+2023-03-02 10:06:10.452 [3/file_list/135 (pid 8076)] 
+2023-03-02 10:06:10.452 [3/file_list/135 (pid 8076)] if ! docker stop cernopendata-client-19980 && ! docker rm cernopendata-client-19980; then
+2023-03-02 10:06:10.453 [3/file_list/135 (pid 8076)] echo "some_command returned an error"
+2023-03-02 10:06:10.453 [3/file_list/135 (pid 8076)] else
+2023-03-02 10:06:10.453 [3/file_list/135 (pid 8076)] docker stop cernopendata-client-19980 && docker rm cernopendata-client-19980
+2023-03-02 10:06:10.453 [3/file_list/135 (pid 8076)] fi &&         docker run         --rm         --name cernopendata-client-19980         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 19980 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_19980.txt;
+2023-03-02 10:06:10.454 [3/file_list/135 (pid 8076)] 
+2023-03-02 10:06:10.454 [3/file_list/135 (pid 8076)] The output is:
+2023-03-02 10:06:10.454 [3/file_list/135 (pid 8076)] some_command returned an error
+2023-03-02 10:06:10.454 [3/file_list/135 (pid 8076)] 
+2023-03-02 10:06:10.455 [3/file_list/135 (pid 8076)] Return Code: 0
+2023-03-02 10:06:10.456 [3/file_list/135 (pid 8076)] Task finished successfully.
+2023-03-02 10:06:10.482 [3/file_list/139 (pid 9069)] Task is starting.
+2023-03-02 10:06:11.354 [3/file_list/136 (pid 8078)] The command is:
+2023-03-02 10:06:11.356 [3/file_list/136 (pid 8078)] 
+2023-03-02 10:06:11.360 [3/file_list/136 (pid 8078)] if ! docker stop cernopendata-client-19983 && ! docker rm cernopendata-client-19983; then
+2023-03-02 10:06:11.361 [3/file_list/136 (pid 8078)] echo "some_command returned an error"
+2023-03-02 10:06:11.361 [3/file_list/136 (pid 8078)] else
+2023-03-02 10:06:11.361 [3/file_list/136 (pid 8078)] docker stop cernopendata-client-19983 && docker rm cernopendata-client-19983
+2023-03-02 10:06:11.362 [3/file_list/136 (pid 8078)] fi &&         docker run         --rm         --name cernopendata-client-19983         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 19983 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_19983.txt;
+2023-03-02 10:06:11.362 [3/file_list/136 (pid 8078)] 
+2023-03-02 10:06:11.362 [3/file_list/136 (pid 8078)] The output is:
+2023-03-02 10:06:11.363 [3/file_list/136 (pid 8078)] some_command returned an error
+2023-03-02 10:06:11.363 [3/file_list/136 (pid 8078)] 
+2023-03-02 10:06:11.363 [3/file_list/136 (pid 8078)] Return Code: 1
+2023-03-02 10:06:11.364 [3/file_list/136 (pid 8078)] The error is:
+2023-03-02 10:06:11.364 [3/file_list/136 (pid 8078)] Error response from daemon: No such container: cernopendata-client-19983
+2023-03-02 10:06:11.364 [3/file_list/136 (pid 8078)] Error response from daemon: No such container: cernopendata-client-19983
+2023-03-02 10:06:11.364 [3/file_list/136 (pid 8078)] Traceback (most recent call last):
+2023-03-02 10:06:11.365 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/urllib3/connection.py", line 174, in _new_conn
+2023-03-02 10:06:11.368 [3/file_list/136 (pid 8078)] conn = connection.create_connection(
+2023-03-02 10:06:11.368 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/urllib3/util/connection.py", line 72, in create_connection
+2023-03-02 10:06:11.368 [3/file_list/136 (pid 8078)] for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+2023-03-02 10:06:11.369 [3/file_list/136 (pid 8078)] File "/usr/lib64/python3.10/socket.py", line 955, in getaddrinfo
+2023-03-02 10:06:11.369 [3/file_list/136 (pid 8078)] for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+2023-03-02 10:06:11.371 [3/file_list/136 (pid 8078)] socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-03-02 10:06:11.372 [3/file_list/136 (pid 8078)] 
+2023-03-02 10:06:11.372 [3/file_list/136 (pid 8078)] During handling of the above exception, another exception occurred:
+2023-03-02 10:06:11.372 [3/file_list/136 (pid 8078)] 
+2023-03-02 10:06:11.390 [3/file_list/136 (pid 8078)] Traceback (most recent call last):
+2023-03-02 10:06:11.390 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/urllib3/connectionpool.py", line 703, in urlopen
+2023-03-02 10:06:11.390 [3/file_list/136 (pid 8078)] httplib_response = self._make_request(
+2023-03-02 10:06:11.390 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/urllib3/connectionpool.py", line 398, in _make_request
+2023-03-02 10:06:11.391 [3/file_list/136 (pid 8078)] conn.request(method, url, **httplib_request_kw)
+2023-03-02 10:06:11.391 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/urllib3/connection.py", line 239, in request
+2023-03-02 10:06:11.391 [3/file_list/136 (pid 8078)] super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+2023-03-02 10:06:11.391 [3/file_list/136 (pid 8078)] File "/usr/lib64/python3.10/http/client.py", line 1282, in request
+2023-03-02 10:06:11.391 [3/file_list/136 (pid 8078)] self._send_request(method, url, body, headers, encode_chunked)
+2023-03-02 10:06:11.391 [3/file_list/136 (pid 8078)] File "/usr/lib64/python3.10/http/client.py", line 1328, in _send_request
+2023-03-02 10:06:11.391 [3/file_list/136 (pid 8078)] self.endheaders(body, encode_chunked=encode_chunked)
+2023-03-02 10:06:11.391 [3/file_list/136 (pid 8078)] File "/usr/lib64/python3.10/http/client.py", line 1277, in endheaders
+2023-03-02 10:06:11.392 [3/file_list/136 (pid 8078)] self._send_output(message_body, encode_chunked=encode_chunked)
+2023-03-02 10:06:11.392 [3/file_list/136 (pid 8078)] File "/usr/lib64/python3.10/http/client.py", line 1037, in _send_output
+2023-03-02 10:06:11.396 [3/file_list/136 (pid 8078)] self.send(msg)
+2023-03-02 10:06:11.396 [3/file_list/136 (pid 8078)] File "/usr/lib64/python3.10/http/client.py", line 975, in send
+2023-03-02 10:06:11.396 [3/file_list/136 (pid 8078)] self.connect()
+2023-03-02 10:06:11.397 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/urllib3/connection.py", line 205, in connect
+2023-03-02 10:06:11.397 [3/file_list/136 (pid 8078)] conn = self._new_conn()
+2023-03-02 10:06:11.397 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/urllib3/connection.py", line 186, in _new_conn
+2023-03-02 10:06:11.397 [3/file_list/136 (pid 8078)] raise NewConnectionError(
+2023-03-02 10:06:11.397 [3/file_list/136 (pid 8078)] urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6d91b732b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+2023-03-02 10:06:11.397 [3/file_list/136 (pid 8078)] 
+2023-03-02 10:06:11.397 [3/file_list/136 (pid 8078)] During handling of the above exception, another exception occurred:
+2023-03-02 10:06:11.397 [3/file_list/136 (pid 8078)] 
+2023-03-02 10:06:11.397 [3/file_list/136 (pid 8078)] Traceback (most recent call last):
+2023-03-02 10:06:11.398 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/requests/adapters.py", line 440, in send
+2023-03-02 10:06:11.398 [3/file_list/136 (pid 8078)] resp = conn.urlopen(
+2023-03-02 10:06:11.398 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/urllib3/connectionpool.py", line 785, in urlopen
+2023-03-02 10:06:11.398 [3/file_list/136 (pid 8078)] retries = retries.increment(
+2023-03-02 10:06:11.398 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/urllib3/util/retry.py", line 592, in increment
+2023-03-02 10:06:11.398 [3/file_list/136 (pid 8078)] raise MaxRetryError(_pool, url, error or ResponseError(cause))
+2023-03-02 10:06:11.398 [3/file_list/136 (pid 8078)] urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='opendata.cern.ch', port=80): Max retries exceeded with url: /api/records/19983 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6d91b732b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2023-03-02 10:06:11.398 [3/file_list/136 (pid 8078)] 
+2023-03-02 10:06:11.398 [3/file_list/136 (pid 8078)] During handling of the above exception, another exception occurred:
+2023-03-02 10:06:11.398 [3/file_list/136 (pid 8078)] 
+2023-03-02 10:06:11.399 [3/file_list/136 (pid 8078)] Traceback (most recent call last):
+2023-03-02 10:06:11.399 [3/file_list/136 (pid 8078)] File "/usr/local/bin/cernopendata-client", line 8, in <module>
+2023-03-02 10:06:11.399 [3/file_list/136 (pid 8078)] sys.exit(cernopendata_client())
+2023-03-02 10:06:11.399 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/click/core.py", line 1128, in __call__
+2023-03-02 10:06:11.399 [3/file_list/136 (pid 8078)] return self.main(*args, **kwargs)
+2023-03-02 10:06:11.399 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/click/core.py", line 1053, in main
+2023-03-02 10:06:11.399 [3/file_list/136 (pid 8078)] rv = self.invoke(ctx)
+2023-03-02 10:06:11.399 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/click/core.py", line 1659, in invoke
+2023-03-02 10:06:11.399 [3/file_list/136 (pid 8078)] return _process_result(sub_ctx.command.invoke(sub_ctx))
+2023-03-02 10:06:11.400 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/click/core.py", line 1395, in invoke
+2023-03-02 10:06:11.400 [3/file_list/136 (pid 8078)] return ctx.invoke(self.callback, **ctx.params)
+2023-03-02 10:06:11.400 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/click/core.py", line 754, in invoke
+2023-03-02 10:06:11.400 [3/file_list/136 (pid 8078)] return __callback(*args, **kwargs)
+2023-03-02 10:06:11.406 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/cernopendata_client/cli.py", line 165, in get_file_locations
+2023-03-02 10:06:11.419 [3/file_list/136 (pid 8078)] record_json = get_record_as_json(server, recid, doi, title)
+2023-03-02 10:06:13.015 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/cernopendata_client/searcher.py", line 160, in get_record_as_json
+2023-03-02 10:06:13.015 [3/file_list/136 (pid 8078)] record_api = get_recid_api(server=server, base_record_id=record_id)
+2023-03-02 10:06:13.015 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/cernopendata_client/searcher.py", line 67, in get_recid_api
+2023-03-02 10:06:13.016 [3/file_list/136 (pid 8078)] record_api = requests.get(record_api_url)
+2023-03-02 10:06:13.016 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/requests/api.py", line 75, in get
+2023-03-02 10:06:13.016 [3/file_list/136 (pid 8078)] return request('get', url, params=params, **kwargs)
+2023-03-02 10:06:13.016 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/requests/api.py", line 61, in request
+2023-03-02 10:06:13.016 [3/file_list/136 (pid 8078)] return session.request(method=method, url=url, **kwargs)
+2023-03-02 10:06:13.016 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/requests/sessions.py", line 529, in request
+2023-03-02 10:06:13.016 [3/file_list/136 (pid 8078)] resp = self.send(prep, **send_kwargs)
+2023-03-02 10:06:13.017 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/requests/sessions.py", line 645, in send
+2023-03-02 10:06:13.017 [3/file_list/136 (pid 8078)] r = adapter.send(request, **kwargs)
+2023-03-02 10:06:13.017 [3/file_list/136 (pid 8078)] File "/usr/local/lib/python3.10/site-packages/requests/adapters.py", line 519, in send
+2023-03-02 10:06:13.017 [3/file_list/136 (pid 8078)] raise ConnectionError(e, request=request)
+2023-03-02 10:06:13.017 [3/file_list/136 (pid 8078)] requests.exceptions.ConnectionError: HTTPConnectionPool(host='opendata.cern.ch', port=80): Max retries exceeded with url: /api/records/19983 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6d91b732b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2023-03-02 10:06:13.017 [3/file_list/136 (pid 8078)] 
+2023-03-02 10:06:13.018 [3/file_list/136 (pid 8078)] Task finished successfully.
+2023-03-02 10:06:13.042 [3/file_list/140 (pid 9356)] Task is starting.
+2023-03-02 10:06:14.564 [3/file_list/137 (pid 8791)] The command is:
+2023-03-02 10:06:15.059 [3/file_list/139 (pid 9069)] The command is:
+2023-03-02 10:06:15.762 [3/file_list/137 (pid 8791)] 
+2023-03-02 10:06:15.762 [3/file_list/137 (pid 8791)] if ! docker stop cernopendata-client-19985 && ! docker rm cernopendata-client-19985; then
+2023-03-02 10:06:15.762 [3/file_list/137 (pid 8791)] echo "some_command returned an error"
+2023-03-02 10:06:15.762 [3/file_list/137 (pid 8791)] else
+2023-03-02 10:06:15.762 [3/file_list/137 (pid 8791)] docker stop cernopendata-client-19985 && docker rm cernopendata-client-19985
+2023-03-02 10:06:15.762 [3/file_list/137 (pid 8791)] fi &&         docker run         --rm         --name cernopendata-client-19985         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 19985 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_19985.txt;
+2023-03-02 10:06:15.763 [3/file_list/137 (pid 8791)] 
+2023-03-02 10:06:15.763 [3/file_list/137 (pid 8791)] The output is:
+2023-03-02 10:06:15.763 [3/file_list/137 (pid 8791)] some_command returned an error
+2023-03-02 10:06:15.763 [3/file_list/137 (pid 8791)] 
+2023-03-02 10:06:15.763 [3/file_list/137 (pid 8791)] Return Code: 0
+2023-03-02 10:06:15.764 [3/file_list/137 (pid 8791)] Task finished successfully.
+2023-03-02 10:06:15.792 [3/file_list/141 (pid 9575)] Task is starting.
+2023-03-02 10:06:16.178 [3/file_list/139 (pid 9069)] 
+2023-03-02 10:06:16.178 [3/file_list/139 (pid 9069)] if ! docker stop cernopendata-client-19999 && ! docker rm cernopendata-client-19999; then
+2023-03-02 10:06:16.178 [3/file_list/139 (pid 9069)] echo "some_command returned an error"
+2023-03-02 10:06:16.179 [3/file_list/139 (pid 9069)] else
+2023-03-02 10:06:16.179 [3/file_list/139 (pid 9069)] docker stop cernopendata-client-19999 && docker rm cernopendata-client-19999
+2023-03-02 10:06:16.179 [3/file_list/139 (pid 9069)] fi &&         docker run         --rm         --name cernopendata-client-19999         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 19999 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_19999.txt;
+2023-03-02 10:06:16.179 [3/file_list/139 (pid 9069)] 
+2023-03-02 10:06:16.179 [3/file_list/139 (pid 9069)] The output is:
+2023-03-02 10:06:16.179 [3/file_list/139 (pid 9069)] some_command returned an error
+2023-03-02 10:06:16.179 [3/file_list/139 (pid 9069)] 
+2023-03-02 10:06:16.179 [3/file_list/139 (pid 9069)] Return Code: 0
+2023-03-02 10:06:16.180 [3/file_list/139 (pid 9069)] Task finished successfully.
+2023-03-02 10:06:16.202 [3/file_list/142 (pid 9579)] Task is starting.
+2023-03-02 10:06:17.600 [3/file_list/138 (pid 8984)] The command is:
+2023-03-02 10:06:18.096 [3/file_list/140 (pid 9356)] The command is:
+2023-03-02 10:06:19.355 [3/file_list/138 (pid 8984)] 
+2023-03-02 10:06:19.356 [3/file_list/138 (pid 8984)] if ! docker stop cernopendata-client-19949 && ! docker rm cernopendata-client-19949; then
+2023-03-02 10:06:19.356 [3/file_list/138 (pid 8984)] echo "some_command returned an error"
+2023-03-02 10:06:19.356 [3/file_list/138 (pid 8984)] else
+2023-03-02 10:06:19.356 [3/file_list/138 (pid 8984)] docker stop cernopendata-client-19949 && docker rm cernopendata-client-19949
+2023-03-02 10:06:19.356 [3/file_list/138 (pid 8984)] fi &&         docker run         --rm         --name cernopendata-client-19949         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 19949 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_19949.txt;
+2023-03-02 10:06:19.356 [3/file_list/138 (pid 8984)] 
+2023-03-02 10:06:19.356 [3/file_list/138 (pid 8984)] The output is:
+2023-03-02 10:06:19.356 [3/file_list/138 (pid 8984)] some_command returned an error
+2023-03-02 10:06:19.356 [3/file_list/138 (pid 8984)] 
+2023-03-02 10:06:19.356 [3/file_list/138 (pid 8984)] Return Code: 0
+2023-03-02 10:06:19.357 [3/file_list/138 (pid 8984)] Task finished successfully.
+2023-03-02 10:06:19.386 [3/file_list/143 (pid 9962)] Task is starting.
+2023-03-02 10:06:19.662 [3/file_list/140 (pid 9356)] 
+2023-03-02 10:06:19.662 [3/file_list/140 (pid 9356)] if ! docker stop cernopendata-client-19397 && ! docker rm cernopendata-client-19397; then
+2023-03-02 10:06:19.662 [3/file_list/140 (pid 9356)] echo "some_command returned an error"
+2023-03-02 10:06:19.662 [3/file_list/140 (pid 9356)] else
+2023-03-02 10:06:19.662 [3/file_list/140 (pid 9356)] docker stop cernopendata-client-19397 && docker rm cernopendata-client-19397
+2023-03-02 10:06:19.662 [3/file_list/140 (pid 9356)] fi &&         docker run         --rm         --name cernopendata-client-19397         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 19397 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_19397.txt;
+2023-03-02 10:06:19.663 [3/file_list/140 (pid 9356)] 
+2023-03-02 10:06:19.663 [3/file_list/140 (pid 9356)] The output is:
+2023-03-02 10:06:19.663 [3/file_list/140 (pid 9356)] some_command returned an error
+2023-03-02 10:06:19.663 [3/file_list/140 (pid 9356)] 
+2023-03-02 10:06:19.663 [3/file_list/140 (pid 9356)] Return Code: 0
+2023-03-02 10:06:19.665 [3/file_list/140 (pid 9356)] Task finished successfully.
+2023-03-02 10:06:19.687 [3/file_list/144 (pid 9992)] Task is starting.
+2023-03-02 10:06:19.784 [3/file_list/141 (pid 9575)] The command is:
+2023-03-02 10:06:20.652 [3/file_list/142 (pid 9579)] The command is:
+2023-03-02 10:06:21.973 [3/file_list/141 (pid 9575)] 
+2023-03-02 10:06:21.974 [3/file_list/141 (pid 9575)] if ! docker stop cernopendata-client-19407 && ! docker rm cernopendata-client-19407; then
+2023-03-02 10:06:21.974 [3/file_list/141 (pid 9575)] echo "some_command returned an error"
+2023-03-02 10:06:21.974 [3/file_list/141 (pid 9575)] else
+2023-03-02 10:06:21.975 [3/file_list/141 (pid 9575)] docker stop cernopendata-client-19407 && docker rm cernopendata-client-19407
+2023-03-02 10:06:21.975 [3/file_list/141 (pid 9575)] fi &&         docker run         --rm         --name cernopendata-client-19407         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 19407 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_19407.txt;
+2023-03-02 10:06:21.975 [3/file_list/141 (pid 9575)] 
+2023-03-02 10:06:21.975 [3/file_list/141 (pid 9575)] The output is:
+2023-03-02 10:06:21.976 [3/file_list/141 (pid 9575)] some_command returned an error
+2023-03-02 10:06:21.976 [3/file_list/141 (pid 9575)] 
+2023-03-02 10:06:21.976 [3/file_list/141 (pid 9575)] Return Code: 0
+2023-03-02 10:06:21.978 [3/file_list/141 (pid 9575)] Task finished successfully.
+2023-03-02 10:06:22.969 [3/file_list/142 (pid 9579)] 
+2023-03-02 10:06:22.969 [3/file_list/142 (pid 9579)] if ! docker stop cernopendata-client-19419 && ! docker rm cernopendata-client-19419; then
+2023-03-02 10:06:22.970 [3/file_list/142 (pid 9579)] echo "some_command returned an error"
+2023-03-02 10:06:22.970 [3/file_list/142 (pid 9579)] else
+2023-03-02 10:06:22.970 [3/file_list/142 (pid 9579)] docker stop cernopendata-client-19419 && docker rm cernopendata-client-19419
+2023-03-02 10:06:22.970 [3/file_list/142 (pid 9579)] fi &&         docker run         --rm         --name cernopendata-client-19419         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 19419 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_19419.txt;
+2023-03-02 10:06:22.970 [3/file_list/142 (pid 9579)] 
+2023-03-02 10:06:22.970 [3/file_list/142 (pid 9579)] The output is:
+2023-03-02 10:06:22.970 [3/file_list/142 (pid 9579)] some_command returned an error
+2023-03-02 10:06:22.970 [3/file_list/142 (pid 9579)] 
+2023-03-02 10:06:22.970 [3/file_list/142 (pid 9579)] Return Code: 0
+2023-03-02 10:06:22.971 [3/file_list/142 (pid 9579)] Task finished successfully.
+2023-03-02 10:06:24.378 [3/file_list/143 (pid 9962)] The command is:
+2023-03-02 10:06:25.271 [3/file_list/143 (pid 9962)] 
+2023-03-02 10:06:25.271 [3/file_list/143 (pid 9962)] if ! docker stop cernopendata-client-19412 && ! docker rm cernopendata-client-19412; then
+2023-03-02 10:06:25.271 [3/file_list/143 (pid 9962)] echo "some_command returned an error"
+2023-03-02 10:06:25.271 [3/file_list/143 (pid 9962)] else
+2023-03-02 10:06:25.271 [3/file_list/143 (pid 9962)] docker stop cernopendata-client-19412 && docker rm cernopendata-client-19412
+2023-03-02 10:06:25.272 [3/file_list/143 (pid 9962)] fi &&         docker run         --rm         --name cernopendata-client-19412         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 19412 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_19412.txt;
+2023-03-02 10:06:25.272 [3/file_list/143 (pid 9962)] 
+2023-03-02 10:06:25.272 [3/file_list/143 (pid 9962)] The output is:
+2023-03-02 10:06:25.272 [3/file_list/143 (pid 9962)] some_command returned an error
+2023-03-02 10:06:25.272 [3/file_list/143 (pid 9962)] 
+2023-03-02 10:06:25.272 [3/file_list/143 (pid 9962)] Return Code: 0
+2023-03-02 10:06:25.273 [3/file_list/143 (pid 9962)] Task finished successfully.
+2023-03-02 10:06:30.419 [3/file_list/144 (pid 9992)] The command is:
+2023-03-02 10:06:31.283 [3/file_list/144 (pid 9992)] 
+2023-03-02 10:06:31.284 [3/file_list/144 (pid 9992)] if ! docker stop cernopendata-client-20548 && ! docker rm cernopendata-client-20548; then
+2023-03-02 10:06:31.284 [3/file_list/144 (pid 9992)] echo "some_command returned an error"
+2023-03-02 10:06:31.284 [3/file_list/144 (pid 9992)] else
+2023-03-02 10:06:31.284 [3/file_list/144 (pid 9992)] docker stop cernopendata-client-20548 && docker rm cernopendata-client-20548
+2023-03-02 10:06:31.284 [3/file_list/144 (pid 9992)] fi &&         docker run         --rm         --name cernopendata-client-20548         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 20548 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_20548.txt;
+2023-03-02 10:06:31.284 [3/file_list/144 (pid 9992)] 
+2023-03-02 10:06:31.284 [3/file_list/144 (pid 9992)] The output is:
+2023-03-02 10:06:31.284 [3/file_list/144 (pid 9992)] some_command returned an error
+2023-03-02 10:06:31.285 [3/file_list/144 (pid 9992)] 
+2023-03-02 10:06:31.285 [3/file_list/144 (pid 9992)] Return Code: 0
+2023-03-02 10:06:31.285 [3/file_list/144 (pid 9992)] Task finished successfully.
+2023-03-02 10:06:31.323 [3/file_list_join/145 (pid 10461)] Task is starting.
+2023-03-02 10:06:32.890 [3/file_list_join/145 (pid 10461)] Task finished successfully.
+2023-03-02 10:06:32.934 [3/file_list_runpoet_link/146 (pid 10494)] Task is starting.
+2023-03-02 10:06:34.344 [3/file_list_runpoet_link/146 (pid 10494)] Foreach yields 12 child steps.
+2023-03-02 10:06:34.344 [3/file_list_runpoet_link/146 (pid 10494)] Task finished successfully.
+2023-03-02 10:06:34.439 [3/runpoet/147 (pid 10510)] Task is starting.
+2023-03-02 10:06:34.472 [3/runpoet/148 (pid 10512)] Task is starting.
+2023-03-02 10:06:34.510 [3/runpoet/149 (pid 10514)] Task is starting.
+2023-03-02 10:06:34.539 [3/runpoet/150 (pid 10515)] Task is starting.
+2023-03-02 10:21:44.679 4 tasks are running: e.g. ....
+2023-03-02 10:21:44.680 8 tasks are waiting in the queue.
+2023-03-02 10:21:44.680 0 steps are pending: e.g. ....
+2023-03-02 10:38:25.672 4 tasks are running: e.g. ....
+2023-03-02 10:38:25.672 8 tasks are waiting in the queue.
+2023-03-02 10:38:25.673 0 steps are pending: e.g. ....
+2023-03-02 10:45:22.366 [3/runpoet/148 (pid 10512)] The command is:
+2023-03-02 10:45:22.367 [3/runpoet/148 (pid 10512)] 
+2023-03-02 10:45:22.367 [3/runpoet/148 (pid 10512)] if ! docker stop cmssw-24120 && ! docker rm cmssw-24120; then
+2023-03-02 10:45:22.367 [3/runpoet/148 (pid 10512)] echo "some_command returned an error"
+2023-03-02 10:45:22.368 [3/runpoet/148 (pid 10512)] else
+2023-03-02 10:45:22.368 [3/runpoet/148 (pid 10512)] docker stop cmssw-24120 && docker rm cmssw-24120
+2023-03-02 10:45:22.368 [3/runpoet/148 (pid 10512)] fi &&         docker run         --name cmssw-24120         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 24120 1 &&         docker stop cmssw-24120 &&         docker rm cmssw-24120
+2023-03-02 10:45:22.368 [3/runpoet/148 (pid 10512)] 
+2023-03-02 10:45:22.369 [3/runpoet/148 (pid 10512)] The output is:
+2023-03-02 10:45:22.369 [3/runpoet/148 (pid 10512)] some_command returned an error
+2023-03-02 10:45:22.369 [3/runpoet/148 (pid 10512)] Setting up CMSSW_7_6_7
+2023-03-02 10:45:22.369 [3/runpoet/148 (pid 10512)] CMSSW should now be available.
+2023-03-02 10:45:22.369 [3/runpoet/148 (pid 10512)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 10:45:22.370 [3/runpoet/148 (pid 10512)] inside script file
+2023-03-02 10:45:22.370 [3/runpoet/148 (pid 10512)] Setting up CMSSW_7_6_7
+2023-03-02 10:45:22.370 [3/runpoet/148 (pid 10512)] CMSSW should now be available.
+2023-03-02 10:45:22.370 [3/runpoet/148 (pid 10512)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 10:45:22.370 [3/runpoet/148 (pid 10512)] >> Local Products Rules ..... started
+2023-03-02 10:45:22.371 [3/runpoet/148 (pid 10512)] >> Local Products Rules ..... done
+2023-03-02 10:45:22.371 [3/runpoet/148 (pid 10512)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:45:22.371 [3/runpoet/148 (pid 10512)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 10:45:22.372 [3/runpoet/148 (pid 10512)] >> copied merge_trees.py
+2023-03-02 10:45:22.372 [3/runpoet/148 (pid 10512)] >> copied ntuples-gen.py
+2023-03-02 10:45:22.372 [3/runpoet/148 (pid 10512)] >> Creating project symlinks
+2023-03-02 10:45:22.372 [3/runpoet/148 (pid 10512)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:45:22.373 [3/runpoet/148 (pid 10512)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:45:22.373 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 10:45:22.374 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 10:45:22.374 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 10:45:22.374 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 10:45:22.374 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 10:45:22.374 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 10:45:22.375 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 10:45:22.375 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 10:45:22.375 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 10:45:22.379 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 10:45:22.380 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 10:45:22.380 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 10:45:22.381 [3/runpoet/148 (pid 10512)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 10:45:22.381 [3/runpoet/148 (pid 10512)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 10:45:22.381 [3/runpoet/148 (pid 10512)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:45:22.382 [3/runpoet/148 (pid 10512)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 10:45:22.382 [3/runpoet/148 (pid 10512)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 10:45:22.382 [3/runpoet/148 (pid 10512)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:45:22.382 [3/runpoet/148 (pid 10512)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 10:45:22.383 [3/runpoet/148 (pid 10512)] >> Local Products Rules ..... started
+2023-03-02 10:45:22.383 [3/runpoet/148 (pid 10512)] >> Local Products Rules ..... done
+2023-03-02 10:45:22.383 [3/runpoet/148 (pid 10512)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 10:45:22.383 [3/runpoet/148 (pid 10512)] >> Creating project symlinks
+2023-03-02 10:45:22.384 [3/runpoet/148 (pid 10512)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:45:22.384 [3/runpoet/148 (pid 10512)] >> Done python_symlink
+2023-03-02 10:45:22.384 [3/runpoet/148 (pid 10512)] >> Compiling python modules python
+2023-03-02 10:45:22.384 [3/runpoet/148 (pid 10512)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 10:45:22.385 [3/runpoet/148 (pid 10512)] >> All python modules compiled
+2023-03-02 10:45:22.385 [3/runpoet/148 (pid 10512)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 10:45:22.385 [3/runpoet/148 (pid 10512)] >> Pluging of all type refreshed.
+2023-03-02 10:45:22.386 [3/runpoet/148 (pid 10512)] >> Done generating edm plugin poisoned information
+2023-03-02 10:45:22.386 [3/runpoet/148 (pid 10512)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 10:45:23.360 [3/runpoet/148 (pid 10512)] 2
+2023-03-02 10:45:23.360 [3/runpoet/148 (pid 10512)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 10:45:23.360 [3/runpoet/148 (pid 10512)] HLTConfig has changed for this Run. . .
+2023-03-02 10:45:23.361 [3/runpoet/148 (pid 10512)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 10:45:23.361 [3/runpoet/148 (pid 10512)] HLTConfig has changed for this Run. . .
+2023-03-02 10:45:23.361 [3/runpoet/148 (pid 10512)] 46487
+2023-03-02 10:45:23.361 [3/runpoet/148 (pid 10512)] 46487
+2023-03-02 10:45:23.361 [3/runpoet/148 (pid 10512)] cmssw-24120
+2023-03-02 10:45:23.361 [3/runpoet/148 (pid 10512)] cmssw-24120
+2023-03-02 10:45:23.362 [3/runpoet/148 (pid 10512)] 
+2023-03-02 10:45:23.362 [3/runpoet/148 (pid 10512)] Return Code: 0
+2023-03-02 10:45:23.364 [3/runpoet/148 (pid 10512)] Task finished successfully.
+2023-03-02 10:45:23.386 [3/runpoet/151 (pid 25720)] Task is starting.
+2023-03-02 10:55:05.967 4 tasks are running: e.g. ....
+2023-03-02 10:55:05.968 7 tasks are waiting in the queue.
+2023-03-02 10:55:05.968 0 steps are pending: e.g. ....
+2023-03-02 10:56:21.724 [3/runpoet/147 (pid 10510)] The command is:
+2023-03-02 10:56:21.724 [3/runpoet/147 (pid 10510)] 
+2023-03-02 10:56:21.724 [3/runpoet/147 (pid 10510)] if ! docker stop cmssw-24119 && ! docker rm cmssw-24119; then
+2023-03-02 10:56:21.724 [3/runpoet/147 (pid 10510)] echo "some_command returned an error"
+2023-03-02 10:56:21.724 [3/runpoet/147 (pid 10510)] else
+2023-03-02 10:56:21.725 [3/runpoet/147 (pid 10510)] docker stop cmssw-24119 && docker rm cmssw-24119
+2023-03-02 10:56:21.725 [3/runpoet/147 (pid 10510)] fi &&         docker run         --name cmssw-24119         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 24119 1 &&         docker stop cmssw-24119 &&         docker rm cmssw-24119
+2023-03-02 10:56:21.725 [3/runpoet/147 (pid 10510)] 
+2023-03-02 10:56:21.725 [3/runpoet/147 (pid 10510)] The output is:
+2023-03-02 10:56:21.725 [3/runpoet/147 (pid 10510)] some_command returned an error
+2023-03-02 10:56:21.725 [3/runpoet/147 (pid 10510)] Setting up CMSSW_7_6_7
+2023-03-02 10:56:21.725 [3/runpoet/147 (pid 10510)] CMSSW should now be available.
+2023-03-02 10:56:21.725 [3/runpoet/147 (pid 10510)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 10:56:21.726 [3/runpoet/147 (pid 10510)] inside script file
+2023-03-02 10:56:21.726 [3/runpoet/147 (pid 10510)] Setting up CMSSW_7_6_7
+2023-03-02 10:56:21.726 [3/runpoet/147 (pid 10510)] CMSSW should now be available.
+2023-03-02 10:56:21.726 [3/runpoet/147 (pid 10510)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 10:56:21.726 [3/runpoet/147 (pid 10510)] >> Local Products Rules ..... started
+2023-03-02 10:56:21.726 [3/runpoet/147 (pid 10510)] >> Local Products Rules ..... done
+2023-03-02 10:56:21.726 [3/runpoet/147 (pid 10510)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:56:21.726 [3/runpoet/147 (pid 10510)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 10:56:21.726 [3/runpoet/147 (pid 10510)] >> copied merge_trees.py
+2023-03-02 10:56:21.727 [3/runpoet/147 (pid 10510)] >> copied ntuples-gen.py
+2023-03-02 10:56:21.727 [3/runpoet/147 (pid 10510)] >> Creating project symlinks
+2023-03-02 10:56:21.727 [3/runpoet/147 (pid 10510)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:56:21.727 [3/runpoet/147 (pid 10510)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:56:21.727 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 10:56:21.727 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 10:56:21.727 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 10:56:21.727 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 10:56:21.727 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 10:56:21.727 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 10:56:21.728 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 10:56:21.728 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 10:56:21.728 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 10:56:21.728 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 10:56:21.728 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 10:56:21.728 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 10:56:21.728 [3/runpoet/147 (pid 10510)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 10:56:21.729 [3/runpoet/147 (pid 10510)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 10:56:21.729 [3/runpoet/147 (pid 10510)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:56:21.729 [3/runpoet/147 (pid 10510)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 10:56:21.729 [3/runpoet/147 (pid 10510)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 10:56:21.729 [3/runpoet/147 (pid 10510)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:56:21.729 [3/runpoet/147 (pid 10510)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 10:56:21.730 [3/runpoet/147 (pid 10510)] >> Local Products Rules ..... started
+2023-03-02 10:56:21.730 [3/runpoet/147 (pid 10510)] >> Local Products Rules ..... done
+2023-03-02 10:56:21.730 [3/runpoet/147 (pid 10510)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 10:56:21.730 [3/runpoet/147 (pid 10510)] >> Creating project symlinks
+2023-03-02 10:56:21.730 [3/runpoet/147 (pid 10510)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 10:56:21.730 [3/runpoet/147 (pid 10510)] >> Done python_symlink
+2023-03-02 10:56:21.730 [3/runpoet/147 (pid 10510)] >> Compiling python modules python
+2023-03-02 10:56:21.730 [3/runpoet/147 (pid 10510)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 10:56:21.731 [3/runpoet/147 (pid 10510)] >> All python modules compiled
+2023-03-02 10:56:21.731 [3/runpoet/147 (pid 10510)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 10:56:21.731 [3/runpoet/147 (pid 10510)] >> Pluging of all type refreshed.
+2023-03-02 10:56:21.731 [3/runpoet/147 (pid 10510)] >> Done generating edm plugin poisoned information
+2023-03-02 10:56:21.731 [3/runpoet/147 (pid 10510)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 10:56:22.617 [3/runpoet/147 (pid 10510)] 2
+2023-03-02 10:56:22.617 [3/runpoet/147 (pid 10510)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 10:56:22.617 [3/runpoet/147 (pid 10510)] HLTConfig has changed for this Run. . .
+2023-03-02 10:56:22.617 [3/runpoet/147 (pid 10510)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 10:56:22.617 [3/runpoet/147 (pid 10510)] HLTConfig has changed for this Run. . .
+2023-03-02 10:56:22.617 [3/runpoet/147 (pid 10510)] 49945
+2023-03-02 10:56:22.617 [3/runpoet/147 (pid 10510)] 49945
+2023-03-02 10:56:22.618 [3/runpoet/147 (pid 10510)] cmssw-24119
+2023-03-02 10:56:22.618 [3/runpoet/147 (pid 10510)] cmssw-24119
+2023-03-02 10:56:22.618 [3/runpoet/147 (pid 10510)] 
+2023-03-02 10:56:22.618 [3/runpoet/147 (pid 10510)] Return Code: 0
+2023-03-02 10:56:22.619 [3/runpoet/147 (pid 10510)] Task finished successfully.
+2023-03-02 10:56:22.646 [3/runpoet/152 (pid 29942)] Task is starting.
+2023-03-02 11:11:46.573 4 tasks are running: e.g. ....
+2023-03-02 11:11:46.573 6 tasks are waiting in the queue.
+2023-03-02 11:11:46.574 0 steps are pending: e.g. ....
+2023-03-02 11:20:57.584 [3/runpoet/150 (pid 10515)] The command is:
+2023-03-02 11:20:57.584 [3/runpoet/150 (pid 10515)] 
+2023-03-02 11:20:57.585 [3/runpoet/150 (pid 10515)] if ! docker stop cmssw-19983 && ! docker rm cmssw-19983; then
+2023-03-02 11:20:57.585 [3/runpoet/150 (pid 10515)] echo "some_command returned an error"
+2023-03-02 11:20:57.585 [3/runpoet/150 (pid 10515)] else
+2023-03-02 11:20:57.585 [3/runpoet/150 (pid 10515)] docker stop cmssw-19983 && docker rm cmssw-19983
+2023-03-02 11:20:57.585 [3/runpoet/150 (pid 10515)] fi &&         docker run         --name cmssw-19983         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 19983 1 &&         docker stop cmssw-19983 &&         docker rm cmssw-19983
+2023-03-02 11:20:57.585 [3/runpoet/150 (pid 10515)] 
+2023-03-02 11:20:57.585 [3/runpoet/150 (pid 10515)] The output is:
+2023-03-02 11:20:57.585 [3/runpoet/150 (pid 10515)] some_command returned an error
+2023-03-02 11:20:57.585 [3/runpoet/150 (pid 10515)] Setting up CMSSW_7_6_7
+2023-03-02 11:20:57.586 [3/runpoet/150 (pid 10515)] CMSSW should now be available.
+2023-03-02 11:20:57.586 [3/runpoet/150 (pid 10515)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 11:20:57.586 [3/runpoet/150 (pid 10515)] inside script file
+2023-03-02 11:20:57.586 [3/runpoet/150 (pid 10515)] Setting up CMSSW_7_6_7
+2023-03-02 11:20:57.586 [3/runpoet/150 (pid 10515)] CMSSW should now be available.
+2023-03-02 11:20:57.586 [3/runpoet/150 (pid 10515)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 11:20:57.586 [3/runpoet/150 (pid 10515)] >> Local Products Rules ..... started
+2023-03-02 11:20:57.586 [3/runpoet/150 (pid 10515)] >> Local Products Rules ..... done
+2023-03-02 11:20:57.587 [3/runpoet/150 (pid 10515)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:20:57.587 [3/runpoet/150 (pid 10515)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 11:20:57.587 [3/runpoet/150 (pid 10515)] >> copied merge_trees.py
+2023-03-02 11:20:57.587 [3/runpoet/150 (pid 10515)] >> copied ntuples-gen.py
+2023-03-02 11:20:57.587 [3/runpoet/150 (pid 10515)] >> Creating project symlinks
+2023-03-02 11:20:57.587 [3/runpoet/150 (pid 10515)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:20:57.588 [3/runpoet/150 (pid 10515)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:20:57.588 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 11:20:57.588 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 11:20:57.588 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 11:20:57.588 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 11:20:57.588 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 11:20:57.588 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 11:20:57.588 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 11:20:57.589 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 11:20:57.589 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 11:20:57.589 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 11:20:57.589 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 11:20:57.589 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 11:20:57.589 [3/runpoet/150 (pid 10515)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 11:20:57.589 [3/runpoet/150 (pid 10515)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 11:20:57.589 [3/runpoet/150 (pid 10515)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:20:57.590 [3/runpoet/150 (pid 10515)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 11:20:57.590 [3/runpoet/150 (pid 10515)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 11:20:57.590 [3/runpoet/150 (pid 10515)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:20:57.590 [3/runpoet/150 (pid 10515)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 11:20:57.590 [3/runpoet/150 (pid 10515)] >> Local Products Rules ..... started
+2023-03-02 11:20:57.590 [3/runpoet/150 (pid 10515)] >> Local Products Rules ..... done
+2023-03-02 11:20:57.590 [3/runpoet/150 (pid 10515)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 11:20:57.590 [3/runpoet/150 (pid 10515)] >> Creating project symlinks
+2023-03-02 11:20:57.591 [3/runpoet/150 (pid 10515)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:20:57.591 [3/runpoet/150 (pid 10515)] >> Done python_symlink
+2023-03-02 11:20:57.591 [3/runpoet/150 (pid 10515)] >> Compiling python modules python
+2023-03-02 11:20:57.591 [3/runpoet/150 (pid 10515)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 11:20:57.591 [3/runpoet/150 (pid 10515)] >> All python modules compiled
+2023-03-02 11:20:57.591 [3/runpoet/150 (pid 10515)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 11:20:57.591 [3/runpoet/150 (pid 10515)] >> Pluging of all type refreshed.
+2023-03-02 11:20:57.591 [3/runpoet/150 (pid 10515)] >> Done generating edm plugin poisoned information
+2023-03-02 11:20:57.592 [3/runpoet/150 (pid 10515)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 11:20:58.478 [3/runpoet/150 (pid 10515)] 2
+2023-03-02 11:20:58.478 [3/runpoet/150 (pid 10515)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 11:20:58.478 [3/runpoet/150 (pid 10515)] HLTConfig has changed for this Run. . .
+2023-03-02 11:20:58.478 [3/runpoet/150 (pid 10515)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 11:20:58.478 [3/runpoet/150 (pid 10515)] 46404
+2023-03-02 11:20:58.479 [3/runpoet/150 (pid 10515)] 46404
+2023-03-02 11:20:58.479 [3/runpoet/150 (pid 10515)] cmssw-19983
+2023-03-02 11:20:58.479 [3/runpoet/150 (pid 10515)] cmssw-19983
+2023-03-02 11:20:58.479 [3/runpoet/150 (pid 10515)] 
+2023-03-02 11:20:58.479 [3/runpoet/150 (pid 10515)] Return Code: 0
+2023-03-02 11:20:58.480 [3/runpoet/150 (pid 10515)] Task finished successfully.
+2023-03-02 11:20:58.500 [3/runpoet/153 (pid 37820)] Task is starting.
+2023-03-02 11:28:26.940 4 tasks are running: e.g. ....
+2023-03-02 11:28:26.940 5 tasks are waiting in the queue.
+2023-03-02 11:28:26.941 0 steps are pending: e.g. ....
+2023-03-02 11:45:07.932 4 tasks are running: e.g. ....
+2023-03-02 11:45:07.932 5 tasks are waiting in the queue.
+2023-03-02 11:45:07.932 0 steps are pending: e.g. ....
+2023-03-02 11:54:07.659 [3/runpoet/151 (pid 25720)] The command is:
+2023-03-02 11:54:07.659 [3/runpoet/151 (pid 25720)] 
+2023-03-02 11:54:07.659 [3/runpoet/151 (pid 25720)] if ! docker stop cmssw-19985 && ! docker rm cmssw-19985; then
+2023-03-02 11:54:07.659 [3/runpoet/151 (pid 25720)] echo "some_command returned an error"
+2023-03-02 11:54:07.660 [3/runpoet/151 (pid 25720)] else
+2023-03-02 11:54:07.660 [3/runpoet/151 (pid 25720)] docker stop cmssw-19985 && docker rm cmssw-19985
+2023-03-02 11:54:07.660 [3/runpoet/151 (pid 25720)] fi &&         docker run         --name cmssw-19985         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 19985 1 &&         docker stop cmssw-19985 &&         docker rm cmssw-19985
+2023-03-02 11:54:07.660 [3/runpoet/151 (pid 25720)] 
+2023-03-02 11:54:07.660 [3/runpoet/151 (pid 25720)] The output is:
+2023-03-02 11:54:07.660 [3/runpoet/151 (pid 25720)] some_command returned an error
+2023-03-02 11:54:07.660 [3/runpoet/151 (pid 25720)] Setting up CMSSW_7_6_7
+2023-03-02 11:54:07.660 [3/runpoet/151 (pid 25720)] CMSSW should now be available.
+2023-03-02 11:54:07.660 [3/runpoet/151 (pid 25720)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 11:54:07.661 [3/runpoet/151 (pid 25720)] inside script file
+2023-03-02 11:54:07.661 [3/runpoet/151 (pid 25720)] Setting up CMSSW_7_6_7
+2023-03-02 11:54:07.661 [3/runpoet/151 (pid 25720)] CMSSW should now be available.
+2023-03-02 11:54:07.661 [3/runpoet/151 (pid 25720)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 11:54:07.661 [3/runpoet/151 (pid 25720)] >> Local Products Rules ..... started
+2023-03-02 11:54:07.661 [3/runpoet/151 (pid 25720)] >> Local Products Rules ..... done
+2023-03-02 11:54:07.661 [3/runpoet/151 (pid 25720)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:54:07.661 [3/runpoet/151 (pid 25720)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 11:54:07.661 [3/runpoet/151 (pid 25720)] >> copied merge_trees.py
+2023-03-02 11:54:07.661 [3/runpoet/151 (pid 25720)] >> copied ntuples-gen.py
+2023-03-02 11:54:07.662 [3/runpoet/151 (pid 25720)] >> Creating project symlinks
+2023-03-02 11:54:07.662 [3/runpoet/151 (pid 25720)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:54:07.662 [3/runpoet/151 (pid 25720)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:54:07.662 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 11:54:07.662 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 11:54:07.662 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 11:54:07.662 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 11:54:07.662 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 11:54:07.662 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 11:54:07.663 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 11:54:07.663 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 11:54:07.663 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 11:54:07.663 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 11:54:07.663 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 11:54:07.663 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 11:54:07.663 [3/runpoet/151 (pid 25720)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 11:54:07.663 [3/runpoet/151 (pid 25720)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 11:54:07.664 [3/runpoet/151 (pid 25720)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:54:07.664 [3/runpoet/151 (pid 25720)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 11:54:07.664 [3/runpoet/151 (pid 25720)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 11:54:07.664 [3/runpoet/151 (pid 25720)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:54:07.664 [3/runpoet/151 (pid 25720)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 11:54:07.664 [3/runpoet/151 (pid 25720)] >> Local Products Rules ..... started
+2023-03-02 11:54:07.664 [3/runpoet/151 (pid 25720)] >> Local Products Rules ..... done
+2023-03-02 11:54:07.664 [3/runpoet/151 (pid 25720)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 11:54:07.665 [3/runpoet/151 (pid 25720)] >> Creating project symlinks
+2023-03-02 11:54:07.665 [3/runpoet/151 (pid 25720)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 11:54:07.665 [3/runpoet/151 (pid 25720)] >> Done python_symlink
+2023-03-02 11:54:07.665 [3/runpoet/151 (pid 25720)] >> Compiling python modules python
+2023-03-02 11:54:07.665 [3/runpoet/151 (pid 25720)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 11:54:07.665 [3/runpoet/151 (pid 25720)] >> All python modules compiled
+2023-03-02 11:54:07.665 [3/runpoet/151 (pid 25720)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 11:54:07.665 [3/runpoet/151 (pid 25720)] >> Pluging of all type refreshed.
+2023-03-02 11:54:07.665 [3/runpoet/151 (pid 25720)] >> Done generating edm plugin poisoned information
+2023-03-02 11:54:07.665 [3/runpoet/151 (pid 25720)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 11:54:08.818 [3/runpoet/151 (pid 25720)] 2
+2023-03-02 11:54:08.818 [3/runpoet/151 (pid 25720)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 11:54:08.818 [3/runpoet/151 (pid 25720)] HLTConfig has changed for this Run. . .
+2023-03-02 11:54:08.819 [3/runpoet/151 (pid 25720)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 11:54:08.819 [3/runpoet/151 (pid 25720)] 45259
+2023-03-02 11:54:08.819 [3/runpoet/151 (pid 25720)] 45259
+2023-03-02 11:54:08.819 [3/runpoet/151 (pid 25720)] cmssw-19985
+2023-03-02 11:54:08.819 [3/runpoet/151 (pid 25720)] cmssw-19985
+2023-03-02 11:54:08.819 [3/runpoet/151 (pid 25720)] 
+2023-03-02 11:54:08.819 [3/runpoet/151 (pid 25720)] Return Code: 0
+2023-03-02 11:54:08.820 [3/runpoet/151 (pid 25720)] Task finished successfully.
+2023-03-02 11:54:08.844 [3/runpoet/154 (pid 47975)] Task is starting.
+2023-03-02 12:01:48.305 4 tasks are running: e.g. ....
+2023-03-02 12:01:48.306 4 tasks are waiting in the queue.
+2023-03-02 12:01:48.306 0 steps are pending: e.g. ....
+2023-03-02 12:03:24.866 [3/runpoet/152 (pid 29942)] The command is:
+2023-03-02 12:03:24.866 [3/runpoet/152 (pid 29942)] 
+2023-03-02 12:03:24.866 [3/runpoet/152 (pid 29942)] if ! docker stop cmssw-19949 && ! docker rm cmssw-19949; then
+2023-03-02 12:03:24.866 [3/runpoet/152 (pid 29942)] echo "some_command returned an error"
+2023-03-02 12:03:24.866 [3/runpoet/152 (pid 29942)] else
+2023-03-02 12:03:24.866 [3/runpoet/152 (pid 29942)] docker stop cmssw-19949 && docker rm cmssw-19949
+2023-03-02 12:03:24.867 [3/runpoet/152 (pid 29942)] fi &&         docker run         --name cmssw-19949         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 19949 1 &&         docker stop cmssw-19949 &&         docker rm cmssw-19949
+2023-03-02 12:03:24.867 [3/runpoet/152 (pid 29942)] 
+2023-03-02 12:03:24.867 [3/runpoet/152 (pid 29942)] The output is:
+2023-03-02 12:03:24.867 [3/runpoet/152 (pid 29942)] some_command returned an error
+2023-03-02 12:03:24.867 [3/runpoet/152 (pid 29942)] Setting up CMSSW_7_6_7
+2023-03-02 12:03:24.867 [3/runpoet/152 (pid 29942)] CMSSW should now be available.
+2023-03-02 12:03:24.867 [3/runpoet/152 (pid 29942)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 12:03:24.867 [3/runpoet/152 (pid 29942)] inside script file
+2023-03-02 12:03:24.867 [3/runpoet/152 (pid 29942)] Setting up CMSSW_7_6_7
+2023-03-02 12:03:24.868 [3/runpoet/152 (pid 29942)] CMSSW should now be available.
+2023-03-02 12:03:24.868 [3/runpoet/152 (pid 29942)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 12:03:24.868 [3/runpoet/152 (pid 29942)] >> Local Products Rules ..... started
+2023-03-02 12:03:24.868 [3/runpoet/152 (pid 29942)] >> Local Products Rules ..... done
+2023-03-02 12:03:24.868 [3/runpoet/152 (pid 29942)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:03:24.868 [3/runpoet/152 (pid 29942)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 12:03:24.868 [3/runpoet/152 (pid 29942)] >> copied merge_trees.py
+2023-03-02 12:03:24.868 [3/runpoet/152 (pid 29942)] >> copied ntuples-gen.py
+2023-03-02 12:03:24.868 [3/runpoet/152 (pid 29942)] >> Creating project symlinks
+2023-03-02 12:03:24.869 [3/runpoet/152 (pid 29942)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:03:24.869 [3/runpoet/152 (pid 29942)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:03:24.869 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 12:03:24.869 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 12:03:24.869 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 12:03:24.869 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 12:03:24.869 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 12:03:24.869 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 12:03:24.869 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 12:03:24.870 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 12:03:24.870 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 12:03:24.870 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 12:03:24.870 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 12:03:24.870 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 12:03:24.870 [3/runpoet/152 (pid 29942)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 12:03:24.870 [3/runpoet/152 (pid 29942)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 12:03:24.870 [3/runpoet/152 (pid 29942)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:03:24.871 [3/runpoet/152 (pid 29942)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 12:03:24.871 [3/runpoet/152 (pid 29942)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 12:03:24.871 [3/runpoet/152 (pid 29942)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:03:24.871 [3/runpoet/152 (pid 29942)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 12:03:24.871 [3/runpoet/152 (pid 29942)] >> Local Products Rules ..... started
+2023-03-02 12:03:24.871 [3/runpoet/152 (pid 29942)] >> Local Products Rules ..... done
+2023-03-02 12:03:24.871 [3/runpoet/152 (pid 29942)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 12:03:24.871 [3/runpoet/152 (pid 29942)] >> Creating project symlinks
+2023-03-02 12:03:24.872 [3/runpoet/152 (pid 29942)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:03:24.872 [3/runpoet/152 (pid 29942)] >> Done python_symlink
+2023-03-02 12:03:24.872 [3/runpoet/152 (pid 29942)] >> Compiling python modules python
+2023-03-02 12:03:24.872 [3/runpoet/152 (pid 29942)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 12:03:24.872 [3/runpoet/152 (pid 29942)] >> All python modules compiled
+2023-03-02 12:03:24.872 [3/runpoet/152 (pid 29942)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 12:03:24.872 [3/runpoet/152 (pid 29942)] >> Pluging of all type refreshed.
+2023-03-02 12:03:24.872 [3/runpoet/152 (pid 29942)] >> Done generating edm plugin poisoned information
+2023-03-02 12:03:24.873 [3/runpoet/152 (pid 29942)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 12:03:25.694 [3/runpoet/152 (pid 29942)] 2
+2023-03-02 12:03:25.694 [3/runpoet/152 (pid 29942)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 12:03:25.694 [3/runpoet/152 (pid 29942)] HLTConfig has changed for this Run. . .
+2023-03-02 12:03:25.694 [3/runpoet/152 (pid 29942)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 12:03:25.694 [3/runpoet/152 (pid 29942)] 42754
+2023-03-02 12:03:25.694 [3/runpoet/152 (pid 29942)] 42754
+2023-03-02 12:03:25.695 [3/runpoet/152 (pid 29942)] cmssw-19949
+2023-03-02 12:03:25.695 [3/runpoet/152 (pid 29942)] cmssw-19949
+2023-03-02 12:03:25.695 [3/runpoet/152 (pid 29942)] 
+2023-03-02 12:03:25.695 [3/runpoet/152 (pid 29942)] Return Code: 0
+2023-03-02 12:03:25.696 [3/runpoet/152 (pid 29942)] Task finished successfully.
+2023-03-02 12:03:25.718 [3/runpoet/155 (pid 51717)] Task is starting.
+2023-03-02 12:11:08.353 [3/runpoet/149 (pid 10514)] The command is:
+2023-03-02 12:11:08.354 [3/runpoet/149 (pid 10514)] 
+2023-03-02 12:11:08.354 [3/runpoet/149 (pid 10514)] if ! docker stop cmssw-19980 && ! docker rm cmssw-19980; then
+2023-03-02 12:11:08.354 [3/runpoet/149 (pid 10514)] echo "some_command returned an error"
+2023-03-02 12:11:08.354 [3/runpoet/149 (pid 10514)] else
+2023-03-02 12:11:08.354 [3/runpoet/149 (pid 10514)] docker stop cmssw-19980 && docker rm cmssw-19980
+2023-03-02 12:11:08.354 [3/runpoet/149 (pid 10514)] fi &&         docker run         --name cmssw-19980         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 19980 1 &&         docker stop cmssw-19980 &&         docker rm cmssw-19980
+2023-03-02 12:11:08.354 [3/runpoet/149 (pid 10514)] 
+2023-03-02 12:11:08.355 [3/runpoet/149 (pid 10514)] The output is:
+2023-03-02 12:11:08.355 [3/runpoet/149 (pid 10514)] some_command returned an error
+2023-03-02 12:11:08.355 [3/runpoet/149 (pid 10514)] Setting up CMSSW_7_6_7
+2023-03-02 12:11:08.355 [3/runpoet/149 (pid 10514)] CMSSW should now be available.
+2023-03-02 12:11:08.355 [3/runpoet/149 (pid 10514)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 12:11:08.355 [3/runpoet/149 (pid 10514)] inside script file
+2023-03-02 12:11:08.355 [3/runpoet/149 (pid 10514)] Setting up CMSSW_7_6_7
+2023-03-02 12:11:08.355 [3/runpoet/149 (pid 10514)] CMSSW should now be available.
+2023-03-02 12:11:08.356 [3/runpoet/149 (pid 10514)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 12:11:08.356 [3/runpoet/149 (pid 10514)] >> Local Products Rules ..... started
+2023-03-02 12:11:08.356 [3/runpoet/149 (pid 10514)] >> Local Products Rules ..... done
+2023-03-02 12:11:08.356 [3/runpoet/149 (pid 10514)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:11:08.356 [3/runpoet/149 (pid 10514)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 12:11:08.356 [3/runpoet/149 (pid 10514)] >> copied merge_trees.py
+2023-03-02 12:11:08.356 [3/runpoet/149 (pid 10514)] >> copied ntuples-gen.py
+2023-03-02 12:11:08.356 [3/runpoet/149 (pid 10514)] >> Creating project symlinks
+2023-03-02 12:11:08.356 [3/runpoet/149 (pid 10514)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:11:08.357 [3/runpoet/149 (pid 10514)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:11:08.357 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 12:11:08.357 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 12:11:08.357 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 12:11:08.357 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 12:11:08.357 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 12:11:08.357 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 12:11:08.357 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 12:11:08.357 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 12:11:08.358 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 12:11:08.358 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 12:11:08.358 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 12:11:08.358 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 12:11:08.358 [3/runpoet/149 (pid 10514)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 12:11:08.358 [3/runpoet/149 (pid 10514)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 12:11:08.358 [3/runpoet/149 (pid 10514)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:11:08.359 [3/runpoet/149 (pid 10514)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 12:11:08.359 [3/runpoet/149 (pid 10514)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 12:11:08.359 [3/runpoet/149 (pid 10514)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:11:08.359 [3/runpoet/149 (pid 10514)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 12:11:08.359 [3/runpoet/149 (pid 10514)] >> Local Products Rules ..... started
+2023-03-02 12:11:08.359 [3/runpoet/149 (pid 10514)] >> Local Products Rules ..... done
+2023-03-02 12:11:08.359 [3/runpoet/149 (pid 10514)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 12:11:08.359 [3/runpoet/149 (pid 10514)] >> Creating project symlinks
+2023-03-02 12:11:08.359 [3/runpoet/149 (pid 10514)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 12:11:08.360 [3/runpoet/149 (pid 10514)] >> Done python_symlink
+2023-03-02 12:11:08.360 [3/runpoet/149 (pid 10514)] >> Compiling python modules python
+2023-03-02 12:11:08.360 [3/runpoet/149 (pid 10514)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 12:11:08.360 [3/runpoet/149 (pid 10514)] >> All python modules compiled
+2023-03-02 12:11:08.360 [3/runpoet/149 (pid 10514)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 12:11:08.360 [3/runpoet/149 (pid 10514)] >> Pluging of all type refreshed.
+2023-03-02 12:11:08.360 [3/runpoet/149 (pid 10514)] >> Done generating edm plugin poisoned information
+2023-03-02 12:11:08.360 [3/runpoet/149 (pid 10514)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 12:11:09.271 [3/runpoet/149 (pid 10514)] 2
+2023-03-02 12:11:09.271 [3/runpoet/149 (pid 10514)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 12:11:09.272 [3/runpoet/149 (pid 10514)] HLTConfig has changed for this Run. . .
+2023-03-02 12:11:09.272 [3/runpoet/149 (pid 10514)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 12:11:09.272 [3/runpoet/149 (pid 10514)] 44251
+2023-03-02 12:11:09.272 [3/runpoet/149 (pid 10514)] 44251
+2023-03-02 12:11:09.273 [3/runpoet/149 (pid 10514)] cmssw-19980
+2023-03-02 12:11:09.273 [3/runpoet/149 (pid 10514)] cmssw-19980
+2023-03-02 12:11:09.273 [3/runpoet/149 (pid 10514)] 
+2023-03-02 12:11:09.273 [3/runpoet/149 (pid 10514)] Return Code: 0
+2023-03-02 12:11:09.275 [3/runpoet/149 (pid 10514)] Task finished successfully.
+2023-03-02 12:11:09.314 [3/runpoet/156 (pid 55113)] Task is starting.
+2023-03-02 12:18:28.756 4 tasks are running: e.g. ....
+2023-03-02 12:18:28.756 2 tasks are waiting in the queue.
+2023-03-02 12:18:28.757 0 steps are pending: e.g. ....
+2023-03-02 12:35:09.756 4 tasks are running: e.g. ....
+2023-03-02 12:35:09.756 2 tasks are waiting in the queue.
+2023-03-02 12:35:09.756 0 steps are pending: e.g. ....
+2023-03-02 12:51:49.768 4 tasks are running: e.g. ....
+2023-03-02 12:51:49.768 2 tasks are waiting in the queue.
+2023-03-02 12:51:49.769 0 steps are pending: e.g. ....
+2023-03-02 13:08:30.766 4 tasks are running: e.g. ....
+2023-03-02 13:08:30.767 2 tasks are waiting in the queue.
+2023-03-02 13:08:30.767 0 steps are pending: e.g. ....
+2023-03-02 13:24:18.134 [3/runpoet/156 (pid 55113)] The command is:
+2023-03-02 13:24:18.135 [3/runpoet/156 (pid 55113)] 
+2023-03-02 13:24:18.135 [3/runpoet/156 (pid 55113)] if ! docker stop cmssw-19419 && ! docker rm cmssw-19419; then
+2023-03-02 13:24:18.135 [3/runpoet/156 (pid 55113)] echo "some_command returned an error"
+2023-03-02 13:24:18.135 [3/runpoet/156 (pid 55113)] else
+2023-03-02 13:24:18.135 [3/runpoet/156 (pid 55113)] docker stop cmssw-19419 && docker rm cmssw-19419
+2023-03-02 13:24:18.135 [3/runpoet/156 (pid 55113)] fi &&         docker run         --name cmssw-19419         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 19419 1 &&         docker stop cmssw-19419 &&         docker rm cmssw-19419
+2023-03-02 13:24:18.135 [3/runpoet/156 (pid 55113)] 
+2023-03-02 13:24:18.136 [3/runpoet/156 (pid 55113)] The output is:
+2023-03-02 13:24:18.136 [3/runpoet/156 (pid 55113)] some_command returned an error
+2023-03-02 13:24:18.136 [3/runpoet/156 (pid 55113)] Setting up CMSSW_7_6_7
+2023-03-02 13:24:18.136 [3/runpoet/156 (pid 55113)] CMSSW should now be available.
+2023-03-02 13:24:18.136 [3/runpoet/156 (pid 55113)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 13:24:18.136 [3/runpoet/156 (pid 55113)] inside script file
+2023-03-02 13:24:18.136 [3/runpoet/156 (pid 55113)] Setting up CMSSW_7_6_7
+2023-03-02 13:24:18.136 [3/runpoet/156 (pid 55113)] CMSSW should now be available.
+2023-03-02 13:24:18.137 [3/runpoet/156 (pid 55113)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 13:24:18.137 [3/runpoet/156 (pid 55113)] >> Local Products Rules ..... started
+2023-03-02 13:24:18.137 [3/runpoet/156 (pid 55113)] >> Local Products Rules ..... done
+2023-03-02 13:24:18.137 [3/runpoet/156 (pid 55113)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:24:18.137 [3/runpoet/156 (pid 55113)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 13:24:18.137 [3/runpoet/156 (pid 55113)] >> copied merge_trees.py
+2023-03-02 13:24:18.137 [3/runpoet/156 (pid 55113)] >> copied ntuples-gen.py
+2023-03-02 13:24:18.137 [3/runpoet/156 (pid 55113)] >> Creating project symlinks
+2023-03-02 13:24:18.137 [3/runpoet/156 (pid 55113)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:24:18.137 [3/runpoet/156 (pid 55113)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:24:18.138 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 13:24:18.138 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 13:24:18.138 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 13:24:18.138 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 13:24:18.138 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 13:24:18.138 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 13:24:18.138 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 13:24:18.138 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 13:24:18.139 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 13:24:18.139 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 13:24:18.139 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 13:24:18.139 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 13:24:18.139 [3/runpoet/156 (pid 55113)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 13:24:18.139 [3/runpoet/156 (pid 55113)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 13:24:18.140 [3/runpoet/156 (pid 55113)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:24:18.140 [3/runpoet/156 (pid 55113)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 13:24:18.140 [3/runpoet/156 (pid 55113)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 13:24:18.140 [3/runpoet/156 (pid 55113)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:24:18.140 [3/runpoet/156 (pid 55113)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 13:24:18.140 [3/runpoet/156 (pid 55113)] >> Local Products Rules ..... started
+2023-03-02 13:24:18.140 [3/runpoet/156 (pid 55113)] >> Local Products Rules ..... done
+2023-03-02 13:24:18.140 [3/runpoet/156 (pid 55113)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 13:24:18.141 [3/runpoet/156 (pid 55113)] >> Creating project symlinks
+2023-03-02 13:24:18.141 [3/runpoet/156 (pid 55113)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:24:18.141 [3/runpoet/156 (pid 55113)] >> Done python_symlink
+2023-03-02 13:24:18.141 [3/runpoet/156 (pid 55113)] >> Compiling python modules python
+2023-03-02 13:24:18.141 [3/runpoet/156 (pid 55113)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 13:24:18.141 [3/runpoet/156 (pid 55113)] >> All python modules compiled
+2023-03-02 13:24:18.141 [3/runpoet/156 (pid 55113)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 13:24:18.141 [3/runpoet/156 (pid 55113)] >> Pluging of all type refreshed.
+2023-03-02 13:24:18.141 [3/runpoet/156 (pid 55113)] >> Done generating edm plugin poisoned information
+2023-03-02 13:24:18.142 [3/runpoet/156 (pid 55113)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 13:24:19.185 [3/runpoet/156 (pid 55113)] 2
+2023-03-02 13:24:19.185 [3/runpoet/156 (pid 55113)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 13:24:19.185 [3/runpoet/156 (pid 55113)] HLTConfig has changed for this Run. . .
+2023-03-02 13:24:19.185 [3/runpoet/156 (pid 55113)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 13:24:19.185 [3/runpoet/156 (pid 55113)] 36000
+2023-03-02 13:24:19.186 [3/runpoet/156 (pid 55113)] 36000
+2023-03-02 13:24:19.186 [3/runpoet/156 (pid 55113)] cmssw-19419
+2023-03-02 13:24:19.186 [3/runpoet/156 (pid 55113)] cmssw-19419
+2023-03-02 13:24:19.186 [3/runpoet/156 (pid 55113)] 
+2023-03-02 13:24:19.186 [3/runpoet/156 (pid 55113)] Return Code: 0
+2023-03-02 13:24:19.187 [3/runpoet/156 (pid 55113)] Task finished successfully.
+2023-03-02 13:24:19.208 [3/runpoet/157 (pid 75770)] Task is starting.
+2023-03-02 13:25:01.933 [3/runpoet/155 (pid 51717)] The command is:
+2023-03-02 13:25:01.933 [3/runpoet/155 (pid 51717)] 
+2023-03-02 13:25:01.934 [3/runpoet/155 (pid 51717)] if ! docker stop cmssw-19407 && ! docker rm cmssw-19407; then
+2023-03-02 13:25:01.934 [3/runpoet/155 (pid 51717)] echo "some_command returned an error"
+2023-03-02 13:25:01.934 [3/runpoet/155 (pid 51717)] else
+2023-03-02 13:25:01.934 [3/runpoet/155 (pid 51717)] docker stop cmssw-19407 && docker rm cmssw-19407
+2023-03-02 13:25:01.934 [3/runpoet/155 (pid 51717)] fi &&         docker run         --name cmssw-19407         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 19407 1 &&         docker stop cmssw-19407 &&         docker rm cmssw-19407
+2023-03-02 13:25:01.934 [3/runpoet/155 (pid 51717)] 
+2023-03-02 13:25:01.934 [3/runpoet/155 (pid 51717)] The output is:
+2023-03-02 13:25:01.934 [3/runpoet/155 (pid 51717)] some_command returned an error
+2023-03-02 13:25:01.935 [3/runpoet/155 (pid 51717)] Setting up CMSSW_7_6_7
+2023-03-02 13:25:01.935 [3/runpoet/155 (pid 51717)] CMSSW should now be available.
+2023-03-02 13:25:01.935 [3/runpoet/155 (pid 51717)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 13:25:01.935 [3/runpoet/155 (pid 51717)] inside script file
+2023-03-02 13:25:01.935 [3/runpoet/155 (pid 51717)] Setting up CMSSW_7_6_7
+2023-03-02 13:25:01.935 [3/runpoet/155 (pid 51717)] CMSSW should now be available.
+2023-03-02 13:25:01.935 [3/runpoet/155 (pid 51717)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 13:25:01.936 [3/runpoet/155 (pid 51717)] >> Local Products Rules ..... started
+2023-03-02 13:25:01.936 [3/runpoet/155 (pid 51717)] >> Local Products Rules ..... done
+2023-03-02 13:25:01.936 [3/runpoet/155 (pid 51717)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:25:01.936 [3/runpoet/155 (pid 51717)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 13:25:01.936 [3/runpoet/155 (pid 51717)] >> copied merge_trees.py
+2023-03-02 13:25:01.936 [3/runpoet/155 (pid 51717)] >> copied ntuples-gen.py
+2023-03-02 13:25:01.936 [3/runpoet/155 (pid 51717)] >> Creating project symlinks
+2023-03-02 13:25:01.936 [3/runpoet/155 (pid 51717)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:25:01.937 [3/runpoet/155 (pid 51717)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:25:01.937 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 13:25:01.937 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 13:25:01.937 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 13:25:01.937 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 13:25:01.937 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 13:25:01.937 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 13:25:01.937 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 13:25:01.938 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 13:25:01.938 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 13:25:01.938 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 13:25:01.938 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 13:25:01.938 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 13:25:01.938 [3/runpoet/155 (pid 51717)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 13:25:01.938 [3/runpoet/155 (pid 51717)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 13:25:01.938 [3/runpoet/155 (pid 51717)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:25:01.939 [3/runpoet/155 (pid 51717)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 13:25:01.939 [3/runpoet/155 (pid 51717)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 13:25:01.939 [3/runpoet/155 (pid 51717)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:25:01.939 [3/runpoet/155 (pid 51717)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 13:25:01.939 [3/runpoet/155 (pid 51717)] >> Local Products Rules ..... started
+2023-03-02 13:25:01.939 [3/runpoet/155 (pid 51717)] >> Local Products Rules ..... done
+2023-03-02 13:25:01.939 [3/runpoet/155 (pid 51717)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 13:25:01.939 [3/runpoet/155 (pid 51717)] >> Creating project symlinks
+2023-03-02 13:25:01.940 [3/runpoet/155 (pid 51717)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:25:01.940 [3/runpoet/155 (pid 51717)] >> Done python_symlink
+2023-03-02 13:25:01.940 [3/runpoet/155 (pid 51717)] >> Compiling python modules python
+2023-03-02 13:25:01.940 [3/runpoet/155 (pid 51717)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 13:25:01.940 [3/runpoet/155 (pid 51717)] >> All python modules compiled
+2023-03-02 13:25:01.940 [3/runpoet/155 (pid 51717)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 13:25:01.940 [3/runpoet/155 (pid 51717)] >> Pluging of all type refreshed.
+2023-03-02 13:25:01.940 [3/runpoet/155 (pid 51717)] >> Done generating edm plugin poisoned information
+2023-03-02 13:25:01.941 [3/runpoet/155 (pid 51717)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 13:25:02.949 [3/runpoet/155 (pid 51717)] 2
+2023-03-02 13:25:02.949 [3/runpoet/155 (pid 51717)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 13:25:02.949 [3/runpoet/155 (pid 51717)] HLTConfig has changed for this Run. . .
+2023-03-02 13:25:02.949 [3/runpoet/155 (pid 51717)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 13:25:02.949 [3/runpoet/155 (pid 51717)] 39300
+2023-03-02 13:25:02.950 [3/runpoet/155 (pid 51717)] 39300
+2023-03-02 13:25:02.950 [3/runpoet/155 (pid 51717)] cmssw-19407
+2023-03-02 13:25:02.950 [3/runpoet/155 (pid 51717)] cmssw-19407
+2023-03-02 13:25:02.950 [3/runpoet/155 (pid 51717)] 
+2023-03-02 13:25:02.950 [3/runpoet/155 (pid 51717)] Return Code: 0
+2023-03-02 13:25:02.951 [3/runpoet/155 (pid 51717)] Task finished successfully.
+2023-03-02 13:25:02.978 [3/runpoet/158 (pid 76838)] Task is starting.
+2023-03-02 13:25:10.984 4 tasks are running: e.g. ....
+2023-03-02 13:25:10.984 0 tasks are waiting in the queue.
+2023-03-02 13:25:10.984 0 steps are pending: e.g. ....
+2023-03-02 13:27:53.871 [3/runpoet/153 (pid 37820)] The command is:
+2023-03-02 13:27:53.872 [3/runpoet/153 (pid 37820)] 
+2023-03-02 13:27:53.872 [3/runpoet/153 (pid 37820)] if ! docker stop cmssw-19999 && ! docker rm cmssw-19999; then
+2023-03-02 13:27:53.872 [3/runpoet/153 (pid 37820)] echo "some_command returned an error"
+2023-03-02 13:27:53.872 [3/runpoet/153 (pid 37820)] else
+2023-03-02 13:27:53.872 [3/runpoet/153 (pid 37820)] docker stop cmssw-19999 && docker rm cmssw-19999
+2023-03-02 13:27:53.873 [3/runpoet/153 (pid 37820)] fi &&         docker run         --name cmssw-19999         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 19999 1 &&         docker stop cmssw-19999 &&         docker rm cmssw-19999
+2023-03-02 13:27:53.873 [3/runpoet/153 (pid 37820)] 
+2023-03-02 13:27:53.873 [3/runpoet/153 (pid 37820)] The output is:
+2023-03-02 13:27:53.873 [3/runpoet/153 (pid 37820)] cmssw-19999
+2023-03-02 13:27:53.873 [3/runpoet/153 (pid 37820)] cmssw-19999
+2023-03-02 13:27:53.873 [3/runpoet/153 (pid 37820)] cmssw-19999
+2023-03-02 13:27:53.874 [3/runpoet/153 (pid 37820)] Setting up CMSSW_7_6_7
+2023-03-02 13:27:53.874 [3/runpoet/153 (pid 37820)] CMSSW should now be available.
+2023-03-02 13:27:53.874 [3/runpoet/153 (pid 37820)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 13:27:53.874 [3/runpoet/153 (pid 37820)] inside script file
+2023-03-02 13:27:53.874 [3/runpoet/153 (pid 37820)] Setting up CMSSW_7_6_7
+2023-03-02 13:27:53.874 [3/runpoet/153 (pid 37820)] CMSSW should now be available.
+2023-03-02 13:27:53.874 [3/runpoet/153 (pid 37820)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 13:27:53.875 [3/runpoet/153 (pid 37820)] >> Local Products Rules ..... started
+2023-03-02 13:27:53.875 [3/runpoet/153 (pid 37820)] >> Local Products Rules ..... done
+2023-03-02 13:27:53.875 [3/runpoet/153 (pid 37820)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:27:53.875 [3/runpoet/153 (pid 37820)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 13:27:53.875 [3/runpoet/153 (pid 37820)] >> copied merge_trees.py
+2023-03-02 13:27:53.875 [3/runpoet/153 (pid 37820)] >> copied ntuples-gen.py
+2023-03-02 13:27:53.875 [3/runpoet/153 (pid 37820)] >> Creating project symlinks
+2023-03-02 13:27:53.876 [3/runpoet/153 (pid 37820)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:27:53.876 [3/runpoet/153 (pid 37820)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:27:53.876 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 13:27:53.876 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 13:27:53.876 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 13:27:53.876 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 13:27:53.877 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 13:27:53.877 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 13:27:53.877 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 13:27:53.877 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 13:27:53.877 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 13:27:53.877 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 13:27:53.877 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 13:27:53.878 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 13:27:53.878 [3/runpoet/153 (pid 37820)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 13:27:53.878 [3/runpoet/153 (pid 37820)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 13:27:53.878 [3/runpoet/153 (pid 37820)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:27:53.878 [3/runpoet/153 (pid 37820)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 13:27:53.878 [3/runpoet/153 (pid 37820)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 13:27:53.878 [3/runpoet/153 (pid 37820)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:27:53.878 [3/runpoet/153 (pid 37820)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 13:27:53.879 [3/runpoet/153 (pid 37820)] >> Local Products Rules ..... started
+2023-03-02 13:27:53.879 [3/runpoet/153 (pid 37820)] >> Local Products Rules ..... done
+2023-03-02 13:27:53.879 [3/runpoet/153 (pid 37820)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 13:27:53.879 [3/runpoet/153 (pid 37820)] >> Creating project symlinks
+2023-03-02 13:27:53.879 [3/runpoet/153 (pid 37820)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:27:53.879 [3/runpoet/153 (pid 37820)] >> Done python_symlink
+2023-03-02 13:27:53.879 [3/runpoet/153 (pid 37820)] >> Compiling python modules python
+2023-03-02 13:27:53.880 [3/runpoet/153 (pid 37820)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 13:27:53.880 [3/runpoet/153 (pid 37820)] >> All python modules compiled
+2023-03-02 13:27:53.880 [3/runpoet/153 (pid 37820)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 13:27:53.880 [3/runpoet/153 (pid 37820)] >> Pluging of all type refreshed.
+2023-03-02 13:27:53.880 [3/runpoet/153 (pid 37820)] >> Done generating edm plugin poisoned information
+2023-03-02 13:27:53.881 [3/runpoet/153 (pid 37820)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 13:27:54.880 [3/runpoet/153 (pid 37820)] 2
+2023-03-02 13:27:54.880 [3/runpoet/153 (pid 37820)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 13:27:54.880 [3/runpoet/153 (pid 37820)] HLTConfig has changed for this Run. . .
+2023-03-02 13:27:54.881 [3/runpoet/153 (pid 37820)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 13:27:54.881 [3/runpoet/153 (pid 37820)] 47798
+2023-03-02 13:27:54.881 [3/runpoet/153 (pid 37820)] 47798
+2023-03-02 13:27:54.881 [3/runpoet/153 (pid 37820)] cmssw-19999
+2023-03-02 13:27:54.881 [3/runpoet/153 (pid 37820)] cmssw-19999
+2023-03-02 13:27:54.882 [3/runpoet/153 (pid 37820)] 
+2023-03-02 13:27:54.882 [3/runpoet/153 (pid 37820)] Return Code: 0
+2023-03-02 13:27:54.886 [3/runpoet/153 (pid 37820)] Task finished successfully.
+2023-03-02 13:32:58.617 [3/runpoet/154 (pid 47975)] The command is:
+2023-03-02 13:32:58.618 [3/runpoet/154 (pid 47975)] 
+2023-03-02 13:32:58.618 [3/runpoet/154 (pid 47975)] if ! docker stop cmssw-19397 && ! docker rm cmssw-19397; then
+2023-03-02 13:32:58.618 [3/runpoet/154 (pid 47975)] echo "some_command returned an error"
+2023-03-02 13:32:58.618 [3/runpoet/154 (pid 47975)] else
+2023-03-02 13:32:58.618 [3/runpoet/154 (pid 47975)] docker stop cmssw-19397 && docker rm cmssw-19397
+2023-03-02 13:32:58.618 [3/runpoet/154 (pid 47975)] fi &&         docker run         --name cmssw-19397         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 19397 1 &&         docker stop cmssw-19397 &&         docker rm cmssw-19397
+2023-03-02 13:32:58.618 [3/runpoet/154 (pid 47975)] 
+2023-03-02 13:32:58.618 [3/runpoet/154 (pid 47975)] The output is:
+2023-03-02 13:32:58.618 [3/runpoet/154 (pid 47975)] some_command returned an error
+2023-03-02 13:32:58.619 [3/runpoet/154 (pid 47975)] Setting up CMSSW_7_6_7
+2023-03-02 13:32:58.619 [3/runpoet/154 (pid 47975)] CMSSW should now be available.
+2023-03-02 13:32:58.619 [3/runpoet/154 (pid 47975)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 13:32:58.619 [3/runpoet/154 (pid 47975)] inside script file
+2023-03-02 13:32:58.619 [3/runpoet/154 (pid 47975)] Setting up CMSSW_7_6_7
+2023-03-02 13:32:58.619 [3/runpoet/154 (pid 47975)] CMSSW should now be available.
+2023-03-02 13:32:58.619 [3/runpoet/154 (pid 47975)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 13:32:58.619 [3/runpoet/154 (pid 47975)] >> Local Products Rules ..... started
+2023-03-02 13:32:58.620 [3/runpoet/154 (pid 47975)] >> Local Products Rules ..... done
+2023-03-02 13:32:58.620 [3/runpoet/154 (pid 47975)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:32:58.620 [3/runpoet/154 (pid 47975)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 13:32:58.620 [3/runpoet/154 (pid 47975)] >> copied merge_trees.py
+2023-03-02 13:32:58.620 [3/runpoet/154 (pid 47975)] >> copied ntuples-gen.py
+2023-03-02 13:32:58.620 [3/runpoet/154 (pid 47975)] >> Creating project symlinks
+2023-03-02 13:32:58.620 [3/runpoet/154 (pid 47975)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:32:58.620 [3/runpoet/154 (pid 47975)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:32:58.621 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 13:32:58.621 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 13:32:58.621 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 13:32:58.621 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 13:32:58.621 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 13:32:58.621 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 13:32:58.621 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 13:32:58.621 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 13:32:58.621 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 13:32:58.622 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 13:32:58.622 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 13:32:58.622 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 13:32:58.622 [3/runpoet/154 (pid 47975)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 13:32:58.622 [3/runpoet/154 (pid 47975)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 13:32:58.622 [3/runpoet/154 (pid 47975)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:32:58.622 [3/runpoet/154 (pid 47975)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 13:32:58.622 [3/runpoet/154 (pid 47975)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 13:32:58.623 [3/runpoet/154 (pid 47975)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:32:58.623 [3/runpoet/154 (pid 47975)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 13:32:58.623 [3/runpoet/154 (pid 47975)] >> Local Products Rules ..... started
+2023-03-02 13:32:58.623 [3/runpoet/154 (pid 47975)] >> Local Products Rules ..... done
+2023-03-02 13:32:58.623 [3/runpoet/154 (pid 47975)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 13:32:58.623 [3/runpoet/154 (pid 47975)] >> Creating project symlinks
+2023-03-02 13:32:58.623 [3/runpoet/154 (pid 47975)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 13:32:58.623 [3/runpoet/154 (pid 47975)] >> Done python_symlink
+2023-03-02 13:32:58.624 [3/runpoet/154 (pid 47975)] >> Compiling python modules python
+2023-03-02 13:32:58.624 [3/runpoet/154 (pid 47975)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 13:32:58.624 [3/runpoet/154 (pid 47975)] >> All python modules compiled
+2023-03-02 13:32:58.624 [3/runpoet/154 (pid 47975)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 13:32:58.624 [3/runpoet/154 (pid 47975)] >> Pluging of all type refreshed.
+2023-03-02 13:32:58.624 [3/runpoet/154 (pid 47975)] >> Done generating edm plugin poisoned information
+2023-03-02 13:32:58.624 [3/runpoet/154 (pid 47975)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 13:32:59.663 [3/runpoet/154 (pid 47975)] 2
+2023-03-02 13:32:59.664 [3/runpoet/154 (pid 47975)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 13:32:59.664 [3/runpoet/154 (pid 47975)] HLTConfig has changed for this Run. . .
+2023-03-02 13:32:59.664 [3/runpoet/154 (pid 47975)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 13:32:59.664 [3/runpoet/154 (pid 47975)] 41348
+2023-03-02 13:32:59.665 [3/runpoet/154 (pid 47975)] 41348
+2023-03-02 13:32:59.665 [3/runpoet/154 (pid 47975)] cmssw-19397
+2023-03-02 13:32:59.665 [3/runpoet/154 (pid 47975)] cmssw-19397
+2023-03-02 13:32:59.666 [3/runpoet/154 (pid 47975)] 
+2023-03-02 13:32:59.666 [3/runpoet/154 (pid 47975)] Return Code: 0
+2023-03-02 13:32:59.667 [3/runpoet/154 (pid 47975)] Task finished successfully.
+2023-03-02 13:41:51.256 2 tasks are running: e.g. ....
+2023-03-02 13:41:51.256 0 tasks are waiting in the queue.
+2023-03-02 13:41:51.257 0 steps are pending: e.g. ....
+2023-03-02 13:58:31.343 2 tasks are running: e.g. ....
+2023-03-02 13:58:31.343 0 tasks are waiting in the queue.
+2023-03-02 13:58:31.343 0 steps are pending: e.g. ....
+2023-03-02 14:15:11.422 2 tasks are running: e.g. ....
+2023-03-02 14:15:11.422 0 tasks are waiting in the queue.
+2023-03-02 14:15:11.423 0 steps are pending: e.g. ....
+2023-03-02 14:23:04.549 [3/runpoet/158 (pid 76838)] The command is:
+2023-03-02 14:23:04.549 [3/runpoet/158 (pid 76838)] 
+2023-03-02 14:23:04.550 [3/runpoet/158 (pid 76838)] if ! docker stop cmssw-20548 && ! docker rm cmssw-20548; then
+2023-03-02 14:23:04.550 [3/runpoet/158 (pid 76838)] echo "some_command returned an error"
+2023-03-02 14:23:04.550 [3/runpoet/158 (pid 76838)] else
+2023-03-02 14:23:04.550 [3/runpoet/158 (pid 76838)] docker stop cmssw-20548 && docker rm cmssw-20548
+2023-03-02 14:23:04.550 [3/runpoet/158 (pid 76838)] fi &&         docker run         --name cmssw-20548         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 20548 1 &&         docker stop cmssw-20548 &&         docker rm cmssw-20548
+2023-03-02 14:23:04.550 [3/runpoet/158 (pid 76838)] 
+2023-03-02 14:23:04.550 [3/runpoet/158 (pid 76838)] The output is:
+2023-03-02 14:23:04.550 [3/runpoet/158 (pid 76838)] some_command returned an error
+2023-03-02 14:23:04.551 [3/runpoet/158 (pid 76838)] Setting up CMSSW_7_6_7
+2023-03-02 14:23:04.551 [3/runpoet/158 (pid 76838)] CMSSW should now be available.
+2023-03-02 14:23:04.551 [3/runpoet/158 (pid 76838)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 14:23:04.551 [3/runpoet/158 (pid 76838)] inside script file
+2023-03-02 14:23:04.551 [3/runpoet/158 (pid 76838)] Setting up CMSSW_7_6_7
+2023-03-02 14:23:04.551 [3/runpoet/158 (pid 76838)] CMSSW should now be available.
+2023-03-02 14:23:04.551 [3/runpoet/158 (pid 76838)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 14:23:04.551 [3/runpoet/158 (pid 76838)] >> Local Products Rules ..... started
+2023-03-02 14:23:04.551 [3/runpoet/158 (pid 76838)] >> Local Products Rules ..... done
+2023-03-02 14:23:04.552 [3/runpoet/158 (pid 76838)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:23:04.552 [3/runpoet/158 (pid 76838)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 14:23:04.552 [3/runpoet/158 (pid 76838)] >> copied merge_trees.py
+2023-03-02 14:23:04.552 [3/runpoet/158 (pid 76838)] >> copied ntuples-gen.py
+2023-03-02 14:23:04.552 [3/runpoet/158 (pid 76838)] >> Creating project symlinks
+2023-03-02 14:23:04.552 [3/runpoet/158 (pid 76838)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:23:04.552 [3/runpoet/158 (pid 76838)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:23:04.552 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 14:23:04.553 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 14:23:04.553 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 14:23:04.553 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 14:23:04.553 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 14:23:04.553 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 14:23:04.553 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 14:23:04.553 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 14:23:04.553 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 14:23:04.554 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 14:23:04.554 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 14:23:04.554 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 14:23:04.554 [3/runpoet/158 (pid 76838)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 14:23:04.554 [3/runpoet/158 (pid 76838)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 14:23:04.554 [3/runpoet/158 (pid 76838)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:23:04.554 [3/runpoet/158 (pid 76838)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 14:23:04.554 [3/runpoet/158 (pid 76838)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 14:23:04.555 [3/runpoet/158 (pid 76838)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:23:04.555 [3/runpoet/158 (pid 76838)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 14:23:04.555 [3/runpoet/158 (pid 76838)] >> Local Products Rules ..... started
+2023-03-02 14:23:04.555 [3/runpoet/158 (pid 76838)] >> Local Products Rules ..... done
+2023-03-02 14:23:04.555 [3/runpoet/158 (pid 76838)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 14:23:04.555 [3/runpoet/158 (pid 76838)] >> Creating project symlinks
+2023-03-02 14:23:04.555 [3/runpoet/158 (pid 76838)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:23:04.555 [3/runpoet/158 (pid 76838)] >> Done python_symlink
+2023-03-02 14:23:04.556 [3/runpoet/158 (pid 76838)] >> Compiling python modules python
+2023-03-02 14:23:04.556 [3/runpoet/158 (pid 76838)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 14:23:04.556 [3/runpoet/158 (pid 76838)] >> All python modules compiled
+2023-03-02 14:23:04.556 [3/runpoet/158 (pid 76838)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 14:23:04.556 [3/runpoet/158 (pid 76838)] >> Pluging of all type refreshed.
+2023-03-02 14:23:04.556 [3/runpoet/158 (pid 76838)] >> Done generating edm plugin poisoned information
+2023-03-02 14:23:04.556 [3/runpoet/158 (pid 76838)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 14:23:05.388 [3/runpoet/158 (pid 76838)] 2
+2023-03-02 14:23:05.388 [3/runpoet/158 (pid 76838)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 14:23:05.388 [3/runpoet/158 (pid 76838)] HLTConfig has changed for this Run. . .
+2023-03-02 14:23:05.388 [3/runpoet/158 (pid 76838)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 14:23:05.388 [3/runpoet/158 (pid 76838)] 38404
+2023-03-02 14:23:05.388 [3/runpoet/158 (pid 76838)] 38404
+2023-03-02 14:23:05.388 [3/runpoet/158 (pid 76838)] cmssw-20548
+2023-03-02 14:23:05.388 [3/runpoet/158 (pid 76838)] cmssw-20548
+2023-03-02 14:23:05.389 [3/runpoet/158 (pid 76838)] 
+2023-03-02 14:23:05.389 [3/runpoet/158 (pid 76838)] Return Code: 0
+2023-03-02 14:23:05.389 [3/runpoet/158 (pid 76838)] Task finished successfully.
+2023-03-02 14:31:51.975 1 tasks are running: e.g. ....
+2023-03-02 14:31:51.975 0 tasks are waiting in the queue.
+2023-03-02 14:31:51.975 0 steps are pending: e.g. ....
+2023-03-02 14:35:42.818 [3/runpoet/157 (pid 75770)] The command is:
+2023-03-02 14:35:42.818 [3/runpoet/157 (pid 75770)] 
+2023-03-02 14:35:42.818 [3/runpoet/157 (pid 75770)] if ! docker stop cmssw-19412 && ! docker rm cmssw-19412; then
+2023-03-02 14:35:42.818 [3/runpoet/157 (pid 75770)] echo "some_command returned an error"
+2023-03-02 14:35:42.818 [3/runpoet/157 (pid 75770)] else
+2023-03-02 14:35:42.818 [3/runpoet/157 (pid 75770)] docker stop cmssw-19412 && docker rm cmssw-19412
+2023-03-02 14:35:42.818 [3/runpoet/157 (pid 75770)] fi &&         docker run         --name cmssw-19412         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 19412 1 &&         docker stop cmssw-19412 &&         docker rm cmssw-19412
+2023-03-02 14:35:42.818 [3/runpoet/157 (pid 75770)] 
+2023-03-02 14:35:42.819 [3/runpoet/157 (pid 75770)] The output is:
+2023-03-02 14:35:42.819 [3/runpoet/157 (pid 75770)] cmssw-19412
+2023-03-02 14:35:42.819 [3/runpoet/157 (pid 75770)] cmssw-19412
+2023-03-02 14:35:42.819 [3/runpoet/157 (pid 75770)] cmssw-19412
+2023-03-02 14:35:42.819 [3/runpoet/157 (pid 75770)] Setting up CMSSW_7_6_7
+2023-03-02 14:35:42.819 [3/runpoet/157 (pid 75770)] CMSSW should now be available.
+2023-03-02 14:35:42.819 [3/runpoet/157 (pid 75770)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 14:35:42.819 [3/runpoet/157 (pid 75770)] inside script file
+2023-03-02 14:35:42.820 [3/runpoet/157 (pid 75770)] Setting up CMSSW_7_6_7
+2023-03-02 14:35:42.820 [3/runpoet/157 (pid 75770)] CMSSW should now be available.
+2023-03-02 14:35:42.820 [3/runpoet/157 (pid 75770)] This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+2023-03-02 14:35:42.820 [3/runpoet/157 (pid 75770)] >> Local Products Rules ..... started
+2023-03-02 14:35:42.820 [3/runpoet/157 (pid 75770)] >> Local Products Rules ..... done
+2023-03-02 14:35:42.820 [3/runpoet/157 (pid 75770)] >> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:35:42.820 [3/runpoet/157 (pid 75770)] ------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+2023-03-02 14:35:42.820 [3/runpoet/157 (pid 75770)] >> copied merge_trees.py
+2023-03-02 14:35:42.821 [3/runpoet/157 (pid 75770)] >> copied ntuples-gen.py
+2023-03-02 14:35:42.821 [3/runpoet/157 (pid 75770)] >> Creating project symlinks
+2023-03-02 14:35:42.821 [3/runpoet/157 (pid 75770)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:35:42.821 [3/runpoet/157 (pid 75770)] Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:35:42.821 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc
+2023-03-02 14:35:42.821 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc
+2023-03-02 14:35:42.821 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc
+2023-03-02 14:35:42.821 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc
+2023-03-02 14:35:42.821 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc
+2023-03-02 14:35:42.822 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc
+2023-03-02 14:35:42.822 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc
+2023-03-02 14:35:42.822 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc
+2023-03-02 14:35:42.822 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc
+2023-03-02 14:35:42.822 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc
+2023-03-02 14:35:42.822 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc
+2023-03-02 14:35:42.822 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc
+2023-03-02 14:35:42.822 [3/runpoet/157 (pid 75770)] >> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc
+2023-03-02 14:35:42.823 [3/runpoet/157 (pid 75770)] >> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+2023-03-02 14:35:42.823 [3/runpoet/157 (pid 75770)] Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:35:42.823 [3/runpoet/157 (pid 75770)] @@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 14:35:42.823 [3/runpoet/157 (pid 75770)] --- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+2023-03-02 14:35:42.823 [3/runpoet/157 (pid 75770)] >> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:35:42.823 [3/runpoet/157 (pid 75770)] >> Package PhysObjectExtractorTool/PhysObjectExtractor built
+2023-03-02 14:35:42.823 [3/runpoet/157 (pid 75770)] >> Local Products Rules ..... started
+2023-03-02 14:35:42.823 [3/runpoet/157 (pid 75770)] >> Local Products Rules ..... done
+2023-03-02 14:35:42.823 [3/runpoet/157 (pid 75770)] gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+2023-03-02 14:35:42.824 [3/runpoet/157 (pid 75770)] >> Creating project symlinks
+2023-03-02 14:35:42.824 [3/runpoet/157 (pid 75770)] src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+2023-03-02 14:35:42.824 [3/runpoet/157 (pid 75770)] >> Done python_symlink
+2023-03-02 14:35:42.824 [3/runpoet/157 (pid 75770)] >> Compiling python modules python
+2023-03-02 14:35:42.824 [3/runpoet/157 (pid 75770)] >> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+2023-03-02 14:35:42.824 [3/runpoet/157 (pid 75770)] >> All python modules compiled
+2023-03-02 14:35:42.824 [3/runpoet/157 (pid 75770)] @@@@ Refreshing Plugins:edmPluginRefresh
+2023-03-02 14:35:42.824 [3/runpoet/157 (pid 75770)] >> Pluging of all type refreshed.
+2023-03-02 14:35:42.824 [3/runpoet/157 (pid 75770)] >> Done generating edm plugin poisoned information
+2023-03-02 14:35:42.825 [3/runpoet/157 (pid 75770)] gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2023-03-02 14:35:43.789 [3/runpoet/157 (pid 75770)] 2
+2023-03-02 14:35:43.789 [3/runpoet/157 (pid 75770)] # Conditions read from  CMS_CONDITIONS  via FrontierProd
+2023-03-02 14:35:43.789 [3/runpoet/157 (pid 75770)] HLTConfig has changed for this Run. . .
+2023-03-02 14:35:43.789 [3/runpoet/157 (pid 75770)] TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+2023-03-02 14:35:43.790 [3/runpoet/157 (pid 75770)] 37600
+2023-03-02 14:35:43.790 [3/runpoet/157 (pid 75770)] 37600
+2023-03-02 14:35:43.790 [3/runpoet/157 (pid 75770)] cmssw-19412
+2023-03-02 14:35:43.790 [3/runpoet/157 (pid 75770)] cmssw-19412
+2023-03-02 14:35:43.790 [3/runpoet/157 (pid 75770)] 
+2023-03-02 14:35:43.790 [3/runpoet/157 (pid 75770)] Return Code: 0
+2023-03-02 14:35:43.791 [3/runpoet/157 (pid 75770)] Task finished successfully.
+2023-03-02 14:35:43.846 [3/runpoet_join/159 (pid 97765)] Task is starting.
+2023-03-02 14:35:45.450 [3/runpoet_join/159 (pid 97765)] Task finished successfully.
+2023-03-02 14:35:45.484 [3/runpoet_flattentrees_link/160 (pid 97781)] Task is starting.
+2023-03-02 14:35:46.989 [3/runpoet_flattentrees_link/160 (pid 97781)] Foreach yields 12 child steps.
+2023-03-02 14:35:46.989 [3/runpoet_flattentrees_link/160 (pid 97781)] Task finished successfully.
+2023-03-02 14:35:47.020 [3/flattentrees/161 (pid 97798)] Task is starting.
+2023-03-02 14:35:47.049 [3/flattentrees/162 (pid 97799)] Task is starting.
+2023-03-02 14:35:47.091 [3/flattentrees/163 (pid 97800)] Task is starting.
+2023-03-02 14:35:47.116 [3/flattentrees/164 (pid 97801)] Task is starting.
+2023-03-02 14:36:06.124 [3/flattentrees/162 (pid 97799)] The command is:
+2023-03-02 14:36:07.000 [3/flattentrees/162 (pid 97799)] 
+2023-03-02 14:36:07.000 [3/flattentrees/162 (pid 97799)] if ! docker stop python-24120 && ! docker rm python-24120; then
+2023-03-02 14:36:07.000 [3/flattentrees/162 (pid 97799)] echo "some_command returned an error"
+2023-03-02 14:36:07.000 [3/flattentrees/162 (pid 97799)] else
+2023-03-02 14:36:07.000 [3/flattentrees/162 (pid 97799)] docker stop python-24120 && docker rm python-24120
+2023-03-02 14:36:07.001 [3/flattentrees/162 (pid 97799)] fi &&         docker run         -i         -d         --name python-24120         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-24120 &&         docker exec python-24120 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 24120 &&         docker stop python-24120 &&         docker rm python-24120
+2023-03-02 14:36:07.001 [3/flattentrees/162 (pid 97799)] 
+2023-03-02 14:36:07.001 [3/flattentrees/162 (pid 97799)] The output is:
+2023-03-02 14:36:07.001 [3/flattentrees/162 (pid 97799)] some_command returned an error
+2023-03-02 14:36:07.001 [3/flattentrees/162 (pid 97799)] 15af364d0a18c9ff17d375ee7a1bfabd3f871ef15410c9199b925249e69ba264
+2023-03-02 14:36:07.001 [3/flattentrees/162 (pid 97799)] python-24120
+2023-03-02 14:36:07.001 [3/flattentrees/162 (pid 97799)] python-24120
+2023-03-02 14:36:07.001 [3/flattentrees/162 (pid 97799)] python-24120
+2023-03-02 14:36:07.001 [3/flattentrees/162 (pid 97799)] 
+2023-03-02 14:36:07.002 [3/flattentrees/162 (pid 97799)] Return Code: 0
+2023-03-02 14:36:07.003 [3/flattentrees/162 (pid 97799)] Task finished successfully.
+2023-03-02 14:36:07.021 [3/flattentrees/165 (pid 99025)] Task is starting.
+2023-03-02 14:36:07.444 [3/flattentrees/161 (pid 97798)] The command is:
+2023-03-02 14:36:07.982 [3/flattentrees/163 (pid 97800)] The command is:
+2023-03-02 14:36:08.516 [3/flattentrees/164 (pid 97801)] The command is:
+2023-03-02 14:36:09.741 [3/flattentrees/161 (pid 97798)] 
+2023-03-02 14:36:09.741 [3/flattentrees/161 (pid 97798)] if ! docker stop python-24119 && ! docker rm python-24119; then
+2023-03-02 14:36:09.741 [3/flattentrees/161 (pid 97798)] echo "some_command returned an error"
+2023-03-02 14:36:09.741 [3/flattentrees/161 (pid 97798)] else
+2023-03-02 14:36:09.741 [3/flattentrees/161 (pid 97798)] docker stop python-24119 && docker rm python-24119
+2023-03-02 14:36:09.741 [3/flattentrees/161 (pid 97798)] fi &&         docker run         -i         -d         --name python-24119         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-24119 &&         docker exec python-24119 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 24119 &&         docker stop python-24119 &&         docker rm python-24119
+2023-03-02 14:36:09.741 [3/flattentrees/161 (pid 97798)] 
+2023-03-02 14:36:09.742 [3/flattentrees/161 (pid 97798)] The output is:
+2023-03-02 14:36:09.742 [3/flattentrees/161 (pid 97798)] some_command returned an error
+2023-03-02 14:36:09.742 [3/flattentrees/161 (pid 97798)] 9072f77c4ed4f1fe624c44ddf618a5a6e1a44d66fb5a4e83aba9ec79da34b471
+2023-03-02 14:36:09.742 [3/flattentrees/161 (pid 97798)] python-24119
+2023-03-02 14:36:09.742 [3/flattentrees/161 (pid 97798)] python-24119
+2023-03-02 14:36:09.742 [3/flattentrees/161 (pid 97798)] python-24119
+2023-03-02 14:36:09.742 [3/flattentrees/161 (pid 97798)] 
+2023-03-02 14:36:09.742 [3/flattentrees/161 (pid 97798)] Return Code: 0
+2023-03-02 14:36:09.744 [3/flattentrees/161 (pid 97798)] Task finished successfully.
+2023-03-02 14:36:09.807 [3/flattentrees/166 (pid 99400)] Task is starting.
+2023-03-02 14:36:10.396 [3/flattentrees/163 (pid 97800)] 
+2023-03-02 14:36:10.396 [3/flattentrees/163 (pid 97800)] if ! docker stop python-19980 && ! docker rm python-19980; then
+2023-03-02 14:36:10.396 [3/flattentrees/163 (pid 97800)] echo "some_command returned an error"
+2023-03-02 14:36:10.397 [3/flattentrees/163 (pid 97800)] else
+2023-03-02 14:36:10.397 [3/flattentrees/163 (pid 97800)] docker stop python-19980 && docker rm python-19980
+2023-03-02 14:36:10.397 [3/flattentrees/163 (pid 97800)] fi &&         docker run         -i         -d         --name python-19980         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19980 &&         docker exec python-19980 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19980 &&         docker stop python-19980 &&         docker rm python-19980
+2023-03-02 14:36:10.398 [3/flattentrees/163 (pid 97800)] 
+2023-03-02 14:36:10.398 [3/flattentrees/163 (pid 97800)] The output is:
+2023-03-02 14:36:10.398 [3/flattentrees/163 (pid 97800)] some_command returned an error
+2023-03-02 14:36:10.398 [3/flattentrees/163 (pid 97800)] 681e9818b1ccccfcbace4cbefd2d3d38ea67bc814bdeb79d97cc9f4a97667b73
+2023-03-02 14:36:10.398 [3/flattentrees/163 (pid 97800)] python-19980
+2023-03-02 14:36:10.399 [3/flattentrees/163 (pid 97800)] python-19980
+2023-03-02 14:36:10.399 [3/flattentrees/163 (pid 97800)] python-19980
+2023-03-02 14:36:10.399 [3/flattentrees/163 (pid 97800)] 
+2023-03-02 14:36:10.399 [3/flattentrees/163 (pid 97800)] Return Code: 0
+2023-03-02 14:36:10.401 [3/flattentrees/163 (pid 97800)] Task finished successfully.
+2023-03-02 14:36:10.432 [3/flattentrees/167 (pid 99458)] Task is starting.
+2023-03-02 14:36:10.847 [3/flattentrees/164 (pid 97801)] 
+2023-03-02 14:36:10.848 [3/flattentrees/164 (pid 97801)] if ! docker stop python-19983 && ! docker rm python-19983; then
+2023-03-02 14:36:10.849 [3/flattentrees/164 (pid 97801)] echo "some_command returned an error"
+2023-03-02 14:36:10.849 [3/flattentrees/164 (pid 97801)] else
+2023-03-02 14:36:10.849 [3/flattentrees/164 (pid 97801)] docker stop python-19983 && docker rm python-19983
+2023-03-02 14:36:10.850 [3/flattentrees/164 (pid 97801)] fi &&         docker run         -i         -d         --name python-19983         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19983 &&         docker exec python-19983 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19983 &&         docker stop python-19983 &&         docker rm python-19983
+2023-03-02 14:36:10.850 [3/flattentrees/164 (pid 97801)] 
+2023-03-02 14:36:10.850 [3/flattentrees/164 (pid 97801)] The output is:
+2023-03-02 14:36:10.851 [3/flattentrees/164 (pid 97801)] some_command returned an error
+2023-03-02 14:36:10.851 [3/flattentrees/164 (pid 97801)] eabad27f94aea60b3d4ea7c3b6e0c87de7c60c8b1e73ef9a87873626b2de7254
+2023-03-02 14:36:10.851 [3/flattentrees/164 (pid 97801)] python-19983
+2023-03-02 14:36:10.851 [3/flattentrees/164 (pid 97801)] python-19983
+2023-03-02 14:36:10.852 [3/flattentrees/164 (pid 97801)] python-19983
+2023-03-02 14:36:10.852 [3/flattentrees/164 (pid 97801)] 
+2023-03-02 14:36:10.852 [3/flattentrees/164 (pid 97801)] Return Code: 0
+2023-03-02 14:36:10.854 [3/flattentrees/164 (pid 97801)] Task finished successfully.
+2023-03-02 14:36:10.899 [3/flattentrees/168 (pid 99467)] Task is starting.
+2023-03-02 14:36:28.560 [3/flattentrees/165 (pid 99025)] The command is:
+2023-03-02 14:36:29.431 [3/flattentrees/165 (pid 99025)] 
+2023-03-02 14:36:29.431 [3/flattentrees/165 (pid 99025)] if ! docker stop python-19985 && ! docker rm python-19985; then
+2023-03-02 14:36:29.431 [3/flattentrees/165 (pid 99025)] echo "some_command returned an error"
+2023-03-02 14:36:29.431 [3/flattentrees/165 (pid 99025)] else
+2023-03-02 14:36:29.431 [3/flattentrees/165 (pid 99025)] docker stop python-19985 && docker rm python-19985
+2023-03-02 14:36:29.431 [3/flattentrees/165 (pid 99025)] fi &&         docker run         -i         -d         --name python-19985         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19985 &&         docker exec python-19985 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19985 &&         docker stop python-19985 &&         docker rm python-19985
+2023-03-02 14:36:29.431 [3/flattentrees/165 (pid 99025)] 
+2023-03-02 14:36:29.431 [3/flattentrees/165 (pid 99025)] The output is:
+2023-03-02 14:36:29.431 [3/flattentrees/165 (pid 99025)] some_command returned an error
+2023-03-02 14:36:29.432 [3/flattentrees/165 (pid 99025)] 26a9e0f231f5cf14f947c0030ef887d766a116bf2ecb69c05015b1a6411bc4e1
+2023-03-02 14:36:29.432 [3/flattentrees/165 (pid 99025)] python-19985
+2023-03-02 14:36:29.432 [3/flattentrees/165 (pid 99025)] python-19985
+2023-03-02 14:36:29.432 [3/flattentrees/165 (pid 99025)] python-19985
+2023-03-02 14:36:29.432 [3/flattentrees/165 (pid 99025)] 
+2023-03-02 14:36:29.432 [3/flattentrees/165 (pid 99025)] Return Code: 0
+2023-03-02 14:36:29.433 [3/flattentrees/165 (pid 99025)] Task finished successfully.
+2023-03-02 14:36:29.462 [3/flattentrees/169 (pid 100448)] Task is starting.
+2023-03-02 14:36:31.176 [3/flattentrees/166 (pid 99400)] The command is:
+2023-03-02 14:36:31.485 [3/flattentrees/167 (pid 99458)] The command is:
+2023-03-02 14:36:32.484 [3/flattentrees/168 (pid 99467)] The command is:
+2023-03-02 14:36:33.029 [3/flattentrees/166 (pid 99400)] 
+2023-03-02 14:36:33.029 [3/flattentrees/166 (pid 99400)] if ! docker stop python-19949 && ! docker rm python-19949; then
+2023-03-02 14:36:33.029 [3/flattentrees/166 (pid 99400)] echo "some_command returned an error"
+2023-03-02 14:36:33.030 [3/flattentrees/166 (pid 99400)] else
+2023-03-02 14:36:33.030 [3/flattentrees/166 (pid 99400)] docker stop python-19949 && docker rm python-19949
+2023-03-02 14:36:33.030 [3/flattentrees/166 (pid 99400)] fi &&         docker run         -i         -d         --name python-19949         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19949 &&         docker exec python-19949 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19949 &&         docker stop python-19949 &&         docker rm python-19949
+2023-03-02 14:36:33.030 [3/flattentrees/166 (pid 99400)] 
+2023-03-02 14:36:33.030 [3/flattentrees/166 (pid 99400)] The output is:
+2023-03-02 14:36:33.030 [3/flattentrees/166 (pid 99400)] some_command returned an error
+2023-03-02 14:36:33.030 [3/flattentrees/166 (pid 99400)] 936f0cbfbf6b92c15b5d8434ce656211955609bca50dd6c56d5f6553ce069241
+2023-03-02 14:36:33.031 [3/flattentrees/166 (pid 99400)] python-19949
+2023-03-02 14:36:33.031 [3/flattentrees/166 (pid 99400)] python-19949
+2023-03-02 14:36:33.031 [3/flattentrees/166 (pid 99400)] python-19949
+2023-03-02 14:36:33.031 [3/flattentrees/166 (pid 99400)] 
+2023-03-02 14:36:33.031 [3/flattentrees/166 (pid 99400)] Return Code: 0
+2023-03-02 14:36:33.032 [3/flattentrees/166 (pid 99400)] Task finished successfully.
+2023-03-02 14:36:33.076 [3/flattentrees/170 (pid 100887)] Task is starting.
+2023-03-02 14:36:33.329 [3/flattentrees/167 (pid 99458)] 
+2023-03-02 14:36:33.330 [3/flattentrees/167 (pid 99458)] if ! docker stop python-19999 && ! docker rm python-19999; then
+2023-03-02 14:36:33.330 [3/flattentrees/167 (pid 99458)] echo "some_command returned an error"
+2023-03-02 14:36:33.330 [3/flattentrees/167 (pid 99458)] else
+2023-03-02 14:36:33.330 [3/flattentrees/167 (pid 99458)] docker stop python-19999 && docker rm python-19999
+2023-03-02 14:36:33.330 [3/flattentrees/167 (pid 99458)] fi &&         docker run         -i         -d         --name python-19999         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19999 &&         docker exec python-19999 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19999 &&         docker stop python-19999 &&         docker rm python-19999
+2023-03-02 14:36:33.330 [3/flattentrees/167 (pid 99458)] 
+2023-03-02 14:36:33.330 [3/flattentrees/167 (pid 99458)] The output is:
+2023-03-02 14:36:33.330 [3/flattentrees/167 (pid 99458)] some_command returned an error
+2023-03-02 14:36:33.330 [3/flattentrees/167 (pid 99458)] 3b677d9ceafd10f3824fc3a77778e8e9bc4ed06b77a048cd9cac4d85bd171f9f
+2023-03-02 14:36:33.331 [3/flattentrees/167 (pid 99458)] python-19999
+2023-03-02 14:36:33.331 [3/flattentrees/167 (pid 99458)] python-19999
+2023-03-02 14:36:33.331 [3/flattentrees/167 (pid 99458)] python-19999
+2023-03-02 14:36:33.331 [3/flattentrees/167 (pid 99458)] 
+2023-03-02 14:36:33.331 [3/flattentrees/167 (pid 99458)] Return Code: 0
+2023-03-02 14:36:33.332 [3/flattentrees/167 (pid 99458)] Task finished successfully.
+2023-03-02 14:36:33.373 [3/flattentrees/171 (pid 100889)] Task is starting.
+2023-03-02 14:36:34.478 [3/flattentrees/168 (pid 99467)] 
+2023-03-02 14:36:34.479 [3/flattentrees/168 (pid 99467)] if ! docker stop python-19397 && ! docker rm python-19397; then
+2023-03-02 14:36:34.479 [3/flattentrees/168 (pid 99467)] echo "some_command returned an error"
+2023-03-02 14:36:34.479 [3/flattentrees/168 (pid 99467)] else
+2023-03-02 14:36:34.479 [3/flattentrees/168 (pid 99467)] docker stop python-19397 && docker rm python-19397
+2023-03-02 14:36:34.479 [3/flattentrees/168 (pid 99467)] fi &&         docker run         -i         -d         --name python-19397         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19397 &&         docker exec python-19397 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19397 &&         docker stop python-19397 &&         docker rm python-19397
+2023-03-02 14:36:34.480 [3/flattentrees/168 (pid 99467)] 
+2023-03-02 14:36:34.480 [3/flattentrees/168 (pid 99467)] The output is:
+2023-03-02 14:36:34.482 [3/flattentrees/168 (pid 99467)] some_command returned an error
+2023-03-02 14:36:34.482 [3/flattentrees/168 (pid 99467)] 4cc2f690e506cb87807e5dc5d65a18ea093b5fd410c99e2ff74aba06a0b6c81e
+2023-03-02 14:36:34.483 [3/flattentrees/168 (pid 99467)] python-19397
+2023-03-02 14:36:34.483 [3/flattentrees/168 (pid 99467)] python-19397
+2023-03-02 14:36:34.484 [3/flattentrees/168 (pid 99467)] python-19397
+2023-03-02 14:36:34.484 [3/flattentrees/168 (pid 99467)] 
+2023-03-02 14:36:34.484 [3/flattentrees/168 (pid 99467)] Return Code: 0
+2023-03-02 14:36:34.486 [3/flattentrees/168 (pid 99467)] Task finished successfully.
+2023-03-02 14:36:34.528 [3/flattentrees/172 (pid 100932)] Task is starting.
+2023-03-02 14:36:50.726 [3/flattentrees/169 (pid 100448)] The command is:
+2023-03-02 14:36:51.727 [3/flattentrees/169 (pid 100448)] 
+2023-03-02 14:36:51.727 [3/flattentrees/169 (pid 100448)] if ! docker stop python-19407 && ! docker rm python-19407; then
+2023-03-02 14:36:51.727 [3/flattentrees/169 (pid 100448)] echo "some_command returned an error"
+2023-03-02 14:36:51.727 [3/flattentrees/169 (pid 100448)] else
+2023-03-02 14:36:51.727 [3/flattentrees/169 (pid 100448)] docker stop python-19407 && docker rm python-19407
+2023-03-02 14:36:51.728 [3/flattentrees/169 (pid 100448)] fi &&         docker run         -i         -d         --name python-19407         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19407 &&         docker exec python-19407 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19407 &&         docker stop python-19407 &&         docker rm python-19407
+2023-03-02 14:36:51.728 [3/flattentrees/169 (pid 100448)] 
+2023-03-02 14:36:51.728 [3/flattentrees/169 (pid 100448)] The output is:
+2023-03-02 14:36:51.728 [3/flattentrees/169 (pid 100448)] some_command returned an error
+2023-03-02 14:36:51.728 [3/flattentrees/169 (pid 100448)] b18733c9ed99d735e15e25a886de2db7513eea9efa31aa04ca88c4a1e4ae548d
+2023-03-02 14:36:51.728 [3/flattentrees/169 (pid 100448)] python-19407
+2023-03-02 14:36:51.728 [3/flattentrees/169 (pid 100448)] python-19407
+2023-03-02 14:36:51.728 [3/flattentrees/169 (pid 100448)] python-19407
+2023-03-02 14:36:51.728 [3/flattentrees/169 (pid 100448)] 
+2023-03-02 14:36:51.729 [3/flattentrees/169 (pid 100448)] Return Code: 0
+2023-03-02 14:36:51.730 [3/flattentrees/169 (pid 100448)] Task finished successfully.
+2023-03-02 14:36:53.572 [3/flattentrees/171 (pid 100889)] The command is:
+2023-03-02 14:36:53.806 [3/flattentrees/170 (pid 100887)] The command is:
+2023-03-02 14:36:54.508 [3/flattentrees/172 (pid 100932)] The command is:
+2023-03-02 14:36:54.983 [3/flattentrees/171 (pid 100889)] 
+2023-03-02 14:36:54.988 [3/flattentrees/171 (pid 100889)] if ! docker stop python-19412 && ! docker rm python-19412; then
+2023-03-02 14:36:54.988 [3/flattentrees/171 (pid 100889)] echo "some_command returned an error"
+2023-03-02 14:36:54.989 [3/flattentrees/171 (pid 100889)] else
+2023-03-02 14:36:54.989 [3/flattentrees/171 (pid 100889)] docker stop python-19412 && docker rm python-19412
+2023-03-02 14:36:54.990 [3/flattentrees/171 (pid 100889)] fi &&         docker run         -i         -d         --name python-19412         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19412 &&         docker exec python-19412 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19412 &&         docker stop python-19412 &&         docker rm python-19412
+2023-03-02 14:36:55.015 [3/flattentrees/171 (pid 100889)] 
+2023-03-02 14:36:55.027 [3/flattentrees/171 (pid 100889)] The output is:
+2023-03-02 14:36:55.032 [3/flattentrees/171 (pid 100889)] some_command returned an error
+2023-03-02 14:36:55.032 [3/flattentrees/171 (pid 100889)] bafba7012deb8ca1c89535361c8133a6b68aaffc3a6910561a3e4c6c7e12b041
+2023-03-02 14:36:55.032 [3/flattentrees/171 (pid 100889)] python-19412
+2023-03-02 14:36:55.033 [3/flattentrees/171 (pid 100889)] python-19412
+2023-03-02 14:36:55.042 [3/flattentrees/171 (pid 100889)] python-19412
+2023-03-02 14:36:55.045 [3/flattentrees/171 (pid 100889)] 
+2023-03-02 14:36:55.045 [3/flattentrees/171 (pid 100889)] Return Code: 0
+2023-03-02 14:36:55.049 [3/flattentrees/171 (pid 100889)] Task finished successfully.
+2023-03-02 14:36:55.317 [3/flattentrees/170 (pid 100887)] 
+2023-03-02 14:36:55.317 [3/flattentrees/170 (pid 100887)] if ! docker stop python-19419 && ! docker rm python-19419; then
+2023-03-02 14:36:55.317 [3/flattentrees/170 (pid 100887)] echo "some_command returned an error"
+2023-03-02 14:36:55.317 [3/flattentrees/170 (pid 100887)] else
+2023-03-02 14:36:55.317 [3/flattentrees/170 (pid 100887)] docker stop python-19419 && docker rm python-19419
+2023-03-02 14:36:55.317 [3/flattentrees/170 (pid 100887)] fi &&         docker run         -i         -d         --name python-19419         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19419 &&         docker exec python-19419 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19419 &&         docker stop python-19419 &&         docker rm python-19419
+2023-03-02 14:36:55.318 [3/flattentrees/170 (pid 100887)] 
+2023-03-02 14:36:55.318 [3/flattentrees/170 (pid 100887)] The output is:
+2023-03-02 14:36:55.318 [3/flattentrees/170 (pid 100887)] some_command returned an error
+2023-03-02 14:36:55.318 [3/flattentrees/170 (pid 100887)] 281e311999f180b5ffcc5970c8b97124bdb28c93317f5129292fcca96fe73ce0
+2023-03-02 14:36:55.318 [3/flattentrees/170 (pid 100887)] python-19419
+2023-03-02 14:36:55.318 [3/flattentrees/170 (pid 100887)] python-19419
+2023-03-02 14:36:55.318 [3/flattentrees/170 (pid 100887)] python-19419
+2023-03-02 14:36:55.318 [3/flattentrees/170 (pid 100887)] 
+2023-03-02 14:36:55.318 [3/flattentrees/170 (pid 100887)] Return Code: 0
+2023-03-02 14:36:55.319 [3/flattentrees/170 (pid 100887)] Task finished successfully.
+2023-03-02 14:36:55.776 [3/flattentrees/172 (pid 100932)] 
+2023-03-02 14:36:55.777 [3/flattentrees/172 (pid 100932)] if ! docker stop python-20548 && ! docker rm python-20548; then
+2023-03-02 14:36:55.777 [3/flattentrees/172 (pid 100932)] echo "some_command returned an error"
+2023-03-02 14:36:55.777 [3/flattentrees/172 (pid 100932)] else
+2023-03-02 14:36:55.777 [3/flattentrees/172 (pid 100932)] docker stop python-20548 && docker rm python-20548
+2023-03-02 14:36:55.777 [3/flattentrees/172 (pid 100932)] fi &&         docker run         -i         -d         --name python-20548         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-20548 &&         docker exec python-20548 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 20548 &&         docker stop python-20548 &&         docker rm python-20548
+2023-03-02 14:36:55.777 [3/flattentrees/172 (pid 100932)] 
+2023-03-02 14:36:55.777 [3/flattentrees/172 (pid 100932)] The output is:
+2023-03-02 14:36:55.778 [3/flattentrees/172 (pid 100932)] some_command returned an error
+2023-03-02 14:36:55.778 [3/flattentrees/172 (pid 100932)] b967aad041208bc9cf6f3a166cc5dfc787a9b35d728cb550dcceefba6283b661
+2023-03-02 14:36:55.778 [3/flattentrees/172 (pid 100932)] python-20548
+2023-03-02 14:36:55.778 [3/flattentrees/172 (pid 100932)] python-20548
+2023-03-02 14:36:55.778 [3/flattentrees/172 (pid 100932)] python-20548
+2023-03-02 14:36:55.778 [3/flattentrees/172 (pid 100932)] 
+2023-03-02 14:36:55.778 [3/flattentrees/172 (pid 100932)] Return Code: 0
+2023-03-02 14:36:55.779 [3/flattentrees/172 (pid 100932)] Task finished successfully.
+2023-03-02 14:36:55.815 [3/flattentrees_join/173 (pid 102092)] Task is starting.
+2023-03-02 14:36:57.396 [3/flattentrees_join/173 (pid 102092)] Task finished successfully.
+2023-03-02 14:36:57.434 [3/preparecoffea/174 (pid 102109)] Task is starting.
+2023-03-02 14:37:10.302 [3/preparecoffea/174 (pid 102109)] The command is:
+2023-03-02 14:37:11.260 [3/preparecoffea/174 (pid 102109)] 
+2023-03-02 14:37:11.261 [3/preparecoffea/174 (pid 102109)] if ! docker stop prepare-coffea && ! docker rm prepare-coffea; then
+2023-03-02 14:37:11.261 [3/preparecoffea/174 (pid 102109)] echo "some_command returned an error"
+2023-03-02 14:37:11.261 [3/preparecoffea/174 (pid 102109)] else
+2023-03-02 14:37:11.261 [3/preparecoffea/174 (pid 102109)] docker stop prepare-coffea && docker rm prepare-coffea
+2023-03-02 14:37:11.261 [3/preparecoffea/174 (pid 102109)] fi &&         docker run         -i         -d         --name prepare-coffea         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start prepare-coffea &&         docker exec prepare-coffea bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/preparecoffea-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol &&         docker stop prepare-coffea &&         docker rm prepare-coffea
+2023-03-02 14:37:11.261 [3/preparecoffea/174 (pid 102109)] 
+2023-03-02 14:37:11.261 [3/preparecoffea/174 (pid 102109)] The output is:
+2023-03-02 14:37:11.261 [3/preparecoffea/174 (pid 102109)] prepare-coffea
+2023-03-02 14:37:11.261 [3/preparecoffea/174 (pid 102109)] prepare-coffea
+2023-03-02 14:37:11.261 [3/preparecoffea/174 (pid 102109)] prepare-coffea
+2023-03-02 14:37:11.262 [3/preparecoffea/174 (pid 102109)] f39812471b7578d5566749fe56c4bdcecc7c2d753ba42bb0a915ea6d3127208c
+2023-03-02 14:37:11.262 [3/preparecoffea/174 (pid 102109)] prepare-coffea
+2023-03-02 14:37:11.262 [3/preparecoffea/174 (pid 102109)] {"data": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/24119/myoutput_merged.root", "nevts": 49945}, {"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/24120/myoutput_merged.root", "nevts": 46487}], "nevts_total": 96432}}, "ttbar": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19980/myoutput_merged.root", "nevts": 44251}], "nevts_total": 44251}, "scaledown": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19983/myoutput_merged.root", "nevts": 46404}], "nevts_total": 46404}, "scaleup": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19985/myoutput_merged.root", "nevts": 45259}], "nevts_total": 45259}, "ME_var": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19949/myoutput_merged.root", "nevts": 42754}], "nevts_total": 42754}, "PS_var": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19999/myoutput_merged.root", "nevts": 47798}], "nevts_total": 47798}}, "single_top_t_chan": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19397/myoutput_merged.root", "nevts": 41348}], "nevts_total": 41348}}, "single_atop_t_chan": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19407/myoutput_merged.root", "nevts": 39300}], "nevts_total": 39300}}, "single_top_tW": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19419/myoutput_merged.root", "nevts": 36000}, {"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19412/myoutput_merged.root", "nevts": 37600}], "nevts_total": 73600}}, "wjets": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/20548/myoutput_merged.root", "nevts": 38404}], "nevts_total": 38404}}}prepare-coffea
+2023-03-02 14:37:11.262 [3/preparecoffea/174 (pid 102109)] prepare-coffea
+2023-03-02 14:37:11.262 [3/preparecoffea/174 (pid 102109)] 
+2023-03-02 14:37:11.262 [3/preparecoffea/174 (pid 102109)] Return Code: 0
+2023-03-02 14:37:11.263 [3/preparecoffea/174 (pid 102109)] Task finished successfully.
+2023-03-02 14:37:11.302 [3/runcoffea/175 (pid 102536)] Task is starting.
+2023-03-02 14:39:36.294 [3/runcoffea/175 (pid 102536)] The command is:
+2023-03-02 14:39:36.295 [3/runcoffea/175 (pid 102536)] 
+2023-03-02 14:39:36.295 [3/runcoffea/175 (pid 102536)] if ! docker stop run-coffea && ! docker rm run-coffea; then
+2023-03-02 14:39:36.295 [3/runcoffea/175 (pid 102536)] echo "some_command returned an error"
+2023-03-02 14:39:36.295 [3/runcoffea/175 (pid 102536)] else
+2023-03-02 14:39:36.295 [3/runcoffea/175 (pid 102536)] docker stop run-coffea && docker rm run-coffea
+2023-03-02 14:39:36.295 [3/runcoffea/175 (pid 102536)] fi &&         docker run         -i         -d         --name run-coffea         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start run-coffea &&         docker exec run-coffea bash /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/code/commands.sh &&         docker stop run-coffea &&         docker rm run-coffea
+2023-03-02 14:39:36.296 [3/runcoffea/175 (pid 102536)] 
+2023-03-02 14:39:36.296 [3/runcoffea/175 (pid 102536)] The output is:
+2023-03-02 14:39:36.296 [3/runcoffea/175 (pid 102536)] run-coffea
+2023-03-02 14:39:36.296 [3/runcoffea/175 (pid 102536)] run-coffea
+2023-03-02 14:39:36.296 [3/runcoffea/175 (pid 102536)] run-coffea
+2023-03-02 14:39:36.296 [3/runcoffea/175 (pid 102536)] 712d7725d801237185f3b66ee186a12fad4156c3187f5cdec7a612674778f552
+2023-03-02 14:39:36.296 [3/runcoffea/175 (pid 102536)] run-coffea
+2023-03-02 14:39:36.296 [3/runcoffea/175 (pid 102536)] Collecting vector
+2023-03-02 14:39:36.297 [3/runcoffea/175 (pid 102536)] Downloading vector-1.0.0-py3-none-any.whl (170 kB)
+2023-03-02 14:39:36.297 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 170.4/170.4 kB 758.7 kB/s eta 0:00:00
+2023-03-02 14:39:36.297 [3/runcoffea/175 (pid 102536)] Collecting hist
+2023-03-02 14:39:36.297 [3/runcoffea/175 (pid 102536)] Downloading hist-2.6.3-py3-none-any.whl (36 kB)
+2023-03-02 14:39:36.297 [3/runcoffea/175 (pid 102536)] Collecting mplhep
+2023-03-02 14:39:36.297 [3/runcoffea/175 (pid 102536)] Downloading mplhep-0.3.26-py3-none-any.whl (34 kB)
+2023-03-02 14:39:36.297 [3/runcoffea/175 (pid 102536)] Collecting coffea
+2023-03-02 14:39:36.297 [3/runcoffea/175 (pid 102536)] Downloading coffea-0.7.20-py2.py3-none-any.whl (196 kB)
+2023-03-02 14:39:36.297 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 196.8/196.8 kB 2.0 MB/s eta 0:00:00
+2023-03-02 14:39:36.298 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: numpy>=1.13.3 in /usr/local/venv/lib/python3.10/site-packages (from vector) (1.23.1)
+2023-03-02 14:39:36.298 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: packaging>=19 in /usr/local/venv/lib/python3.10/site-packages (from vector) (21.3)
+2023-03-02 14:39:36.298 [3/runcoffea/175 (pid 102536)] Collecting histoprint>=2.2.0
+2023-03-02 14:39:36.298 [3/runcoffea/175 (pid 102536)] Downloading histoprint-2.4.0-py3-none-any.whl (16 kB)
+2023-03-02 14:39:36.298 [3/runcoffea/175 (pid 102536)] Collecting boost-histogram~=1.3.1
+2023-03-02 14:39:36.298 [3/runcoffea/175 (pid 102536)] Downloading boost_histogram-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.4 MB)
+2023-03-02 14:39:36.298 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 4.0 MB/s eta 0:00:00
+2023-03-02 14:39:36.298 [3/runcoffea/175 (pid 102536)] Collecting mplhep-data
+2023-03-02 14:39:36.298 [3/runcoffea/175 (pid 102536)] Downloading mplhep_data-0.0.3-py3-none-any.whl (5.8 MB)
+2023-03-02 14:39:36.299 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.8/5.8 MB 3.8 MB/s eta 0:00:00
+2023-03-02 14:39:36.299 [3/runcoffea/175 (pid 102536)] Collecting uhi>=0.2.0
+2023-03-02 14:39:36.299 [3/runcoffea/175 (pid 102536)] Downloading uhi-0.3.3-py3-none-any.whl (11 kB)
+2023-03-02 14:39:36.299 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: matplotlib>=3.4 in /usr/local/venv/lib/python3.10/site-packages (from mplhep) (3.5.2)
+2023-03-02 14:39:36.299 [3/runcoffea/175 (pid 102536)] Collecting cachetools
+2023-03-02 14:39:36.299 [3/runcoffea/175 (pid 102536)] Downloading cachetools-5.3.0-py3-none-any.whl (9.3 kB)
+2023-03-02 14:39:36.299 [3/runcoffea/175 (pid 102536)] Collecting pyarrow>=1.0.0
+2023-03-02 14:39:36.299 [3/runcoffea/175 (pid 102536)] Downloading pyarrow-11.0.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.9 MB)
+2023-03-02 14:39:36.300 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.9/34.9 MB 2.6 MB/s eta 0:00:00
+2023-03-02 14:39:36.300 [3/runcoffea/175 (pid 102536)] Collecting scipy>=1.1.0
+2023-03-02 14:39:36.300 [3/runcoffea/175 (pid 102536)] Downloading scipy-1.10.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.4 MB)
+2023-03-02 14:39:36.300 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.4/34.4 MB 1.3 MB/s eta 0:00:00
+2023-03-02 14:39:36.300 [3/runcoffea/175 (pid 102536)] Collecting pandas
+2023-03-02 14:39:36.300 [3/runcoffea/175 (pid 102536)] Downloading pandas-1.5.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.1 MB)
+2023-03-02 14:39:36.300 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.1/12.1 MB 1.1 MB/s eta 0:00:00
+2023-03-02 14:39:36.301 [3/runcoffea/175 (pid 102536)] Collecting uproot3-methods>=0.10.0
+2023-03-02 14:39:36.301 [3/runcoffea/175 (pid 102536)] Downloading uproot3_methods-0.10.1-py3-none-any.whl (32 kB)
+2023-03-02 14:39:36.301 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: uproot!=4.2.4,!=4.3.0,!=4.3.1,==4.*,>=4.1.6 in /usr/local/venv/lib/python3.10/site-packages (from coffea) (4.3.3)
+2023-03-02 14:39:36.301 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: awkward<2,>=1.5.1 in /usr/local/venv/lib/python3.10/site-packages (from coffea) (1.8.0)
+2023-03-02 14:39:36.301 [3/runcoffea/175 (pid 102536)] Collecting correctionlib>=2.0.0
+2023-03-02 14:39:36.301 [3/runcoffea/175 (pid 102536)] Downloading correctionlib-2.2.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (421 kB)
+2023-03-02 14:39:36.301 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 422.0/422.0 kB 1.4 MB/s eta 0:00:00
+2023-03-02 14:39:36.301 [3/runcoffea/175 (pid 102536)] Collecting tqdm>=4.27.0
+2023-03-02 14:39:36.302 [3/runcoffea/175 (pid 102536)] Downloading tqdm-4.64.1-py2.py3-none-any.whl (78 kB)
+2023-03-02 14:39:36.302 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.5/78.5 kB 1.4 MB/s eta 0:00:00
+2023-03-02 14:39:36.302 [3/runcoffea/175 (pid 102536)] Collecting uproot3>=3.14.1
+2023-03-02 14:39:36.302 [3/runcoffea/175 (pid 102536)] Downloading uproot3-3.14.4-py3-none-any.whl (117 kB)
+2023-03-02 14:39:36.302 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.5/117.5 kB 810.4 kB/s eta 0:00:00
+2023-03-02 14:39:36.302 [3/runcoffea/175 (pid 102536)] Collecting cloudpickle>=1.2.3
+2023-03-02 14:39:36.302 [3/runcoffea/175 (pid 102536)] Downloading cloudpickle-2.2.1-py3-none-any.whl (25 kB)
+2023-03-02 14:39:36.302 [3/runcoffea/175 (pid 102536)] Collecting numba>=0.56.0
+2023-03-02 14:39:36.302 [3/runcoffea/175 (pid 102536)] Downloading numba-0.56.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (3.5 MB)
+2023-03-02 14:39:36.303 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.5/3.5 MB 841.8 kB/s eta 0:00:00
+2023-03-02 14:39:36.303 [3/runcoffea/175 (pid 102536)] Collecting toml>=0.10.2
+2023-03-02 14:39:36.303 [3/runcoffea/175 (pid 102536)] Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+2023-03-02 14:39:36.303 [3/runcoffea/175 (pid 102536)] Collecting fsspec
+2023-03-02 14:39:36.303 [3/runcoffea/175 (pid 102536)] Downloading fsspec-2023.1.0-py3-none-any.whl (143 kB)
+2023-03-02 14:39:36.303 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.0/143.0 kB 933.1 kB/s eta 0:00:00
+2023-03-02 14:39:36.303 [3/runcoffea/175 (pid 102536)] Collecting lz4
+2023-03-02 14:39:36.303 [3/runcoffea/175 (pid 102536)] Downloading lz4-4.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+2023-03-02 14:39:36.303 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 916.1 kB/s eta 0:00:00
+2023-03-02 14:39:36.304 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: setuptools in /usr/local/venv/lib/python3.10/site-packages (from uproot!=4.2.4,!=4.3.0,!=4.3.1,==4.*,>=4.1.6->coffea) (63.2.0)
+2023-03-02 14:39:36.304 [3/runcoffea/175 (pid 102536)] Collecting pydantic>=1.7.3
+2023-03-02 14:39:36.304 [3/runcoffea/175 (pid 102536)] Downloading pydantic-1.10.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.1 MB)
+2023-03-02 14:39:36.304 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.1/3.1 MB 882.6 kB/s eta 0:00:00
+2023-03-02 14:39:36.304 [3/runcoffea/175 (pid 102536)] Collecting rich
+2023-03-02 14:39:36.304 [3/runcoffea/175 (pid 102536)] Downloading rich-13.3.1-py3-none-any.whl (239 kB)
+2023-03-02 14:39:36.304 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 239.0/239.0 kB 952.1 kB/s eta 0:00:00
+2023-03-02 14:39:36.304 [3/runcoffea/175 (pid 102536)] Collecting click>=7.0.0
+2023-03-02 14:39:36.304 [3/runcoffea/175 (pid 102536)] Downloading click-8.1.3-py3-none-any.whl (96 kB)
+2023-03-02 14:39:36.304 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.6/96.6 kB 928.7 kB/s eta 0:00:00
+2023-03-02 14:39:36.305 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: pyparsing>=2.2.1 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (3.0.9)
+2023-03-02 14:39:36.305 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: fonttools>=4.22.0 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (4.34.4)
+2023-03-02 14:39:36.305 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: pillow>=6.2.0 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (9.2.0)
+2023-03-02 14:39:36.305 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: python-dateutil>=2.7 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (2.8.2)
+2023-03-02 14:39:36.305 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: kiwisolver>=1.0.1 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (1.4.3)
+2023-03-02 14:39:36.305 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: cycler>=0.10 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (0.11.0)
+2023-03-02 14:39:36.305 [3/runcoffea/175 (pid 102536)] Collecting llvmlite<0.40,>=0.39.0dev0
+2023-03-02 14:39:36.305 [3/runcoffea/175 (pid 102536)] Downloading llvmlite-0.39.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.6 MB)
+2023-03-02 14:39:36.305 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.6/34.6 MB 1.6 MB/s eta 0:00:00
+2023-03-02 14:39:36.306 [3/runcoffea/175 (pid 102536)] Collecting awkward0
+2023-03-02 14:39:36.306 [3/runcoffea/175 (pid 102536)] Downloading awkward0-0.15.5-py3-none-any.whl (87 kB)
+2023-03-02 14:39:36.306 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.6/87.6 kB 1.7 MB/s eta 0:00:00
+2023-03-02 14:39:36.306 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: pytz>=2020.1 in /usr/local/venv/lib/python3.10/site-packages (from pandas->coffea) (2022.1)
+2023-03-02 14:39:36.306 [3/runcoffea/175 (pid 102536)] Collecting typing-extensions>=4.2.0
+2023-03-02 14:39:36.306 [3/runcoffea/175 (pid 102536)] Downloading typing_extensions-4.5.0-py3-none-any.whl (27 kB)
+2023-03-02 14:39:36.306 [3/runcoffea/175 (pid 102536)] Requirement already satisfied: six>=1.5 in /usr/local/venv/lib/python3.10/site-packages (from python-dateutil>=2.7->matplotlib>=3.4->mplhep) (1.16.0)
+2023-03-02 14:39:36.306 [3/runcoffea/175 (pid 102536)] Collecting pygments<3.0.0,>=2.14.0
+2023-03-02 14:39:36.306 [3/runcoffea/175 (pid 102536)] Downloading Pygments-2.14.0-py3-none-any.whl (1.1 MB)
+2023-03-02 14:39:36.306 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 1.7 MB/s eta 0:00:00
+2023-03-02 14:39:36.307 [3/runcoffea/175 (pid 102536)] Collecting markdown-it-py<3.0.0,>=2.1.0
+2023-03-02 14:39:36.307 [3/runcoffea/175 (pid 102536)] Downloading markdown_it_py-2.2.0-py3-none-any.whl (84 kB)
+2023-03-02 14:39:36.307 [3/runcoffea/175 (pid 102536)] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 84.5/84.5 kB 1.6 MB/s eta 0:00:00
+2023-03-02 14:39:36.307 [3/runcoffea/175 (pid 102536)] Collecting mdurl~=0.1
+2023-03-02 14:39:36.307 [3/runcoffea/175 (pid 102536)] Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+2023-03-02 14:39:36.307 [3/runcoffea/175 (pid 102536)] Installing collected packages: uhi, typing-extensions, tqdm, toml, scipy, pygments, pyarrow, mplhep-data, mdurl, lz4, llvmlite, fsspec, cloudpickle, click, cachetools, boost-histogram, awkward0, vector, uproot3-methods, pydantic, pandas, numba, markdown-it-py, histoprint, uproot3, rich, mplhep, hist, correctionlib, coffea
+2023-03-02 14:39:37.186 [3/runcoffea/175 (pid 102536)] Attempting uninstall: pygments
+2023-03-02 14:39:37.186 [3/runcoffea/175 (pid 102536)] Found existing installation: Pygments 2.12.0
+2023-03-02 14:39:37.186 [3/runcoffea/175 (pid 102536)] Uninstalling Pygments-2.12.0:
+2023-03-02 14:39:37.186 [3/runcoffea/175 (pid 102536)] Successfully uninstalled Pygments-2.12.0
+2023-03-02 14:39:37.186 [3/runcoffea/175 (pid 102536)] Successfully installed awkward0-0.15.5 boost-histogram-1.3.2 cachetools-5.3.0 click-8.1.3 cloudpickle-2.2.1 coffea-0.7.20 correctionlib-2.2.2 fsspec-2023.1.0 hist-2.6.3 histoprint-2.4.0 llvmlite-0.39.1 lz4-4.3.2 markdown-it-py-2.2.0 mdurl-0.1.2 mplhep-0.3.26 mplhep-data-0.0.3 numba-0.56.4 pandas-1.5.3 pyarrow-11.0.0 pydantic-1.10.5 pygments-2.14.0 rich-13.3.1 scipy-1.10.1 toml-0.10.2 tqdm-4.64.1 typing-extensions-4.5.0 uhi-0.3.3 uproot3-3.14.4 uproot3-methods-0.10.1 vector-1.0.0
+2023-03-02 14:39:37.186 [3/runcoffea/175 (pid 102536)] 
+2023-03-02 14:39:37.186 [3/runcoffea/175 (pid 102536)] [notice] A new release of pip available: 22.1.2 -> 23.0.1
+2023-03-02 14:39:37.186 [3/runcoffea/175 (pid 102536)] [notice] To update, run: pip install --upgrade pip
+2023-03-02 14:39:37.187 [3/runcoffea/175 (pid 102536)] processes in fileset: ['data__nominal', 'ttbar__nominal', 'ttbar__scaledown', 'ttbar__scaleup', 'ttbar__ME_var', 'ttbar__PS_var', 'single_top_t_chan__nominal', 'single_atop_t_chan__nominal', 'single_top_tW__nominal', 'wjets__nominal']
+2023-03-02 14:39:37.187 [3/runcoffea/175 (pid 102536)] 
+2023-03-02 14:39:37.187 [3/runcoffea/175 (pid 102536)] example of information in fileset:
+2023-03-02 14:39:37.187 [3/runcoffea/175 (pid 102536)] {
+2023-03-02 14:39:37.187 [3/runcoffea/175 (pid 102536)] 'files': [/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19980/myoutput_merged.root, ...],
+2023-03-02 14:39:37.187 [3/runcoffea/175 (pid 102536)] 'metadata': {'process': 'ttbar', 'variation': 'nominal', 'nevts': 210294.5292188915, 'xsec': 831.76}
+2023-03-02 14:39:37.187 [3/runcoffea/175 (pid 102536)] }
+2023-03-02 14:39:37.187 [3/runcoffea/175 (pid 102536)] Preprocessing 100% ━━━━━━━━━━━━━━━━━━━━ 12/12 [ 0:00:02 < 0:00:00 | 5.1 file/s ]
+2023-03-02 14:39:37.187 [3/runcoffea/175 (pid 102536)] Processing 100% ━━━━━━━━━━━━━━━━━━━━━━ 12/12 [ 0:00:08 < 0:00:00 | 1.5 chunk/s ]
+2023-03-02 14:39:37.187 [3/runcoffea/175 (pid 102536)] 
+2023-03-02 14:39:37.187 [3/runcoffea/175 (pid 102536)] execution took 10.48 seconds
+2023-03-02 14:39:37.188 [3/runcoffea/175 (pid 102536)] run-coffea
+2023-03-02 14:39:37.188 [3/runcoffea/175 (pid 102536)] run-coffea
+2023-03-02 14:39:37.188 [3/runcoffea/175 (pid 102536)] 
+2023-03-02 14:39:37.188 [3/runcoffea/175 (pid 102536)] Return Code: 0
+2023-03-02 14:39:37.189 [3/runcoffea/175 (pid 102536)] Task finished successfully.
+2023-03-02 14:39:37.220 [3/end/176 (pid 103586)] Task is starting.
+2023-03-02 14:39:37.809 [3/end/176 (pid 103586)] End Flow
+2023-03-02 14:39:38.998 [3/end/176 (pid 103586)] Task finished successfully.
+2023-03-02 14:39:38.999 Done!
+

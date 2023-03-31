@@ -1,0 +1,70 @@
+[MFLOG|0|2023-03-02T05:46:03.027241Z|runtime|9aabde16-d32e-4018-b21a-0b64bdb22f4e]The command is: 
+[MFLOG|0|2023-03-02T05:46:03.027503Z|runtime|a19236ba-1e74-48dd-a15b-f4c6377d2fe9] 
+[MFLOG|0|2023-03-02T05:46:03.027657Z|runtime|b0312df0-58ba-4029-835d-985895c4a809]        if ! docker stop cmssw-19397 && ! docker rm cmssw-19397; then
+[MFLOG|0|2023-03-02T05:46:03.027794Z|runtime|7c81ce36-3378-4cbb-b3f6-3341f8e31b50]            echo "some_command returned an error"
+[MFLOG|0|2023-03-02T05:46:03.027922Z|runtime|091c20bd-29af-46aa-9e86-557da860e47b]        else
+[MFLOG|0|2023-03-02T05:46:03.028048Z|runtime|b0eaf203-e622-48dc-af21-23e613d85b2d]            docker stop cmssw-19397 && docker rm cmssw-19397
+[MFLOG|0|2023-03-02T05:46:03.028173Z|runtime|f8e17fdd-b356-41a3-9198-ef4272a0d5c6]        fi &&         docker run         --name cmssw-19397         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/runpoet-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 2 19397 1 &&         docker stop cmssw-19397 &&         docker rm cmssw-19397
+[MFLOG|0|2023-03-02T05:46:03.028299Z|runtime|4b5eec63-2656-46dd-ab49-a6b7feeb4d47]        
+[MFLOG|0|2023-03-02T05:46:03.028427Z|runtime|79f1ee43-e69b-4d6d-9959-5ea6dede1664]The output is: 
+[MFLOG|0|2023-03-02T05:46:03.028547Z|runtime|c2989bff-9675-4388-a656-c9183eca1f93] cmssw-19397
+[MFLOG|0|2023-03-02T05:46:03.028666Z|runtime|a457ea28-b930-45c0-a825-aecd129565a6]cmssw-19397
+[MFLOG|0|2023-03-02T05:46:03.028789Z|runtime|9abfc06d-6ce6-4a06-b1c2-44fbae41463e]cmssw-19397
+[MFLOG|0|2023-03-02T05:46:03.028906Z|runtime|edeef939-39d4-4085-92e9-9d337899deed]Setting up CMSSW_7_6_7
+[MFLOG|0|2023-03-02T05:46:03.029028Z|runtime|6e2280b2-e4ef-4ebc-86ff-7612e967c951]CMSSW should now be available.
+[MFLOG|0|2023-03-02T05:46:03.029135Z|runtime|f8762a3e-30b4-4b46-acfb-646dc3282109]This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+[MFLOG|0|2023-03-02T05:46:03.029242Z|runtime|ad7e7f46-0ea5-49f9-9b17-7811f2053b97]inside script file
+[MFLOG|0|2023-03-02T05:46:03.029344Z|runtime|de3bacc7-eb97-4f8c-b4de-7b40505494cc]Setting up CMSSW_7_6_7
+[MFLOG|0|2023-03-02T05:46:03.029447Z|runtime|82e0605e-5620-4b1c-b69d-db3e66220db4]CMSSW should now be available.
+[MFLOG|0|2023-03-02T05:46:03.029551Z|runtime|f2cf50be-5bfb-4508-a169-f7cff910ddf0]This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+[MFLOG|0|2023-03-02T05:46:03.029653Z|runtime|d974096c-9d57-48eb-9336-05e691f1e60b]>> Local Products Rules ..... started
+[MFLOG|0|2023-03-02T05:46:03.029756Z|runtime|2974c00f-3b4c-4a6b-812a-e7f6aefb696e]>> Local Products Rules ..... done
+[MFLOG|0|2023-03-02T05:46:03.029866Z|runtime|3d743693-35d2-4e1e-80a6-e21c26a07976]>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+[MFLOG|0|2023-03-02T05:46:03.029970Z|runtime|f97e5a3e-119c-4e26-a243-cec678d1cc34]------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+[MFLOG|0|2023-03-02T05:46:03.030073Z|runtime|f6d753a1-5aa6-4db5-b609-885b964227b7]>> copied merge_trees.py
+[MFLOG|0|2023-03-02T05:46:03.030173Z|runtime|f05b2185-4b5b-4fea-bd0a-54f43c80c304]>> copied ntuples-gen.py
+[MFLOG|0|2023-03-02T05:46:03.030300Z|runtime|bf1a112e-d8b3-46a9-a5e7-3b47cf1a9b70]>> Creating project symlinks
+[MFLOG|0|2023-03-02T05:46:03.030408Z|runtime|df926913-ec4f-41bc-8328-ae9c238a36bb]  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+[MFLOG|0|2023-03-02T05:46:03.030521Z|runtime|c73e389c-adb2-48a6-8386-f4c8371383bf]Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+[MFLOG|0|2023-03-02T05:46:03.030632Z|runtime|1efcd434-5d7f-415f-8870-dd04c5f8f34d]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.030741Z|runtime|45c3357e-30e4-41ba-aa1d-658fc1d88881]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.030850Z|runtime|d33f5021-b38c-437b-893c-1658e2425520]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.030958Z|runtime|131e3bc2-9f43-452f-bb88-60dddf3dec72]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.031077Z|runtime|3523a5f9-d852-4206-a755-db2ba3bee37b]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.031203Z|runtime|e8c92dd5-1418-4bbb-9a61-9549f6a547d8]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.031328Z|runtime|0d69a4ed-99e4-464a-a12f-b8712cf0e133]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.031453Z|runtime|bb02f0ab-a2b1-4f7d-897e-7086b5b642db]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+[MFLOG|0|2023-03-02T05:46:03.031578Z|runtime|2002b47a-f221-4d68-88e9-82b7dc43da13]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.031709Z|runtime|2beee73a-ddb5-4dd9-a7fa-1d376ee98c48]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.031835Z|runtime|de989aa2-adc3-4ea3-add5-1d736ebbc30a]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.031971Z|runtime|3ae994f4-9264-4343-ab35-296c5c3b31e3]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.032110Z|runtime|2165d72d-8ebd-4277-9e94-069d44f5f921]>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+[MFLOG|0|2023-03-02T05:46:03.032252Z|runtime|cff1e571-532f-4f25-8953-1ada11144d90]>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+[MFLOG|0|2023-03-02T05:46:03.032400Z|runtime|bfd3370f-73f0-4ade-b412-867e09e07a4d]Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+[MFLOG|0|2023-03-02T05:46:03.032539Z|runtime|936d950a-b845-4047-aab8-67cbe6b91116]@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+[MFLOG|0|2023-03-02T05:46:03.032679Z|runtime|41ee819d-c240-482f-a3e5-cc6202975206]--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+[MFLOG|0|2023-03-02T05:46:03.032825Z|runtime|1dfd18f1-b488-49ff-b212-258eae9dac1e]>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+[MFLOG|0|2023-03-02T05:46:03.032985Z|runtime|a8f01a18-29ae-4374-b641-82f27ae8830a]>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+[MFLOG|0|2023-03-02T05:46:03.033123Z|runtime|d375d3c3-2c19-417a-a85c-bf4f7e8dd935]>> Local Products Rules ..... started
+[MFLOG|0|2023-03-02T05:46:03.033260Z|runtime|a82bd97a-4fab-4f10-b1c1-fec8680094f8]>> Local Products Rules ..... done
+[MFLOG|0|2023-03-02T05:46:03.033395Z|runtime|7d1e250c-ca4d-4198-9847-31e3ea06b712]gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+[MFLOG|0|2023-03-02T05:46:03.033546Z|runtime|7a1ac329-5d0f-45d4-95b8-0b72a0ef0ff5]>> Creating project symlinks
+[MFLOG|0|2023-03-02T05:46:03.033695Z|runtime|eb0afa37-d121-41ad-9cd8-954efd5dd066]  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+[MFLOG|0|2023-03-02T05:46:03.033827Z|runtime|1d13e99f-4366-4db4-9b4d-9cc47f70c992]>> Done python_symlink
+[MFLOG|0|2023-03-02T05:46:03.033954Z|runtime|6800c2c5-4869-48d6-b4b9-5ede9c9d6dd3]>> Compiling python modules python
+[MFLOG|0|2023-03-02T05:46:03.034079Z|runtime|edd87a2a-ffd4-408a-aba7-1b1604fc5eec]>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+[MFLOG|0|2023-03-02T05:46:03.034207Z|runtime|80ef431e-d0be-4cf9-992f-d710a6de97fe]>> All python modules compiled
+[MFLOG|0|2023-03-02T05:46:03.034392Z|runtime|980f1abf-ae4e-4965-a43f-477bc3aac986]@@@@ Refreshing Plugins:edmPluginRefresh
+[MFLOG|0|2023-03-02T05:46:03.034570Z|runtime|d4b342bc-85ec-49f3-a4f8-37c5caddbdfb]>> Pluging of all type refreshed.
+[MFLOG|0|2023-03-02T05:46:03.034721Z|runtime|2bec50aa-946f-4661-ba28-f51a79a7c9cd]>> Done generating edm plugin poisoned information
+[MFLOG|0|2023-03-02T05:46:03.034910Z|runtime|cc9620a4-ad27-42b7-8203-93901c67822a]gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+[MFLOG|0|2023-03-02T05:46:03.939500Z|runtime|7bd1a133-bc01-4390-887e-c3c5dcd144ad]2
+[MFLOG|0|2023-03-02T05:46:03.939661Z|runtime|d4d95f21-27d8-4db0-b166-c2c14ab5848c]# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+[MFLOG|0|2023-03-02T05:46:03.939754Z|runtime|41f362b6-94e8-4710-904b-77fd18cfcfac]HLTConfig has changed for this Run. . . 
+[MFLOG|0|2023-03-02T05:46:03.939820Z|runtime|6ce90658-91e2-49e9-8d32-3a11dccf845b]TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+[MFLOG|0|2023-03-02T05:46:03.939882Z|runtime|1a74fdf8-784e-4878-aa51-ba1f1a7cb323]41348
+[MFLOG|0|2023-03-02T05:46:03.939942Z|runtime|9683535a-89da-486e-a029-b7473a21853b]41348
+[MFLOG|0|2023-03-02T05:46:03.940001Z|runtime|14fc968f-44f5-4161-963b-4a32789598ec]cmssw-19397
+[MFLOG|0|2023-03-02T05:46:03.940061Z|runtime|f38e1537-1aa2-48fb-bd35-079ccfac29d5]cmssw-19397
+[MFLOG|0|2023-03-02T05:46:03.940120Z|runtime|e8c548bb-511b-4475-bf86-3768ba2e5dac]
+[MFLOG|0|2023-03-02T05:46:03.940179Z|runtime|8829415b-ef09-444f-9b9c-b2aba90f1985]Return Code: 0

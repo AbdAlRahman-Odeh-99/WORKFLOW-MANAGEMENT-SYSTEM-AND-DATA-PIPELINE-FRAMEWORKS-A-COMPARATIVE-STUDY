@@ -1,0 +1,698 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: bsm-search-
+
+spec:
+  volumeClaimTemplates:
+  - metadata:
+      name: vol-cephfs-bsm
+    spec:
+      accessModes:
+      - ReadWriteMany
+      resources:
+        requests:
+          storage: 10Gi
+
+  arguments:
+    parameters:
+    - name: base-dir
+      value: "/data/BSM-Search/"
+
+  entrypoint: databkgmc
+  templates:
+  - name: databkgmc
+    inputs:
+      parameters:
+      - name: base-dir
+    dag:
+      tasks:
+      - name: prepare-dir
+        template: cleanup-recreate-dir
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+      - name: all-bkg-mc
+        dependencies: [prepare-dir]
+        template: wflow-all-mc
+        arguments:
+          parameters:
+          - name: type
+            value: "{{item.type}}"
+          - name: mcweight
+            value: "{{item.mcweight}}"
+          - name: nevents
+            value: "{{item.nevents}}"
+          - name: njobs
+            value: "{{item.njobs}}"
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+        withItems:
+          - { type: 'mc1', mcweight: '0.01875', nevents: '40000', njobs: 4 }
+          - { type: 'mc2', mcweight: '0.0125', nevents: '40000', njobs: 4 }
+      - name: signal
+        dependencies: [prepare-dir]
+        template: workflow-signal
+        arguments:
+          parameters:
+          - name: type
+            value: "{{item.type}}"
+          - name: mcweight
+            value: "{{item.mcweight}}"
+          - name: nevents
+            value: "{{item.nevents}}"
+          - name: njobs
+            value: "{{item.njobs}}"
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+        withItems:
+          - { type: 'sig', mcweight: '0.0025', nevents: '40000', njobs: 2 }
+      - name: data
+        dependencies: [prepare-dir]
+        template: workflow-data
+        arguments:
+          parameters:
+          - name: type
+            value: "{{item.type}}"
+          - name: nevents
+            value: "{{item.nevents}}"
+          - name: njobs
+            value: "{{item.njobs}}"
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+        withItems:
+          - { type: 'data', nevents: '20000', njobs: 5 }
+      - name: merge-all
+        dependencies: [all-bkg-mc, signal, data]
+        template: merge-explicit
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfiles
+            value: "{{item.inputfiles}}"
+          - name: outputfile
+            value: "all_merged_hist.root"
+        withItems:
+          - { inputfiles: "mc1_merged_hist.root mc2_merged_hist.root sig_merged_hist.root data_merged_hist.root" }
+      - name: makews
+        dependencies: [merge-all]
+        template: makews-action
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: data_bkg_hists
+            value: "all_merged_hist.root"
+          - name: workspace_prefix
+            value: "{{inputs.parameters.base-dir}}results"
+          - name: xml_dir
+            value: "{{inputs.parameters.base-dir}}xmldir"
+      - name: plot
+        dependencies: [makews]
+        template: plot-action
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: combined_model
+            value: "{{inputs.parameters.base-dir}}results_combined_meas_model.root"
+          - name: nominal_vals
+            value: "{{inputs.parameters.base-dir}}nominal_vals.yml"
+          - name: fit_results
+            value: "{{inputs.parameters.base-dir}}fit_results.yml"
+          - name: prefit_plot
+            value: "{{inputs.parameters.base-dir}}prefit.pdf"
+          - name: postfit_plot
+            value: "{{inputs.parameters.base-dir}}postfit.pdf"
+
+  - name: wflow-all-mc
+    inputs:
+      parameters:
+      - name: type
+      - name: mcweight
+      - name: nevents
+      - name: njobs
+      - name: base-dir
+    dag:
+      tasks:
+      - name: scatter
+        template: scatter-template
+        arguments:
+          parameters:
+          - name: njobs
+            value: "{{inputs.parameters.njobs}}"
+      - name: run-mc
+        template: generate
+        dependencies: [scatter]
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: type
+            value: "{{inputs.parameters.type}}"
+          - name: nevents
+            value: "{{inputs.parameters.nevents}}"
+          - name: jobnumber
+            value: "{{item}}"
+        withParam: "{{tasks.scatter.outputs.result}}"
+      - name: merge-mc
+        dependencies: [run-mc]
+        template: merge-root
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: type
+            value: "{{inputs.parameters.type}}"
+          - name: njobs
+            value: "{{inputs.parameters.njobs}}"
+      - name: select-mc
+        dependencies: [merge-mc]
+        template: select
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfile
+            value: "{{inputs.parameters.type}}.root"
+          - name: suffix
+            value: "{{item.suffix}}"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_{{item.suffix}}.root"
+          - name: region
+            value: "{{item.region}}"
+          - name: variation
+            value: "{{item.variation}}"
+        withItems:
+          - { region: signal, variation: shape_conv_up, suffix: shape_conv_up }
+          - { region: signal, variation: shape_conv_dn, suffix: shape_conv_dn }
+          - { region: signal, variation: "nominal,weight_var1_up,weight_var1_dn", suffix: nominal }
+      - name: hist-shape
+        dependencies: [select-mc]
+        template: histogram-shape
+        arguments:
+          parameters:
+          - name: weight
+            value: "{{inputs.parameters.mcweight}}"
+          - name: variations # nominal
+            value: nominal
+          - name: shapevar # shape_conv_up shape_conv_dn
+            value: "{{item.shapevar}}"
+          - name: type
+            value: "{{inputs.parameters.type}}"
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfile
+            value: "{{inputs.parameters.type}}_{{item.shapevar}}.root"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_{{item.shapevar}}_hist.root"
+        withItems:
+          - { shapevar: shape_conv_up }
+          - { shapevar: shape_conv_dn }
+          
+      - name: hist-weight
+        dependencies: [select-mc]
+        template: histogram-weight
+        arguments:
+          parameters:
+          - name: weight
+            value: "{{inputs.parameters.mcweight}}"
+          - name: variations
+            value: "nominal,weight_var1_up,weight_var1_dn"
+          - name: shapevar # nominal
+            value: "{{item.shapevar}}"
+          - name: type
+            value: "{{inputs.parameters.type}}"
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfile
+            value: "{{inputs.parameters.type}}_{{item.shapevar}}.root"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_{{item.shapevar}}_hist.root"
+        withItems:
+        - { shapevar: nominal }
+        
+      - name: merge-hist-shape
+        dependencies: [hist-shape]
+        template: merge-explicit
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfiles
+            value: "{{item.inputfiles}}"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_shape_hist.root"
+        withItems:
+          - { inputfiles: "{{inputs.parameters.type}}_shape_conv_up_hist.root {{inputs.parameters.type}}_shape_conv_dn_hist.root" }
+          
+      - name: merge-hist-all
+        dependencies: [merge-hist-shape,hist-weight]
+        template: merge-explicit
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfiles
+            value: "{{item.inputfiles}}"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_merged_hist.root"
+        withItems:
+          - { inputfiles: "{{inputs.parameters.type}}_nominal_hist.root {{inputs.parameters.type}}_shape_hist.root" }
+
+  - name: workflow-signal
+    inputs:
+      parameters:
+      - name: type
+      - name: nevents
+      - name: mcweight
+      - name: njobs
+      - name: base-dir
+    dag:
+      tasks:
+      - name: scatter
+        template: scatter-template
+        arguments:
+          parameters:
+          - name: njobs
+            value: "{{inputs.parameters.njobs}}"
+      - name: run-mc
+        template: generate
+        dependencies: [scatter]
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: type
+            value: "{{inputs.parameters.type}}"
+          - name: nevents
+            value: "{{inputs.parameters.nevents}}"
+          - name: jobnumber
+            value: "{{item}}"
+        withParam: "{{tasks.scatter.outputs.result}}"
+        
+      - name: merge-mc
+        dependencies: [run-mc]
+        template: merge-root
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: type
+            value: "{{inputs.parameters.type}}"
+          - name: njobs
+            value: "{{inputs.parameters.njobs}}"
+            
+      - name: select-mc
+        dependencies: [merge-mc]
+        template: select
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfile
+            value: "{{inputs.parameters.type}}.root"
+          - name: suffix
+            value: "{{item.suffix}}"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_{{item.suffix}}.root"
+          - name: region
+            value: "{{item.region}}"
+          - name: variation
+            value: "{{item.variation}}"
+        withItems:
+          - { region: signal, variation: nominal, suffix: nominal }
+
+      - name: hist-weight
+        dependencies: [select-mc]
+        template: histogram-weight
+        arguments:
+          parameters:
+          - name: weight
+            value: "{{inputs.parameters.mcweight}}"
+          - name: variations
+            value: "nominal"
+          - name: shapevar # nominal
+            value: "{{item.shapevar}}"
+          - name: type
+            value: "{{inputs.parameters.type}}nal"
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfile
+            value: "{{inputs.parameters.type}}_{{item.shapevar}}.root"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_{{item.shapevar}}_hist.root"
+        withItems:
+        - { shapevar: nominal }
+        
+      - name: merge-hist-all
+        dependencies: [hist-weight]
+        template: merge-explicit
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfiles
+            value: "{{item.inputfiles}}"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_merged_hist.root"
+        withItems:
+          - { inputfiles: "{{inputs.parameters.type}}_nominal_hist.root" }
+
+  - name: workflow-data
+    inputs:
+      parameters:
+      - name: type
+      - name: nevents
+      - name: njobs
+      - name: base-dir
+    dag:
+      tasks:
+      - name: scatter
+        template: scatter-template
+        arguments:
+          parameters:
+          - name: njobs
+            value: "{{inputs.parameters.njobs}}"
+      - name: run-data
+        template: generate
+        dependencies: [scatter]
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: type
+            value: "{{inputs.parameters.type}}"
+          - name: nevents
+            value: "{{inputs.parameters.nevents}}"
+          - name: jobnumber
+            value: "{{item}}"
+        withParam: "{{tasks.scatter.outputs.result}}"
+      - name: merge-data
+        dependencies: [run-data]
+        template: merge-root
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: type
+            value: "{{inputs.parameters.type}}"
+          - name: njobs
+            value: "{{inputs.parameters.njobs}}"
+      - name: select-signal
+        dependencies: [merge-data]
+        template: select
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfile
+            value: "{{inputs.parameters.type}}.root"
+          - name: suffix
+            value: "{{item.suffix}}"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_{{item.suffix}}.root"
+          - name: region
+            value: "{{item.region}}"
+          - name: variation
+            value: "{{item.variation}}"
+        withItems:
+          - { region: signal, variation: nominal, suffix: signal }
+      - name: select-control
+        dependencies: [merge-data]
+        template: select
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfile
+            value: "{{inputs.parameters.type}}.root"
+          - name: suffix
+            value: "{{item.suffix}}"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_{{item.suffix}}.root"
+          - name: region
+            value: "{{item.region}}"
+          - name: variation
+            value: "{{item.variation}}"
+        withItems:
+          - { region: control, variation: nominal, suffix: control }
+      - name: hist-signal
+        dependencies: [select-signal]
+        template: histogram-weight
+        arguments:
+          parameters:
+          - name: weight
+            value: 1.0
+          - name: variations
+            value: "nominal"
+          - name: shapevar # nominal
+            value: "{{item.shapevar}}"
+          - name: type
+            value: "{{inputs.parameters.type}}"
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfile
+            value: "{{inputs.parameters.type}}_signal.root"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_hist.root"
+        withItems:
+        - { shapevar: nominal }
+      - name: hist-control
+        dependencies: [select-control]
+        template: histogram-weight
+        arguments:
+          parameters:
+          - name: weight
+            value: 0.1875
+          - name: variations
+            value: "nominal"
+          - name: shapevar # nominal
+            value: "{{item.shapevar}}"
+          - name: type
+            value: "{{item.type}}"
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfile
+            value: "{{inputs.parameters.type}}_control.root"
+          - name: outputfile
+            value: "{{item.type}}_hist.root"
+        withItems:
+        - { shapevar: nominal, type: qcd }
+      - name: merge-hist-all
+        dependencies: [hist-signal, hist-control]
+        template: merge-explicit
+        arguments:
+          parameters:
+          - name: base-dir
+            value: "{{inputs.parameters.base-dir}}"
+          - name: inputfiles
+            value: "{{item.inputfiles}}"
+          - name: outputfile
+            value: "{{inputs.parameters.type}}_merged_hist.root"
+        withItems:
+          - { inputfiles: "{{inputs.parameters.type}}_hist.root qcd_hist.root" }
+
+  - name: cleanup-recreate-dir
+    inputs:
+      parameters:
+      - name: base-dir
+    script:
+      image: reanahub/reana-demo-bsm-search
+      command: [bash]
+      source: |
+        set -x
+        rm -rf {{inputs.parameters.base-dir}}
+        mkdir -p {{inputs.parameters.base-dir}}
+      volumeMounts:
+        - mountPath: /data/
+          name: vol-cephfs-bsm
+
+  - name: scatter-template
+    inputs:
+      parameters:
+      - name: njobs
+    script:
+      image: python:alpine3.6
+      command: [python]
+      source: |
+        import json
+        import sys
+        json.dump([i for i in range({{inputs.parameters.njobs}})], sys.stdout)
+        
+  - name: generate
+    inputs:
+      parameters:
+      - name: type
+      - name: nevents
+      - name: jobnumber
+      - name: base-dir
+    script:
+      image: reanahub/reana-demo-bsm-search
+      command: [bash]
+      source: |
+        set -x
+        source /usr/local/bin/thisroot.sh
+        python /code/generantuple.py {{inputs.parameters.type}} {{inputs.parameters.nevents}} {{inputs.parameters.base-dir}}{{inputs.parameters.type}}_{{inputs.parameters.jobnumber}}.root
+      volumeMounts:
+        - mountPath: /data/
+          name: vol-cephfs-bsm
+
+  - name: select
+    inputs:
+      parameters:
+      - name: inputfile
+      - name: outputfile
+      - name: region
+      - name: base-dir
+      - name: variation
+    script:
+      image: reanahub/reana-demo-bsm-search
+      command: [bash]
+      source: |
+        set -x
+        BASE_DIR={{inputs.parameters.base-dir}}
+        source /usr/local/bin/thisroot.sh
+        python /code/select.py ${BASE_DIR}{{inputs.parameters.inputfile}} ${BASE_DIR}{{inputs.parameters.outputfile}} {{inputs.parameters.region}}  {{inputs.parameters.variation}}
+      volumeMounts:
+        - mountPath: /data/
+          name: vol-cephfs-bsm
+
+  - name: merge-root
+    inputs:
+      parameters:
+      - name: type
+      - name: njobs
+      - name: base-dir
+    script:
+      image: reanahub/reana-env-root6:6.18.04
+      command: [bash]
+      source: |
+        set -x
+        BASE_DIR={{inputs.parameters.base-dir}}
+        BASE={{inputs.parameters.type}}
+        END={{inputs.parameters.njobs}}
+        INPUTS=""
+        for (( c=0; c<$END; c++ )); do
+          INPUTS="$INPUTS $(printf ${BASE_DIR}/${BASE}_${c}.root)"
+        done
+        source /usr/local/bin/thisroot.sh
+        hadd -f ${BASE_DIR}/${BASE}.root ${INPUTS}
+      volumeMounts:
+        - mountPath: /data/
+          name: vol-cephfs-bsm
+
+  - name: merge-explicit
+    inputs:
+      parameters:
+      - name: outputfile
+      - name: inputfiles
+      - name: base-dir
+    script:
+      image: reanahub/reana-env-root6:6.18.04
+      command: [bash]
+      source: |
+        set -x
+        BASE_DIR={{inputs.parameters.base-dir}}
+        inputfiles="{{inputs.parameters.inputfiles}}"
+        echo $inputfiles
+        INPUTS=""
+        for i in $inputfiles; do
+          INPUTS="$INPUTS $(printf $BASE_DIR/$i)"
+        done
+        source /usr/local/bin/thisroot.sh
+        hadd -f ${BASE_DIR}{{inputs.parameters.outputfile}} ${INPUTS}
+      volumeMounts:
+        - mountPath: /data/
+          name: vol-cephfs-bsm
+
+  - name: histogram-weight
+    inputs:
+      parameters:
+      - name: outputfile
+      - name: inputfile
+      - name: base-dir
+      - name: weight
+      - name: variations # nominal,weight_var1_up,weight_var1_dn
+      - name: shapevar # nominal
+      - name: type
+    script:
+      image: reanahub/reana-demo-bsm-search
+      command: [bash]
+      source: |
+        set -x
+        BASE_DIR={{inputs.parameters.base-dir}}
+        source /usr/local/bin/thisroot.sh
+        variations=$(echo {{inputs.parameters.variations}}|sed 's| |,|g')
+        name="{{inputs.parameters.type}}"
+        python /code/histogram.py ${BASE_DIR}{{inputs.parameters.inputfile}} ${BASE_DIR}{{inputs.parameters.outputfile}} $name {{inputs.parameters.weight}} $variations
+      volumeMounts:
+        - mountPath: /data/
+          name: vol-cephfs-bsm
+
+  - name: histogram-shape
+    inputs:
+      parameters:
+      - name: outputfile
+      - name: inputfile
+      - name: base-dir
+      - name: weight
+      - name: variations # nominal
+      - name: shapevar # shape_conv_up shape_conv_dn
+      - name: type
+    script:
+      image: reanahub/reana-demo-bsm-search
+      command: [bash]
+      source: |
+        set -x
+        BASE_DIR={{inputs.parameters.base-dir}}
+        source /usr/local/bin/thisroot.sh
+        variations=$(echo {{inputs.parameters.variations}}|sed 's| |,|g')
+        name="{{inputs.parameters.type}}_{{inputs.parameters.shapevar}}"
+        python /code/histogram.py ${BASE_DIR}{{inputs.parameters.inputfile}} ${BASE_DIR}{{inputs.parameters.outputfile}} {{inputs.parameters.type}} {{inputs.parameters.weight}} $variations $name
+      volumeMounts:
+        - mountPath: /data/
+          name: vol-cephfs-bsm
+
+  - name: makews-action
+    inputs:
+      parameters:
+      - name: base-dir
+      - name: xml_dir
+      - name: workspace_prefix
+      - name: data_bkg_hists
+    script:
+      image: reanahub/reana-demo-bsm-search
+      command: [bash]
+      source: |
+        set -x
+        source /usr/local/bin/thisroot.sh
+        python /code/makews.py {{inputs.parameters.base-dir}}{{inputs.parameters.data_bkg_hists}} {{inputs.parameters.workspace_prefix}} {{inputs.parameters.xml_dir}}
+      volumeMounts:
+        - mountPath: /data/
+          name: vol-cephfs-bsm
+
+  - name: plot-action
+    inputs:
+      parameters:
+      - name: base-dir
+      - name: combined_model
+      - name: nominal_vals
+      - name: fit_results
+      - name: prefit_plot
+      - name: postfit_plot
+    script:
+      image: reanahub/reana-demo-bsm-search
+      command: [bash]
+      source: |
+        set -x
+        source /usr/local/bin/thisroot.sh
+        hfquickplot write-vardef {{inputs.parameters.combined_model}} combined {{inputs.parameters.nominal_vals}}
+        hfquickplot plot-channel {{inputs.parameters.combined_model}} combined channel1 x {{inputs.parameters.nominal_vals}} -c qcd,mc2,mc1,signal -o {{inputs.parameters.prefit_plot}}
+        hfquickplot fit {{inputs.parameters.combined_model}} combined {{inputs.parameters.fit_results}}
+        hfquickplot plot-channel {{inputs.parameters.combined_model}} combined channel1 x {{inputs.parameters.fit_results}} -c qcd,mc2,mc1,signal -o {{inputs.parameters.postfit_plot}}
+      volumeMounts:
+        - mountPath: /data/
+          name: vol-cephfs-bsm

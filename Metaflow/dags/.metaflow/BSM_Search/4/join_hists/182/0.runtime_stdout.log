@@ -1,0 +1,17 @@
+[MFLOG|0|2023-02-26T10:09:09.105903Z|runtime|d82b0a54-f6a2-4f3e-b1c7-a85574102392]The command is: 
+[MFLOG|0|2023-02-26T10:09:10.288707Z|runtime|d817027f-3d2e-40f5-a2e3-6f15618615ca] 
+[MFLOG|0|2023-02-26T10:09:10.289094Z|runtime|ca6ea2bb-7016-4533-902e-e990ef5384c3]        source /home/abd/root/root/bin/thisroot.sh        
+[MFLOG|0|2023-02-26T10:09:10.289382Z|runtime|776b731c-7d0a-4576-8c50-aaee31a3373d]        hadd -f /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/sig_merged_hist.root /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/sig_nominal_hist.root
+[MFLOG|0|2023-02-26T10:09:10.289860Z|runtime|ea876469-987e-465e-8861-905e8f902dfe]    
+[MFLOG|0|2023-02-26T10:09:10.290176Z|runtime|f43c6efb-82c5-47a5-813d-6434487ac71b]The output is: 
+[MFLOG|0|2023-02-26T10:09:10.290454Z|runtime|e262c70b-2e15-48b2-a62b-645d1c191637] hadd Target file: /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/sig_merged_hist.root
+[MFLOG|0|2023-02-26T10:09:10.290735Z|runtime|b0997f56-831f-4fa1-a848-aa9f52af760b]hadd compression setting for all output: 1
+[MFLOG|0|2023-02-26T10:09:10.291103Z|runtime|09e20dbc-23fe-4ca2-929c-9afa2e03fa5f]hadd Source file 1: /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/sig_nominal_hist.root
+[MFLOG|0|2023-02-26T10:09:10.291387Z|runtime|3b4472f7-8e7c-4fd2-ac4f-7107da6b1ee2]
+[MFLOG|0|2023-02-26T10:09:10.291681Z|runtime|491dc9ac-ecd8-4e4d-b31e-6ae1d0c36696]Return Code: 1
+[MFLOG|0|2023-02-26T10:09:10.292060Z|runtime|1e2f42f1-a886-4874-86a4-8a3d3c4ccf7a]The error is: 
+[MFLOG|0|2023-02-26T10:09:10.292337Z|runtime|609502f9-d6e1-4396-b103-92ec17fcf7cc] /bin/sh: 2: source: not found
+[MFLOG|0|2023-02-26T10:09:10.292616Z|runtime|514d610d-5391-4e5a-b284-e464a14ea31e]Error in <TFile::TFile>: file /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/sig_nominal_hist.root does not exist
+[MFLOG|0|2023-02-26T10:09:10.292884Z|runtime|1dcecc24-617a-4187-ace0-96d5356cf2ad]Error in <TFileMerger::AddFile>: cannot open file /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/sig_nominal_hist.root
+[MFLOG|0|2023-02-26T10:09:10.293146Z|runtime|1cedee64-8839-4e50-ab44-975bc1dd0849]hadd exiting due to error in /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/sig_nominal_hist.root
+[MFLOG|0|2023-02-26T10:09:10.293406Z|runtime|fb8f029b-da27-40c2-96ec-286c5124cada]

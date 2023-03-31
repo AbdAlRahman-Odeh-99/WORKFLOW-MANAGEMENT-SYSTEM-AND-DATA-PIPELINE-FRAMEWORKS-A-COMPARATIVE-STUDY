@@ -1,0 +1,73 @@
+Name:                poet-ttbar-xxrwg
+Namespace:           argo
+ServiceAccount:      default
+Status:              Succeeded
+Conditions:          
+ PodRunning          False
+ Completed           True
+Created:             Wed Mar 01 02:44:00 +0300 (4 hours ago)
+Started:             Wed Mar 01 02:44:00 +0300 (4 hours ago)
+Finished:            Wed Mar 01 07:39:36 +0300 (now)
+Duration:            4 hours 55 minutes
+Progress:            39/39
+ResourcesDuration:   34h49m13s*(1 cpu),34h49m13s*(100Mi memory)
+Parameters:          
+  nFiles:            2
+  recid:             [
+{"recid": 24119},
+{"recid": 24120},
+{"recid": 19980},
+{"recid": 19983},
+{"recid": 19985},
+{"recid": 19949},
+{"recid": 19999},
+{"recid": 19397},
+{"recid": 19407},
+{"recid": 19419},
+{"recid": 19412},
+{"recid": 20548}
+]
+
+  nJobs:             1
+
+STEP                               TEMPLATE                PODNAME                      DURATION  MESSAGE
+ ✔ poet-ttbar-xxrwg                argo-poet                                                        
+ ├─✔ prepare                       prepare-template        poet-ttbar-xxrwg-2713288209  14s         
+ ├─✔ filelist(0:recid:24119)       filelist-template       poet-ttbar-xxrwg-2232894483  11s         
+ ├─✔ filelist(1:recid:24120)       filelist-template       poet-ttbar-xxrwg-2135260602  13s         
+ ├─✔ filelist(2:recid:19980)       filelist-template       poet-ttbar-xxrwg-2679023351  13s         
+ ├─✔ filelist(3:recid:19983)       filelist-template       poet-ttbar-xxrwg-859034877   13s         
+ ├─✔ filelist(4:recid:19985)       filelist-template       poet-ttbar-xxrwg-1217628824  21s         
+ ├─✔ filelist(5:recid:19949)       filelist-template       poet-ttbar-xxrwg-703419745   25s         
+ ├─✔ filelist(6:recid:19999)       filelist-template       poet-ttbar-xxrwg-45996077    28s         
+ ├─✔ filelist(7:recid:19397)       filelist-template       poet-ttbar-xxrwg-401182224   29s         
+ ├─✔ filelist(8:recid:19407)       filelist-template       poet-ttbar-xxrwg-3668217643  35s         
+ ├─✔ filelist(9:recid:19419)       filelist-template       poet-ttbar-xxrwg-1933161823  36s         
+ ├─✔ filelist(10:recid:19412)      filelist-template       poet-ttbar-xxrwg-1847751394  46s         
+ ├─✔ filelist(11:recid:20548)      filelist-template       poet-ttbar-xxrwg-206725483   58s         
+ ├─✔ runpoet(0:recid:24119)        runpoet-template        poet-ttbar-xxrwg-531484390   1h          
+ ├─✔ runpoet(1:recid:24120)        runpoet-template        poet-ttbar-xxrwg-2934898319  54m         
+ ├─✔ runpoet(2:recid:19980)        runpoet-template        poet-ttbar-xxrwg-4021861266  2h          
+ ├─✔ runpoet(3:recid:19983)        runpoet-template        poet-ttbar-xxrwg-1591889088  1h          
+ ├─✔ runpoet(4:recid:19985)        runpoet-template        poet-ttbar-xxrwg-964136237   4h          
+ ├─✔ runpoet(5:recid:19949)        runpoet-template        poet-ttbar-xxrwg-1985443548  2h          
+ ├─✔ runpoet(6:recid:19999)        runpoet-template        poet-ttbar-xxrwg-3059823404  3h          
+ ├─✔ runpoet(7:recid:19397)        runpoet-template        poet-ttbar-xxrwg-1712740465  3h          
+ ├─✔ runpoet(8:recid:19407)        runpoet-template        poet-ttbar-xxrwg-3029402974  3h          
+ ├─✔ runpoet(9:recid:19419)        runpoet-template        poet-ttbar-xxrwg-819587654   3h          
+ ├─✔ runpoet(10:recid:19412)       runpoet-template        poet-ttbar-xxrwg-1893233557  4h          
+ ├─✔ runpoet(11:recid:20548)       runpoet-template        poet-ttbar-xxrwg-3577376804  4h          
+ ├─✔ flattentrees(0:recid:24119)   flattentrees-template   poet-ttbar-xxrwg-3533949688  29s         
+ ├─✔ flattentrees(1:recid:24120)   flattentrees-template   poet-ttbar-xxrwg-673797613   20s         
+ ├─✔ flattentrees(2:recid:19980)   flattentrees-template   poet-ttbar-xxrwg-1945283524  37s         
+ ├─✔ flattentrees(3:recid:19983)   flattentrees-template   poet-ttbar-xxrwg-3567047798  36s         
+ ├─✔ flattentrees(4:recid:19985)   flattentrees-template   poet-ttbar-xxrwg-2731360971  57s         
+ ├─✔ flattentrees(5:recid:19949)   flattentrees-template   poet-ttbar-xxrwg-3463596122  1m          
+ ├─✔ flattentrees(6:recid:19999)   flattentrees-template   poet-ttbar-xxrwg-3735885702  1m          
+ ├─✔ flattentrees(7:recid:19397)   flattentrees-template   poet-ttbar-xxrwg-3746365891  1m          
+ ├─✔ flattentrees(8:recid:19407)   flattentrees-template   poet-ttbar-xxrwg-921333976   1m          
+ ├─✔ flattentrees(9:recid:19419)   flattentrees-template   poet-ttbar-xxrwg-1877777860  1m          
+ ├─✔ flattentrees(10:recid:19412)  flattentrees-template   poet-ttbar-xxrwg-2611667283  1m          
+ ├─✔ flattentrees(11:recid:20548)  flattentrees-template   poet-ttbar-xxrwg-3924778370  1m          
+ ├─✔ preparecoffea                 preparecoffea-template  poet-ttbar-xxrwg-1522709561  7s          
+ └─✔ runcoffea                     runcoffea-template      poet-ttbar-xxrwg-2888936923  2m  

@@ -1,0 +1,25 @@
+#Installing Metaflow
+pip install metaflow
+
+#Installing Metaflow Services
+#https://github.com/Netflix/metaflow-ui/blob/master/docs/README.md
+sudo apt  install docker
+sudo apt  install docker-compose
+
+#Installing Meataflow-Service
+git clone https://github.com/Netflix/metaflow-service.git && cd metaflow-service
+docker-compose -f docker-compose.development.yml build
+docker-compose -f docker-compose.development.yml up
+
+#Installing Metaflow-UI
+docker pull asd8511tw/metaflow-ui
+docker run -p 3000:3000 -e METAFLOW_SERVICE=http://localhost:8083/ asd8511tw/metaflow-ui
+go to: localhost:3000
+
+#Running flow with UI
+METAFLOW_SERVICE_URL=http://localhost:8080/ METAFLOW_DEFAULT_METADATA=service python3 bsm-search.py run
+
+python3 bsm-search.py card view merge_hists
+
+
+

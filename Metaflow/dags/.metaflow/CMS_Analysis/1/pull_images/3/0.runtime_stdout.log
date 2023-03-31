@@ -1,0 +1,97 @@
+[MFLOG|0|2023-03-01T17:17:35.137523Z|runtime|905419ce-866a-4d00-9255-00a663d80b01]The command is: 
+[MFLOG|0|2023-03-01T17:17:36.019650Z|runtime|060877ee-e321-40d8-89f4-dae7ad50214e] 
+[MFLOG|0|2023-03-01T17:17:36.019841Z|runtime|5e68a420-71e3-4ca6-899a-94e5ba667900]        docker pull ubuntu:latest
+[MFLOG|0|2023-03-01T17:17:36.019935Z|runtime|4eb384c7-e9a5-48e0-9120-989d08a16ed2]        docker pull cernopendata/cernopendata-client:0.3.0
+[MFLOG|0|2023-03-01T17:17:36.020044Z|runtime|64436665-0d14-4abb-b1a5-602b35268ff3]        docker pull cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493
+[MFLOG|0|2023-03-01T17:17:36.020152Z|runtime|bab5c337-3b60-4077-b001-02b9ebbc9f00]        docker pull gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+[MFLOG|0|2023-03-01T17:17:36.020250Z|runtime|ca8a0a30-3100-4ef7-968c-b5d02d8f3b35]        
+[MFLOG|0|2023-03-01T17:17:36.020365Z|runtime|7162736c-61db-452a-802c-e6684a2eee8f]The output is: 
+[MFLOG|0|2023-03-01T17:17:36.020491Z|runtime|b236af53-0b25-4cba-bbb5-4359cd2527d6] latest: Pulling from library/ubuntu
+[MFLOG|0|2023-03-01T17:17:36.020627Z|runtime|f0d766ef-c07d-40bf-851a-958df5f1abdb]Digest: sha256:9a0bdde4188b896a372804be2384015e90e3f84906b750c1a53539b585fbbe7f
+[MFLOG|0|2023-03-01T17:17:36.020737Z|runtime|fe43a453-1f56-413c-9d97-cae9f801f7a2]Status: Image is up to date for ubuntu:latest
+[MFLOG|0|2023-03-01T17:17:36.020848Z|runtime|13e07b4a-6c71-42e1-a8ae-819a304e1efc]docker.io/library/ubuntu:latest
+[MFLOG|0|2023-03-01T17:17:36.020958Z|runtime|18f4421a-9e84-49be-acc5-f6447e717ebc]0.3.0: Pulling from cernopendata/cernopendata-client
+[MFLOG|0|2023-03-01T17:17:36.021067Z|runtime|738a6cd9-e691-4e80-b40a-b3704123fff4]Digest: sha256:c4f994bc31c57d1888ccca043514b2f3ce45b10778a053d90294ddddb6de41a3
+[MFLOG|0|2023-03-01T17:17:36.021183Z|runtime|c54f0014-c682-48c6-8ca4-0fa5932a69c7]Status: Image is up to date for cernopendata/cernopendata-client:0.3.0
+[MFLOG|0|2023-03-01T17:17:36.021280Z|runtime|760fb540-3dfd-4ed9-aa3f-f1d9f45d7815]docker.io/cernopendata/cernopendata-client:0.3.0
+[MFLOG|0|2023-03-01T17:17:36.021379Z|runtime|d4409c79-377d-4360-b4fe-a7c6c5f16980]Using default tag: latest
+[MFLOG|0|2023-03-01T17:17:36.021478Z|runtime|73e9bf7f-42d3-4b3c-abe2-9214a9782bb0]latest: Pulling from cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493
+[MFLOG|0|2023-03-01T17:17:36.021576Z|runtime|d481dafa-6a32-4ff7-b5c9-710b23a124a1]a34e8f61dde2: Already exists
+[MFLOG|0|2023-03-01T17:17:36.021675Z|runtime|2dd934db-91de-4041-b70f-b05f1189d8c4]c6ffe81ed872: Already exists
+[MFLOG|0|2023-03-01T17:17:36.021772Z|runtime|388bbd66-4ac9-46f3-867c-113897432374]34213d35d276: Already exists
+[MFLOG|0|2023-03-01T17:17:36.021869Z|runtime|00253562-e6c7-4009-87e3-c1e3857dd3a6]a40b3296ade8: Already exists
+[MFLOG|0|2023-03-01T17:17:36.021968Z|runtime|6adf25dc-899d-43ef-aab9-7ee203c97ec8]20e791ade0af: Already exists
+[MFLOG|0|2023-03-01T17:17:36.022081Z|runtime|ad88f390-f6b6-472e-a00e-41e0e00937d2]3e420bc21973: Already exists
+[MFLOG|0|2023-03-01T17:17:36.022194Z|runtime|075d8755-5b38-4086-a8f8-373f3c0d59c3]9f5b34102a80: Already exists
+[MFLOG|0|2023-03-01T17:17:36.022289Z|runtime|097ed3b4-7f2c-449f-bee4-7eaa10c8e497]031b21fe979c: Already exists
+[MFLOG|0|2023-03-01T17:17:36.022397Z|runtime|2b7acba6-97bc-4a70-8bb8-c28cf46b598a]8d9e842a435a: Already exists
+[MFLOG|0|2023-03-01T17:17:36.022493Z|runtime|78f4f154-4737-442e-90a3-7becc70c770d]ce6bc2c0b35a: Already exists
+[MFLOG|0|2023-03-01T17:17:36.022588Z|runtime|2411e8fe-ecfd-43dd-b65d-fc23733ab951]5b19123b3442: Already exists
+[MFLOG|0|2023-03-01T17:17:36.022689Z|runtime|79788547-b75d-445a-99df-cec25a917ed3]4e5ef4de1d98: Already exists
+[MFLOG|0|2023-03-01T17:17:36.022794Z|runtime|3e2b8379-0d50-49c7-ac63-23a3d18e3a91]9dfda18116f1: Already exists
+[MFLOG|0|2023-03-01T17:17:36.022896Z|runtime|d38785ad-6057-427a-833a-2791e3879cfe]2fb4f6e5f0c9: Already exists
+[MFLOG|0|2023-03-01T17:17:36.022992Z|runtime|ece254e8-29ad-4f73-878f-b446428a7734]b62cc3f1b3b2: Already exists
+[MFLOG|0|2023-03-01T17:17:36.023087Z|runtime|11ddb181-8404-4936-be0e-06f8f8d5a9f7]305d71b65c72: Already exists
+[MFLOG|0|2023-03-01T17:17:36.023180Z|runtime|0677a325-f2af-421a-a8c2-e86479149d2c]4f8bb627eea4: Already exists
+[MFLOG|0|2023-03-01T17:17:36.023275Z|runtime|ea4df90e-7101-4446-871c-cc8f55a14d3a]370ee625fd78: Already exists
+[MFLOG|0|2023-03-01T17:17:36.023369Z|runtime|0b752877-a10d-45a4-bff7-889fe2f515f2]086759ba1987: Already exists
+[MFLOG|0|2023-03-01T17:17:36.023464Z|runtime|1d49a8be-ba96-491e-8a16-0732c4e261d5]77b7f8127807: Already exists
+[MFLOG|0|2023-03-01T17:17:36.023558Z|runtime|951ad5f1-6492-4b8d-958b-b390ca8189a4]22d2bece4f06: Already exists
+[MFLOG|0|2023-03-01T17:17:36.023652Z|runtime|82faf6fd-4aef-45f9-a9fc-15c7e5eb5b39]cf9d9ba42084: Pulling fs layer
+[MFLOG|0|2023-03-01T17:17:36.023761Z|runtime|0bbede38-6b49-44f6-b7e4-372887c70c3f]a7cea4633146: Pulling fs layer
+[MFLOG|0|2023-03-01T17:17:36.023857Z|runtime|10b06a05-6078-4e1c-a61b-81c265f3eef1]741a21b2c7e3: Pulling fs layer
+[MFLOG|0|2023-03-01T17:17:36.023952Z|runtime|9be57698-f75b-45cd-90aa-65c17febd51c]d17870abc750: Pulling fs layer
+[MFLOG|0|2023-03-01T17:17:36.024046Z|runtime|cea4f40c-d83c-456f-a2d5-64bd7e221f00]72a44df8dcbc: Pulling fs layer
+[MFLOG|0|2023-03-01T17:17:36.024141Z|runtime|d02e5854-bf1d-40de-b10a-88ec81de1ba1]d3d76edb18d8: Pulling fs layer
+[MFLOG|0|2023-03-01T17:17:36.024235Z|runtime|25d3d9b2-4ef9-4f80-841b-397fd1ac2742]89da0f6f9f05: Pulling fs layer
+[MFLOG|0|2023-03-01T17:17:36.024330Z|runtime|3a9cc58a-d9b9-445b-b8aa-48d0ac5ac8d6]855c5943a53c: Pulling fs layer
+[MFLOG|0|2023-03-01T17:17:36.024429Z|runtime|51ac00a4-6809-4993-a4be-abfde1ff71b5]613b97ee473e: Pulling fs layer
+[MFLOG|0|2023-03-01T17:17:36.024532Z|runtime|5da091c2-13a0-4b00-8a6f-19fea820de67]ee9e87560314: Pulling fs layer
+[MFLOG|0|2023-03-01T17:17:36.024636Z|runtime|9fee2b2b-e714-4c00-9090-42fdf4e4f0e3]3c8950fc04ae: Pulling fs layer
+[MFLOG|0|2023-03-01T17:17:36.024753Z|runtime|beb37cfa-18cd-4869-821a-af652b81da53]d17870abc750: Waiting
+[MFLOG|0|2023-03-01T17:17:36.024853Z|runtime|1359cdae-2ff0-4491-a36d-6f7593c6a869]72a44df8dcbc: Waiting
+[MFLOG|0|2023-03-01T17:17:36.024948Z|runtime|d02cd46d-c030-4fc3-a78b-a98d69e9ea61]d3d76edb18d8: Waiting
+[MFLOG|0|2023-03-01T17:17:36.025044Z|runtime|ae83c7b7-0f66-4433-9e28-162194eee570]89da0f6f9f05: Waiting
+[MFLOG|0|2023-03-01T17:17:36.025138Z|runtime|ffc65794-9832-4207-a817-3a5ad173396a]855c5943a53c: Waiting
+[MFLOG|0|2023-03-01T17:17:36.025233Z|runtime|c1883f4b-10cb-49a0-bf7a-876ad89cd08a]613b97ee473e: Waiting
+[MFLOG|0|2023-03-01T17:17:36.025317Z|runtime|8e97808b-4359-429e-b3d2-722be417d75f]ee9e87560314: Waiting
+[MFLOG|0|2023-03-01T17:17:36.025413Z|runtime|cc60cd85-7ad3-4185-80e9-f86bebc90339]3c8950fc04ae: Waiting
+[MFLOG|0|2023-03-01T17:17:36.025508Z|runtime|8639ca83-3eda-4275-a95b-4d5f744c8c60]741a21b2c7e3: Verifying Checksum
+[MFLOG|0|2023-03-01T17:17:36.025604Z|runtime|bf34ae11-4862-4674-8613-568b33fffc65]741a21b2c7e3: Download complete
+[MFLOG|0|2023-03-01T17:17:36.025699Z|runtime|71182a78-9a2c-48f4-8975-86e77d3644d1]a7cea4633146: Verifying Checksum
+[MFLOG|0|2023-03-01T17:17:36.025794Z|runtime|6c3519ed-1886-427a-bcc3-43879f4692f0]d17870abc750: Verifying Checksum
+[MFLOG|0|2023-03-01T17:17:36.025890Z|runtime|ee50e88f-cc9f-4f53-9042-acb717ed253f]d17870abc750: Download complete
+[MFLOG|0|2023-03-01T17:17:36.025986Z|runtime|96184a32-a6bb-484e-8293-986359919765]d3d76edb18d8: Download complete
+[MFLOG|0|2023-03-01T17:17:36.026092Z|runtime|8ac0d481-09a4-4864-aadb-b85196c20606]89da0f6f9f05: Verifying Checksum
+[MFLOG|0|2023-03-01T17:17:36.026192Z|runtime|1035b373-0653-4e2c-b7d5-98d76d8ed7aa]89da0f6f9f05: Download complete
+[MFLOG|0|2023-03-01T17:17:36.026287Z|runtime|83967951-1341-4fdf-920b-75358ffad081]855c5943a53c: Verifying Checksum
+[MFLOG|0|2023-03-01T17:17:36.026383Z|runtime|71abe3d5-6369-4fba-9737-c5c4d758f373]855c5943a53c: Download complete
+[MFLOG|0|2023-03-01T17:17:36.026478Z|runtime|3749a317-7a1b-4480-ad32-9feae6e806d4]613b97ee473e: Verifying Checksum
+[MFLOG|0|2023-03-01T17:17:36.026577Z|runtime|f63fb42d-0743-4268-87ec-4b040cd7f982]613b97ee473e: Download complete
+[MFLOG|0|2023-03-01T17:17:36.026672Z|runtime|01d433a4-5383-42da-86a7-3918e4484cdb]ee9e87560314: Verifying Checksum
+[MFLOG|0|2023-03-01T17:17:36.026768Z|runtime|27c541ae-0918-4385-b6f0-c8d147e5cdfb]ee9e87560314: Download complete
+[MFLOG|0|2023-03-01T17:17:36.026863Z|runtime|52e6d8e3-8624-4bfe-b56f-754eae6daa0c]3c8950fc04ae: Download complete
+[MFLOG|0|2023-03-01T17:17:36.026958Z|runtime|a82dc9bd-7424-4eee-baeb-afbad40bf654]72a44df8dcbc: Verifying Checksum
+[MFLOG|0|2023-03-01T17:17:36.027054Z|runtime|16b31d49-8040-4f18-9cb8-14277bb2f507]72a44df8dcbc: Download complete
+[MFLOG|0|2023-03-01T17:17:36.027148Z|runtime|5492e8d3-f6bc-48c9-9665-f5003440b4c7]cf9d9ba42084: Verifying Checksum
+[MFLOG|0|2023-03-01T17:17:36.027244Z|runtime|7799c719-3aba-4afa-bf41-4f32c8ba47e9]cf9d9ba42084: Download complete
+[MFLOG|0|2023-03-01T17:17:36.027339Z|runtime|f5545f3d-1c96-42fd-9ca2-165f92428348]cf9d9ba42084: Pull complete
+[MFLOG|0|2023-03-01T17:17:36.027435Z|runtime|40e8daea-6d4d-4b83-812a-5762fd0d55b6]a7cea4633146: Pull complete
+[MFLOG|0|2023-03-01T17:17:36.027531Z|runtime|8bd61ec3-50dd-4468-b19d-a0e1f6f24f97]741a21b2c7e3: Pull complete
+[MFLOG|0|2023-03-01T17:17:36.027626Z|runtime|682bbefa-0ff8-48aa-acda-041de55b8cb2]d17870abc750: Pull complete
+[MFLOG|0|2023-03-01T17:17:36.027721Z|runtime|da21faaa-2b87-48a2-9474-439ce14b9a54]72a44df8dcbc: Pull complete
+[MFLOG|0|2023-03-01T17:17:36.027815Z|runtime|e01ca2d8-0531-4482-82df-99c453a286ff]d3d76edb18d8: Pull complete
+[MFLOG|0|2023-03-01T17:17:36.027911Z|runtime|f5170221-db1e-4c30-930c-d57ca0bb6b09]89da0f6f9f05: Pull complete
+[MFLOG|0|2023-03-01T17:17:36.028006Z|runtime|29a8a49e-fef2-4111-ab09-b67368bbc1db]855c5943a53c: Pull complete
+[MFLOG|0|2023-03-01T17:17:36.028101Z|runtime|8e016cba-7eb9-46b2-9be1-d8f755c8e8f6]613b97ee473e: Pull complete
+[MFLOG|0|2023-03-01T17:17:36.028196Z|runtime|5f0b43f3-8b7b-4154-b313-519fd3553b30]ee9e87560314: Pull complete
+[MFLOG|0|2023-03-01T17:17:36.028291Z|runtime|0aa13bca-d9e2-4ed2-9d3e-653ce762044e]3c8950fc04ae: Pull complete
+[MFLOG|0|2023-03-01T17:17:36.028386Z|runtime|45e8e891-2327-476c-805e-96566bb61db1]Digest: sha256:58b486fcfce85c882ea25de5d1acec054519fa27de3ae48db42bdf5d3ef9c8e2
+[MFLOG|0|2023-03-01T17:17:36.028483Z|runtime|c76a1c8e-fff1-439c-bd4e-b2f38fbc0b78]Status: Downloaded newer image for cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493:latest
+[MFLOG|0|2023-03-01T17:17:36.028579Z|runtime|ec6ef3cf-3626-4373-a4e1-8dfb5f2cb088]docker.io/cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493:latest
+[MFLOG|0|2023-03-01T17:17:36.028674Z|runtime|71b68e16-1488-4432-8137-709802d91605]latest: Pulling from cms-cloud/python-vnc
+[MFLOG|0|2023-03-01T17:17:36.028770Z|runtime|14bc8386-3133-4919-b9c8-8b46c9ed4396]Digest: sha256:12e122ea9ff95e0334e03cb7e832ce67986abba7c20597a6d70160f626cb0a47
+[MFLOG|0|2023-03-01T17:17:36.028865Z|runtime|4b85f214-18e8-4a8a-88a0-a297ae5bb5ee]Status: Image is up to date for gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+[MFLOG|0|2023-03-01T17:17:36.028961Z|runtime|8a4db1d6-9ab7-49f6-9115-21718f06e4f2]gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+[MFLOG|0|2023-03-01T17:17:36.029057Z|runtime|b5343fae-381d-4c80-b1a2-a74e79aecffc]
+[MFLOG|0|2023-03-01T17:17:36.029152Z|runtime|80034bb6-f6f2-47c8-abd1-feda851e86bb]Return Code: 0

@@ -1,0 +1,10 @@
+# Installing Luigi
+pip install luigi
+
+# Running luigi
+export PYTHONPATH="$PYTHONPATH:<directory where hello_luigi.py resides>"	//export PYTHONPATH="$PYTHONPATH:."
+luigid //Run server
+
+# With UI Run flow then go to localhost:8082
+python3 CMS-Analysis.py --local-schedule --workers 4 --max-task-retries 5 --retry-delay 30
+

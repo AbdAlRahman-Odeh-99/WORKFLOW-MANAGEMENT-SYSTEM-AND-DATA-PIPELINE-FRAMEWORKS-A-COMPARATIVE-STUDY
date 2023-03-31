@@ -1,0 +1,26 @@
+[MFLOG|0|2023-02-26T10:09:18.421494Z|runtime|da5c514d-d8e1-482b-99ba-538e8e85e899]The command is: 
+[MFLOG|0|2023-02-26T10:09:19.239425Z|runtime|1bbd5c24-ee6e-4c56-89e7-0bd262432f9f] 
+[MFLOG|0|2023-02-26T10:09:19.239577Z|runtime|cbfd8870-6233-4ed3-8f4d-95bd430cac83]        source /home/abd/root/root/bin/thisroot.sh
+[MFLOG|0|2023-02-26T10:09:19.239657Z|runtime|b95e39e2-15a3-42ed-8afb-e6364a866506]        python /home/abd/Desktop/Work/Final_Version/Metaflow/code/BSM-Search/makews.py /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/all_merged_hist.root /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/results /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/xmldir
+[MFLOG|0|2023-02-26T10:09:19.239730Z|runtime|d55a6103-348d-4f0c-ae66-97650a058086]    
+[MFLOG|0|2023-02-26T10:09:19.239797Z|runtime|b197ec48-ffff-498d-b71d-5c45318a2b10]The output is: 
+[MFLOG|0|2023-02-26T10:09:19.239858Z|runtime|252ef443-eab4-494f-a94c-544489c44116] 
+[MFLOG|0|2023-02-26T10:09:19.239918Z|runtime|0b33f4be-5a48-4bbd-b204-03d3541a912d][1mRooFit v3.60 -- Developed by Wouter Verkerke and David Kirkby[0m 
+[MFLOG|0|2023-02-26T10:09:19.239981Z|runtime|55e9e4b1-0c76-462e-a9c7-64213ef8a234]                Copyright (C) 2000-2013 NIKHEF, University of California & Stanford University
+[MFLOG|0|2023-02-26T10:09:19.240041Z|runtime|c22fb890-4f07-45e6-8afe-66750aa3efe6]                All rights reserved, please read http://roofit.sourceforge.net/license.txt
+[MFLOG|0|2023-02-26T10:09:19.240103Z|runtime|8d4968e7-85af-4307-94f8-5943d8076240]
+[MFLOG|0|2023-02-26T10:09:19.240162Z|runtime|0bce5cdc-1af7-419f-90da-db7accdc3996][#2] PROGRESS:HistFactory -- Getting histogram /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/all_merged_hist.root:/data_nominal
+[MFLOG|0|2023-02-26T10:09:19.240225Z|runtime|ac31045f-b062-41ae-9bf5-e370c0089f22][#2] INFO:HistFactory -- Opened input file: /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/all_merged_hist.root: 
+[MFLOG|0|2023-02-26T10:09:19.240297Z|runtime|ae669398-223c-4b6f-a8ca-1552da693a17][#2] ERROR:HistFactory -- Histogram 'data_nominal' wasn't found in file '/home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/all_merged_hist.root' in directory ''.
+[MFLOG|0|2023-02-26T10:09:19.240354Z|runtime|ea1c37c6-aa28-4cdd-afd4-9a81e83ffe30]
+[MFLOG|0|2023-02-26T10:09:19.240410Z|runtime|04cba359-945e-4be2-8c1b-4a0d7de61e8d]Return Code: 1
+[MFLOG|0|2023-02-26T10:09:19.240467Z|runtime|2669fdc7-c146-4745-a635-d9c76147169b]The error is: 
+[MFLOG|0|2023-02-26T10:09:19.240522Z|runtime|f468eb53-3d03-4fb8-b2a6-042cf2bf9dff] /bin/sh: 2: source: not found
+[MFLOG|0|2023-02-26T10:09:19.240579Z|runtime|d4b1da95-c7c0-4b21-a46a-ca82dcfb4adb]Traceback (most recent call last):
+[MFLOG|0|2023-02-26T10:09:19.240635Z|runtime|0578a62b-4110-4225-a17d-907a1ed152be]  File "/home/abd/Desktop/Work/Final_Version/Metaflow/code/BSM-Search/makews.py", line 66, in <module>
+[MFLOG|0|2023-02-26T10:09:19.240691Z|runtime|db0ce9af-7187-4f98-ba37-c055dcba74ec]    main()
+[MFLOG|0|2023-02-26T10:09:19.240747Z|runtime|058200c6-8487-4676-922e-82c63e644ab2]  File "/home/abd/Desktop/Work/Final_Version/Metaflow/code/BSM-Search/makews.py", line 52, in main
+[MFLOG|0|2023-02-26T10:09:19.240803Z|runtime|4657b937-2062-4f83-a6e4-2d692f6a7491]    meas.CollectHistograms()
+[MFLOG|0|2023-02-26T10:09:19.240859Z|runtime|733956b1-4118-4a70-a889-974405f5310d]cppyy.gbl.RooStats.HistFactory.hf_exc: void RooStats::HistFactory::Measurement::CollectHistograms() =>
+[MFLOG|0|2023-02-26T10:09:19.240918Z|runtime|67ef3fce-da06-48f7-a082-499ee7eef695]    hf_exc: HistFactory - Exception
+[MFLOG|0|2023-02-26T10:09:19.240974Z|runtime|018e47e7-3f9b-4e38-93e0-7801e523572b]

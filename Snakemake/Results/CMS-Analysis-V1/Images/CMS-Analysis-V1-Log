@@ -1,0 +1,2085 @@
+abd@abd:~/Desktop/Work/Final_Version/Snakemake/dags/CMS-Analysis$ snakemake --cores 4 --restart-times 4 -s Snakefile
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	12	fileListCommand
+	12	flattentreesCommand
+	1	prepareCoffeaCommand
+	1	prepareCommand
+	1	pullCommand
+	1	runCoffeaCommand
+	12	runpoetCommand
+	41
+
+[Mon Feb 27 02:37:00 2023]
+rule pullCommand:
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/pull.txt
+    jobid: 1
+    wildcards: dir_path=/home/abd/Desktop/Work/Final_Version/Snakemake
+
+latest: Pulling from library/ubuntu
+Digest: sha256:9a0bdde4188b896a372804be2384015e90e3f84906b750c1a53539b585fbbe7f
+Status: Image is up to date for ubuntu:latest
+docker.io/library/ubuntu:latest
+0.3.0: Pulling from cernopendata/cernopendata-client
+Digest: sha256:c4f994bc31c57d1888ccca043514b2f3ce45b10778a053d90294ddddb6de41a3
+Status: Image is up to date for cernopendata/cernopendata-client:0.3.0
+docker.io/cernopendata/cernopendata-client:0.3.0
+Using default tag: latest
+latest: Pulling from cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493
+Digest: sha256:41211f7fb56bb81f53bb5357b611d09372b782a8c7806d2b20e487f4e2919bc6
+Status: Image is up to date for cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493:latest
+docker.io/cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493:latest
+latest: Pulling from cms-cloud/python-vnc
+Digest: sha256:12e122ea9ff95e0334e03cb7e832ce67986abba7c20597a6d70160f626cb0a47
+Status: Image is up to date for gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+[Mon Feb 27 02:37:11 2023]
+Finished job 1.
+1 of 41 steps (2%) done
+
+[Mon Feb 27 02:37:11 2023]
+rule prepareCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/pull.txt
+    output: .mkdir.chkpnt
+    jobid: 2
+
+pip install vector hist mplhep coffea
+git clone https://github.com/cms-opendata-workshop/workshop2022-lesson-ttbarljetsanalysis-payload.git
+cd workshop2022-lesson-ttbarljetsanalysis-payload
+cp /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/code/ntuples.json .
+python coffeaAnalysis_ttbarljets.py
+mv *root /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol
+ubuntu
+ubuntu
+Touching output file .mkdir.chkpnt.
+[Mon Feb 27 02:37:13 2023]
+Finished job 2.
+2 of 41 steps (5%) done
+
+[Mon Feb 27 02:37:13 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt
+    jobid: 4
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=24120
+
+
+[Mon Feb 27 02:37:13 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt
+    jobid: 8
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19949
+
+
+[Mon Feb 27 02:37:13 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt
+    jobid: 12
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19419
+
+
+[Mon Feb 27 02:37:13 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    jobid: 14
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=20548
+
+Error response from daemon: No such container: cernopendata-client-24120
+Error response from daemon: No such container: cernopendata-client-19419
+Error response from daemon: No such container: cernopendata-client-19949
+Error response from daemon: No such container: cernopendata-client-20548
+Error response from daemon: No such container: cernopendata-client-20548
+some_command returned an error
+Error response from daemon: No such container: cernopendata-client-19419
+some_command returned an error
+Error response from daemon: No such container: cernopendata-client-24120
+some_command returned an error
+Error response from daemon: No such container: cernopendata-client-19949
+some_command returned an error
+[Mon Feb 27 02:37:21 2023]
+Finished job 12.
+3 of 41 steps (7%) done
+
+[Mon Feb 27 02:37:21 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt
+    jobid: 11
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19407
+
+Error response from daemon: No such container: cernopendata-client-19407
+[Mon Feb 27 02:37:21 2023]
+Finished job 8.
+4 of 41 steps (10%) done
+
+[Mon Feb 27 02:37:21 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt
+    jobid: 3
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=24119
+
+Error response from daemon: No such container: cernopendata-client-19407
+some_command returned an error
+Error response from daemon: No such container: cernopendata-client-24119
+Error response from daemon: No such container: cernopendata-client-24119
+some_command returned an error
+[Mon Feb 27 02:37:24 2023]
+Finished job 11.
+5 of 41 steps (12%) done
+
+[Mon Feb 27 02:37:24 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt
+    jobid: 9
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19999
+
+Error response from daemon: No such container: cernopendata-client-19999
+Error response from daemon: No such container: cernopendata-client-19999
+some_command returned an error
+[Mon Feb 27 02:37:25 2023]
+Finished job 4.
+6 of 41 steps (15%) done
+
+[Mon Feb 27 02:37:25 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt
+    jobid: 13
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19412
+
+Error response from daemon: No such container: cernopendata-client-19412
+Error response from daemon: No such container: cernopendata-client-19412
+some_command returned an error
+[Mon Feb 27 02:37:26 2023]
+Finished job 14.
+7 of 41 steps (17%) done
+
+[Mon Feb 27 02:37:26 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt
+    jobid: 10
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19397
+
+Error response from daemon: No such container: cernopendata-client-19397
+Error response from daemon: No such container: cernopendata-client-19397
+some_command returned an error
+[Mon Feb 27 02:37:27 2023]
+Finished job 3.
+8 of 41 steps (20%) done
+
+[Mon Feb 27 02:37:27 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt
+    jobid: 7
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19985
+
+Error response from daemon: No such container: cernopendata-client-19985
+Error response from daemon: No such container: cernopendata-client-19985
+some_command returned an error
+[Mon Feb 27 02:37:27 2023]
+Finished job 9.
+9 of 41 steps (22%) done
+
+[Mon Feb 27 02:37:27 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt
+    jobid: 5
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19980
+
+Error response from daemon: No such container: cernopendata-client-19980
+Error response from daemon: No such container: cernopendata-client-19980
+some_command returned an error
+[Mon Feb 27 02:37:28 2023]
+Finished job 13.
+10 of 41 steps (24%) done
+
+[Mon Feb 27 02:37:28 2023]
+rule fileListCommand:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt
+    jobid: 6
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19983
+
+Error response from daemon: No such container: cernopendata-client-19983
+Error response from daemon: No such container: cernopendata-client-19983
+some_command returned an error
+[Mon Feb 27 02:37:31 2023]
+Finished job 10.
+11 of 41 steps (27%) done
+[Mon Feb 27 02:37:32 2023]
+Finished job 7.
+12 of 41 steps (29%) done
+[Mon Feb 27 02:37:33 2023]
+Finished job 6.
+13 of 41 steps (32%) done
+[Mon Feb 27 02:37:36 2023]
+Finished job 5.
+14 of 41 steps (34%) done
+
+[Mon Feb 27 02:37:36 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root
+    jobid: 20
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19949
+
+
+[Mon Feb 27 02:37:36 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root
+    jobid: 19
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19985
+
+
+[Mon Feb 27 02:37:36 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root
+    jobid: 16
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=24120
+
+
+[Mon Feb 27 02:37:36 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root
+    jobid: 24
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19419
+
+Error response from daemon: No such container: cmssw-24120
+Error response from daemon: No such container: cmssw-19985
+Error response from daemon: No such container: cmssw-19949
+Error response from daemon: No such container: cmssw-19419
+Error response from daemon: No such container: cmssw-24120
+some_command returned an error
+Error response from daemon: No such container: cmssw-19985
+some_command returned an error
+Error response from daemon: No such container: cmssw-19949
+some_command returned an error
+Error response from daemon: No such container: cmssw-19419
+some_command returned an error
+Setting up CMSSW_7_6_7
+Setting up CMSSW_7_6_7
+Setting up CMSSW_7_6_7
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+inside script file
+inside script file
+inside script file
+inside script file
+Setting up CMSSW_7_6_7
+Setting up CMSSW_7_6_7
+Setting up CMSSW_7_6_7
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+Cloning into 'PhysObjectExtractorTool'...
+Cloning into 'PhysObjectExtractorTool'...
+Cloning into 'PhysObjectExtractorTool'...
+Cloning into 'PhysObjectExtractorTool'...
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+>> Local Products Rules ..... started
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Done python_symlink
+>> Compiling python modules python
+>> Done python_symlink
+>> Compiling python modules python
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Pluging of all type refreshed.
+>> Pluging of all type refreshed.
+>> Done generating edm plugin poisoned information
+>> Done generating edm plugin poisoned information
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2
+2
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Done python_symlink
+>> Compiling python modules python
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Pluging of all type refreshed.
+>> Done generating edm plugin poisoned information
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Done python_symlink
+>> Compiling python modules python
+27-Feb-2023 00:41:08 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleElectron/MINIAOD/08Jun2016-v1/10000/001A703B-B52E-E611-BA13-0025905A60B6.root
+27-Feb-2023 00:41:08 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/70000/0CAE8121-20B9-E511-A86F-002590D9D822.root
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Pluging of all type refreshed.
+27-Feb-2023 00:41:09 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TTJets_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/00547C97-2FCC-E511-8D75-002590DB91D2.root
+>> Done generating edm plugin poisoned information
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 00:41:10 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 00:41:11 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 00:41:12 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 00:41:12 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaleup-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/10000/002A13F7-B8CB-E511-A112-003048CB7B30.root
+27-Feb-2023 00:41:12 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleElectron/MINIAOD/08Jun2016-v1/10000/001A703B-B52E-E611-BA13-0025905A60B6.root
+27-Feb-2023 00:41:13 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/70000/0CAE8121-20B9-E511-A86F-002590D9D822.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 00:41:13 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 00:41:14 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TTJets_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/00547C97-2FCC-E511-8D75-002590DB91D2.root
+27-Feb-2023 00:41:15 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaleup-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/10000/002A13F7-B8CB-E511-A112-003048CB7B30.root
+HLTConfig has changed for this Run. . . 
+HLTConfig has changed for this Run. . . 
+HLTConfig has changed for this Run. . . 
+HLTConfig has changed for this Run. . . 
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+27-Feb-2023 01:08:44 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleElectron/MINIAOD/08Jun2016-v1/10000/001A703B-B52E-E611-BA13-0025905A60B6.root
+27-Feb-2023 01:08:44 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleElectron/MINIAOD/08Jun2016-v1/10000/0043CCB6-DC2E-E611-98E5-F04DA275C007.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 01:08:50 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 01:08:50 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleElectron/MINIAOD/08Jun2016-v1/10000/0043CCB6-DC2E-E611-98E5-F04DA275C007.root
+HLTConfig has changed for this Run. . . 
+27-Feb-2023 01:16:02 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TTJets_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/00547C97-2FCC-E511-8D75-002590DB91D2.root
+27-Feb-2023 01:16:02 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TTJets_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/043D89DE-2FCC-E511-B2E9-0025907FD442.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 01:16:03 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 01:16:04 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TTJets_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/043D89DE-2FCC-E511-B2E9-0025907FD442.root
+27-Feb-2023 01:16:08 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleElectron/MINIAOD/08Jun2016-v1/10000/0043CCB6-DC2E-E611-98E5-F04DA275C007.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 fileAction           -s file_close                             2        2
+    3 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 fileAction           PostProcessEvent PostEndRun       
+    3 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+System                  6                   6
+27-Feb-2023 01:16:11 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaleup-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/10000/002A13F7-B8CB-E511-A112-003048CB7B30.root
+27-Feb-2023 01:16:11 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaleup-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/10000/005D1B60-BACB-E511-8E93-0025902009BC.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 01:16:12 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 01:16:13 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaleup-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/10000/005D1B60-BACB-E511-8E93-0025902009BC.root
+46487
+46487
+cmssw-24120
+cmssw-24120
+[Mon Feb 27 03:16:17 2023]
+Finished job 16.
+15 of 41 steps (37%) done
+
+[Mon Feb 27 03:16:17 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    jobid: 26
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=20548
+
+Error response from daemon: No such container: cmssw-20548
+Error response from daemon: No such container: cmssw-20548
+some_command returned an error
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+inside script file
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+Cloning into 'PhysObjectExtractorTool'...
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Done python_symlink
+>> Compiling python modules python
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Pluging of all type refreshed.
+>> Done generating edm plugin poisoned information
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+27-Feb-2023 01:18:25 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext4-v1/00000/003C3C2D-06EA-E511-8381-0023AEEEB799.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 01:18:27 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 01:18:29 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext4-v1/00000/003C3C2D-06EA-E511-8381-0023AEEEB799.root
+HLTConfig has changed for this Run. . . 
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+27-Feb-2023 01:30:56 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/70000/0CAE8121-20B9-E511-A86F-002590D9D822.root
+27-Feb-2023 01:30:56 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/70000/104F0605-BEB8-E511-804E-00259075D6B4.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 01:30:58 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 01:30:58 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/70000/104F0605-BEB8-E511-804E-00259075D6B4.root
+27-Feb-2023 01:49:12 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaleup-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/10000/005D1B60-BACB-E511-8E93-0025902009BC.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 fileAction           -s file_close                             2        2
+    3 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 fileAction           PostProcessEvent PostEndRun       
+    3 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+System                  6                   6
+27-Feb-2023 01:49:26 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TTJets_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/043D89DE-2FCC-E511-B2E9-0025907FD442.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 fileAction           -s file_close                             2        2
+    3 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 fileAction           PostProcessEvent PostEndRun       
+    3 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+System                  6                   6
+45259
+45259
+cmssw-19985
+cmssw-19985
+[Mon Feb 27 03:49:27 2023]
+Finished job 19.
+16 of 41 steps (39%) done
+
+[Mon Feb 27 03:49:27 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root
+    jobid: 23
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19407
+
+Error response from daemon: No such container: cmssw-19407
+Error response from daemon: No such container: cmssw-19407
+some_command returned an error
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+inside script file
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+Cloning into 'PhysObjectExtractorTool'...
+42754
+42754
+cmssw-19949
+cmssw-19949
+[Mon Feb 27 03:49:41 2023]
+Finished job 20.
+17 of 41 steps (41%) done
+
+[Mon Feb 27 03:49:41 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root
+    jobid: 15
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=24119
+
+Error response from daemon: No such container: cmssw-24119
+Error response from daemon: No such container: cmssw-24119
+some_command returned an error
+Setting up CMSSW_7_6_7
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+inside script file
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+Cloning into 'PhysObjectExtractorTool'...
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+27-Feb-2023 01:50:49 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext4-v1/00000/003C3C2D-06EA-E511-8381-0023AEEEB799.root
+27-Feb-2023 01:50:49 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext4-v1/00000/00940DCD-0DEC-E511-BF97-34E6D7E38781.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 01:50:50 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 01:50:51 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext4-v1/00000/00940DCD-0DEC-E511-BF97-34E6D7E38781.root
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Done python_symlink
+>> Compiling python modules python
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Pluging of all type refreshed.
+>> Done generating edm plugin poisoned information
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+27-Feb-2023 01:52:06 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_antitop_4f_leptonDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/06EB835B-26C7-E511-A842-001E67398D72.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 01:52:09 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+27-Feb-2023 01:52:11 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_antitop_4f_leptonDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/06EB835B-26C7-E511-A842-001E67398D72.root
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+HLTConfig has changed for this Run. . . 
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Done python_symlink
+>> Compiling python modules python
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Pluging of all type refreshed.
+>> Done generating edm plugin poisoned information
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+27-Feb-2023 01:52:22 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleMuon/MINIAOD/16Dec2015-v1/10000/00006301-CAA8-E511-AD39-549F35AD8BC9.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 01:52:24 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 01:52:26 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleMuon/MINIAOD/16Dec2015-v1/10000/00006301-CAA8-E511-AD39-549F35AD8BC9.root
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+HLTConfig has changed for this Run. . . 
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+27-Feb-2023 01:53:07 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/70000/104F0605-BEB8-E511-804E-00259075D6B4.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 fileAction           -s file_close                             2        2
+    3 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 fileAction           PostProcessEvent PostEndRun       
+    3 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+System                  6                   6
+36000
+36000
+cmssw-19419
+cmssw-19419
+[Mon Feb 27 03:53:16 2023]
+Finished job 24.
+18 of 41 steps (44%) done
+
+[Mon Feb 27 03:53:16 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root
+    jobid: 21
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19999
+
+Error response from daemon: No such container: cmssw-19999
+Error response from daemon: No such container: cmssw-19999
+some_command returned an error
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+inside script file
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+Cloning into 'PhysObjectExtractorTool'...
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Done python_symlink
+>> Compiling python modules python
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Pluging of all type refreshed.
+>> Done generating edm plugin poisoned information
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+27-Feb-2023 01:55:23 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneEE5C_13TeV-powheg-herwigpp/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/00284D8E-E8DB-E511-A462-02163E012D21.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 01:55:24 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 01:55:26 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneEE5C_13TeV-powheg-herwigpp/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/00284D8E-E8DB-E511-A462-02163E012D21.root
+HLTConfig has changed for this Run. . . 
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+27-Feb-2023 02:13:13 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext4-v1/00000/00940DCD-0DEC-E511-BF97-34E6D7E38781.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 fileAction           -s file_close                             2        2
+    3 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 fileAction           PostProcessEvent PostEndRun       
+    3 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+System                  6                   6
+38404
+38404
+cmssw-20548
+cmssw-20548
+[Mon Feb 27 04:13:23 2023]
+Finished job 26.
+19 of 41 steps (46%) done
+
+[Mon Feb 27 04:13:23 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root
+    jobid: 22
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19397
+
+Error response from daemon: No such container: cmssw-19397
+Error response from daemon: No such container: cmssw-19397
+some_command returned an error
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+inside script file
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+Cloning into 'PhysObjectExtractorTool'...
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Done python_symlink
+>> Compiling python modules python
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Pluging of all type refreshed.
+>> Done generating edm plugin poisoned information
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+27-Feb-2023 02:15:33 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/00D0C851-F9BB-E511-86B6-5C260AFFFB63.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 02:15:35 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 02:15:37 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/00D0C851-F9BB-E511-86B6-5C260AFFFB63.root
+HLTConfig has changed for this Run. . . 
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+27-Feb-2023 02:21:18 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleMuon/MINIAOD/16Dec2015-v1/10000/00006301-CAA8-E511-AD39-549F35AD8BC9.root
+27-Feb-2023 02:21:18 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleMuon/MINIAOD/16Dec2015-v1/10000/0034202D-A3A8-E511-BA9C-00259073E3DA.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 02:21:24 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 02:21:24 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleMuon/MINIAOD/16Dec2015-v1/10000/0034202D-A3A8-E511-BA9C-00259073E3DA.root
+HLTConfig has changed for this Run. . . 
+27-Feb-2023 02:36:33 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_antitop_4f_leptonDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/06EB835B-26C7-E511-A842-001E67398D72.root
+27-Feb-2023 02:36:33 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_antitop_4f_leptonDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/18C46A5C-26C7-E511-B73B-002590A83308.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 02:36:36 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 02:36:36 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_antitop_4f_leptonDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/18C46A5C-26C7-E511-B73B-002590A83308.root
+27-Feb-2023 02:39:32 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/Run2015D/SingleMuon/MINIAOD/16Dec2015-v1/10000/0034202D-A3A8-E511-BA9C-00259073E3DA.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 fileAction           -s file_close                             2        2
+    3 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 fileAction           PostProcessEvent PostEndRun       
+    3 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+System                  6                   6
+49945
+49945
+cmssw-24119
+cmssw-24119
+[Mon Feb 27 04:39:42 2023]
+Finished job 15.
+20 of 41 steps (49%) done
+
+[Mon Feb 27 04:39:42 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root
+    jobid: 25
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19412
+
+Error response from daemon: No such container: cmssw-19412
+Error response from daemon: No such container: cmssw-19412
+some_command returned an error
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+inside script file
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+Cloning into 'PhysObjectExtractorTool'...
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Done python_symlink
+>> Compiling python modules python
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Pluging of all type refreshed.
+>> Done generating edm plugin poisoned information
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+27-Feb-2023 02:41:47 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/00D0925F-56B9-E511-8A71-0025907FD2B2.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 02:41:50 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 02:41:51 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/00D0925F-56B9-E511-8A71-0025907FD2B2.root
+HLTConfig has changed for this Run. . . 
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+27-Feb-2023 03:07:35 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/00D0C851-F9BB-E511-86B6-5C260AFFFB63.root
+27-Feb-2023 03:07:35 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/023F8AC3-FFBB-E511-8611-3417EBE528F4.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 03:07:38 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 03:07:39 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/023F8AC3-FFBB-E511-8611-3417EBE528F4.root
+27-Feb-2023 03:16:06 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_antitop_4f_leptonDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/18C46A5C-26C7-E511-B73B-002590A83308.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 fileAction           -s file_close                             2        2
+    3 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 fileAction           PostProcessEvent PostEndRun       
+    3 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+System                  6                   6
+39300
+39300
+cmssw-19407
+cmssw-19407
+[Mon Feb 27 05:16:19 2023]
+Finished job 23.
+21 of 41 steps (51%) done
+
+[Mon Feb 27 05:16:19 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root
+    jobid: 17
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19980
+
+Error response from daemon: No such container: cmssw-19980
+Error response from daemon: No such container: cmssw-19980
+some_command returned an error
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+inside script file
+Setting up CMSSW_7_6_7
+27-Feb-2023 03:16:21 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneEE5C_13TeV-powheg-herwigpp/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/00284D8E-E8DB-E511-A462-02163E012D21.root
+27-Feb-2023 03:16:21 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneEE5C_13TeV-powheg-herwigpp/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/003C9D74-BCDB-E511-BFE6-002590AB3A82.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 03:16:22 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 03:16:23 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneEE5C_13TeV-powheg-herwigpp/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/003C9D74-BCDB-E511-BFE6-002590AB3A82.root
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+Cloning into 'PhysObjectExtractorTool'...
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Done python_symlink
+>> Compiling python modules python
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Pluging of all type refreshed.
+>> Done generating edm plugin poisoned information
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+27-Feb-2023 03:18:43 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/00DF0A73-17C2-E511-B086-E41D2D08DE30.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 03:18:44 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 03:18:46 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/00DF0A73-17C2-E511-B086-E41D2D08DE30.root
+HLTConfig has changed for this Run. . . 
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+[2023-02-27 03:19:23.901748 +0100][Error  ][XRootD            ] [p06636710n62103.cern.ch:1095] Unable to get the response to request kXR_close (handle: 0x00000000)
+%MSG-w XrdFileWarning:  (NoModuleName) 27-Feb-2023 03:19:23 CET pre-events
+Source delayed close failed with error '[ERROR] Operation expired' (errno=0, code=206, server=p06636710n62103.cern.ch:1095, site=cern.ch)
+%MSG
+27-Feb-2023 03:27:58 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/00D0925F-56B9-E511-8A71-0025907FD2B2.root
+27-Feb-2023 03:27:58 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/06F964CD-55B9-E511-B296-002590A2CCF2.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 03:28:00 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 03:28:01 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/06F964CD-55B9-E511-B296-002590A2CCF2.root
+[2023-02-27 03:33:04.352518 +0100][Error  ][AsyncSock         ] [p06636710n62103.cern.ch:1095 #0.0] Socket error encountered: [ERROR] Socket error: Connection timed out
+27-Feb-2023 03:50:16 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_t-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/023F8AC3-FFBB-E511-8611-3417EBE528F4.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 fileAction           -s file_close                             2        2
+    3 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 fileAction           PostProcessEvent PostEndRun       
+    3 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+System                  6                   6
+41348
+41348
+cmssw-19397
+cmssw-19397
+[Mon Feb 27 05:50:29 2023]
+Finished job 22.
+22 of 41 steps (54%) done
+
+[Mon Feb 27 05:50:29 2023]
+rule runpoetCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root
+    jobid: 18
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19983
+
+Error response from daemon: No such container: cmssw-19983
+Error response from daemon: No such container: cmssw-19983
+some_command returned an error
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+inside script file
+Setting up CMSSW_7_6_7
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /code/CMSSW_7_6_7 area for SCRAM_ARCH slc6_amd64_gcc493.
+CMSSW should now be available.
+This is a standalone image for CMSSW_7_6_7 slc6_amd64_gcc493.
+Cloning into 'PhysObjectExtractorTool'...
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+>> Entering Package PhysObjectExtractorTool/PhysObjectExtractor
+------- copying files from src/PhysObjectExtractorTool/PhysObjectExtractor/scripts -------
+>> copied merge_trees.py
+>> copied ntuples-gen.py
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+Entering library rule at PhysObjectExtractorTool/PhysObjectExtractor
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/ElectronAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/FatjetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/GenParticleAnalyzer.cc 
+27-Feb-2023 03:51:07 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/00000/06F964CD-55B9-E511-B296-002590A2CCF2.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 fileAction           -s file_close                             2        2
+    3 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 fileAction           PostProcessEvent PostEndRun       
+    3 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+System                  6                   6
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/JetAnalyzer.cc 
+37600
+37600
+cmssw-19412
+cmssw-19412
+[Mon Feb 27 05:51:19 2023]
+Finished job 25.
+23 of 41 steps (56%) done
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MetAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/MuonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhotonAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleEleMuFilter.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/SimpleTriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TauAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggObjectAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/TriggerAnalyzer.cc 
+>> Compiling edm plugin /code/CMSSW_7_6_7/src/PhysObjectExtractorTool/PhysObjectExtractor/src/VertexAnalyzer.cc 
+>> Building edm plugin tmp/slc6_amd64_gcc493/src/PhysObjectExtractorTool/PhysObjectExtractor/src/PhysObjectExtractorToolPhysObjectExtractor/libPhysObjectExtractorToolPhysObjectExtractor.so
+Leaving library rule at PhysObjectExtractorTool/PhysObjectExtractor
+@@@@ Running edmWriteConfigs for PhysObjectExtractorToolPhysObjectExtractor
+--- Registered EDM Plugin: PhysObjectExtractorToolPhysObjectExtractor
+>> Leaving Package PhysObjectExtractorTool/PhysObjectExtractor
+>> Package PhysObjectExtractorTool/PhysObjectExtractor built
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+gmake[1]: Entering directory `/code/CMSSW_7_6_7'
+>> Creating project symlinks
+  src/PhysObjectExtractorTool/PhysObjectExtractor/python -> python/PhysObjectExtractorTool/PhysObjectExtractor
+>> Done python_symlink
+>> Compiling python modules python
+>> Compiling python modules src/PhysObjectExtractorTool/PhysObjectExtractor/python
+>> All python modules compiled
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Pluging of all type refreshed.
+>> Done generating edm plugin poisoned information
+gmake[1]: Leaving directory `/code/CMSSW_7_6_7'
+2
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+27-Feb-2023 03:52:36 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaledown-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/00D45978-82D1-E511-9406-00237DF27440.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 03:52:40 CET pre-events
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 03:52:42 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaledown-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/00D45978-82D1-E511-9406-00237DF27440.root
+HLTConfig has changed for this Run. . . 
+TrackerParametersESModule::produce(const PTrackerParametersRcd& iRecord)
+27-Feb-2023 03:58:52 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneEE5C_13TeV-powheg-herwigpp/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/10000/003C9D74-BCDB-E511-BFE6-002590AB3A82.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 XrdFileWarning       -w (NoModuleName)                         1        1
+    3 fileAction           -s file_close                             2        2
+    4 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 XrdFileWarning       pre-events                        
+    3 fileAction           PostProcessEvent PostEndRun       
+    4 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 3                   3
+System                  6                   6
+47798
+47798
+cmssw-19999
+cmssw-19999
+[Mon Feb 27 05:59:02 2023]
+Finished job 21.
+24 of 41 steps (59%) done
+27-Feb-2023 04:17:40 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/00DF0A73-17C2-E511-B086-E41D2D08DE30.root
+27-Feb-2023 04:17:40 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/020D0AF1-4BC2-E511-BDFC-0026B95ADB18.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 04:17:42 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 04:17:43 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/020D0AF1-4BC2-E511-BDFC-0026B95ADB18.root
+27-Feb-2023 04:30:37 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaledown-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/00D45978-82D1-E511-9406-00237DF27440.root
+27-Feb-2023 04:30:37 CET  Initiating request to open file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaledown-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/00E81BC1-6DD1-E511-89C7-008CFA1974DC.root
+%MSG-w XrdAdaptor:  file_open 27-Feb-2023 04:30:43 CET PostProcessEvent
+Data is served from cern.ch instead of original site eospublic
+%MSG
+27-Feb-2023 04:30:43 CET  Successfully opened file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaledown-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/00E81BC1-6DD1-E511-89C7-008CFA1974DC.root
+27-Feb-2023 05:06:15 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-scaledown-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/00E81BC1-6DD1-E511-89C7-008CFA1974DC.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 fileAction           -s file_close                             2        2
+    3 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 fileAction           PostProcessEvent PostEndRun       
+    3 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+System                  6                   6
+46404
+46404
+cmssw-19983
+cmssw-19983
+[Mon Feb 27 07:06:27 2023]
+Finished job 18.
+25 of 41 steps (61%) done
+27-Feb-2023 05:18:50 CET  Closed file root://eospublic.cern.ch//eos/opendata/cms/mc/RunIIFall15MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-pythia8/MINIAODSIM/PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext3-v1/00000/020D0AF1-4BC2-E511-BDFC-0026B95ADB18.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w file_open                              2        2
+    2 fileAction           -s file_close                             2        2
+    3 fileAction           -s file_open                              4        4
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events       PostProcessEvent 
+    2 fileAction           PostProcessEvent PostEndRun       
+    3 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+System                  6                   6
+44251
+44251
+cmssw-19980
+cmssw-19980
+[Mon Feb 27 07:19:01 2023]
+Finished job 17.
+26 of 41 steps (63%) done
+
+[Mon Feb 27 07:19:01 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput_merged.root
+    jobid: 32
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19949
+
+
+[Mon Feb 27 07:19:01 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput_merged.root
+    jobid: 28
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=24120
+
+
+[Mon Feb 27 07:19:01 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput_merged.root
+    jobid: 36
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19419
+
+
+[Mon Feb 27 07:19:01 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput_merged.root
+    jobid: 38
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=20548
+
+Error response from daemon: No such container: python-19949
+Error response from daemon: No such container: python-24120
+Error response from daemon: No such container: python-19419
+Error response from daemon: No such container: python-20548
+Error response from daemon: No such container: python-19949
+some_command returned an error
+Error response from daemon: No such container: python-24120
+some_command returned an error
+Error response from daemon: No such container: python-19419
+some_command returned an error
+Error response from daemon: No such container: python-20548
+some_command returned an error
+7ab5de59255f5d9f9d1d2c8b28e51aa24470c578c44cc5872a107ab59afc4d3c
+a8efeae55a9d7b5fc17365f09bb9a3dc25dc10c74836a6de2ce55f4ef5ad2fa8
+b582f8cd2dd2b15fb849438e380999666aa91f23ed1f50369e372cfb4e1cd7a6
+0f8a8136c7a9c9c7abf91770f8fa4b4b889d311e266e1352e627df7c6dc51957
+python-20548
+python-19949
+python-24120
+python-19419
+--2023-02-27 04:19:03--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.108.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... --2023-02-27 04:19:03--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... connected.
+HTTP request sent, awaiting response... --2023-02-27 04:19:03--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.108.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... --2023-02-27 04:19:03--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.108.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
+connected.
+HTTP request sent, awaiting response... HTTP request sent, awaiting response... 200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100% 3.65M=0s
+
+2023-02-27 04:19:04 (3.65 MB/s) - ‘merge_trees.py’ saved [985/985]
+
+200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100% 5.83M=0s
+
+2023-02-27 04:19:04 (5.83 MB/s) - ‘merge_trees.py’ saved [985/985]
+
+200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100%  333K=0.003s
+
+2023-02-27 04:19:04 (333 KB/s) - ‘merge_trees.py’ saved [985/985]
+
+python-24120
+python-24120
+[Mon Feb 27 07:19:17 2023]
+Finished job 28.
+27 of 41 steps (66%) done
+
+[Mon Feb 27 07:19:17 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput_merged.root
+    jobid: 27
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=24119
+
+Error response from daemon: No such container: python-24119
+Error response from daemon: No such container: python-24119
+some_command returned an error
+ab74741354d54e22653a607977cebfc2dcdde8c951a3f7422ac52082be1941c4
+failed: Temporary failure in name resolution.
+wget: unable to resolve host address ‘raw.githubusercontent.com’
+python-20548
+python: can't open file '/code/merge_trees.py': [Errno 2] No such file or directory
+[Mon Feb 27 07:19:18 2023]
+Error in rule flattentreesCommand:
+    jobid: 32
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput_merged.root
+    shell:
+        
+        
+        if ! docker stop python-19949 && ! docker rm python-19949; then
+            echo "some_command returned an error"
+        else
+            docker stop python-19949 && docker rm python-19949
+        fi &&         docker run         -i         -d         --name python-19949         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Snakemake,target=/home/abd/Desktop/Work/Final_Version/Snakemake         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19949 &&         docker exec python-19949 bash /home/abd/Desktop/Work/Final_Version/Snakemake/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol 19949 &&         docker stop python-19949 &&         docker rm python-19949
+        
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Trying to restart job 32.
+
+[Mon Feb 27 07:19:18 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput_merged.root
+    jobid: 32
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19949
+
+python-20548
+[Mon Feb 27 07:19:18 2023]
+Finished job 38.
+28 of 41 steps (68%) done
+
+[Mon Feb 27 07:19:18 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput_merged.root
+    jobid: 35
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19407
+
+python-24119
+Error response from daemon: No such container: python-19407
+--2023-02-27 04:19:18--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... Error response from daemon: No such container: python-19407
+some_command returned an error
+connected.
+f4ed72c35528f4af7eab2066bf62d56c486314a2d8387da303fd011868c6b0e4
+HTTP request sent, awaiting response... 200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100% 1.40M=0.001s
+
+2023-02-27 04:19:19 (1.40 MB/s) - ‘merge_trees.py’ saved [985/985]
+
+python-19419
+python-19419
+[Mon Feb 27 07:19:19 2023]
+Finished job 36.
+29 of 41 steps (71%) done
+
+[Mon Feb 27 07:19:19 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput_merged.root
+    jobid: 31
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19985
+
+Error response from daemon: No such container: python-19985
+python-19407
+Error response from daemon: No such container: python-19985
+some_command returned an error
+--2023-02-27 04:19:20--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+408ef0bb2d58470200b147b795d8a58aee099224b4ecbf6656bcdfdbedc2c074
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.111.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100%  136K=0.007s
+
+2023-02-27 04:19:20 (136 KB/s) - ‘merge_trees.py’ saved [985/985]
+
+python-19985
+--2023-02-27 04:19:21--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100% 36.0M=0s
+
+2023-02-27 04:19:21 (36.0 MB/s) - ‘merge_trees.py’ saved [985/985]
+
+python-19949
+python-19949
+python-19949
+b6bb99048c0654d0a0be62e4103b172a4eb22ef96f32a7260c81b6a4789592d3
+python-19949
+--2023-02-27 04:19:30--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.108.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100% 4.28M=0s
+
+2023-02-27 04:19:30 (4.28 MB/s) - ‘merge_trees.py’ saved [985/985]
+
+python-24119
+python-24119
+[Mon Feb 27 07:19:34 2023]
+Finished job 27.
+30 of 41 steps (73%) done
+
+[Mon Feb 27 07:19:34 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput_merged.root
+    jobid: 33
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19999
+
+Error response from daemon: No such container: python-19999
+Error response from daemon: No such container: python-19999
+some_command returned an error
+ebcd824c6003271fee3f7537a4befff7e7dd526fe90a98c5fc828e59f1d6b159
+python-19999
+--2023-02-27 04:19:35--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.109.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100% 3.44M=0s
+
+2023-02-27 04:19:35 (3.44 MB/s) - ‘merge_trees.py’ saved [985/985]
+
+python-19407
+python-19407
+[Mon Feb 27 07:19:36 2023]
+Finished job 35.
+31 of 41 steps (76%) done
+
+[Mon Feb 27 07:19:36 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput_merged.root
+    jobid: 34
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19397
+
+Error response from daemon: No such container: python-19397
+Error response from daemon: No such container: python-19397
+some_command returned an error
+python-19985
+15e32f57b9ed9906ce323e869d65c835511504ff0363b297e11875cc74ea1cf2
+python-19985
+[Mon Feb 27 07:19:37 2023]
+Finished job 31.
+32 of 41 steps (78%) done
+
+[Mon Feb 27 07:19:37 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput_merged.root
+    jobid: 37
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19412
+
+Error response from daemon: No such container: python-19412
+Error response from daemon: No such container: python-19412
+some_command returned an error
+f2481c9957418b7dbde200e54ab746aa8fb3151ddd9baed7e2642a37f97e0dcd
+python-19397
+--2023-02-27 04:19:38--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... python-19412
+200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100% 3.65M=0s
+
+2023-02-27 04:19:38 (3.65 MB/s) - ‘merge_trees.py’ saved [985/985]
+
+--2023-02-27 04:19:38--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.111.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100% 1.78M=0.001s
+
+2023-02-27 04:19:38 (1.78 MB/s) - ‘merge_trees.py’ saved [985/985]
+
+python-19949
+python-19949
+[Mon Feb 27 07:19:45 2023]
+Finished job 32.
+33 of 41 steps (80%) done
+
+[Mon Feb 27 07:19:45 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput_merged.root
+    jobid: 29
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19980
+
+Error response from daemon: No such container: python-19980
+Error response from daemon: No such container: python-19980
+some_command returned an error
+c4fbdc09a9cfd261032892689526590907e882b9c3eb8b9835aeda10e23b0813
+python-19980
+--2023-02-27 04:19:46--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.111.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100% 13.8M=0s
+
+2023-02-27 04:19:47 (13.8 MB/s) - ‘merge_trees.py’ saved [985/985]
+
+python-19999
+python-19999
+[Mon Feb 27 07:19:51 2023]
+Finished job 33.
+34 of 41 steps (83%) done
+
+[Mon Feb 27 07:19:51 2023]
+rule flattentreesCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput_merged.root
+    jobid: 30
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol, recid=19983
+
+Error response from daemon: No such container: python-19983
+Error response from daemon: No such container: python-19983
+some_command returned an error
+dca6055888a213ff7220e8da3961b5996831ef3627ccae53384378fefcf0c468
+python-19983
+--2023-02-27 04:19:52--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.110.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 985 [text/plain]
+Saving to: ‘merge_trees.py’
+
+     0K                                                       100% 3.66M=0s
+
+2023-02-27 04:19:53 (3.66 MB/s) - ‘merge_trees.py’ saved [985/985]
+
+python-19412
+python-19412
+[Mon Feb 27 07:19:54 2023]
+Finished job 37.
+35 of 41 steps (85%) done
+python-19397
+python-19397
+[Mon Feb 27 07:19:54 2023]
+Finished job 34.
+36 of 41 steps (88%) done
+python-19980
+python-19980
+[Mon Feb 27 07:20:02 2023]
+Finished job 29.
+37 of 41 steps (90%) done
+python-19983
+python-19983
+[Mon Feb 27 07:20:08 2023]
+Finished job 30.
+38 of 41 steps (93%) done
+
+[Mon Feb 27 07:20:08 2023]
+rule prepareCoffeaCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput_merged.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/code/ntuples.json
+    jobid: 39
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol
+
+Error response from daemon: No such container: prepare-coffea
+Error response from daemon: No such container: prepare-coffea
+some_command returned an error
+88370928134d41f68520f8a3c9f4200e75f1ce439005714dfbfe21d530250a2c
+prepare-coffea
+--2023-02-27 04:20:09--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/ntuples-gen.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.111.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3551 (3.5K) [text/plain]
+Saving to: ‘ntuples-gen.py’
+
+     0K ...                                                   100% 6.94M=0s
+
+2023-02-27 04:20:09 (6.94 MB/s) - ‘ntuples-gen.py’ saved [3551/3551]
+
+{"data": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput_merged.root", "nevts": 49945}, {"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput_merged.root", "nevts": 46487}], "nevts_total": 96432}}, "ttbar": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput_merged.root", "nevts": 44251}], "nevts_total": 44251}, "scaledown": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput_merged.root", "nevts": 46404}], "nevts_total": 46404}, "scaleup": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput_merged.root", "nevts": 45259}], "nevts_total": 45259}, "ME_var": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput_merged.root", "nevts": 42754}], "nevts_total": 42754}, "PS_var": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput_merged.root", "nevts": 47798}], "nevts_total": 47798}}, "single_top_t_chan": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput_merged.root", "nevts": 41348}], "nevts_total": 41348}}, "single_atop_t_chan": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput_merged.root", "nevts": 39300}], "nevts_total": 39300}}, "single_top_tW": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput_merged.root", "nevts": 36000}, {"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput_merged.root", "nevts": 37600}], "nevts_total": 73600}}, "wjets": {"nominal": {"files": [{"path": "/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput_merged.root", "nevts": 38404}], "nevts_total": 38404}}}prepare-coffea
+prepare-coffea
+[Mon Feb 27 07:20:20 2023]
+Finished job 39.
+39 of 41 steps (95%) done
+
+[Mon Feb 27 07:20:20 2023]
+rule runCoffeaCommand:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/code/ntuples.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/histograms.root
+    jobid: 40
+    wildcards: vol_path=/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol
+
+Error response from daemon: No such container: run-coffea
+Error response from daemon: No such container: run-coffea
+some_command returned an error
+42d0c986bac291716df0fb7cedc00b5580676c9f9de42417e52950ce42ec0cac
+run-coffea
+Collecting vector
+  Downloading vector-1.0.0-py3-none-any.whl (170 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 170.4/170.4 kB 760.2 kB/s eta 0:00:00
+Collecting hist
+  Downloading hist-2.6.3-py3-none-any.whl (36 kB)
+Collecting mplhep
+  Downloading mplhep-0.3.26-py3-none-any.whl (34 kB)
+Collecting coffea
+  Downloading coffea-0.7.20-py2.py3-none-any.whl (196 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 196.8/196.8 kB 2.0 MB/s eta 0:00:00
+Requirement already satisfied: numpy>=1.13.3 in /usr/local/venv/lib/python3.10/site-packages (from vector) (1.23.1)
+Requirement already satisfied: packaging>=19 in /usr/local/venv/lib/python3.10/site-packages (from vector) (21.3)
+Collecting histoprint>=2.2.0
+  Downloading histoprint-2.4.0-py3-none-any.whl (16 kB)
+Collecting boost-histogram~=1.3.1
+  Downloading boost_histogram-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 5.1 MB/s eta 0:00:00
+Collecting uhi>=0.2.0
+  Downloading uhi-0.3.3-py3-none-any.whl (11 kB)
+Requirement already satisfied: matplotlib>=3.4 in /usr/local/venv/lib/python3.10/site-packages (from mplhep) (3.5.2)
+Collecting mplhep-data
+  Downloading mplhep_data-0.0.3-py3-none-any.whl (5.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.8/5.8 MB 5.4 MB/s eta 0:00:00
+Collecting cachetools
+  Downloading cachetools-5.3.0-py3-none-any.whl (9.3 kB)
+Collecting tqdm>=4.27.0
+  Downloading tqdm-4.64.1-py2.py3-none-any.whl (78 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.5/78.5 kB 3.2 MB/s eta 0:00:00
+Collecting uproot3>=3.14.1
+  Downloading uproot3-3.14.4-py3-none-any.whl (117 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.5/117.5 kB 4.3 MB/s eta 0:00:00
+Collecting fsspec
+  Downloading fsspec-2023.1.0-py3-none-any.whl (143 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.0/143.0 kB 5.3 MB/s eta 0:00:00
+Collecting pyarrow>=1.0.0
+  Downloading pyarrow-11.0.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.9/34.9 MB 2.9 MB/s eta 0:00:00
+Requirement already satisfied: uproot!=4.2.4,!=4.3.0,!=4.3.1,==4.*,>=4.1.6 in /usr/local/venv/lib/python3.10/site-packages (from coffea) (4.3.3)
+Collecting toml>=0.10.2
+  Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+Requirement already satisfied: awkward<2,>=1.5.1 in /usr/local/venv/lib/python3.10/site-packages (from coffea) (1.8.0)
+Collecting lz4
+  Downloading lz4-4.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 2.2 MB/s eta 0:00:00
+Collecting pandas
+  Downloading pandas-1.5.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.1/12.1 MB 1.3 MB/s eta 0:00:00
+Collecting scipy>=1.1.0
+  Downloading scipy-1.10.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.4/34.4 MB 1.2 MB/s eta 0:00:00
+Collecting correctionlib>=2.0.0
+  Downloading correctionlib-2.2.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (421 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 422.0/422.0 kB 753.1 kB/s eta 0:00:00
+Collecting numba>=0.56.0
+  Downloading numba-0.56.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (3.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.5/3.5 MB 933.4 kB/s eta 0:00:00
+Collecting uproot3-methods>=0.10.0
+  Downloading uproot3_methods-0.10.1-py3-none-any.whl (32 kB)
+Collecting cloudpickle>=1.2.3
+  Downloading cloudpickle-2.2.1-py3-none-any.whl (25 kB)
+Requirement already satisfied: setuptools in /usr/local/venv/lib/python3.10/site-packages (from uproot!=4.2.4,!=4.3.0,!=4.3.1,==4.*,>=4.1.6->coffea) (63.2.0)
+Collecting rich
+  Downloading rich-13.3.1-py3-none-any.whl (239 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 239.0/239.0 kB 1.1 MB/s eta 0:00:00
+Collecting pydantic>=1.7.3
+  Downloading pydantic-1.10.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.1/3.1 MB 1.3 MB/s eta 0:00:00
+Collecting click>=7.0.0
+  Downloading click-8.1.3-py3-none-any.whl (96 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.6/96.6 kB 1.7 MB/s eta 0:00:00
+Requirement already satisfied: kiwisolver>=1.0.1 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (1.4.3)
+Requirement already satisfied: pyparsing>=2.2.1 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (3.0.9)
+Requirement already satisfied: cycler>=0.10 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (0.11.0)
+Requirement already satisfied: pillow>=6.2.0 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (9.2.0)
+Requirement already satisfied: fonttools>=4.22.0 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (4.34.4)
+Requirement already satisfied: python-dateutil>=2.7 in /usr/local/venv/lib/python3.10/site-packages (from matplotlib>=3.4->mplhep) (2.8.2)
+Collecting llvmlite<0.40,>=0.39.0dev0
+  Downloading llvmlite-0.39.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.6/34.6 MB 948.5 kB/s eta 0:00:00
+Collecting awkward0
+  Downloading awkward0-0.15.5-py3-none-any.whl (87 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.6/87.6 kB 830.0 kB/s eta 0:00:00
+Requirement already satisfied: pytz>=2020.1 in /usr/local/venv/lib/python3.10/site-packages (from pandas->coffea) (2022.1)
+Collecting typing-extensions>=4.2.0
+  Downloading typing_extensions-4.5.0-py3-none-any.whl (27 kB)
+Requirement already satisfied: six>=1.5 in /usr/local/venv/lib/python3.10/site-packages (from python-dateutil>=2.7->matplotlib>=3.4->mplhep) (1.16.0)
+Collecting pygments<3.0.0,>=2.14.0
+  Downloading Pygments-2.14.0-py3-none-any.whl (1.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 946.1 kB/s eta 0:00:00
+Collecting markdown-it-py<3.0.0,>=2.1.0
+  Downloading markdown_it_py-2.2.0-py3-none-any.whl (84 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 84.5/84.5 kB 741.9 kB/s eta 0:00:00
+Collecting mdurl~=0.1
+  Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Installing collected packages: uhi, typing-extensions, tqdm, toml, scipy, pygments, pyarrow, mplhep-data, mdurl, lz4, llvmlite, fsspec, cloudpickle, click, cachetools, boost-histogram, awkward0, vector, uproot3-methods, pydantic, pandas, numba, markdown-it-py, histoprint, uproot3, rich, mplhep, hist, correctionlib, coffea
+  Attempting uninstall: pygments
+    Found existing installation: Pygments 2.12.0
+    Uninstalling Pygments-2.12.0:
+      Successfully uninstalled Pygments-2.12.0
+Successfully installed awkward0-0.15.5 boost-histogram-1.3.2 cachetools-5.3.0 click-8.1.3 cloudpickle-2.2.1 coffea-0.7.20 correctionlib-2.2.2 fsspec-2023.1.0 hist-2.6.3 histoprint-2.4.0 llvmlite-0.39.1 lz4-4.3.2 markdown-it-py-2.2.0 mdurl-0.1.2 mplhep-0.3.26 mplhep-data-0.0.3 numba-0.56.4 pandas-1.5.3 pyarrow-11.0.0 pydantic-1.10.5 pygments-2.14.0 rich-13.3.1 scipy-1.10.1 toml-0.10.2 tqdm-4.64.1 typing-extensions-4.5.0 uhi-0.3.3 uproot3-3.14.4 uproot3-methods-0.10.1 vector-1.0.0
+
+[notice] A new release of pip available: 22.1.2 -> 23.0.1
+[notice] To update, run: pip install --upgrade pip
+Cloning into 'workshop2022-lesson-ttbarljetsanalysis-payload'...
+processes in fileset: ['data__nominal', 'ttbar__nominal', 'ttbar__scaledown', 'ttbar__scaleup', 'ttbar__ME_var', 'ttbar__PS_var', 'single_top_t_chan__nominal', 'single_atop_t_chan__nominal', 'single_top_tW__nominal', 'wjets__nominal']
+
+example of information in fileset:
+ {
+  'files': [/home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput_merged.root, ...],
+  'metadata': {'process': 'ttbar', 'variation': 'nominal', 'nevts': 210294.5292188915, 'xsec': 831.76}
+}
+Preprocessing 100% ━━━━━━━━━━━━━━━━━━━━ 12/12 [ 0:00:02 < 0:00:00 | 5.1 file/s ]
+/usr/local/venv/lib/python3.10/site-packages/awkward/_connect/_numpy.py:195: RuntimeWarning: invalid value encountered in sqrt
+  result = getattr(ufunc, method)(
+Processing 100% ━━━━━━━━━━━━━━━━━━━━━━ 12/12 [ 0:00:08 < 0:00:00 | 1.5 chunk/s ]
+
+execution took 10.40 seconds
+run-coffea
+run-coffea
+[Mon Feb 27 07:22:42 2023]
+Finished job 40.
+40 of 41 steps (98%) done
+
+[Mon Feb 27 07:22:42 2023]
+localrule all:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/pull.txt, .mkdir.chkpnt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24119.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_24120.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19980.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19983.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19985.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19949.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19999.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19397.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19407.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19419.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_19412.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/files_20548.txt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24119/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/24120/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19980/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19983/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19985/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19949/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19999/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19397/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19407/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19419/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/19412/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/output/20548/myoutput_merged.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/code/ntuples.json, /home/abd/Desktop/Work/Final_Version/Snakemake/data/CMS-Analysis/vol/histograms.root
+    jobid: 0
+
+[Mon Feb 27 07:22:42 2023]
+Finished job 0.
+41 of 41 steps (100%) done
+Complete log: /home/abd/Desktop/Work/Final_Version/Snakemake/dags/CMS-Analysis/.snakemake/log/2023-02-27T023700.726573.snakemake.log
+abd@abd:~/Desktop/Work/Final_Version/Snakemake/dags/CMS-Analysis$ snakemake --report CMS-Analysis-Report.html
+Building DAG of jobs...
+Creating report...
+Report created.
+abd@abd:~/Desktop/Work/Final_Version/Snakemake/dags/CMS-Analysis$ 
+

@@ -1,0 +1,34 @@
+[MFLOG|0|2023-02-26T10:09:04.195459Z|runtime|305bd87d-24db-4372-9ea9-9afe6dfc201f]The command is: 
+[MFLOG|0|2023-02-26T10:09:04.889425Z|runtime|34b1566f-2d2c-4efd-8d6f-a2945ed6c93c] 
+[MFLOG|0|2023-02-26T10:09:04.889882Z|runtime|a806fc76-c734-403d-b52a-15db1fbc9542]        source /home/abd/root/root/bin/thisroot.sh        
+[MFLOG|0|2023-02-26T10:09:04.890258Z|runtime|12deb061-9f6b-4922-a4d8-112f1e33b972]        hadd -f /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_shape_hist.root /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_shape_conv_up_hist.root /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_shape_conv_dn_hist.root
+[MFLOG|0|2023-02-26T10:09:04.890622Z|runtime|7df2ffa0-43bb-4b93-9d72-9acaf7e479f0]    
+[MFLOG|0|2023-02-26T10:09:04.890963Z|runtime|7b3817fd-3d5f-4ebb-a328-9cbcf86b0a9c]The output is: 
+[MFLOG|0|2023-02-26T10:09:04.891281Z|runtime|33edc59e-6667-4a35-80f4-441716e4267e] hadd Target file: /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_shape_hist.root
+[MFLOG|0|2023-02-26T10:09:04.891640Z|runtime|06edca5b-3163-442d-9657-0392c33cf15f]hadd compression setting for all output: 1
+[MFLOG|0|2023-02-26T10:09:04.891981Z|runtime|f2a9ae39-20c2-404a-a42d-f4747efa8732]hadd Source file 1: /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_shape_conv_up_hist.root
+[MFLOG|0|2023-02-26T10:09:04.892306Z|runtime|c25fb6eb-ee9d-4c5c-ba28-3274e47329c5]
+[MFLOG|0|2023-02-26T10:09:04.892639Z|runtime|0f43e2d0-fb3d-43a4-959b-7d1983a3d3ca]Return Code: 1
+[MFLOG|0|2023-02-26T10:09:04.892977Z|runtime|de83a884-b4b1-4c54-a1eb-12711e63f247]The error is: 
+[MFLOG|0|2023-02-26T10:09:04.894616Z|runtime|58989eed-662a-42d7-91bc-d183f306b934] /bin/sh: 2: source: not found
+[MFLOG|0|2023-02-26T10:09:04.896290Z|runtime|721dde20-abe5-4682-b26c-029b2f53cb96]Error in <TFile::TFile>: file /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_shape_conv_up_hist.root does not exist
+[MFLOG|0|2023-02-26T10:09:04.896515Z|runtime|6f21d7ca-b7a7-4b77-a949-ede72a3e0e8e]Error in <TFileMerger::AddFile>: cannot open file /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_shape_conv_up_hist.root
+[MFLOG|0|2023-02-26T10:09:04.896677Z|runtime|f5872298-6628-4b1d-9eda-742305789636]hadd exiting due to error in /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_shape_conv_up_hist.root
+[MFLOG|0|2023-02-26T10:09:04.896836Z|runtime|303771f9-a111-42b8-bf89-187b3bb4b562]
+[MFLOG|0|2023-02-26T10:09:04.896998Z|runtime|e2b6386e-ce26-4f8c-b4e0-f5d3a244b181]The command is: 
+[MFLOG|0|2023-02-26T10:09:06.890782Z|runtime|e37e0eeb-2b98-4ea6-9ae3-0e5600177bbd] 
+[MFLOG|0|2023-02-26T10:09:06.891059Z|runtime|bb44ae89-435a-41cc-99e5-f3a944ff536d]        source /home/abd/root/root/bin/thisroot.sh        
+[MFLOG|0|2023-02-26T10:09:06.891209Z|runtime|a3541f1e-b145-4fe4-bb6b-50dbb852e028]        hadd -f /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_merged_hist.root /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_nominal_hist.root /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_shape_hist.root
+[MFLOG|0|2023-02-26T10:09:06.891343Z|runtime|3d3a9a5b-2bfd-4b88-b405-89bd0a86f18a]    
+[MFLOG|0|2023-02-26T10:09:06.891490Z|runtime|ec6b5f94-7028-48fb-bc37-95f50656bac3]The output is: 
+[MFLOG|0|2023-02-26T10:09:06.891619Z|runtime|72793e51-89ee-4249-8923-c9dfa8656189] hadd Target file: /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_merged_hist.root
+[MFLOG|0|2023-02-26T10:09:06.891751Z|runtime|d6d60954-9c58-4be3-b5b4-3b313d571137]hadd compression setting for all output: 1
+[MFLOG|0|2023-02-26T10:09:06.891884Z|runtime|07d85908-c48a-4ebc-8b3e-095100646ab0]hadd Source file 1: /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_nominal_hist.root
+[MFLOG|0|2023-02-26T10:09:06.892028Z|runtime|ae19c9e4-b36a-47b6-9b9f-adc948588968]
+[MFLOG|0|2023-02-26T10:09:06.892159Z|runtime|a04b0ee3-9f04-4fb5-941a-23cbaec68a2a]Return Code: 1
+[MFLOG|0|2023-02-26T10:09:06.892292Z|runtime|b3e059be-e703-4802-a80e-92d9b25df2dd]The error is: 
+[MFLOG|0|2023-02-26T10:09:06.892418Z|runtime|6bd27e8b-9a16-412b-9824-53b9d4cac444] /bin/sh: 2: source: not found
+[MFLOG|0|2023-02-26T10:09:06.892550Z|runtime|302dd37e-0843-49a2-9526-a8d893635a94]Error in <TFile::TFile>: file /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_nominal_hist.root does not exist
+[MFLOG|0|2023-02-26T10:09:06.892687Z|runtime|ef3c9649-95a6-4f6d-85d8-ac02c7084020]Error in <TFileMerger::AddFile>: cannot open file /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_nominal_hist.root
+[MFLOG|0|2023-02-26T10:09:06.892839Z|runtime|b10bf5bd-218a-4cbf-a5d0-28a83e6bb780]hadd exiting due to error in /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_nominal_hist.root
+[MFLOG|0|2023-02-26T10:09:06.892989Z|runtime|b2a70378-17c2-4eb2-98a0-5c1f37fdbb42]

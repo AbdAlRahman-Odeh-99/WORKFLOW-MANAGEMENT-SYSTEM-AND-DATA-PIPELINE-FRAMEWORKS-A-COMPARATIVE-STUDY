@@ -1,0 +1,2090 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>BSM-Search - Code - Airflow</title>
+
+    
+  
+  
+  
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="">
+      <meta name="author" content="">
+    
+  
+    <meta name="is_scheduler_running" content="True">
+  
+
+  <meta name="dag_id" content="BSM-Search">
+  <meta name="dag_timezone" content="UTC">
+  <!-- Urls -->
+  <meta name="logs_with_metadata_url" content="/get_logs_with_metadata">
+  <meta name="external_log_url" content="/redirect_to_external_log">
+  <meta name="extra_links_url" content="/extra_links">
+  <meta name="paused_url" content="/paused">
+  <meta name="dagrun_clear_url" content="/dagrun_clear">
+  <meta name="dagrun_failed_url" content="/dagrun_failed">
+  <meta name="dagrun_success_url" content="/dagrun_success">
+  <meta name="dagrun_queued_url" content="/dagrun_queued">
+  <meta name="clear_url" content="/clear">
+  <meta name="failed_url" content="/failed">
+  <meta name="success_url" content="/success">
+  <meta name="confirm_url" content="/confirm">
+  <meta name="grid_data_url" content="/object/grid_data">
+  <meta name="run_url" content="/run">
+  <meta name="grid_url" content="/dags/BSM-Search/grid">
+  <meta name="grid_url_no_root" content="/dags/BSM-Search/grid">
+  <meta name="dag_details_url" content="/dags/BSM-Search/details">
+  <meta name="graph_url" content="/dags/BSM-Search/graph?root=">
+  <meta name="dagrun_details_url" content="/dagrun_details?redirect_url=http%3A%2F%2Flocalhost%3A8080%2Fdags%2FBSM-Search%2Fcode&amp;dag_id=BSM-Search">
+  <meta name="task_url" content="/task?dag_id=BSM-Search">
+  <meta name="log_url" content="/log?dag_id=BSM-Search">
+  <meta name="xcom_url" content="/xcom?dag_id=BSM-Search">
+  <meta name="rendered_templates_url" content="/rendered-templates?dag_id=BSM-Search">
+  <meta name="rendered_k8s_url" content="/rendered-k8s?dag_id=BSM-Search">
+  <meta name="task_instances_list_url" content="/taskinstance/list/">
+  <meta name="tasks_api" content="/api/v1/dags/BSM-Search/tasks">
+  <meta name="mapped_instances_api" content="/api/v1/dags/BSM-Search/dagRuns/_DAG_RUN_ID_/taskInstances/_TASK_ID_/listMapped">
+  <!-- End Urls -->
+  <meta name="is_paused" content="True">
+  <meta name="csrf_token" content="IjQxMTJlZGI5N2JlOTJjYjYwOWJiZjhkM2Q0M2Q0ZWM4ZGU0NmU3NGEi.Y_qqvg.8vU5N2DeU9920MenegWvowy5Gsw">
+  <meta name="k8s_or_k8scelery_executor" content="False">
+  
+    <meta name="next_dagrun_create_after" content="2023-02-27 00:00:00+00:00">
+    <meta name="next_dagrun_data_interval_start" content="2023-02-26 00:00:00+00:00">
+    <meta name="next_dagrun_data_interval_end" content="2023-02-27 00:00:00+00:00">
+  
+  
+  
+  <meta name="can_edit" content="True">
+
+  <meta name="wrapped" content="False">
+
+
+    
+  
+  
+      <link href="BSM-Search%20-%20Code%20-%20Airflow_files/bootstrap.min.css" rel="stylesheet">
+      <link href="BSM-Search%20-%20Code%20-%20Airflow_files/font-awesome.min.css" rel="stylesheet">
+      
+      <link href="BSM-Search%20-%20Code%20-%20Airflow_files/bootstrap-datepicker.css" rel="stylesheet">
+      <link href="BSM-Search%20-%20Code%20-%20Airflow_files/select2.css" rel="stylesheet">
+      <link href="BSM-Search%20-%20Code%20-%20Airflow_files/flags16.css" rel="stylesheet">
+      <link href="BSM-Search%20-%20Code%20-%20Airflow_files/ab.css" rel="stylesheet">
+    
+
+  
+    
+    <link rel="stylesheet" type="text/css" href="BSM-Search%20-%20Code%20-%20Airflow_files/airflowDefaultTheme.731e57571b52cca4350d.css">
+  
+  <link rel="stylesheet" type="text/css" href="BSM-Search%20-%20Code%20-%20Airflow_files/materialIcons.f9559e4953177b8b9a4a.css">
+  <link rel="stylesheet" type="text/css" href="BSM-Search%20-%20Code%20-%20Airflow_files/main.1752c6e8005878f87b5e.css">
+  <link rel="stylesheet" type="text/css" href="BSM-Search%20-%20Code%20-%20Airflow_files/loadingDots.5da42d00b5455806e709.css">
+  <link rel="stylesheet" type="text/css" href="BSM-Search%20-%20Code%20-%20Airflow_files/bootstrap-datetimepicker.min.css">
+  <style type="text/css">
+    
+      span.deferred {
+        background-color: mediumpurple;
+      }
+    
+      span.failed {
+        background-color: red;
+      }
+    
+      span.queued {
+        background-color: gray;
+      }
+    
+      span.running {
+        background-color: lime;
+      }
+    
+      span.scheduled {
+        background-color: tan;
+      }
+    
+      span.skipped {
+        background-color: hotpink;
+      }
+    
+      span.success {
+        background-color: green;
+      }
+    
+      span.up_for_reschedule {
+        background-color: turquoise;
+      }
+    
+      span.up_for_retry {
+        background-color: gold;
+      }
+    
+      span.upstream_failed {
+        background-color: orange;
+      }
+    
+  </style>
+  <link rel="icon" type="image/png" href="http://localhost:8080/static/pin_32.png">
+
+  <link rel="stylesheet" type="text/css" href="BSM-Search%20-%20Code%20-%20Airflow_files/switch.0e45299d29df3c0c8282.css">
+
+
+    
+      <script src="BSM-Search%20-%20Code%20-%20Airflow_files/jquery-latest.js"></script>
+      <script src="BSM-Search%20-%20Code%20-%20Airflow_files/ab_filters.js"></script>
+      <script src="BSM-Search%20-%20Code%20-%20Airflow_files/ab_actions.js"></script>
+    
+  </head>
+  <body>
+    
+        <div class="modal fade" id="modal-confirm" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">
+                User confirmation needed
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-text"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a href="#" id="modal-confirm-ok" class="btn btn-danger danger" data-original-title="" title="">OK</a>
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="modal fade" id="modal-alert" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div><h4 class="modal-text"></h4></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+        <header class="top" role="header">
+        
+
+
+
+
+<div class="navbar navbar-fixed-top" role="navigation" style="background-color: #fff;">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" rel="home" href="http://localhost:8080/" data-original-title="" title="">
+        <svg class="brand-logo" viewBox="0 0 104 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g class="brand-logo-pinwheel">
+            <path d="M0.861099 35.3873L17.7729 18.0515C17.8788 17.9429 17.8991 17.775 17.8108 17.6516C16.782 16.2156 14.8848 15.9667 14.1814 15.002C12.0981 12.1441 11.5695 10.5266 10.6743 10.6269C10.6117 10.6339 10.556 10.6676 10.512 10.7126L4.4026 16.9752C0.887961 20.5779 0.383943 28.5103 0.291509 35.1524C0.287333 35.4525 0.651482 35.6021 0.861099 35.3873Z" fill="#017cee"></path>
+            <path d="M35.4734 34.9588L18.1375 18.047C18.0289 17.941 17.861 17.9207 17.7377 18.0091C16.3017 19.0378 16.0528 20.9351 15.088 21.6384C12.2302 23.7217 10.6126 24.2504 10.7129 25.1456C10.72 25.2082 10.7536 25.2639 10.7987 25.3077L17.0613 31.4172C20.664 34.9319 28.5964 35.4359 35.2385 35.5282C35.5386 35.5326 35.6882 35.1684 35.4734 34.9588Z" fill="#00ad46"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0612 31.4173C15.0932 29.4975 14.1801 25.6994 17.953 17.8671C11.8213 20.6074 9.67257 24.2094 10.7296 25.2407L17.0612 31.4173Z" fill="#04d659"></path>
+            <path d="M35.0445 0.346896L18.1327 17.6827C18.0268 17.7913 18.0065 17.9592 18.0948 18.0825C19.1236 19.5186 21.0209 19.7674 21.724 20.7322C23.8075 23.59 24.3362 25.2075 25.2313 25.1074C25.2938 25.1004 25.3496 25.0666 25.3936 25.0216L31.5029 18.759C35.0177 15.1562 35.5217 7.22392 35.6141 0.58175C35.6182 0.281597 35.2541 0.132024 35.0445 0.346896Z" fill="#00c7d4"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M31.5031 18.759C29.5832 20.7269 25.7851 21.6401 17.9528 17.8671C20.693 23.9988 24.2951 26.1477 25.3263 25.0905L31.5031 18.759Z" fill="#11e1ee"></path>
+            <path d="M0.432658 0.775339L17.7685 17.6871C17.8771 17.793 18.045 17.8134 18.1683 17.725C19.6043 16.6963 19.8532 14.799 20.8179 14.0957C23.6759 12.0123 25.2934 11.4837 25.193 10.5885C25.186 10.526 25.1523 10.4702 25.1074 10.4263L18.8447 4.31685C15.242 0.802203 7.30967 0.298184 0.667512 0.205751C0.367359 0.201573 0.217786 0.565722 0.432658 0.775339Z" fill="#e43921"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.8446 4.31675C20.8125 6.23662 21.7257 10.0346 17.9528 17.8669C24.0844 15.1267 26.2333 11.5246 25.1761 10.4934L18.8446 4.31675Z" fill="#ff7557"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.4028 16.9752C6.32267 15.0072 10.1207 14.0942 17.953 17.867C15.2128 11.7354 11.6107 9.58661 10.5795 10.6437L4.4028 16.9752Z" fill="#0cb6ff"></path>
+            <path d="M17.9649 18.6209C18.3825 18.6157 18.7169 18.273 18.7117 17.8553C18.7065 17.4377 18.3638 17.1034 17.9462 17.1085C17.5285 17.1137 17.1942 17.4564 17.1994 17.8741C17.2045 18.2917 17.5473 18.626 17.9649 18.6209Z" fill="#4a4848"></path>
+          </g>
+          <path d="M38.9349 24.0977C38.8442 24.0977 38.765 24.0636 38.6969 23.9957C38.629 23.9276 38.5949 23.8484 38.5949 23.7577C38.5949 23.6669 38.6006 23.6048 38.612 23.5707L42.8273 12.5738C42.9178 12.3245 43.0992 12.1999 43.3712 12.1999H44.5269C44.7988 12.1999 44.98 12.3245 45.0708 12.5738L49.269 23.5707L49.3029 23.7577C49.3029 23.8484 49.269 23.9276 49.2009 23.9957C49.133 24.0636 49.0536 24.0977 48.9631 24.0977H48.0962C47.9715 24.0977 47.8753 24.0693 47.8072 24.0128C47.7393 23.9447 47.6938 23.8768 47.6712 23.8087L46.7364 21.3952H41.1616L40.2266 23.8087C40.204 23.8768 40.153 23.9447 40.0738 24.0128C40.0057 24.0693 39.915 24.0977 39.8018 24.0977H38.9349ZM46.2435 19.9334L43.949 13.8995L41.6545 19.9334H46.2435ZM51.1544 13.6106C51.041 13.6106 50.9447 13.5766 50.8653 13.5086C50.7972 13.4293 50.7633 13.333 50.7633 13.2197V12.3018C50.7633 12.1885 50.7972 12.0922 50.8653 12.0129C50.9447 11.9336 51.041 11.8939 51.1544 11.8939H52.2251C52.3384 11.8939 52.4347 11.9336 52.5139 12.0129C52.5933 12.0922 52.633 12.1885 52.633 12.3018V13.2197C52.633 13.333 52.5933 13.4293 52.5139 13.5086C52.4347 13.5766 52.3384 13.6106 52.2251 13.6106H51.1544ZM51.2903 24.0977C51.177 24.0977 51.0807 24.0636 51.0013 23.9957C50.9332 23.9163 50.8993 23.82 50.8993 23.7066V15.6502C50.8993 15.5369 50.9332 15.4462 51.0013 15.3783C51.0807 15.299 51.177 15.2593 51.2903 15.2593H52.106C52.2193 15.2593 52.3101 15.299 52.3779 15.3783C52.4574 15.4462 52.4971 15.5369 52.4971 15.6502V23.7066C52.4971 23.82 52.4574 23.9163 52.3779 23.9957C52.3101 24.0636 52.2193 24.0977 52.106 24.0977H51.2903ZM55.4067 24.0977C55.2933 24.0977 55.1971 24.0636 55.1176 23.9957C55.0498 23.9163 55.0158 23.82 55.0158 23.7066V15.6672C55.0158 15.5539 55.0498 15.4576 55.1176 15.3783C55.1971 15.299 55.2933 15.2593 55.4067 15.2593H56.1886C56.3017 15.2593 56.3982 15.299 56.4774 15.3783C56.5568 15.4576 56.5965 15.5539 56.5965 15.6672V16.4151C57.061 15.6446 57.8543 15.2593 58.976 15.2593H59.6388C59.7522 15.2593 59.8429 15.299 59.9108 15.3783C59.9902 15.4462 60.0297 15.5369 60.0297 15.6502V16.3471C60.0297 16.4604 59.9902 16.5511 59.9108 16.619C59.8429 16.687 59.7522 16.721 59.6388 16.721H58.6191C58.0071 16.721 57.5255 16.9023 57.1744 17.2649C56.823 17.6163 56.6473 18.0978 56.6473 18.7096V23.7066C56.6473 23.82 56.6078 23.9163 56.5284 23.9957C56.449 24.0636 56.3528 24.0977 56.2394 24.0977H55.4067ZM62.7472 24.0977C62.634 24.0977 62.5376 24.0636 62.4584 23.9957C62.3903 23.9163 62.3563 23.82 62.3563 23.7066V16.619H60.9116C60.7982 16.619 60.702 16.585 60.6228 16.5171C60.5547 16.4377 60.5207 16.3414 60.5207 16.2281V15.6502C60.5207 15.5369 60.5547 15.4462 60.6228 15.3783C60.702 15.299 60.7982 15.2593 60.9116 15.2593H62.3563V14.4094C62.3563 12.4832 63.3308 11.52 65.2797 11.52H66.2316C66.3449 11.52 66.4356 11.5597 66.5035 11.639C66.5829 11.707 66.6226 11.7976 66.6226 11.9109V12.4888C66.6226 12.6021 66.5829 12.6984 66.5035 12.7778C66.4356 12.8457 66.3449 12.8797 66.2316 12.8797H65.3139C64.8039 12.8797 64.447 13.0157 64.2429 13.2877C64.0391 13.5483 63.937 13.9505 63.937 14.4944V15.2593H67.5743V11.9109C67.5743 11.7976 67.6084 11.707 67.6763 11.639C67.7557 11.5597 67.852 11.52 67.9653 11.52H68.747C68.8604 11.52 68.9511 11.5597 69.019 11.639C69.0984 11.707 69.1381 11.7976 69.1381 11.9109V23.7066C69.1381 23.82 69.0984 23.9163 69.019 23.9957C68.9511 24.0636 68.8604 24.0977 68.747 24.0977H67.9653C67.852 24.0977 67.7557 24.0636 67.6763 23.9957C67.6084 23.9163 67.5743 23.82 67.5743 23.7066V16.619H63.937V23.7066C63.937 23.82 63.8973 23.9163 63.8181 23.9957C63.75 24.0636 63.6595 24.0977 63.5462 24.0977H62.7472ZM75.2842 24.2676C74.0378 24.2676 73.0691 23.9163 72.3779 23.2138C71.698 22.5112 71.3353 21.5765 71.2901 20.4093L71.273 19.6786L71.2901 18.9477C71.3353 17.7917 71.7036 16.8627 72.3948 16.1601C73.086 15.4462 74.0491 15.0893 75.2842 15.0893C76.5193 15.0893 77.4825 15.4462 78.1737 16.1601C78.8649 16.8627 79.2331 17.7917 79.2786 18.9477C79.2899 19.0723 79.2954 19.3159 79.2954 19.6786C79.2954 20.041 79.2899 20.2846 79.2786 20.4093C79.2331 21.5765 78.8649 22.5112 78.1737 23.2138C77.4938 23.9163 76.5306 24.2676 75.2842 24.2676ZM75.2842 22.9589C75.998 22.9589 76.559 22.7322 76.967 22.279C77.3862 21.8258 77.6129 21.1741 77.6469 20.3243C77.6582 20.2109 77.6637 19.9958 77.6637 19.6786C77.6637 19.3611 77.6582 19.146 77.6469 19.0326C77.6129 18.1828 77.3862 17.5311 76.967 17.078C76.559 16.6247 75.998 16.3981 75.2842 16.3981C74.5704 16.3981 74.0039 16.6247 73.5846 17.078C73.1654 17.5311 72.9444 18.1828 72.9218 19.0326L72.9047 19.6786L72.9218 20.3243C72.9444 21.1741 73.1654 21.8258 73.5846 22.279C74.0039 22.7322 74.5704 22.9589 75.2842 22.9589ZM83.5371 24.0977C83.3898 24.0977 83.2764 24.0636 83.197 23.9957C83.1178 23.9276 83.0497 23.82 82.9932 23.6727L80.5795 15.7862L80.5456 15.6162C80.5456 15.5142 80.5795 15.4293 80.6476 15.3613C80.7268 15.2933 80.8118 15.2593 80.9025 15.2593H81.6503C81.7636 15.2593 81.8543 15.2933 81.9222 15.3613C82.0016 15.4179 82.0526 15.4803 82.0753 15.5482L83.9619 21.956L85.9844 15.6162C86.0073 15.5256 86.0581 15.4462 86.1375 15.3783C86.2169 15.299 86.3245 15.2593 86.4605 15.2593H87.0383C87.1743 15.2593 87.2819 15.299 87.3613 15.3783C87.4407 15.4462 87.4915 15.5256 87.5143 15.6162L89.5369 21.956L91.4235 15.5482C91.4349 15.4916 91.4745 15.4293 91.5424 15.3613C91.6218 15.2933 91.7181 15.2593 91.8315 15.2593H92.5963C92.687 15.2593 92.7662 15.2933 92.8343 15.3613C92.9022 15.4293 92.9361 15.5142 92.9361 15.6162L92.9022 15.7862L90.5056 23.6727C90.4491 23.82 90.381 23.9276 90.3018 23.9957C90.2224 24.0636 90.1035 24.0977 89.9449 24.0977H89.2818C88.9759 24.0977 88.7889 23.956 88.7211 23.6727L86.7493 17.5879L84.7777 23.6727C84.6872 23.956 84.4945 24.0977 84.1999 24.0977H83.5371Z" fill="#51504f"></path>
+        </svg>
+      </a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+
+
+
+
+  <li class="dropdown"><a href="http://localhost:8080/home" data-original-title="" title="">DAGs</a></li>
+
+
+
+  
+    
+      <li class="dropdown">
+        <a class="dropdown-toggle" href="javascript:void(0)" data-original-title="" title="">
+          Security<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/users/list/" data-original-title="" title="">List Users</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/roles/list/" data-original-title="" title="">List Roles</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/userstatschartview/chart/" data-original-title="" title="">User's Statistics</a>
+</li>
+              
+            
+          
+            
+              
+                
+                  <li class="divider"></li>
+                
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/actions/list/" data-original-title="" title="">Actions</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/resources/list/" data-original-title="" title="">Resources</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/permissions/list/" data-original-title="" title="">Permissions</a>
+</li>
+              
+            
+          
+        </ul>
+      </li>
+    
+  
+
+  
+    
+      <li class="dropdown">
+        <a class="dropdown-toggle" href="javascript:void(0)" data-original-title="" title="">
+          Browse<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/dagrun/list/" data-original-title="" title="">DAG Runs</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/job/list/" data-original-title="" title="">Jobs</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/log/list/" data-original-title="" title="">Audit Logs</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/taskinstance/list/" data-original-title="" title="">Task Instances</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/taskreschedule/list/" data-original-title="" title="">Task Reschedules</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/triggerview/list/" data-original-title="" title="">Triggers</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/slamiss/list/" data-original-title="" title="">SLA Misses</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/dag-dependencies" data-original-title="" title="">DAG Dependencies</a>
+</li>
+              
+            
+          
+        </ul>
+      </li>
+    
+  
+
+  
+    
+      <li class="dropdown">
+        <a class="dropdown-toggle" href="javascript:void(0)" data-original-title="" title="">
+          Admin<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/variable/list/" data-original-title="" title="">Variables</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/configuration" data-original-title="" title="">Configurations</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/connection/list/" data-original-title="" title="">Connections</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/plugin" data-original-title="" title="">Plugins</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/provider" data-original-title="" title="">Providers</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/pool/list/" data-original-title="" title="">Pools</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/xcom/list/" data-original-title="" title="">XComs</a>
+</li>
+              
+            
+          
+        </ul>
+      </li>
+    
+  
+
+  
+    
+      <li class="dropdown">
+        <a class="dropdown-toggle" href="javascript:void(0)" data-original-title="" title="">
+          Docs<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          
+            
+              
+                <li>
+  <a href="https://airflow.apache.org/docs/apache-airflow/2.3.4/" data-original-title="" title="">Documentation</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="https://airflow.apache.org/" data-original-title="" title="">Airflow Website</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="https://github.com/apache/airflow" data-original-title="" title="">GitHub Repo</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/api/v1/ui/" data-original-title="" title="">REST API Reference (Swagger UI)</a>
+</li>
+              
+            
+          
+            
+              
+                <li>
+  <a href="http://localhost:8080/redoc" data-original-title="" title="">REST API Reference (Redoc)</a>
+</li>
+              
+            
+          
+        </ul>
+      </li>
+    
+  
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+
+
+
+
+<li class="dropdown" id="timezone-dropdown">
+  <a class="dropdown-toggle" style="" href="#" data-original-title="" title="">
+    <time id="clock" class="js-tooltip" datetime="2023-02-26T12:41:43T+00:0026" data-original-title="abd" data-placement="bottom">00:41 <strong>UTC</strong></time>
+    <b class="caret"></b>
+  </a>
+  <ul class="dropdown-menu" id="timezone-menu">
+    <li id="timezone-utc"><a data-timezone="UTC" href="#" data-original-title="" title="">UTC</a></li>
+    <li id="timezone-server" style="display: none;"><a data-timezone="UTC" href="#" data-original-title="" title="">UTC</a></li>
+    <li id="timezone-local"><a href="#" data-original-title="" title="" data-timezone="Asia/Kuwait">+03 (+03:00) <span class="label label-info">Local</span></a></li>
+    <li id="timezone-manual" style="display: none"><a data-timezone="" href="#" data-original-title="" title=""></a></li>
+    <li role="separator" class="divider"></li>
+    <li>
+      <form>
+        <label for="timezone-other">Other</label>
+        <input id="timezone-other" placeholder="Select Timezone name" autocomplete="off" tabindex="-1">
+      </form>
+    </li>
+  </ul>
+</li>
+
+
+  <li class="dropdown">
+    <a class="dropdown-toggle" href="#" data-original-title="" title="">
+       <span class="navbar-user-icon" title="airflow admin">
+         
+           <span>AA</span>
+         
+       </span>
+       <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="http://localhost:8080/users/userinfo/" data-original-title="" title=""><span class="material-icons">account_circle</span>Your Profile</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="http://localhost:8080/logout/" data-original-title="" title=""><span class="material-icons">exit_to_app</span>Log Out</a></li>
+    </ul>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+        </header>
+    
+
+    <div class="container">
+      <div class="row">
+          
+  <link rel="stylesheet" type="text/css" href="BSM-Search%20-%20Code%20-%20Airflow_files/flash.2b1a873e0aabc828a165.css">
+
+
+
+  
+  
+
+  
+
+  
+
+
+
+  <script>
+    function toggleErrorMessage() {
+      $(this).toggleClass('expanded-error');
+    }
+  </script>
+
+  
+  
+
+          
+  
+  
+
+  <div>
+    <h3 class="pull-left">
+      
+        
+        
+          
+        
+        <label class="switch-label js-tooltip" title="" data-original-title="Pause/Unpause DAG">
+          <input class="switch-input" id="pause_resume" data-dag-id="BSM-Search" type="checkbox">
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+        <span class="text-muted">DAG:</span> BSM-Search
+        <small class="text-muted"></small>
+      
+      
+    </h3>
+    <h4 class="pull-right" style="user-select: none;-moz-user-select: auto;">
+      
+      <a class="label label-default" href="http://localhost:8080/dagrun/list/?_flt_3_dag_id=BSM-Search" data-original-title="" title="">
+        Schedule: @daily
+      </a>
+      
+          <span class="material-icons text-muted js-tooltip" aria-hidden="true" data-original-title="Schedule: At 00:00">info</span>
+      
+      
+        <p class="label label-default js-tooltip" style="margin-left: 5px" id="next-run" data-html="true" data-placement="bottom" data-original-title="&lt;strong&gt;Run After:&lt;/strong&gt; 2023-02-27, 03:00:00 &lt;br&gt;Next Run: in a day&lt;br&gt;&lt;br&gt;&lt;strong&gt;Data Interval&lt;/strong&gt;&lt;br&gt;Start: 2023-02-26, 03:00:00 &lt;br&gt;End: 2023-02-27, 03:00:00 ">
+          Next Run: <time datetime="2023-02-26 00:00:00+00:00">2023-02-26, 00:00:00</time>
+        </p>
+      
+    </h4>
+  </div>
+  <div class="clearfix"></div>
+  <br>
+  <div>
+    <div class="row">
+      <div class="col-md-10">
+        <ul class="nav nav-pills">
+          <li><a href="http://localhost:8080/dags/BSM-Search/grid?root=" data-original-title="" title="">
+            <span class="material-icons" aria-hidden="true">grid_on</span>
+            Grid
+          </a></li>
+          <li><a href="http://localhost:8080/dags/BSM-Search/graph?root=" data-original-title="" title="">
+            <span class="material-icons" aria-hidden="true">account_tree</span>
+            Graph</a></li>
+          <li><a href="http://localhost:8080/dags/BSM-Search/calendar" data-original-title="" title="">
+            <span class="material-icons" aria-hidden="true">event</span>
+            Calendar
+          </a></li>
+          <li><a href="http://localhost:8080/dags/BSM-Search/duration?days=30&amp;root=" data-original-title="" title="">
+            <span class="material-icons" aria-hidden="true">hourglass_bottom</span>
+            Task Duration</a></li>
+          <li><a href="http://localhost:8080/dags/BSM-Search/tries?days=30&amp;root=" data-original-title="" title="">
+            <span class="material-icons" aria-hidden="true">repeat</span>
+            Task Tries</a></li>
+          <li><a href="http://localhost:8080/dags/BSM-Search/landing-times?days=30&amp;root=" data-original-title="" title="">
+            <span class="material-icons" aria-hidden="true">flight_land</span>
+            Landing Times</a></li>
+          <li><a href="http://localhost:8080/dags/BSM-Search/gantt?root=" data-original-title="" title="">
+            <span class="material-icons" aria-hidden="true">vertical_distribute</span>
+            Gantt</a></li>
+          <li><a href="http://localhost:8080/dags/BSM-Search/details" data-original-title="" title="">
+            <span class="material-icons" aria-hidden="true">details</span>
+            Details</a></li>
+          <li class="active"><a href="http://localhost:8080/dags/BSM-Search/code?root=" data-original-title="" title="">
+            <span class="material-icons" aria-hidden="true">code</span>
+            Code</a></li>
+          <li><a href="http://localhost:8080/audit_log?dag_id=BSM-Search&amp;root=" data-original-title="" title="">
+            <span class="material-icons" aria-hidden="true">plagiarism</span>
+            Audit Log</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <div class="btn-group pull-right">
+          <div class="dropdown">
+            <a aria-label="Trigger DAG" class="btn btn-default btn-icon-only trigger-dropdown-btn" data-toggle="dropdown" data-original-title="" title="">
+              <span class="material-icons" aria-hidden="true">play_arrow</span>
+            </a>
+            <ul class="dropdown-menu trigger-dropdown-menu">
+              <li>
+                <form method="POST" action="/trigger">
+                  <input type="hidden" name="csrf_token" value="IjQxMTJlZGI5N2JlOTJjYjYwOWJiZjhkM2Q0M2Q0ZWM4ZGU0NmU3NGEi.Y_qqvg.8vU5N2DeU9920MenegWvowy5Gsw">
+                  <input type="hidden" name="dag_id" value="BSM-Search">
+                  <input type="hidden" name="unpause" value="True">
+                  <input type="hidden" name="origin" value="/dags/BSM-Search/code">
+                  <button type="submit" class="dropdown-form-btn">Trigger DAG</button>
+                </form>
+              </li>
+              <li><a href="http://localhost:8080/trigger?dag_id=BSM-Search&amp;origin=%2Fdags%2FBSM-Search%2Fcode" data-original-title="" title="">Trigger DAG w/ config</a></li>
+            </ul>
+          </div>
+          <a href="http://localhost:8080/delete?dag_id=BSM-Search&amp;redirect_url=%2Fdags%2FBSM-Search%2Fcode" title="" class="btn btn-default btn-icon-only" onclick="return confirmDeleteDag(this, 'BSM-Search')" aria-label="Delete DAG" data-original-title="Delete&nbsp;DAG">
+            <span class="material-icons text-danger" aria-hidden="true">delete_outline</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  <!-- Modal for Task Instance -->
+  <div class="modal fade" id="taskInstanceModal" tabindex="-1" role="dialog" aria-labelledby="taskInstanceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title" id="taskInstanceModalLabel">
+            <span class="text-muted">Task Instance:</span> <span id="task_id"></span>
+            <br><span class="text-muted">at:</span> <span id="execution_date"></span>
+            <span id="modal_map_index"><br><span class="text-muted">Map Index:</span>
+              <span class="value"></span>
+              <div class="dropdown" id="mapped_dropdown">
+                <button class="btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                  <span id="dropdown-label" title="Select Mapped Instance"></span>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu menu-scroll"></ul>
+              </div>
+            </span>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div id="div_btn_subdag">
+            <a id="btn_subdag" class="btn btn-primary" data-base-url="/dags/BSM-Search/grid" data-original-title="" title="">
+              Zoom into Sub DAG
+            </a>
+            <hr>
+          </div>
+          <a id="btn_task" class="btn btn-sm" data-base-url="/task" data-original-title="" title="">
+            Instance Details
+          </a>
+          <a id="btn_rendered" class="btn btn-sm" data-base-url="/rendered-templates" data-original-title="" title="">
+            Rendered
+          </a>
+          
+          <a id="btn_log" class="btn btn-sm" data-base-url="/log" data-original-title="" title="">
+            Log
+          </a>
+          <a id="btn_xcom" class="btn btn-sm" data-base-url="/xcom" data-original-title="" title="">
+            XCom
+          </a>
+          <a id="btn_mapped" style="display: none;" class="btn btn-sm" data-base-url="/taskinstance/list/" data-original-title="" title="">
+            List Instances, current run
+          </a>
+          <a id="btn_ti" class="btn btn-sm" data-base-url="/taskinstance/list/" data-original-title="" title="">
+            List Instances, all runs
+          </a>
+          <button id="btn_filter" type="button" class="btn btn-sm" title="Filter on this task and upstream">
+            Filter Upstream
+          </button>
+          <hr>
+          <div id="dag_dl_logs">
+            <label style="display:inline">Download Log (by attempts):</label>
+            <ul class="nav nav-pills" role="tablist" id="try_index" style="display:inline">
+            </ul>
+            <hr>
+          </div>
+          
+          <h4 id="task_actions">Task Actions</h4>
+          <form method="POST" data-action="/run" id="run_action">
+            <input type="hidden" name="csrf_token" value="IjQxMTJlZGI5N2JlOTJjYjYwOWJiZjhkM2Q0M2Q0ZWM4ZGU0NmU3NGEi.Y_qqvg.8vU5N2DeU9920MenegWvowy5Gsw">
+            <input type="hidden" name="dag_id" value="BSM-Search">
+            <input type="hidden" name="task_id">
+            <input type="hidden" name="dag_run_id">
+            <input type="hidden" name="map_index">
+            <input type="hidden" name="origin" value="http://localhost:8080/dags/BSM-Search/code">
+            <div class="row">
+              <span class="btn-group col-xs-12 col-sm-9 task-instance-modal-column" data-toggle="buttons">
+                <label class="btn btn-default" title="Ignores all non-critical dependencies, including task state and task_deps">
+                  <input type="checkbox" value="true" name="ignore_all_deps" autocomplete="off">
+                  Ignore All Deps</label>
+                <label class="btn btn-default" title="Ignore previous success/failure">
+                  <input type="checkbox" value="true" name="ignore_ti_state" autocomplete="off">
+                  Ignore Task State
+                </label>
+                <label class="btn btn-default" title="Disregard the task-specific dependencies, e.g. status of upstream task instances and depends_on_past">
+                  <input type="checkbox" value="true" name="ignore_task_deps" autocomplete="off">
+                  Ignore Task Deps
+                </label>
+              </span>
+              <span class="col-xs-12 col-sm-3 task-instance-modal-column">
+                <button type="submit" id="btn_run" class="btn btn-primary btn-block" title="Runs a single task instance">
+                  Run
+                </button>
+              </span>
+            </div>
+            <hr style="margin-bottom: 8px;">
+          </form>
+          <form method="POST" data-action="/clear" id="clear_action">
+            <input type="hidden" name="csrf_token" value="IjQxMTJlZGI5N2JlOTJjYjYwOWJiZjhkM2Q0M2Q0ZWM4ZGU0NmU3NGEi.Y_qqvg.8vU5N2DeU9920MenegWvowy5Gsw">
+            <input type="hidden" name="dag_id" value="BSM-Search">
+            <input type="hidden" name="task_id">
+            <input type="hidden" name="execution_date">
+            <input type="hidden" name="map_index">
+            <input type="hidden" name="origin" value="http://localhost:8080/dags/BSM-Search/code">
+            <div class="row">
+              <span class="btn-group col-xs-12 col-sm-9 task-instance-modal-column" data-toggle="buttons">
+                <label class="btn btn-default btn-sm" title="Also include past task instances when clearing this one">
+                  <input type="checkbox" value="true" name="past" autocomplete="off">
+                  Past
+                </label>
+                <label class="btn btn-default btn-sm" title="Also include future task instances when clearing this one">
+                  <input type="checkbox" value="true" name="future" autocomplete="off">
+                  Future
+                </label>
+                <label class="btn btn-default btn-sm" title="Also include upstream dependencies">
+                  <input type="checkbox" value="true" name="upstream" autocomplete="off">
+                  Upstream
+                </label>
+                <label class="btn btn-default btn-sm active" title="Also include downstream dependencies">
+                  <input type="checkbox" value="true" name="downstream" checked="checked" autocomplete="off">
+                  Downstream
+                </label>
+                <label class="btn btn-default btn-sm active">
+                  <input type="checkbox" value="true" name="recursive" checked="checked" autocomplete="off">
+                  Recursive
+                </label>
+                <label class="btn btn-default btn-sm" title="Only consider failed task instances when clearing this one">
+                  <input type="checkbox" value="true" name="only_failed" autocomplete="off">
+                  Failed
+                </label>
+              </span>
+              <span class="col-xs-12 col-sm-3 task-instance-modal-column">
+                <button type="submit" id="btn_clear" class="btn btn-primary btn-block" title="Clearing deletes the previous state of the task instance, allowing it to get re-triggered by the scheduler or a backfill command">
+                  Clear
+                </button>
+              </span>
+            </div>
+            <hr style="margin-bottom: 8px;">
+          </form>
+          <form method="GET" data-action="/confirm" id="failed_action">
+            <input type="hidden" name="dag_id" value="BSM-Search">
+            <input type="hidden" name="task_id">
+            <input type="hidden" name="dag_run_id">
+            <input type="hidden" name="map_index">
+            <input type="hidden" name="origin" value="http://localhost:8080/dags/BSM-Search/code">
+            <input type="hidden" name="state" value="failed">
+            <div class="row">
+              <span class="btn-group col-xs-12 col-sm-9 task-instance-modal-column" data-toggle="buttons">
+                <label class="btn btn-default">
+                  <input type="checkbox" value="true" name="past" autocomplete="off">
+                  Past
+                </label>
+                <label class="btn btn-default">
+                  <input type="checkbox" value="true" name="future" autocomplete="off">
+                  Future
+                </label>
+                <label class="btn btn-default">
+                  <input type="checkbox" value="true" name="upstream" autocomplete="off">
+                  Upstream
+                </label>
+                <label class="btn btn-default">
+                  <input type="checkbox" value="true" name="downstream" autocomplete="off">
+                  Downstream
+                </label>
+              </span>
+              <span class="col-xs-12 col-sm-3 task-instance-modal-column">
+                <button type="submit" id="btn_failed" class="btn btn-primary btn-block">
+                  Mark Failed
+                </button>
+              </span>
+            </div>
+            <hr style="margin-bottom: 8px;">
+          </form>
+          <form method="GET" data-action="/confirm" id="success_action">
+            <input type="hidden" name="dag_id" value="BSM-Search">
+            <input type="hidden" name="task_id">
+            <input type="hidden" name="dag_run_id">
+            <input type="hidden" name="map_index">
+            <input type="hidden" name="origin" value="http://localhost:8080/dags/BSM-Search/code">
+            <input type="hidden" name="state" value="success">
+            <div class="row">
+              <span class="btn-group col-xs-12 col-sm-9 task-instance-modal-column" data-toggle="buttons">
+                <label class="btn btn-default">
+                  <input type="checkbox" value="true" name="past" autocomplete="off">
+                  Past
+                </label>
+                <label class="btn btn-default">
+                  <input type="checkbox" value="true" name="future" autocomplete="off">
+                  Future
+                </label>
+                <label class="btn btn-default">
+                  <input type="checkbox" value="true" name="upstream" autocomplete="off">
+                  Upstream
+                </label>
+                <label class="btn btn-default">
+                  <input type="checkbox" value="true" name="downstream" autocomplete="off">
+                  Downstream
+                </label>
+              </span>
+              <span class="col-xs-12 col-sm-3 task-instance-modal-column">
+                <button type="submit" id="btn_success" class="btn btn-primary btn-block">
+                  Mark Success
+                </button>
+              </span>
+            </div>
+          </form>
+          <hr>
+          <span class="btn-group" id="extra_links"></span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <a onclick="toggleWrap()" class="btn btn-default code-wrap-toggle" data-original-title="" title="">Toggle Wrap</a>
+    <table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">  1</span>
+<span class="normal">  2</span>
+<span class="normal">  3</span>
+<span class="normal">  4</span>
+<span class="normal">  5</span>
+<span class="normal">  6</span>
+<span class="normal">  7</span>
+<span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span>
+<span class="normal">429</span>
+<span class="normal">430</span>
+<span class="normal">431</span>
+<span class="normal">432</span>
+<span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span>
+<span class="normal">439</span>
+<span class="normal">440</span>
+<span class="normal">441</span>
+<span class="normal">442</span>
+<span class="normal">443</span>
+<span class="normal">444</span>
+<span class="normal">445</span>
+<span class="normal">446</span>
+<span class="normal">447</span>
+<span class="normal">448</span>
+<span class="normal">449</span>
+<span class="normal">450</span>
+<span class="normal">451</span>
+<span class="normal">452</span>
+<span class="normal">453</span>
+<span class="normal">454</span>
+<span class="normal">455</span>
+<span class="normal">456</span>
+<span class="normal">457</span>
+<span class="normal">458</span>
+<span class="normal">459</span>
+<span class="normal">460</span>
+<span class="normal">461</span>
+<span class="normal">462</span>
+<span class="normal">463</span>
+<span class="normal">464</span>
+<span class="normal">465</span>
+<span class="normal">466</span>
+<span class="normal">467</span>
+<span class="normal">468</span>
+<span class="normal">469</span>
+<span class="normal">470</span>
+<span class="normal">471</span>
+<span class="normal">472</span>
+<span class="normal">473</span>
+<span class="normal">474</span>
+<span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span>
+<span class="normal">480</span>
+<span class="normal">481</span>
+<span class="normal">482</span>
+<span class="normal">483</span>
+<span class="normal">484</span>
+<span class="normal">485</span>
+<span class="normal">486</span>
+<span class="normal">487</span>
+<span class="normal">488</span>
+<span class="normal">489</span>
+<span class="normal">490</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span>
+<span class="normal">496</span>
+<span class="normal">497</span>
+<span class="normal">498</span>
+<span class="normal">499</span>
+<span class="normal">500</span>
+<span class="normal">501</span>
+<span class="normal">502</span>
+<span class="normal">503</span>
+<span class="normal">504</span>
+<span class="normal">505</span>
+<span class="normal">506</span>
+<span class="normal">507</span>
+<span class="normal">508</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span>
+<span class="normal">512</span>
+<span class="normal">513</span>
+<span class="normal">514</span>
+<span class="normal">515</span>
+<span class="normal">516</span>
+<span class="normal">517</span>
+<span class="normal">518</span>
+<span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span>
+<span class="normal">526</span>
+<span class="normal">527</span>
+<span class="normal">528</span>
+<span class="normal">529</span>
+<span class="normal">530</span>
+<span class="normal">531</span>
+<span class="normal">532</span>
+<span class="normal">533</span>
+<span class="normal">534</span>
+<span class="normal">535</span>
+<span class="normal">536</span>
+<span class="normal">537</span>
+<span class="normal">538</span>
+<span class="normal">539</span>
+<span class="normal">540</span>
+<span class="normal">541</span>
+<span class="normal">542</span>
+<span class="normal">543</span>
+<span class="normal">544</span>
+<span class="normal">545</span>
+<span class="normal">546</span>
+<span class="normal">547</span>
+<span class="normal">548</span>
+<span class="normal">549</span>
+<span class="normal">550</span>
+<span class="normal">551</span>
+<span class="normal">552</span>
+<span class="normal">553</span>
+<span class="normal">554</span>
+<span class="normal">555</span>
+<span class="normal">556</span>
+<span class="normal">557</span>
+<span class="normal">558</span>
+<span class="normal">559</span>
+<span class="normal">560</span>
+<span class="normal">561</span>
+<span class="normal">562</span>
+<span class="normal">563</span>
+<span class="normal">564</span>
+<span class="normal">565</span>
+<span class="normal">566</span>
+<span class="normal">567</span>
+<span class="normal">568</span>
+<span class="normal">569</span>
+<span class="normal">570</span>
+<span class="normal">571</span>
+<span class="normal">572</span>
+<span class="normal">573</span>
+<span class="normal">574</span>
+<span class="normal">575</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+    <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+    <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+    <span class="kn">import</span> <span class="nn">json</span>
+    <span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+    <span class="kn">from</span> <span class="nn">airflow.operators.python_operator</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
+    <span class="kn">from</span> <span class="nn">airflow.operators.bash_operator</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+    <span class="kn">from</span> <span class="nn">airflow.utils.task_group</span> <span class="kn">import</span> <span class="n">TaskGroup</span>
+    <span class="kn">from</span> <span class="nn">all_bkg_mc</span> <span class="kn">import</span> <span class="n">create_dag</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"All Dag modules are ok ......"</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Error  </span><span class="si">{}</span><span class="s2"> "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+<span class="n">thisroot_dir</span> <span class="o">=</span> <span class="s2">"/home/abd/root/root/bin"</span>
+<span class="n">code_dir</span> <span class="o">=</span> <span class="s2">"/home/abd/Desktop/Work/Final_Version/Airflow/code/BSM-Search"</span>
+<span class="n">base_dir</span> <span class="o">=</span> <span class="s2">"/home/abd/Desktop/Work/Final_Version/Airflow/data/BSM-Search"</span>
+
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"owner"</span><span class="p">:</span> <span class="s2">"admin"</span><span class="p">,</span>
+    <span class="s1">'depends_on_past'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">"retries"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">"retry_delay"</span><span class="p">:</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span>
+    <span class="s2">"start_date"</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">26</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1">#-----------------------------------------------OPTIONS-----------------------------------------------</span>
+<span class="n">mc_options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="s1">'type'</span><span class="p">:</span> <span class="s1">'mc1'</span><span class="p">,</span> <span class="s1">'mcweight'</span><span class="p">:</span> <span class="s1">'0.01875'</span><span class="p">,</span> <span class="s1">'nevents'</span><span class="p">:</span> <span class="s1">'40000'</span><span class="p">,</span> <span class="s1">'njobs'</span><span class="p">:</span> <span class="mi">4</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="s1">'type'</span><span class="p">:</span> <span class="s1">'mc2'</span><span class="p">,</span> <span class="s1">'mcweight'</span><span class="p">:</span> <span class="s1">'0.0125'</span><span class="p">,</span> <span class="s1">'nevents'</span><span class="p">:</span> <span class="s1">'40000'</span><span class="p">,</span> <span class="s1">'njobs'</span><span class="p">:</span> <span class="mi">4</span> <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">select_mc_options</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="s1">'region'</span><span class="p">:</span> <span class="s1">'signal'</span><span class="p">,</span> <span class="s1">'variation'</span><span class="p">:</span> <span class="s1">'shape_conv_up'</span><span class="p">,</span> <span class="s1">'suffix'</span><span class="p">:</span> <span class="s1">'shape_conv_up'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="s1">'region'</span><span class="p">:</span> <span class="s1">'signal'</span><span class="p">,</span> <span class="s1">'variation'</span><span class="p">:</span> <span class="s1">'shape_conv_dn'</span><span class="p">,</span> <span class="s1">'suffix'</span><span class="p">:</span> <span class="s1">'shape_conv_dn'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="s1">'region'</span><span class="p">:</span> <span class="s1">'signal'</span><span class="p">,</span> <span class="s1">'variation'</span><span class="p">:</span> <span class="s1">'nominal,weight_var1_up,weight_var1_dn'</span><span class="p">,</span> <span class="s1">'suffix'</span><span class="p">:</span> <span class="s1">'nominal'</span> <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">hist_shape_mc_options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="s1">'shapevar'</span><span class="p">:</span> <span class="s1">'shape_conv_up'</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="s1">'shapevar'</span><span class="p">:</span> <span class="s1">'shape_conv_dn'</span> <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">hist_weight_mc_options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="s1">'shapevar'</span><span class="p">:</span> <span class="s1">'nominal'</span> <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">signal_options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="s1">'type'</span><span class="p">:</span> <span class="s1">'sig'</span><span class="p">,</span> <span class="s1">'mcweight'</span><span class="p">:</span> <span class="s1">'0.0025'</span><span class="p">,</span> <span class="s1">'nevents'</span><span class="p">:</span> <span class="s1">'40000'</span><span class="p">,</span> <span class="s1">'njobs'</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
+<span class="p">]</span>
+<span class="c1">#-----------------------------------------------OPTIONS-----------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------LISTS-----------------------------------------------</span>
+<span class="n">scatter_mc_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">generate_mc_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">merge_root_mc_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">select_mc_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hist_shape_mc_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hist_weight_mc_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">merge_hist_shape_mc_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">merge_hist_all_mc_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1">#-----------------------------------------------LISTS-----------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------Operations Start-----------------------------------------------</span>
+<span class="k">def</span> <span class="nf">scatter</span> <span class="p">(</span><span class="n">njobs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">njobs</span><span class="p">)],</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">scatter_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">njobs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">'type'</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span><span class="s1">'njobs'</span><span class="p">:</span><span class="n">njobs</span><span class="p">}</span>
+<span class="k">def</span> <span class="nf">scatter_op</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span>
+    <span class="n">njobs</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'njobs'</span><span class="p">]</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="s1">'scatter'</span>
+    <span class="n">check_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'type'</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span><span class="s1">'list'</span><span class="p">:</span><span class="nb">list</span><span class="p">}</span>
+    <span class="n">scatter_operator</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+            <span class="n">task_id</span> <span class="o">=</span> <span class="s2">"scatter_</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">),</span>
+            <span class="n">python_callable</span> <span class="o">=</span> <span class="n">scatter</span><span class="p">,</span>
+            <span class="n">provide_context</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="n">op_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"njobs"</span> <span class="p">:</span> <span class="n">njobs</span><span class="p">}</span>
+        <span class="p">)</span>
+    <span class="c1">#checkListType(check_data).append(scatter_operator)</span>
+
+<span class="k">def</span> <span class="nf">generate_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">nevents</span><span class="p">,</span><span class="n">jobnumber</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">'type'</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span><span class="s1">'nevents'</span><span class="p">:</span><span class="n">nevents</span><span class="p">,</span><span class="s1">'jobnumber'</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">jobnumber</span><span class="o">+</span><span class="mi">1</span><span class="p">)}</span>
+<span class="k">def</span> <span class="nf">generate_op</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span>
+    <span class="n">jobnumber</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'jobnumber'</span><span class="p">]</span>
+    <span class="n">nevents</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'nevents'</span><span class="p">]</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="s1">'generate'</span>
+    <span class="n">check_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'type'</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span><span class="s1">'list'</span><span class="p">:</span><span class="nb">list</span><span class="p">}</span>
+    <span class="n">generate_operator</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="s2">"generate_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">jobnumber</span><span class="p">),</span>
+        <span class="n">bash_command</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">            set -x</span>
+<span class="s2">            source $</span><span class="si">{thisroot}</span><span class="s2">/thisroot.sh</span>
+<span class="s2">            pwd</span>
+<span class="s2">            python $</span><span class="si">{code}</span><span class="s2">/generatetuple.py $</span><span class="si">{type}</span><span class="s2"> $</span><span class="si">{nevents}</span><span class="s2"> $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{type}</span><span class="s2">_$</span><span class="si">{jobnumber}</span><span class="s2">.root</span>
+<span class="s2">            """</span><span class="p">,</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'base_dir'</span><span class="p">:</span> <span class="n">base_dir</span><span class="p">,</span><span class="s1">'thisroot'</span><span class="p">:</span><span class="n">thisroot_dir</span><span class="p">,</span><span class="s1">'code'</span><span class="p">:</span><span class="n">code_dir</span><span class="p">,</span><span class="s1">'type'</span><span class="p">:</span> <span class="nb">type</span><span class="p">,</span><span class="s1">'nevents'</span><span class="p">:</span> <span class="n">nevents</span><span class="p">,</span><span class="s1">'jobnumber'</span><span class="p">:</span><span class="n">jobnumber</span><span class="p">},</span>
+        <span class="p">)</span>
+    <span class="c1">#checkListType(check_data).append(generate_operator)</span>
+
+<span class="k">def</span> <span class="nf">merge_root_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">njobs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">'type'</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span><span class="s1">'njobs'</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">njobs</span><span class="p">)}</span>
+<span class="k">def</span> <span class="nf">merge_root_op</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span>
+    <span class="n">njobs</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'njobs'</span><span class="p">]</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="s1">'merge_root'</span>
+    <span class="n">check_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'type'</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span><span class="s1">'list'</span><span class="p">:</span><span class="nb">list</span><span class="p">}</span>
+    <span class="n">merge_root_operator</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="s2">"merge_</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">),</span>
+        <span class="n">bash_command</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">            set -x</span>
+<span class="s2">            BASE_DIR=$</span><span class="si">{base_dir}</span><span class="s2"></span>
+<span class="s2">            BASE=$</span><span class="si">{type}</span><span class="s2"></span>
+<span class="s2">            END=$</span><span class="si">{njobs}</span><span class="s2"></span>
+<span class="s2">            INPUTS=""</span>
+<span class="s2">            for ((c=1;c&lt;$</span><span class="si">{END}</span><span class="s2">+1;c++)); do</span>
+<span class="s2">                INPUTS="$INPUTS $(printf $</span><span class="si">{BASE_DIR}</span><span class="s2">/$</span><span class="si">{BASE}</span><span class="s2">_$</span><span class="si">{c}</span><span class="s2">.root)"</span>
+<span class="s2">            done</span>
+<span class="s2">            echo Inputs: $</span><span class="si">{INPUTS}</span><span class="s2"></span>
+<span class="s2">            source $</span><span class="si">{thisroot}</span><span class="s2">/thisroot.sh</span>
+<span class="s2">            hadd -f $</span><span class="si">{BASE_DIR}</span><span class="s2">/$</span><span class="si">{BASE}</span><span class="s2">.root $</span><span class="si">{INPUTS}</span><span class="s2"></span>
+<span class="s2">            """</span><span class="p">,</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'base_dir'</span><span class="p">:</span> <span class="n">base_dir</span><span class="p">,</span><span class="s1">'thisroot'</span><span class="p">:</span><span class="n">thisroot_dir</span><span class="p">,</span><span class="s1">'type'</span><span class="p">:</span> <span class="nb">type</span><span class="p">,</span><span class="s1">'njobs'</span><span class="p">:</span><span class="n">njobs</span><span class="p">},</span>
+        <span class="p">)</span>
+    <span class="c1">#checkListType(check_data).append(merge_root_operator)</span>
+
+<span class="k">def</span> <span class="nf">select_data_genertion</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">suffix</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">variation</span><span class="p">,</span><span class="n">counter</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">{</span>
+        <span class="s1">'inputfile'</span><span class="p">:</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'.root'</span><span class="p">,</span>
+        <span class="s1">'outputfile'</span><span class="p">:</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'_'</span><span class="o">+</span><span class="n">suffix</span><span class="o">+</span><span class="s1">'.root'</span><span class="p">,</span>
+        <span class="s1">'region'</span><span class="p">:</span> <span class="n">region</span><span class="p">,</span>
+        <span class="s1">'variation'</span><span class="p">:</span> <span class="n">variation</span><span class="p">,</span>
+        <span class="s1">'counter'</span><span class="p">:</span><span class="n">counter</span>
+    <span class="p">}</span>
+<span class="k">def</span> <span class="nf">select_op</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">inputfile</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'inputfile'</span><span class="p">]</span>
+    <span class="n">outputfile</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'outputfile'</span><span class="p">]</span>
+    <span class="n">region</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'region'</span><span class="p">]</span>
+    <span class="n">variation</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'variation'</span><span class="p">]</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'counter'</span><span class="p">]</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="s1">'select'</span>
+    <span class="n">check_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'type'</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span><span class="s1">'list'</span><span class="p">:</span><span class="nb">list</span><span class="p">}</span>
+    <span class="n">select_operator</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="s2">"select_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">counter</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">bash_command</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">            set -x</span>
+<span class="s2">            source $</span><span class="si">{thisroot}</span><span class="s2">/thisroot.sh        </span>
+<span class="s2">            python $</span><span class="si">{code}</span><span class="s2">/select.py $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{inputfile}</span><span class="s2"> $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{outputfile}</span><span class="s2"> $</span><span class="si">{region}</span><span class="s2"> $</span><span class="si">{variation}</span><span class="s2"></span>
+<span class="s2">            """</span><span class="p">,</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'base_dir'</span><span class="p">:</span><span class="n">base_dir</span><span class="p">,</span><span class="s1">'thisroot'</span><span class="p">:</span><span class="n">thisroot_dir</span><span class="p">,</span><span class="s1">'code'</span><span class="p">:</span><span class="n">code_dir</span><span class="p">,</span><span class="s1">'inputfile'</span><span class="p">:</span><span class="n">inputfile</span><span class="p">,</span><span class="s1">'outputfile'</span><span class="p">:</span><span class="n">outputfile</span><span class="p">,</span><span class="s1">'region'</span><span class="p">:</span><span class="n">region</span><span class="p">,</span><span class="s1">'variation'</span><span class="p">:</span><span class="n">variation</span><span class="p">},</span>
+        <span class="p">)</span>
+    <span class="c1">#checkListType(check_data).append(select_operator)</span>
+
+<span class="k">def</span> <span class="nf">hist_shape_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">weight</span><span class="p">,</span><span class="n">shapevar</span><span class="p">,</span><span class="n">variations</span><span class="p">,</span><span class="n">counter</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">'inputfile'</span><span class="p">:</span><span class="nb">type</span><span class="o">+</span><span class="s1">'_'</span><span class="o">+</span><span class="n">shapevar</span><span class="o">+</span><span class="s1">'.root'</span><span class="p">,</span>
+        <span class="s1">'outputfile'</span><span class="p">:</span><span class="nb">type</span><span class="o">+</span><span class="s1">'_'</span><span class="o">+</span><span class="n">shapevar</span><span class="o">+</span><span class="s1">'_hist.root'</span><span class="p">,</span>
+        <span class="s1">'type'</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span>
+        <span class="s1">'weight'</span><span class="p">:</span><span class="n">weight</span><span class="p">,</span>
+        <span class="s1">'shapevar'</span><span class="p">:</span><span class="n">shapevar</span><span class="p">,</span>
+        <span class="s1">'variations'</span><span class="p">:</span><span class="n">variations</span><span class="p">,</span>
+        <span class="s1">'counter'</span><span class="p">:</span><span class="n">counter</span>
+        <span class="p">}</span>
+<span class="k">def</span> <span class="nf">hist_shape_op</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span>
+    <span class="n">inputfile</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'inputfile'</span><span class="p">]</span>
+    <span class="n">outputfile</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'outputfile'</span><span class="p">]</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'weight'</span><span class="p">]</span>
+    <span class="n">variations</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'variations'</span><span class="p">]</span>
+    <span class="n">shapevar</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'shapevar'</span><span class="p">]</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'counter'</span><span class="p">]</span>
+    <span class="n">hist_shape_mc</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="s2">"hist_shape_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">counter</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">bash_command</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">            set -x</span>
+<span class="s2">            source $</span><span class="si">{thisroot}</span><span class="s2">/thisroot.sh        </span>
+<span class="s2">            variations=$(echo $</span><span class="si">{variations}</span><span class="s2">|sed 's| |,|g')</span>
+<span class="s2">            name="$</span><span class="si">{type}</span><span class="s2">_$</span><span class="si">{shapevar}</span><span class="s2">"</span>
+<span class="s2">            python $</span><span class="si">{code}</span><span class="s2">/histogram.py $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{inputfile}</span><span class="s2"> $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{outputfile}</span><span class="s2"> $</span><span class="si">{type}</span><span class="s2"> $</span><span class="si">{weight}</span><span class="s2"> $</span><span class="si">{variations}</span><span class="s2"> $</span><span class="si">{name}</span><span class="s2"></span>
+<span class="s2">            """</span><span class="p">,</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'base_dir'</span><span class="p">:</span> <span class="n">base_dir</span><span class="p">,</span><span class="s1">'thisroot'</span><span class="p">:</span><span class="n">thisroot_dir</span><span class="p">,</span><span class="s1">'code'</span><span class="p">:</span><span class="n">code_dir</span><span class="p">,</span><span class="s1">'inputfile'</span><span class="p">:</span><span class="n">inputfile</span><span class="p">,</span><span class="s1">'outputfile'</span><span class="p">:</span><span class="n">outputfile</span><span class="p">,</span><span class="s1">'type'</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span><span class="s1">'weight'</span><span class="p">:</span><span class="n">weight</span><span class="p">,</span><span class="s1">'shapevar'</span><span class="p">:</span><span class="n">shapevar</span><span class="p">,</span><span class="s1">'variations'</span><span class="p">:</span><span class="n">variations</span><span class="p">}</span>
+        <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">hist_weight_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">weight</span><span class="p">,</span><span class="n">variations</span><span class="p">,</span><span class="n">shapevar</span><span class="p">,</span><span class="n">counter</span><span class="p">):</span>
+    <span class="n">inputfile</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="n">outputfile</span> <span class="o">=</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'_hist.root'</span>
+    <span class="k">if</span><span class="p">(</span><span class="s1">'mc'</span> <span class="ow">in</span> <span class="nb">type</span> <span class="ow">or</span> <span class="s1">'sig'</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="n">inputfile</span> <span class="o">=</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'_'</span><span class="o">+</span><span class="n">shapevar</span><span class="o">+</span><span class="s1">'.root'</span>
+        <span class="n">outputfile</span> <span class="o">=</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'_'</span><span class="o">+</span><span class="n">shapevar</span><span class="o">+</span><span class="s1">'_hist.root'</span>
+    <span class="k">elif</span><span class="p">(</span><span class="s1">'data'</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="n">inputfile</span> <span class="o">=</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'_signal.root'</span>
+    <span class="k">elif</span><span class="p">(</span><span class="s1">'qcd'</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="n">inputfile</span> <span class="o">=</span> <span class="s1">'data_control.root'</span>
+    <span class="k">if</span><span class="p">(</span><span class="s1">'sig'</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="nb">type</span> <span class="o">=</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'nal'</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">'inputfile'</span><span class="p">:</span> <span class="n">inputfile</span><span class="p">,</span>
+        <span class="s1">'outputfile'</span><span class="p">:</span> <span class="n">outputfile</span><span class="p">,</span>
+        <span class="s1">'type'</span><span class="p">:</span> <span class="nb">type</span><span class="p">,</span>
+        <span class="s1">'weight'</span><span class="p">:</span> <span class="n">weight</span><span class="p">,</span>
+        <span class="s1">'variations'</span><span class="p">:</span> <span class="n">variations</span><span class="p">,</span> 
+        <span class="s1">'shapevar'</span><span class="p">:</span><span class="n">shapevar</span><span class="p">,</span>
+        <span class="s1">'counter'</span><span class="p">:</span><span class="n">counter</span>
+    <span class="p">}</span>
+<span class="k">def</span> <span class="nf">hist_weight_op</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'counter'</span><span class="p">]</span>
+    <span class="n">shapevar</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'shapevar'</span><span class="p">]</span>
+    <span class="n">variations</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'variations'</span><span class="p">]</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'weight'</span><span class="p">]</span>
+    <span class="n">inputfile</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'inputfile'</span><span class="p">]</span>
+    <span class="n">outputfile</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'outputfile'</span><span class="p">]</span>
+
+    <span class="n">hist_weight_operator</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="s2">"hist_weight_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">counter</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">bash_command</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">            set -x</span>
+<span class="s2">            source $</span><span class="si">{thisroot}</span><span class="s2">/thisroot.sh        </span>
+<span class="s2">            variations=$(echo $</span><span class="si">{variations}</span><span class="s2">|sed 's| |,|g')</span>
+<span class="s2">            name=$</span><span class="si">{type}</span><span class="s2"></span>
+<span class="s2">            python $</span><span class="si">{code}</span><span class="s2">/histogram.py $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{inputfile}</span><span class="s2"> $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{outputfile}</span><span class="s2"> $</span><span class="si">{name}</span><span class="s2"> $</span><span class="si">{weight}</span><span class="s2"> $</span><span class="si">{variations}</span><span class="s2"></span>
+<span class="s2">            """</span><span class="p">,</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'base_dir'</span><span class="p">:</span> <span class="n">base_dir</span><span class="p">,</span><span class="s1">'thisroot'</span><span class="p">:</span><span class="n">thisroot_dir</span><span class="p">,</span><span class="s1">'code'</span><span class="p">:</span><span class="n">code_dir</span><span class="p">,</span><span class="s1">'inputfile'</span><span class="p">:</span> <span class="n">inputfile</span><span class="p">,</span><span class="s1">'outputfile'</span><span class="p">:</span><span class="n">outputfile</span><span class="p">,</span><span class="s1">'type'</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span><span class="s1">'weight'</span><span class="p">:</span><span class="n">weight</span><span class="p">,</span><span class="s1">'variations'</span><span class="p">:</span><span class="n">variations</span><span class="p">},</span>
+        <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">merge_explicit_data_generation</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span><span class="nb">type</span><span class="p">):</span>
+    <span class="n">inputfiles</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="n">outputfile</span> <span class="o">=</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'_merged_hist.root'</span>
+    <span class="k">if</span><span class="p">(</span><span class="s1">'mc'</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">(</span><span class="s1">'merge_hist_shape'</span> <span class="ow">in</span> <span class="n">operation</span><span class="p">):</span>
+            <span class="n">inputfiles</span> <span class="o">=</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'_shape_conv_up_hist.root '</span><span class="o">+</span><span class="nb">type</span><span class="o">+</span><span class="s1">'_shape_conv_dn_hist.root'</span>
+            <span class="n">outputfile</span> <span class="o">=</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'_shape_hist.root'</span>
+        <span class="k">elif</span><span class="p">(</span><span class="s1">'merge_hist_all'</span> <span class="ow">in</span> <span class="n">operation</span><span class="p">):</span>
+            <span class="n">inputfiles</span> <span class="o">=</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'_nominal_hist.root '</span><span class="o">+</span><span class="nb">type</span><span class="o">+</span><span class="s1">'_shape_hist.root'</span>
+    <span class="k">elif</span><span class="p">(</span><span class="s1">'sig'</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="n">inputfiles</span> <span class="o">=</span> <span class="nb">type</span><span class="o">+</span><span class="s1">'_nominal_hist.root'</span>
+    <span class="k">elif</span><span class="p">(</span><span class="s1">'data'</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="n">inputfiles</span> <span class="o">=</span> <span class="nb">type</span><span class="o">+</span><span class="s2">"_hist.root qcd_hist.root"</span>
+    <span class="k">elif</span><span class="p">(</span><span class="s1">'all'</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="n">inputfiles</span> <span class="o">=</span> <span class="s2">"mc1_merged_hist.root mc2_merged_hist.root sig_merged_hist.root data_merged_hist.root"</span>
+        <span class="n">outputfile</span> <span class="o">=</span> <span class="s2">"all_merged_hist.root"</span>      
+    <span class="k">return</span><span class="p">{</span>
+        <span class="s1">'type'</span><span class="p">:</span> <span class="nb">type</span><span class="p">,</span>
+        <span class="s1">'operation'</span><span class="p">:</span><span class="n">operation</span><span class="p">,</span>
+        <span class="s1">'inputfiles'</span><span class="p">:</span> <span class="n">inputfiles</span><span class="p">,</span>
+        <span class="s1">'outputfile'</span><span class="p">:</span> <span class="n">outputfile</span>
+    <span class="p">}</span>
+<span class="k">def</span> <span class="nf">merge_explicit_op</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span>
+    <span class="n">operation</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'operation'</span><span class="p">]</span>
+    <span class="n">inputfiles</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'inputfiles'</span><span class="p">]</span>
+    <span class="n">outputfile</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'outputfile'</span><span class="p">]</span>
+    <span class="n">merge_hist_shape_mc</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="n">operation</span><span class="o">+</span><span class="s2">"_"</span><span class="o">+</span><span class="nb">type</span><span class="p">,</span>
+        <span class="n">bash_command</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">            set -x</span>
+<span class="s2">            inputfiles=$</span><span class="si">{inputfiles}</span><span class="s2"></span>
+<span class="s2">            INPUTS=""</span>
+<span class="s2">            for i in $</span><span class="si">{inputfiles}</span><span class="s2">; do</span>
+<span class="s2">            INPUTS="$</span><span class="si">{INPUTS}</span><span class="s2"> $(printf $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{i}</span><span class="s2">)"</span>
+<span class="s2">            done</span>
+<span class="s2">            source $</span><span class="si">{thisroot}</span><span class="s2">/thisroot.sh        </span>
+<span class="s2">            hadd -f $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{outputfile}</span><span class="s2"> $</span><span class="si">{INPUTS}</span><span class="s2"></span>
+<span class="s2">            """</span><span class="p">,</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'base_dir'</span><span class="p">:</span> <span class="n">base_dir</span><span class="p">,</span><span class="s1">'thisroot'</span><span class="p">:</span><span class="n">thisroot_dir</span><span class="p">,</span><span class="s1">'inputfiles'</span><span class="p">:</span><span class="n">inputfiles</span><span class="p">,</span><span class="s1">'outputfile'</span><span class="p">:</span><span class="n">outputfile</span><span class="p">},</span>
+        <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">makews_data_generation</span><span class="p">(</span><span class="n">data_bkg_hists</span><span class="p">,</span><span class="n">workspace_prefix</span><span class="p">,</span><span class="n">xml_dir</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">'data_bkg_hists'</span><span class="p">:</span><span class="n">data_bkg_hists</span><span class="p">,</span>
+        <span class="s1">'workspace_prefix'</span><span class="p">:</span><span class="n">workspace_prefix</span><span class="p">,</span>
+        <span class="s1">'xml_dir'</span><span class="p">:</span><span class="n">xml_dir</span>
+    <span class="p">}</span>
+<span class="k">def</span> <span class="nf">makews_op</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">data_bkg_hists</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'data_bkg_hists'</span><span class="p">]</span>
+    <span class="n">workspace_prefix</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'workspace_prefix'</span><span class="p">]</span>
+    <span class="n">xml_dir</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'xml_dir'</span><span class="p">]</span>
+    <span class="n">makews_operator</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="s2">"makews"</span><span class="p">,</span>
+        <span class="n">bash_command</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">            set -x</span>
+<span class="s2">            source $</span><span class="si">{thisroot}</span><span class="s2">/thisroot.sh</span>
+<span class="s2">            python $</span><span class="si">{code}</span><span class="s2">/makews.py $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{data_bkg_hists}</span><span class="s2"> $</span><span class="si">{workspace_prefix}</span><span class="s2"> $</span><span class="si">{xml_dir}</span><span class="s2"></span>
+<span class="s2">        """</span><span class="p">,</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'base_dir'</span><span class="p">:</span> <span class="n">base_dir</span><span class="p">,</span><span class="s1">'thisroot'</span><span class="p">:</span><span class="n">thisroot_dir</span><span class="p">,</span><span class="s1">'code'</span><span class="p">:</span><span class="n">code_dir</span><span class="p">,</span><span class="s1">'data_bkg_hists'</span><span class="p">:</span> <span class="n">data_bkg_hists</span><span class="p">,</span><span class="s1">'workspace_prefix'</span><span class="p">:</span><span class="n">workspace_prefix</span><span class="p">,</span><span class="s1">'xml_dir'</span><span class="p">:</span><span class="n">xml_dir</span><span class="p">}</span>
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_data_generation</span><span class="p">(</span><span class="n">combined_model</span><span class="p">,</span><span class="n">nominal_vals</span><span class="p">,</span><span class="n">fit_results</span><span class="p">,</span><span class="n">prefit_plot</span><span class="p">,</span><span class="n">postfit_plot</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">'combined_model'</span><span class="p">:</span><span class="n">combined_model</span><span class="p">,</span>
+        <span class="s1">'nominal_vals'</span><span class="p">:</span><span class="n">nominal_vals</span><span class="p">,</span>
+        <span class="s1">'fit_results'</span><span class="p">:</span><span class="n">fit_results</span><span class="p">,</span>
+        <span class="s1">'prefit_plot'</span><span class="p">:</span><span class="n">prefit_plot</span><span class="p">,</span>
+        <span class="s1">'postfit_plot'</span><span class="p">:</span><span class="n">postfit_plot</span>
+        <span class="p">}</span>
+<span class="k">def</span> <span class="nf">plot_op</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">combined_model</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'combined_model'</span><span class="p">]</span>
+    <span class="n">nominal_vals</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'nominal_vals'</span><span class="p">]</span>
+    <span class="n">fit_results</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'fit_results'</span><span class="p">]</span>
+    <span class="n">prefit_plot</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'prefit_plot'</span><span class="p">]</span>
+    <span class="n">postfit_plot</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'postfit_plot'</span><span class="p">]</span>
+    <span class="n">plot_operator</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="s2">"plot"</span><span class="p">,</span>
+        <span class="n">bash_command</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">            set -x</span>
+<span class="s2">            source $</span><span class="si">{thisroot}</span><span class="s2">/thisroot.sh</span>
+<span class="s2">            hfquickplot write-vardef $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{combined_model}</span><span class="s2"> combined $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{nominal_vals}</span><span class="s2"></span>
+<span class="s2">            hfquickplot plot-channel $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{combined_model}</span><span class="s2"> combined channel1 x $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{nominal_vals}</span><span class="s2"> -c qcd,mc2,mc1,signal -o $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{prefit_plot}</span><span class="s2"></span>
+<span class="s2">            hfquickplot fit $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{combined_model}</span><span class="s2"> combined $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{fit_results}</span><span class="s2"></span>
+<span class="s2">            hfquickplot plot-channel $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{combined_model}</span><span class="s2"> combined channel1 x $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{fit_results}</span><span class="s2"> -c qcd,mc2,mc1,signal -o $</span><span class="si">{base_dir}</span><span class="s2">/$</span><span class="si">{postfit_plot}</span><span class="s2"></span>
+<span class="s2">	"""</span><span class="p">,</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'base_dir'</span><span class="p">:</span> <span class="n">base_dir</span><span class="p">,</span><span class="s1">'thisroot'</span><span class="p">:</span><span class="n">thisroot_dir</span><span class="p">,</span><span class="s1">'combined_model'</span><span class="p">:</span> <span class="n">combined_model</span><span class="p">,</span><span class="s1">'nominal_vals'</span><span class="p">:</span><span class="n">nominal_vals</span><span class="p">,</span><span class="s1">'fit_results'</span><span class="p">:</span><span class="n">fit_results</span><span class="p">,</span><span class="s1">'prefit_plot'</span><span class="p">:</span><span class="n">prefit_plot</span><span class="p">,</span><span class="s1">'postfit_plot'</span><span class="p">:</span><span class="n">postfit_plot</span><span class="p">},</span>
+        <span class="p">)</span>
+<span class="c1">#-----------------------------------------------Operations End-----------------------------------------------</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span><span class="n">dag_id</span><span class="o">=</span><span class="s2">"BSM-Search"</span><span class="p">,</span> <span class="n">schedule_interval</span><span class="o">=</span><span class="s2">"@daily"</span><span class="p">,</span> <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span> <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+ 
+    <span class="n">perpare_dir</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="s2">"perpare_dir"</span><span class="p">,</span>
+        <span class="n">bash_command</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">        set -x</span>
+<span class="s2">        rm -rf $base_dir</span>
+<span class="s2">        mkdir -p $base_dir</span>
+<span class="s2">        """</span><span class="p">,</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'base_dir'</span><span class="p">:</span> <span class="n">base_dir</span><span class="p">},</span>
+    <span class="p">)</span>
+    <span class="c1">#-----------------------------------------------MC Workflow Start-----------------------------------------------</span>
+    <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'mc'</span><span class="p">)</span> <span class="k">as</span> <span class="n">mc</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mc_options</span><span class="p">)):</span>
+            <span class="nb">type</span> <span class="o">=</span> <span class="n">mc_options</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'type'</span><span class="p">]</span>
+            <span class="n">njobs</span> <span class="o">=</span> <span class="n">mc_options</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'njobs'</span><span class="p">]</span>
+            <span class="n">nevents</span> <span class="o">=</span> <span class="n">mc_options</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'nevents'</span><span class="p">]</span>
+            <span class="n">mcweight</span> <span class="o">=</span> <span class="n">mc_options</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'mcweight'</span><span class="p">]</span>
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">submc</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'scatter_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                    <span class="n">scatter_data</span> <span class="o">=</span> <span class="n">scatter_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">njobs</span><span class="p">)</span>
+                    <span class="n">scatter_op</span><span class="p">(</span><span class="n">scatter_data</span><span class="p">)</span>
+                <span class="n">scatter_mc_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+                
+                <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'generate_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">njobs</span><span class="p">):</span>
+                        <span class="n">generate_data</span> <span class="o">=</span> <span class="n">generate_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">nevents</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                        <span class="n">generate_op</span><span class="p">(</span><span class="n">generate_data</span><span class="p">)</span>
+                <span class="n">generate_mc_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+                <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'merge_root_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                    <span class="n">merge_root_data</span> <span class="o">=</span> <span class="n">merge_root_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">njobs</span><span class="p">)</span>
+                    <span class="n">merge_root_op</span><span class="p">(</span><span class="n">merge_root_data</span><span class="p">)</span>
+                <span class="n">merge_root_mc_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+                <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'select_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">select_mc_options</span><span class="p">)):</span>
+                        <span class="n">suffix</span> <span class="o">=</span> <span class="n">select_mc_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'suffix'</span><span class="p">]</span>
+                        <span class="n">region</span> <span class="o">=</span> <span class="n">select_mc_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'region'</span><span class="p">]</span>
+                        <span class="n">variation</span> <span class="o">=</span> <span class="n">select_mc_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'variation'</span><span class="p">]</span>
+                        <span class="n">select_data</span> <span class="o">=</span> <span class="n">select_data_genertion</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">suffix</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">variation</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                        <span class="n">select_op</span><span class="p">(</span><span class="n">select_data</span><span class="p">)</span>
+                <span class="n">select_mc_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+                <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'hist_shape_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hist_shape_mc_options</span><span class="p">)):</span>
+                        <span class="n">shapevar</span> <span class="o">=</span> <span class="n">hist_shape_mc_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'shapevar'</span><span class="p">]</span>
+                        <span class="n">variations</span> <span class="o">=</span> <span class="s1">'nominal'</span>
+                        <span class="n">hist_shape_data</span> <span class="o">=</span> <span class="n">hist_shape_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">mcweight</span><span class="p">,</span><span class="n">shapevar</span><span class="p">,</span><span class="n">variations</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                        <span class="n">hist_shape_op</span><span class="p">(</span><span class="n">hist_shape_data</span><span class="p">)</span>
+                <span class="n">hist_shape_mc_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+                <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'hist_weight_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hist_weight_mc_options</span><span class="p">)):</span>
+                        <span class="n">shapevar</span> <span class="o">=</span> <span class="n">hist_weight_mc_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'shapevar'</span><span class="p">]</span>
+                        <span class="n">variations</span> <span class="o">=</span> <span class="s1">'nominal,weight_var1_up,weight_var1_dn'</span>
+                        <span class="n">hist_weight_data</span> <span class="o">=</span> <span class="n">hist_weight_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">mcweight</span><span class="p">,</span><span class="n">variations</span><span class="p">,</span><span class="n">shapevar</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                        <span class="n">hist_weight_op</span><span class="p">(</span><span class="n">hist_weight_data</span><span class="p">)</span>
+                <span class="n">hist_weight_mc_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+                
+                <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'merge_hist_shape_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                    <span class="n">merge_hist_shape_data</span> <span class="o">=</span> <span class="n">merge_explicit_data_generation</span><span class="p">(</span><span class="s2">"merge_hist_shape"</span><span class="p">,</span><span class="nb">type</span><span class="p">)</span>
+                    <span class="n">merge_explicit_op</span><span class="p">(</span><span class="n">merge_hist_shape_data</span><span class="p">)</span>
+                <span class="n">merge_hist_shape_mc_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+                
+                <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'merge_hist_all_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                    <span class="n">merge_hist_all_data</span> <span class="o">=</span> <span class="n">merge_explicit_data_generation</span><span class="p">(</span><span class="s2">"merge_hist_all"</span><span class="p">,</span><span class="nb">type</span><span class="p">)</span>
+                    <span class="n">merge_explicit_op</span><span class="p">(</span><span class="n">merge_hist_all_data</span><span class="p">)</span>
+                <span class="n">merge_hist_all_mc_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+    <span class="c1">#-----------------------------------------------MC Workflow End-----------------------------------------------</span>
+
+    <span class="c1">#-----------------------------------------------Signal Workflow Start-----------------------------------------------</span>
+    <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'singal'</span><span class="p">)</span> <span class="k">as</span> <span class="n">signal</span><span class="p">:</span>
+        <span class="n">signal_options</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'type'</span><span class="p">:</span><span class="s1">'sig'</span><span class="p">,</span><span class="s1">'mcweight'</span><span class="p">:</span><span class="s1">'0.0025'</span><span class="p">,</span><span class="s1">'nevents'</span><span class="p">:</span><span class="s1">'40000'</span><span class="p">,</span><span class="s1">'njobs'</span><span class="p">:</span><span class="mi">2</span><span class="p">}]</span>
+        <span class="n">select_signal_options</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'region'</span><span class="p">:</span><span class="s1">'signal'</span><span class="p">,</span><span class="s1">'variation'</span><span class="p">:</span><span class="s1">'nominal'</span><span class="p">,</span><span class="s1">'suffix'</span><span class="p">:</span><span class="s1">'nominal'</span><span class="p">}]</span>
+        <span class="n">hist_weight_signal_options</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'shapevar'</span><span class="p">:</span><span class="s1">'nominal'</span><span class="p">}]</span>
+        <span class="n">scatter_signal_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">generate_signal_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">merge_root_signal_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">select_signal_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">hist_weight_signal_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">merge_hist_all_signal_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal_options</span><span class="p">)):</span>
+            <span class="nb">type</span> <span class="o">=</span> <span class="n">signal_options</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'type'</span><span class="p">]</span>
+            <span class="n">njobs</span> <span class="o">=</span> <span class="n">signal_options</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'njobs'</span><span class="p">]</span>
+            <span class="n">nevents</span> <span class="o">=</span> <span class="n">signal_options</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'nevents'</span><span class="p">]</span>
+            <span class="n">mcweight</span> <span class="o">=</span> <span class="n">signal_options</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'mcweight'</span><span class="p">]</span>
+
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'scatter_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="n">scatter_data</span> <span class="o">=</span> <span class="n">scatter_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">njobs</span><span class="p">)</span>
+                <span class="n">scatter_op</span><span class="p">(</span><span class="n">scatter_data</span><span class="p">)</span>
+            <span class="n">scatter_signal_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'generate_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">njobs</span><span class="p">):</span>
+                    <span class="n">generate_data</span> <span class="o">=</span> <span class="n">generate_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">nevents</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                    <span class="n">generate_op</span><span class="p">(</span><span class="n">generate_data</span><span class="p">)</span>
+            <span class="n">generate_signal_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+            
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'merge_root_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="n">merge_root_data</span> <span class="o">=</span> <span class="n">merge_root_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">njobs</span><span class="p">)</span>
+                <span class="n">merge_root_op</span><span class="p">(</span><span class="n">merge_root_data</span><span class="p">)</span>
+            <span class="n">merge_root_signal_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'select_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">select_signal_options</span><span class="p">)):</span>
+                    <span class="n">suffix</span> <span class="o">=</span> <span class="n">select_signal_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'suffix'</span><span class="p">]</span>
+                    <span class="n">region</span> <span class="o">=</span> <span class="n">select_signal_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'region'</span><span class="p">]</span>
+                    <span class="n">variation</span> <span class="o">=</span> <span class="n">select_signal_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'variation'</span><span class="p">]</span>
+                    <span class="n">select_data</span> <span class="o">=</span> <span class="n">select_data_genertion</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">suffix</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">variation</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">select_data</span><span class="p">)</span>
+                    <span class="n">select_op</span><span class="p">(</span><span class="n">select_data</span><span class="p">)</span>
+            <span class="n">select_signal_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'hist_weight_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hist_weight_signal_options</span><span class="p">)):</span>
+                    <span class="n">shapevar</span> <span class="o">=</span> <span class="n">hist_weight_signal_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'shapevar'</span><span class="p">]</span>
+                    <span class="n">variations</span> <span class="o">=</span> <span class="s1">'nominal'</span>
+                    <span class="n">hist_weight_data</span> <span class="o">=</span> <span class="n">hist_weight_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">mcweight</span><span class="p">,</span><span class="n">variations</span><span class="p">,</span><span class="n">shapevar</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                    <span class="n">hist_weight_op</span><span class="p">(</span><span class="n">hist_weight_data</span><span class="p">)</span>
+            <span class="n">hist_weight_signal_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+            
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'merge_hist_all_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="n">merge_hist_all_data</span> <span class="o">=</span> <span class="n">merge_explicit_data_generation</span><span class="p">(</span><span class="s2">"merge_hist_all"</span><span class="p">,</span><span class="nb">type</span><span class="p">)</span>
+                <span class="n">merge_explicit_op</span><span class="p">(</span><span class="n">merge_hist_all_data</span><span class="p">)</span>
+            <span class="n">merge_hist_all_signal_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+    <span class="c1">#-----------------------------------------------Signal Workflow End-----------------------------------------------</span>
+
+    <span class="c1">#-----------------------------------------------Data Workflow Start-----------------------------------------------</span>
+    <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'data'</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">data_options</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'type'</span><span class="p">:</span><span class="s1">'data'</span><span class="p">,</span><span class="s1">'nevents'</span><span class="p">:</span><span class="s1">'20000'</span><span class="p">,</span><span class="s1">'njobs'</span><span class="p">:</span><span class="mi">5</span><span class="p">}]</span>
+        <span class="n">data_select_signal_options</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'region'</span><span class="p">:</span><span class="s1">'signal'</span><span class="p">,</span><span class="s1">'variation'</span><span class="p">:</span><span class="s1">'nominal'</span><span class="p">,</span><span class="s1">'suffix'</span><span class="p">:</span><span class="s1">'signal'</span><span class="p">}]</span>
+        <span class="n">data_select_control_options</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'region'</span><span class="p">:</span><span class="s1">'control'</span><span class="p">,</span><span class="s1">'variation'</span><span class="p">:</span><span class="s1">'nominal'</span><span class="p">,</span><span class="s1">'suffix'</span><span class="p">:</span><span class="s1">'control'</span><span class="p">}]</span>
+        <span class="n">data_hist_signal_options</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'shapevar'</span><span class="p">:</span><span class="s1">'nominal'</span><span class="p">}]</span>
+        <span class="n">data_hist_control_options</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'shapevar'</span><span class="p">:</span><span class="s1">'nominal'</span><span class="p">,</span><span class="s1">'type'</span><span class="p">:</span><span class="s1">'qcd'</span><span class="p">}]</span>
+        <span class="n">scatter_data_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">generate_data_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">merge_root_data_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">data_select_signal_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">data_select_control_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">data_hist_signal_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">data_hist_control_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">merge_hist_all_data_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_options</span><span class="p">)):</span>
+            <span class="nb">type</span> <span class="o">=</span> <span class="n">data_options</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'type'</span><span class="p">]</span>
+            <span class="n">njobs</span> <span class="o">=</span> <span class="n">data_options</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'njobs'</span><span class="p">]</span>
+            <span class="n">nevents</span> <span class="o">=</span> <span class="n">data_options</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'nevents'</span><span class="p">]</span>
+
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'scatter_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="n">scatter_data</span> <span class="o">=</span> <span class="n">scatter_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">njobs</span><span class="p">)</span>
+                <span class="n">scatter_op</span><span class="p">(</span><span class="n">scatter_data</span><span class="p">)</span>
+            <span class="n">scatter_data_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'generate_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">njobs</span><span class="p">):</span>
+                    <span class="n">generate_data</span> <span class="o">=</span> <span class="n">generate_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">nevents</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                    <span class="n">generate_op</span><span class="p">(</span><span class="n">generate_data</span><span class="p">)</span>
+            <span class="n">generate_data_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'merge_root_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="n">merge_root_data</span> <span class="o">=</span> <span class="n">merge_root_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">njobs</span><span class="p">)</span>
+                <span class="n">merge_root_op</span><span class="p">(</span><span class="n">merge_root_data</span><span class="p">)</span>
+            <span class="n">merge_root_data_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'select_signal_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_select_signal_options</span><span class="p">)):</span>
+                    <span class="n">suffix</span> <span class="o">=</span> <span class="n">data_select_signal_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'suffix'</span><span class="p">]</span>
+                    <span class="n">region</span> <span class="o">=</span> <span class="n">data_select_signal_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'region'</span><span class="p">]</span>
+                    <span class="n">variation</span> <span class="o">=</span> <span class="n">data_select_signal_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'variation'</span><span class="p">]</span>
+                    <span class="n">select_data</span> <span class="o">=</span> <span class="n">select_data_genertion</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">suffix</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">variation</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                    <span class="n">select_op</span><span class="p">(</span><span class="n">select_data</span><span class="p">)</span>
+            <span class="n">data_select_signal_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'select_control_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_select_control_options</span><span class="p">)):</span>
+                    <span class="n">suffix</span> <span class="o">=</span> <span class="n">data_select_control_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'suffix'</span><span class="p">]</span>
+                    <span class="n">region</span> <span class="o">=</span> <span class="n">data_select_control_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'region'</span><span class="p">]</span>
+                    <span class="n">variation</span> <span class="o">=</span> <span class="n">data_select_control_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'variation'</span><span class="p">]</span>
+                    <span class="n">select_data</span> <span class="o">=</span> <span class="n">select_data_genertion</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">suffix</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">variation</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                    <span class="n">select_op</span><span class="p">(</span><span class="n">select_data</span><span class="p">)</span>
+            <span class="n">data_select_control_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+            
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'hist_signal_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_hist_signal_options</span><span class="p">)):</span>
+                    <span class="n">shapevar</span> <span class="o">=</span> <span class="n">data_hist_signal_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'shapevar'</span><span class="p">]</span>
+                    <span class="n">mcweight</span> <span class="o">=</span> <span class="s1">'1.0'</span>
+                    <span class="n">variations</span> <span class="o">=</span> <span class="s1">'nominal'</span>
+                    <span class="n">hist_weight_data</span> <span class="o">=</span> <span class="n">hist_weight_data_generation</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">mcweight</span><span class="p">,</span><span class="n">variations</span><span class="p">,</span><span class="n">shapevar</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                    <span class="n">hist_weight_op</span><span class="p">(</span><span class="n">hist_weight_data</span><span class="p">)</span>
+            <span class="n">data_hist_signal_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'hist_control_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_hist_control_options</span><span class="p">)):</span>
+                    <span class="n">qcd</span> <span class="o">=</span> <span class="n">data_hist_control_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'type'</span><span class="p">]</span>
+                    <span class="n">shapevar</span> <span class="o">=</span> <span class="n">data_hist_control_options</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">'shapevar'</span><span class="p">]</span>
+                    <span class="n">mcweight</span> <span class="o">=</span> <span class="s1">'0.1875'</span>
+                    <span class="n">variations</span> <span class="o">=</span> <span class="s1">'nominal'</span>
+                    <span class="n">hist_weight_data</span> <span class="o">=</span> <span class="n">hist_weight_data_generation</span><span class="p">(</span><span class="n">qcd</span><span class="p">,</span><span class="n">mcweight</span><span class="p">,</span><span class="n">variations</span><span class="p">,</span><span class="n">shapevar</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                    <span class="n">hist_weight_op</span><span class="p">(</span><span class="n">hist_weight_data</span><span class="p">)</span>
+            <span class="n">data_hist_control_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'merge_hist_all_group_</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">))</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+                <span class="n">merge_hist_all_data</span> <span class="o">=</span> <span class="n">merge_explicit_data_generation</span><span class="p">(</span><span class="s2">"merge_hist_all"</span><span class="p">,</span><span class="nb">type</span><span class="p">)</span>
+                <span class="n">merge_explicit_op</span><span class="p">(</span><span class="n">merge_hist_all_data</span><span class="p">)</span>
+            <span class="n">merge_hist_all_data_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span>
+    <span class="c1">#-----------------------------------------------Data Workflow End-----------------------------------------------</span>
+
+    <span class="c1">#-----------------------------------------------Merge All Start-----------------------------------------------</span>
+    <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'merge_hist_all'</span><span class="p">)</span> <span class="k">as</span> <span class="n">merge_hist_all</span><span class="p">:</span>
+        <span class="nb">type</span> <span class="o">=</span> <span class="s1">'all'</span>
+        <span class="n">merge_hist_all_data</span> <span class="o">=</span> <span class="n">merge_explicit_data_generation</span><span class="p">(</span><span class="s2">"merge_hist_all"</span><span class="p">,</span><span class="nb">type</span><span class="p">)</span>
+        <span class="n">merge_explicit_op</span><span class="p">(</span><span class="n">merge_hist_all_data</span><span class="p">)</span>
+    <span class="c1">#-----------------------------------------------Merge All End-----------------------------------------------        </span>
+    
+    <span class="c1">#-----------------------------------------------Makews Start-----------------------------------------------        </span>
+    <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'makews'</span><span class="p">)</span> <span class="k">as</span> <span class="n">makews</span><span class="p">:</span>
+        <span class="n">data_bkg_hists</span> <span class="o">=</span> <span class="s2">"all_merged_hist.root"</span>
+        <span class="n">workspace_prefix</span> <span class="o">=</span> <span class="n">base_dir</span><span class="o">+</span><span class="s2">"/results"</span>
+        <span class="n">xml_dir</span> <span class="o">=</span> <span class="n">base_dir</span><span class="o">+</span><span class="s2">"/xmldir"</span>
+        <span class="n">makews_data</span> <span class="o">=</span> <span class="n">makews_data_generation</span><span class="p">(</span><span class="n">data_bkg_hists</span><span class="p">,</span><span class="n">workspace_prefix</span><span class="p">,</span><span class="n">xml_dir</span><span class="p">)</span>
+        <span class="n">makews_op</span><span class="p">(</span><span class="n">makews_data</span><span class="p">)</span>
+    <span class="c1">#-----------------------------------------------Makews End-----------------------------------------------        </span>
+
+    <span class="c1">#-----------------------------------------------Plot Start-----------------------------------------------        </span>
+    <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="s1">'plot'</span><span class="p">)</span> <span class="k">as</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="n">combined_model</span> <span class="o">=</span> <span class="s1">'results_combined_meas_model.root'</span>
+        <span class="n">nominal_vals</span> <span class="o">=</span> <span class="s1">'nominal_vals.yml'</span>
+        <span class="n">fit_results</span> <span class="o">=</span> <span class="s1">'fit_results.yml'</span>
+        <span class="n">prefit_plot</span> <span class="o">=</span> <span class="s1">'prefit.pdf'</span>
+        <span class="n">postfit_plot</span> <span class="o">=</span> <span class="s1">'postfit.pdf'</span>
+        <span class="n">plot_data</span> <span class="o">=</span> <span class="n">plot_data_generation</span><span class="p">(</span><span class="n">combined_model</span><span class="p">,</span><span class="n">nominal_vals</span><span class="p">,</span><span class="n">fit_results</span><span class="p">,</span><span class="n">prefit_plot</span><span class="p">,</span><span class="n">postfit_plot</span><span class="p">)</span>
+        <span class="n">plot_op</span><span class="p">(</span><span class="n">plot_data</span><span class="p">)</span>
+    <span class="c1">#-----------------------------------------------Plot End-----------------------------------------------        </span>
+    
+<span class="c1">#-----------------------------------------------Dependencies-----------------------------------------------</span>
+<span class="n">perpare_dir</span> <span class="o">&gt;&gt;</span> <span class="n">scatter_mc_tasks_list</span>
+<span class="n">scatter_mc_tasks_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">generate_mc_tasks_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">merge_root_mc_tasks_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">select_mc_tasks_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">hist_shape_mc_tasks_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">merge_hist_shape_mc_tasks_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">scatter_mc_tasks_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">generate_mc_tasks_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">merge_root_mc_tasks_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">select_mc_tasks_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">hist_shape_mc_tasks_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">merge_hist_shape_mc_tasks_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">select_mc_tasks_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">hist_weight_mc_tasks_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">select_mc_tasks_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">hist_weight_mc_tasks_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="n">merge_hist_shape_mc_tasks_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">hist_weight_mc_tasks_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">&gt;&gt;</span> <span class="n">merge_hist_all_mc_tasks_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="n">merge_hist_shape_mc_tasks_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">hist_weight_mc_tasks_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">&gt;&gt;</span> <span class="n">merge_hist_all_mc_tasks_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal_options</span><span class="p">)):</span>
+    <span class="n">perpare_dir</span> <span class="o">&gt;&gt;</span> <span class="n">scatter_signal_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">generate_signal_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">merge_root_signal_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">select_signal_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">hist_weight_signal_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">merge_hist_all_signal_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_options</span><span class="p">)):</span>
+    <span class="n">perpare_dir</span> <span class="o">&gt;&gt;</span> <span class="n">scatter_data_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">generate_data_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">merge_root_data_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">merge_root_data_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">data_select_signal_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">data_hist_signal_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">merge_root_data_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">data_select_control_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">data_hist_control_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="p">[</span><span class="n">data_hist_signal_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">data_hist_control_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&gt;&gt;</span> <span class="n">merge_hist_all_data_tasks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="n">merge_hist_all_mc_tasks_list</span> <span class="o">&gt;&gt;</span> <span class="n">merge_hist_all</span>
+<span class="n">merge_hist_all_signal_tasks_list</span> <span class="o">&gt;&gt;</span> <span class="n">merge_hist_all</span>
+<span class="n">merge_hist_all_data_tasks_list</span> <span class="o">&gt;&gt;</span> <span class="n">merge_hist_all</span>
+<span class="n">merge_hist_all</span> <span class="o">&gt;&gt;</span> <span class="n">makews</span> <span class="o">&gt;&gt;</span> <span class="n">plot</span>
+</pre></div>
+</td></tr></tbody></table>
+  </div>
+
+      </div>
+    </div>
+
+    
+  
+    
+    <footer class="footer">
+      <div class="container">
+        <div>
+          Version: <a href="https://pypi.python.org/pypi/apache-airflow/2.3.4" target="_blank" data-original-title="" title="">v2.3.4</a>
+          <br>Git Version: <strong>.release:2.3.4+88b274c95b212b541ba19918880ae425856212be</strong>
+        </div>
+        <div></div>
+      </div>
+    </footer>
+  
+
+
+
+    
+  
+  
+      <script src="BSM-Search%20-%20Code%20-%20Airflow_files/bootstrap.min.js"></script>
+      <script src="BSM-Search%20-%20Code%20-%20Airflow_files/bootstrap-datepicker.js"></script>
+      <script src="BSM-Search%20-%20Code%20-%20Airflow_files/select2.js"></script>
+      <script src="BSM-Search%20-%20Code%20-%20Airflow_files/ab.js"></script>
+    
+
+  <script>
+    // below variables are used in main.js
+    // keep as var, changing to const or let breaks other code
+    var Airflow = {
+      serverTimezone: 'UTC',
+      defaultUITimezone: 'UTC',
+    };
+    var hostName = 'abd';
+    var csrfToken = 'IjQxMTJlZGI5N2JlOTJjYjYwOWJiZjhkM2Q0M2Q0ZWM4ZGU0NmU3NGEi.Y_qqvg.8vU5N2DeU9920MenegWvowy5Gsw';
+    $('time[title]').tooltip();
+  </script>
+  <script src="BSM-Search%20-%20Code%20-%20Airflow_files/moment.dae03602a1cb62165b62.js"></script>
+  <script src="BSM-Search%20-%20Code%20-%20Airflow_files/main.1752c6e8005878f87b5e.js"></script>
+  <script src="BSM-Search%20-%20Code%20-%20Airflow_files/bootstrap-datetimepicker.min.js"></script>
+  <script src="BSM-Search%20-%20Code%20-%20Airflow_files/bootstrap3-typeahead.min.js"></script>
+
+  
+
+  <script src="BSM-Search%20-%20Code%20-%20Airflow_files/dagCode.d5afbf2ada8745094a46.js"></script>
+
+
+    
+    
+
+    
+  
+    
+  <script src="BSM-Search%20-%20Code%20-%20Airflow_files/dag.2f89789a67694b2e47c5.js"></script>
+  <script>
+    // Tests rely on confirmDeleteDag to be in the html
+    function confirmDeleteDag(link, id) {
+      if (confirm(`Are you sure you want to delete '${id}' now?\n\
+        This option will delete ALL metadata, DAG runs, etc.\n\
+        EXCEPT Log.\n\
+        This cannot be undone.`)) {
+        postAsForm(link.href, {});
+      }
+      return false;
+    }
+  </script>
+
+  
+</body></html>

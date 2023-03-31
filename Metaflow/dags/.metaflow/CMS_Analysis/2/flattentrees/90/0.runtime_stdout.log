@@ -1,0 +1,16 @@
+[MFLOG|0|2023-03-02T06:36:36.785441Z|runtime|c2b300f8-e261-4dd6-a59d-147b9c9ee165]The command is: 
+[MFLOG|0|2023-03-02T06:36:38.757848Z|runtime|5c6cf0a8-12eb-49ae-8f01-f6c919c04908] 
+[MFLOG|0|2023-03-02T06:36:38.758427Z|runtime|25c2f7cc-4c79-4f96-954d-a38684845d68]        if ! docker stop python-19419 && ! docker rm python-19419; then
+[MFLOG|0|2023-03-02T06:36:38.758890Z|runtime|c4246fe8-8c60-4b58-9f38-539c50ba672a]            echo "some_command returned an error"
+[MFLOG|0|2023-03-02T06:36:38.759225Z|runtime|7f327f04-4ef9-4577-b69d-add4c4aeb522]        else
+[MFLOG|0|2023-03-02T06:36:38.759532Z|runtime|d3b4e4c2-c9ae-4fad-b2c4-60b24e4bc3f5]            docker stop python-19419 && docker rm python-19419
+[MFLOG|0|2023-03-02T06:36:38.759841Z|runtime|0cde6edf-9a3a-4b7d-8c9c-f39988132d17]        fi &&         docker run         -i         -d         --name python-19419         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19419 &&         docker exec python-19419 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19419 &&         docker stop python-19419 &&         docker rm python-19419
+[MFLOG|0|2023-03-02T06:36:38.761842Z|runtime|46e4fd31-eeec-45f5-921c-c7e1f155d7f6]        
+[MFLOG|0|2023-03-02T06:36:38.762056Z|runtime|751abb61-fa54-4885-bbed-3a1feeea438e]The output is: 
+[MFLOG|0|2023-03-02T06:36:38.762195Z|runtime|f3896376-cb3a-40f3-9d3e-be1c955bfc50] some_command returned an error
+[MFLOG|0|2023-03-02T06:36:38.762953Z|runtime|32401e95-4c7f-41e0-96f1-42ce5b23c427]ed0287db2c8527f31c0f977b81355bcbcec64518895d9058bfa3527c2f834c47
+[MFLOG|0|2023-03-02T06:36:38.763116Z|runtime|84a898fa-452e-4aaf-ade9-39752cd7c3a2]python-19419
+[MFLOG|0|2023-03-02T06:36:38.763250Z|runtime|10ef9bb1-c1f8-4e99-ab03-be3f7ad333e1]python-19419
+[MFLOG|0|2023-03-02T06:36:38.763371Z|runtime|df48171d-de40-4ff2-83dd-f464401156a7]python-19419
+[MFLOG|0|2023-03-02T06:36:38.763480Z|runtime|8d74ae3b-abc6-4252-a91e-0b9de1be2d31]
+[MFLOG|0|2023-03-02T06:36:38.763591Z|runtime|c8757966-2db9-4a61-978d-4f60d9107b8e]Return Code: 0

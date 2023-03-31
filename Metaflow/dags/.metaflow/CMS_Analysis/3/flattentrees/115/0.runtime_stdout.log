@@ -1,0 +1,11 @@
+[MFLOG|0|2023-02-26T07:16:39.450709Z|runtime|5ea07438-a16b-4729-a806-0470e0931d90]The command is: 
+[MFLOG|0|2023-02-26T07:16:41.057382Z|runtime|25703d01-fe19-45ef-a7bd-9bb93095ee2a] 
+[MFLOG|0|2023-02-26T07:16:41.057689Z|runtime|3dcc539e-1760-40e2-9f9e-d98456123edd]        docker run         -i         -d         --name python-19999         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19999 &&         docker exec python-19999 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19999 &&         docker stop python-19999 &&         docker rm python-19999
+[MFLOG|0|2023-02-26T07:16:41.057861Z|runtime|4bbe93a3-1f36-4733-8133-1d4b14b61cea]        
+[MFLOG|0|2023-02-26T07:16:41.058008Z|runtime|a1e53068-8bed-476a-8839-ddb12055283c]The output is: 
+[MFLOG|0|2023-02-26T07:16:41.059936Z|runtime|9a452286-9ab9-453c-9232-a50289715f28] 9b3a65dea223e3454a6f63a8e57d0d41d5be8419a8ea1ee4ebbc46dad22d0c1d
+[MFLOG|0|2023-02-26T07:16:41.060138Z|runtime|917b54fa-4000-48ff-ae38-ceec48e56a18]python-19999
+[MFLOG|0|2023-02-26T07:16:41.060296Z|runtime|c4493136-26c2-4312-a19d-a38a357e726c]python-19999
+[MFLOG|0|2023-02-26T07:16:41.060490Z|runtime|9c6ee103-fae2-4f9b-9814-2e05bcf9ce68]python-19999
+[MFLOG|0|2023-02-26T07:16:41.060658Z|runtime|092eb863-45c4-4654-996e-d84c66afd17f]
+[MFLOG|0|2023-02-26T07:16:41.060880Z|runtime|e17c84e4-fbec-473c-abd6-cc7633472ae9]Return Code: 0

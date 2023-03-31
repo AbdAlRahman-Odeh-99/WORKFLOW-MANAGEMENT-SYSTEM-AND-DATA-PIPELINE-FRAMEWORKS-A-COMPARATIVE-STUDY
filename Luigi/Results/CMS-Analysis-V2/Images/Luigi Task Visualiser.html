@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+        <title>Luigi Task Visualiser</title>
+        <link href="Luigi%20Task%20Visualiser_files/luigi.css" rel="stylesheet">
+        <script src="Luigi%20Task%20Visualiser_files/jquery-1.10.0.min.js"></script>
+        <link href="Luigi%20Task%20Visualiser_files/bootstrap.min.css" rel="stylesheet">
+        <link href="Luigi%20Task%20Visualiser_files/bootstrap-theme.min.css" rel="stylesheet">
+        <script src="Luigi%20Task%20Visualiser_files/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="Luigi%20Task%20Visualiser_files/tipsy.css">
+        <link href="Luigi%20Task%20Visualiser_files/AdminLTE.min.css" rel="stylesheet">
+        <link href="Luigi%20Task%20Visualiser_files/font-awesome.min.css" rel="stylesheet">
+        <link href="Luigi%20Task%20Visualiser_files/skin-green-light.min.css" rel="stylesheet">
+        <link href="Luigi%20Task%20Visualiser_files/jquery.dataTables.min.css" rel="stylesheet">
+        <link href="Luigi%20Task%20Visualiser_files/bootstrap-toggle.min.css" rel="stylesheet">
+        <script src="Luigi%20Task%20Visualiser_files/d3.min.js" charset="utf-8"></script>
+        <script src="Luigi%20Task%20Visualiser_files/dagre-d3.min.js"></script>
+        <script src="Luigi%20Task%20Visualiser_files/mustache.js"></script>
+        <script src="Luigi%20Task%20Visualiser_files/luigi.js"></script>
+        <script src="Luigi%20Task%20Visualiser_files/graph.js"></script>
+        <script src="Luigi%20Task%20Visualiser_files/visualiserApp.js"></script>
+        <script src="Luigi%20Task%20Visualiser_files/tipsy.js"></script>
+        <script src="Luigi%20Task%20Visualiser_files/jquery.slimscroll.min.js"></script>
+        <script src="Luigi%20Task%20Visualiser_files/app.min.js"></script>
+        <script src="Luigi%20Task%20Visualiser_files/jquery.dataTables.min.js"></script>
+        <script src="Luigi%20Task%20Visualiser_files/URI.js"></script>
+        <script src="Luigi%20Task%20Visualiser_files/bootstrap-toggle.min.js"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script type="text/template" name="actionsTemplate">
+            <div class="span2">
+                <a href="#tab=graph&taskId={{encodedTaskId}}&hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                {{#error}}<button class="btn btn-danger btn-xs showError" title="Show error" data-toggle="tooltip"><i class="fa fa-bug"></i></button>{{/error}}
+                {{#error}}<button class="btn btn-warning btn-xs forgiveFailures" title="Forgive failures" data-toggle="tooltip"><i class="fa fa-ambulance"></i></button>{{/error}}
+                {{#re_enable}}<button class="btn btn-danger btn-xs showError" title="Show error" data-toggle="tooltip"><i class="fa fa-bug"></i></button>{{/re_enable}}
+                {{#re_enable}}<a class="btn btn-warning btn-xs re-enable-button" title="Re-enable" data-toggle="tooltip" data-task-id="{{taskId}}">Re-enable</a>{{/re_enable}}
+                {{#mark_as_done}}<a class="btn btn-success btn-xs markAsDone" title="Mark as done" data-toggle="tooltip" data-task-id="{{taskId}}"><i class="fa fa-fast-forward"></i></a>{{/mark_as_done}}
+                {{#trackingUrl}}<a target="_blank" href="{{trackingUrl}}" class="btn btn-primary btn-xs" title="Track Progress" data-toggle="tooltip"><i class="fa fa-eye"></i></a>{{/trackingUrl}}
+                {{#statusMessage}}<button class="btn btn-primary btn-xs statusMessage" title="Status message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}"><i class="fa fa-comment"></i></button>{{/statusMessage}}
+                {{^statusMessage}}
+                  {{#progressPercentage}}<button class="btn btn-primary btn-xs statusMessage" title="Status message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}"><i class="fa fa-comment"></i></button>
+                  {{/progressPercentage}}
+                {{/statusMessage}}
+                {{#acceptsMessages}}<button class="btn btn-default btn-xs schedulerMessage" title="Send message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}" data-worker="{{workerIdRunning}}"><i class="fa fa-paper-plane"></i></button>{{/acceptsMessages}}
+            </div>
+        </script>
+        <script type="text/template" name="errorTemplate">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Traceback for {{displayName}}</h4>
+              </div>
+              <div class="modal-body">
+                <pre class="pre-scrollable">{{error}}</pre>
+                Command to re-run:
+                <pre class="pre-scrollable">luigi --module {{taskModule}} {{taskFamily}} {{taskParams}}</pre>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </script>
+        <script type="text/template" name="statusMessageTemplate">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Status message for {{displayName}}</h4>
+              </div>
+              <div class="modal-body">
+                <pre class="pre-scrollable">{{statusMessage}}</pre>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
+                  {{progressPercentage}}%
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </script>
+        <script type="text/template" name="schedulerMessageTemplate">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Send message to {{displayName}}</h4>
+              </div>
+              <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="schedulerMessageInput">Message:</label>
+                      <input type="text" class="form-control" id="schedulerMessageInput" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <input type="checkbox" class="form-check-input" id="schedulerMessageAwaitResponse">
+                      <label class="form-check-label" for="schedulerMessageAwaitResponse">Await response</label>
+                    </div>
+                  </form>
+                  <div class="form-group" id="schedulerMessageResponse" style="display: none;">
+                    <hr />
+                    <label>Response:</label>
+                    <pre class="pre-scrollable"><i class="fa fa-spinner fa-pulse" id="schedulerMessageSpinner"></i><div></div></pre>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <button type="button" id="schedulerMessageButton" data-dismiss="modal" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+          </div>
+        </script>
+        <script type="text/template" name="workerTemplate">
+            <div class="modal fade" id="setWorkersModal" tabindex="-1" role="dialog" aria-labelledby="setWorkersLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="setWorkersLabel">Set workers</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="setWorkersInput">New number of workers:</label>
+                        <input type="text" class="form-control" id="setWorkersInput" placeholder="positive number">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="setWorkersButton" data-dismiss="modal" class="btn btn-primary">Set</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="disableWorkerModal" tabindex="-1" role="dialog" aria-labelledby="disableWorkerLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="disiableWorkerLabel">Disable worker?</h4>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to disable this worker?
+                    <p>
+                        A disabled worker will finish its existing tasks but not start new ones.
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="disableWorkerButton" data-dismiss="modal" class="btn btn-danger">Disable Worker</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{#workerList}}
+            {{#is_disabled}}
+            <div class="box box-solid box-default">
+            {{/is_disabled}}
+            {{^is_disabled}}
+            <div class="box">
+            {{/is_disabled}}
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{name}}</h3>
+                    <div class="box-tools pull-right">
+                      {{#num_unread_rpc_messages}}
+                      <span class="label-unread-worker-messages">{{num_unread_rpc_messages}} unread message(s)</span>
+                      {{/num_unread_rpc_messages}}
+                      {{^is_disabled}}
+                      {{#workers}}
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default dropdown-toggle btn-set-workers" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Workers: <span id="label-n-workers" data-worker="{{name}}">{{workers}}</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#" id="btn-increment-workers" data-worker="{{name}}">
+                            <i class="glyphicon glyphicon-plus"></i> Add 1 worker
+                          </a></li>
+                          <li><a href="#" id="btn-decrement-workers" data-worker="{{name}}">
+                            <i class="glyphicon glyphicon-minus"></i> Remove 1 worker
+                          </a></li>
+                          <li><a href="#" id="btn-set-workers" data-toggle="modal" data-target="#setWorkersModal" data-worker="{{name}}">
+                            <i class="glyphicon glyphicon-pencil"></i> Set workers ...
+                          </a></li>
+                        </ul>
+                      </div>
+                      {{/workers}}
+                      <div class="button-tooltip" data-toggle="tooltip" title="Disable Worker">
+                        <button type="button" class="btn btn-sm btn-danger btn-disable-worker" data-toggle="modal" data-target="#disableWorkerModal" data-worker="{{name}}">
+                          <i class="fa fa-fire-extinguisher"></i>
+                        </button>
+                      </div>
+                      {{/is_disabled}}
+                    </div>
+                </div>
+                <div class="box-body">
+                    Started: {{start_time}}<br>
+                    Last Checkin: {{active}}<br>
+                    Root Task: <a href="#tab=graph&taskId={{{encoded_first_task}}}&hideDone=1">{{first_task_display_name}}</a><br>
+                    Running: {{num_running}}<br>
+                    Pending: {{num_pending}}<br>
+                    Unique Pending: {{num_uniques}}<br>
+                    {{#is_disabled}}
+                    This worker is <b>disabled</b>. It will not start new tasks.<br>
+                    {{/is_disabled}}
+
+                    {{#num_running}}
+                    <hr>
+                    <table class="table table-striped worker-table">
+                      <thead>
+                        <th>Name</th>
+                        <th>Priority</th>
+                        <th>Resources</th>
+                        <th>Progress</th>
+                        <th>Time</th>
+                        <th>Actions</th>
+                      </thead>
+                      <tbody>
+                      {{#tasks}}
+                      <tr>
+                        <td>{{displayName}}</td>
+                        <td>{{priority}}</td>
+                        <td>{{resources}}</td>
+                        <td>
+                          {{#progressPercentage}}
+                          <div class="progress">
+                            <div class="progress-bar taskProgressBar" role="progressbar" data-task-id="{{taskId}}" style="width: {{progressPercentage}}%" aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100">{{progressPercentage}}%</div>
+                          </div>
+                          {{/progressPercentage}}
+                          {{^progressPercentage}}-{{/progressPercentage}}
+                        </td>
+                        <td>{{displayTime}}</td>
+                        <td>
+                          <a href="#tab=graph&taskId={{encodedTaskId}}" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip" data-action="drawGraph"><i class="fa fa-sitemap"/></a>
+                          {{#trackingUrl}}<a target="_blank" href="{{trackingUrl}}" class="btn btn-primary btn-xs" title="Track Progress" data-toggle="tooltip"><i class="fa fa-eye"></i></a>{{/trackingUrl}}
+                          {{#statusMessage}}<button class="btn btn-primary btn-xs statusMessage" title="Status message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}"><i class="fa fa-comment"></i></button>{{/statusMessage}}
+                          {{^statusMessage}}
+                            {{#progressPercentage}}<button class="btn btn-primary btn-xs statusMessage" title="Status message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}"><i class="fa fa-comment"></i></button>
+                            {{/progressPercentage}}
+                          {{/statusMessage}}
+                          {{#acceptsMessages}}<button class="btn btn-success btn-xs schedulerMessage" title="Send message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}" data-worker="{{workerIdRunning}}"><i class="fa fa-paper-plane"></i></button>
+                          {{/acceptsMessages}}
+                        </td>
+                      </tr>
+                      {{/tasks}}
+                      {{/num_running}}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+            {{/workerList}}
+        </script>
+
+        <script type="text/template" name="resourceTemplate">
+        <div class="modal fade" id="setResourcesModal" tabindex="-1" role="dialog" aria-labelledby="setResourcesLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="setResourcesLabel">Set resources</h4>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="setResourcesInput">New number of resources:</label>
+                    <input type="text" class="form-control" id="setResourcesInput" placeholder="non-negative integer">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" id="setResourcesButton" data-dismiss="modal" class="btn btn-primary">Set</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{#resources}}
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{name}}</h3>
+                <div class="box-tools pull-right">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-default dropdown-toggle btn-set-resources" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Change resources
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="#" class="btn-increment-resources" data-resource="{{name}}">
+                          <i class="glyphicon glyphicon-plus"></i> Add 1 resource
+                        </a></li>
+                        <li><a href="#" class="btn-decrement-resources" data-resource="{{name}}">
+                          <i class="glyphicon glyphicon-minus"></i> Remove 1 resource
+                        </a></li>
+                        <li><a href="#" class="btn-set-resources" data-toggle="modal" data-target="#setResourcesModal" data-resource="{{name}}">
+                          <i class="glyphicon glyphicon-pencil"></i> Set resources ...
+                        </a></li>
+                      </ul>
+                    </div>
+                    {{#num_consumer}}
+                    <i class="fa fa-navicon resources-collapse" data-target="#collapse-{{name}}"></i>
+                    {{/num_consumer}}
+                </div><!-- /.box-tools -->
+            </div><!-- /.box-header -->
+            <div class="box-body" id="{{name}}-resource-box">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-{{bar_type}}" style="width: {{percent_used}}%">
+                        <b>{{num_used}}/{{num_total}}</b>
+                    </div>
+                </div>
+
+                {{#num_consumer}}
+                <div class="collapse resource-box" id="collapse-{{name}}" data-resource="{{name}}">
+                    <table class="table table-striped worker-table">
+                        <thead>
+                            <th>Name</th>
+                            <th>Priority</th>
+                            <th>Time</th>
+                            <th>Actions</th>
+                        </thead>
+                        <tbody>
+                            {{#tasks}}
+                            <tr>
+                                <td>{{displayName}}</td>
+                                <td>{{priority}}</td>
+                                <td>{{displayTime}}</td>
+                                <td><a href="#tab=graph&taskId={{taskId}}&hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip" data-action="drawGraph"><i class="fa fa-sitemap"/></a></td>
+                            </tr>
+                            {{/tasks}}
+                        </tbody>
+                    </table>
+                </div>
+                {{/num_consumer}}
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+        {{/resources}}
+        </script>
+
+        <script type="text/template" name="sidebarTemplate">
+            <ul class="sidebar-menu">
+                <li class="header">TASK FAMILIES <span class="badge" id="clear-task-filter">Clear selection</span></li>
+                {{#tasks}}
+                <li>
+                  <a href="#" class="sidebar-folder">{{name}}</a>
+                  <ul class="sidebar-menu" style="display: none">
+                    {{#tasks}}
+                    <li data-task="{{name}}"><a href="#"><span class="badge">{{count}}</span> {{name}}</a>
+                    </li>
+                    {{/tasks}}
+                  </ul>
+                </li>
+                {{/tasks}}
+            </ul>
+        </script>
+
+        <script type="text/template" name="warningsTemplate">
+           <div class="callout callout-danger">
+            <p>
+              Too many {{#missingCategories}} <strong>{{name}}</strong>, {{/missingCategories}}  tasks to display.
+            </p>
+            <p>
+              Task family counts only include displayed tasks.  Use <strong>Filter on Server</strong> to constrain search.
+            </p>
+          </div>
+        </script>
+
+        <script type="text/template" name="currentFilterTemplate">
+          <div class="callout callout-info">
+            Displaying {{#catNames}}<strong>{{ name }}</strong>, {{/catNames}} tasks
+            {{#taskFamily}}of family <strong>{{taskFamily}}</strong>{{/taskFamily}} {{#tableFilter}}filtered by <strong>"{{tableFilter}}"</strong>{{/tableFilter}}.
+          </div>
+        </script>
+
+        <script type="text/template" name="topNavbarItem">
+          <li>
+            <a class="js-nav-link" href="{{href}}" {{#dataTab}}data-tab="{{dataTab}}"{{/dataTab}}>
+              {{label}}
+            </a>
+          </li>
+        </script>
+
+    </head>
+    <body class="skin-green-light fixed">
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div>
+        <div class="modal fade" id="statusMessageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div>
+        <div class="modal fade" id="schedulerMessageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div>
+
+        <div class="wrapper">
+            <div class="main-header">
+                <a class="logo" href="#">Luigi Task Status</a>
+                <nav class="navbar navbar-static-top">
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav" id="topNavbar">
+                                <li class="active"><a class="js-nav-link" href="#tab=tasks" data-tab="taskList">Task List</a></li>
+                                <li><a class="js-nav-link" href="#tab=graph" data-tab="dependencyGraph">Dependency Graph</a></li>
+                                <li><a class="js-nav-link" href="#tab=workers" data-tab="workerList">Workers</a></li>
+                                <li><a class="js-nav-link" href="#tab=resource" data-tab="resourceList">Resources</a></li>
+                            </ul>
+                            <form class="navbar-form navbar-right" id="pause-form">
+                            <div class="toggle btn btn-success" data-toggle="toggle" style="width: 88px; height: 34px;"><input id="pause" type="checkbox" checked="checked" data-toggle="toggle"><div class="toggle-group"><label class="btn btn-success toggle-on">Running</label><label class="btn btn-danger active toggle-off">Paused</label><span class="toggle-handle btn btn-default"></span></div></div></form>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="main-sidebar">
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 556px;"><div class="sidebar" id="familySidebar" style="height: 556px; overflow: hidden; width: auto;"><div>
+            <ul class="sidebar-menu">
+                <li class="header">TASK FAMILIES <span class="badge" id="clear-task-filter">Clear selection</span></li>
+                <li>
+                  <a href="#" class="sidebar-folder">CMS-Analysis</a>
+                  <ul class="sidebar-menu" style="display: none">
+                    <li data-task="CMS-Analysis.FileList"><a href="#"><span class="badge">12</span> CMS-Analysis.FileList</a>
+                    </li>
+                    <li data-task="CMS-Analysis.Flattentrees"><a href="#"><span class="badge">12</span> CMS-Analysis.Flattentrees</a>
+                    </li>
+                    <li data-task="CMS-Analysis.PrepareCoffea"><a href="#"><span class="badge">1</span> CMS-Analysis.PrepareCoffea</a>
+                    </li>
+                    <li data-task="CMS-Analysis.PrepareDirectory"><a href="#"><span class="badge">1</span> CMS-Analysis.PrepareDirectory</a>
+                    </li>
+                    <li data-task="CMS-Analysis.PullImages"><a href="#"><span class="badge">1</span> CMS-Analysis.PullImages</a>
+                    </li>
+                    <li data-task="CMS-Analysis.RunCoffea"><a href="#"><span class="badge">1</span> CMS-Analysis.RunCoffea</a>
+                    </li>
+                    <li data-task="CMS-Analysis.Runpoet"><a href="#"><span class="badge">12</span> CMS-Analysis.Runpoet</a>
+                    </li>
+                  </ul>
+                </li>
+            </ul>
+        </div></div><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.2); width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 556px;"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+            </div>
+
+
+        <div class="content-wrapper" style="min-height: 606px;">
+          <div class="content">
+
+        <div class="tab-content">
+            <section id="taskList" class="container-fluid tab-pane active">
+                <div class="row">
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box status-info" data-color="yellow" data-category="PENDING" id="PENDING_info">
+                      <span class="info-box-icon bg-yellow"><i class="fa fa-pause"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Pending Tasks</span>
+                        <span class="info-box-number">0</span>
+                      </div><!-- /.info-box-content -->
+                    </div><!-- /.info-box -->
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box status-info" data-color="aqua" data-category="RUNNING" id="RUNNING_info">
+                      <span class="info-box-icon bg-aqua"><i class="fa fa-play"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Running Tasks</span>
+                        <span class="info-box-number">0</span>
+                      </div><!-- /.info-box-content -->
+                    </div><!-- /.info-box -->
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box status-info" data-color="purple" data-category="BATCH_RUNNING" id="BATCH_RUNNING_info">
+                      <span class="info-box-icon bg-purple"><i class="fa fa-play"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Batch Running Tasks</span>
+                        <span class="info-box-number">0</span>
+                      </div><!-- /.info-box-content -->
+                    </div><!-- /.info-box -->
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box status-info" data-color="green" data-category="DONE" id="DONE_info">
+                      <span class="info-box-icon bg-green"><i class="fa fa-check"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Done Tasks</span>
+                        <span class="info-box-number">40</span>
+                      </div><!-- /.info-box-content -->
+                    </div><!-- /.info-box -->
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box status-info" data-color="red" data-category="FAILED" id="FAILED_info">
+                      <span class="info-box-icon bg-red"><i class="fa fa-times"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Failed Tasks</span>
+                        <span class="info-box-number">0</span>
+                      </div><!-- /.info-box-content -->
+                    </div><!-- /.info-box -->
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box status-info" data-color="maroon" data-category="UPSTREAM_FAILED" id="UPSTREAM_FAILED_info">
+                      <span class="info-box-icon bg-maroon"><i class="fa fa-warning"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Upstream Failure</span>
+                        <span class="info-box-number">0</span>
+                      </div><!-- /.info-box-content -->
+                    </div><!-- /.info-box -->
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box status-info" data-color="gray" data-category="DISABLED" id="DISABLED_info">
+                      <span class="info-box-icon bg-gray"><i class="fa fa-minus-circle"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Disabled Tasks</span>
+                        <span class="info-box-number">0</span>
+                      </div><!-- /.info-box-content -->
+                    </div><!-- /.info-box -->
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box status-info" data-color="gray" data-category="UPSTREAM_DISABLED" id="UPSTREAM_DISABLED_info">
+                      <span class="info-box-icon bg-gray"><i class="fa fa-warning"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Upstream Disabled</span>
+                        <span class="info-box-number">0</span>
+                      </div><!-- /.info-box-content -->
+                    </div><!-- /.info-box -->
+                  </div>
+
+                </div>
+                <div class="container-fluid infoBar">
+                  <div id="currentFilter" class="col-md-6 col-sm-12 col-xs-12"></div>
+                  <div id="warnings" class="col-md-6 col-sm-12 col-xs-12"></div>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <div id="checkboxes"></div>
+                </div>
+
+                <div id="taskTable_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="taskTable_length"><label>Show <select name="taskTable_length" aria-controls="taskTable" class=""><option value="10">10</option><option value="25">25</option><option value="50" selected="selected">50</option><option value="100">100</option></select> entries</label></div><div id="serverSide"><form class="form-inline"><label class="btn btn-default" for="serverSideCheckbox">Filter on Server <input type="checkbox" id="serverSideCheckbox"></label></form></div><div id="taskTable_filter" class="dataTables_filter"><label>Filter table:<input type="search" class="" placeholder="" aria-controls="taskTable"></label></div><table id="taskTable" class="table table-striped dataTable no-footer" role="grid" aria-describedby="taskTable_info" style="width: 1075px;">
+                  <thead>
+                    <tr role="row"><th class="sorting" tabindex="0" aria-controls="taskTable" rowspan="1" colspan="1" style="width: 71px;" aria-label=": activate to sort column ascending"><!-- Category --></th><th class="sorting" tabindex="0" aria-controls="taskTable" rowspan="1" colspan="1" style="width: 177px;" aria-label="Name: activate to sort column ascending">Name</th><th class="sorting" tabindex="0" aria-controls="taskTable" rowspan="1" colspan="1" style="width: 196px;" aria-label="Details: activate to sort column ascending">Details</th><th class="sorting" tabindex="0" aria-controls="taskTable" rowspan="1" colspan="1" style="width: 48px;" aria-label="Priority: activate to sort column ascending">Priority</th><th class="sorting" tabindex="0" aria-controls="taskTable" rowspan="1" colspan="1" style="width: 162px;" aria-label="Time: activate to sort column ascending">Time</th><th class="details-control sorting_disabled" rowspan="1" colspan="1" style="width: 206px;" aria-label="Actions">Actions</th></tr></thead>
+                <tbody><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.PullImages</td><td><div></div></td><td>0</td><td>3/1/2023, 9:25:10 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.PullImages__99914b932b&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.PrepareDirectory</td><td><div></div></td><td>0</td><td>3/1/2023, 9:25:11 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.PrepareDirectory__99914b932b&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">19999</span></div></td><td>0</td><td>3/1/2023, 9:25:16 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_19999_4a1583cde2&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">19407</span></div></td><td>0</td><td>3/1/2023, 9:25:17 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_19407_97b7b844ea&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">19985</span></div></td><td>0</td><td>3/1/2023, 9:25:18 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_19985_5cf8600e19&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">19419</span></div></td><td>0</td><td>3/1/2023, 9:25:20 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_19419_85d11df2f3&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">19412</span></div></td><td>0</td><td>3/1/2023, 9:25:22 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_19412_9a89f052be&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">24120</span></div></td><td>0</td><td>3/1/2023, 9:25:24 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_24120_8607a67266&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">19949</span></div></td><td>0</td><td>3/1/2023, 9:25:25 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_19949_d2e3e091bb&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">19980</span></div></td><td>0</td><td>3/1/2023, 9:25:28 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_19980_1241225915&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">19983</span></div></td><td>0</td><td>3/1/2023, 9:25:29 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_19983_e1988284ca&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">20548</span></div></td><td>0</td><td>3/1/2023, 9:25:30 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_20548_7d08a3d4ee&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">24119</span></div></td><td>0</td><td>3/1/2023, 9:25:32 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_24119_7c5f423f19&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.FileList</td><td><div><span class="param-name">recid</span>=<span class="param-value">19397</span></div></td><td>0</td><td>3/1/2023, 9:25:33 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.FileList_19397_1c49acf92b&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">24120</span></div></td><td>0</td><td>3/1/2023, 10:02:24 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_24120_8607a67266&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">19949</span></div></td><td>0</td><td>3/1/2023, 10:35:39 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_19949_d2e3e091bb&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">19412</span></div></td><td>0</td><td>3/1/2023, 10:41:14 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_19412_9a89f052be&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">19407</span></div></td><td>0</td><td>3/1/2023, 11:23:36 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_19407_97b7b844ea&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">19999</span></div></td><td>0</td><td>3/1/2023, 11:36:10 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_19999_4a1583cde2&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">19985</span></div></td><td>0</td><td>3/1/2023, 11:43:18 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_19985_5cf8600e19&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">19419</span></div></td><td>0</td><td>3/1/2023, 11:56:22 AM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_19419_85d11df2f3&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">20548</span></div></td><td>0</td><td>3/1/2023, 12:42:11 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_20548_7d08a3d4ee&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">19983</span></div></td><td>0</td><td>3/1/2023, 12:51:43 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_19983_e1988284ca&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">19397</span></div></td><td>0</td><td>3/1/2023, 1:06:28 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_19397_1c49acf92b&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">24119</span></div></td><td>0</td><td>3/1/2023, 1:30:51 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_24119_7c5f423f19&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Runpoet</td><td><div><span class="param-name">recid</span>=<span class="param-value">19980</span></div></td><td>0</td><td>3/1/2023, 1:59:40 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Runpoet_19980_1241225915&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">20548</span></div></td><td>0</td><td>3/1/2023, 1:59:58 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_20548_7d08a3d4ee&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">19419</span></div></td><td>0</td><td>3/1/2023, 1:59:59 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_19419_85d11df2f3&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">19397</span></div></td><td>0</td><td>3/1/2023, 1:59:59 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_19397_1c49acf92b&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">24119</span></div></td><td>0</td><td>3/1/2023, 2:00:06 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_24119_7c5f423f19&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">19412</span></div></td><td>0</td><td>3/1/2023, 2:00:16 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_19412_9a89f052be&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">19949</span></div></td><td>0</td><td>3/1/2023, 2:00:16 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_19949_d2e3e091bb&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">19980</span></div></td><td>0</td><td>3/1/2023, 2:00:21 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_19980_1241225915&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">19407</span></div></td><td>0</td><td>3/1/2023, 2:00:23 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_19407_97b7b844ea&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">19985</span></div></td><td>0</td><td>3/1/2023, 2:00:33 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_19985_5cf8600e19&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">19983</span></div></td><td>0</td><td>3/1/2023, 2:00:33 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_19983_e1988284ca&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">24120</span></div></td><td>0</td><td>3/1/2023, 2:00:36 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_24120_8607a67266&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.Flattentrees</td><td><div><span class="param-name">recid</span>=<span class="param-value">19999</span></div></td><td>0</td><td>3/1/2023, 2:00:39 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.Flattentrees_19999_4a1583cde2&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="odd"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.PrepareCoffea</td><td><div></div></td><td>0</td><td>3/1/2023, 2:00:52 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.PrepareCoffea__99914b932b&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr><tr role="row" class="even"><td><span class="status-icon bg-green"><i class="fa fa-check"></i></span> DONE</td><td>CMS-Analysis.RunCoffea</td><td><div></div></td><td>0</td><td>3/1/2023, 2:03:47 PM</td><td class=" details-control">
+            <div class="span2">
+                <a href="#tab=graph&amp;taskId=CMS-Analysis.RunCoffea__99914b932b&amp;hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                                  
+            </div>
+        </td></tr></tbody></table><div class="dataTables_info" id="taskTable_info" role="status" aria-live="polite">Showing 1 to 40 of 40 entries</div><div class="dataTables_paginate paging_simple_numbers" id="taskTable_paginate"><a class="paginate_button previous disabled" aria-controls="taskTable" data-dt-idx="0" tabindex="0" id="taskTable_previous">Previous</a><span><a class="paginate_button current" aria-controls="taskTable" data-dt-idx="1" tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="taskTable" data-dt-idx="2" tabindex="0" id="taskTable_next">Next</a></div></div>
+
+
+            </section>
+            <section id="dependencyGraph" class="tab-pane">
+              <div class="container-fluid">
+                    <div class="form-group col-md-6 col-sm-4">
+                      <form class="form-inline" id="loadTaskForm">
+                        <input id="js-task-id" type="text" class="search-query form-control" placeholder="TaskId">
+                        <button type="submit" class="btn btn-default form-control">Show task details</button>
+                      </form>
+                    </div>
+                    <form class="form-inline" id="visForm">
+                      <div class="form-group col-md-3">
+                        <label class="btn btn-default" for="invertCheckbox">Show Upstream Dependencies
+                            <input type="checkbox" id="invertCheckbox">
+                        </label>
+                        <label class="btn btn-default" for="hideDoneCheckbox">Hide Done
+                            <input type="checkbox" id="hideDoneCheckbox">
+                        </label>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label>Visualisation Type</label>
+                        <div id="toggleVisButtons" class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default">
+                                <input type="radio" name="vis-type" value="d3"> D3
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="vis-type" value="svg"> SVG
+                            </label>
+                        </div>
+                       </div>
+                    </form>
+                </div>
+
+                <div id="searchError">
+                </div>
+                <div id="graphContainer" class="container-fluid">
+                    <h4 id="dependencyTitle"></h4>
+                    <h5>Dependency Graph</h5>
+                    <div id="graphPlaceholder"></div>
+                </div>
+            </section>
+            <section id="workerList" class="container-fluid tab-pane">
+            <div>
+            <div class="modal fade" id="setWorkersModal" tabindex="-1" role="dialog" aria-labelledby="setWorkersLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="setWorkersLabel">Set workers</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="setWorkersInput">New number of workers:</label>
+                        <input type="text" class="form-control" id="setWorkersInput" placeholder="positive number">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="setWorkersButton" data-dismiss="modal" class="btn btn-primary">Set</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="disableWorkerModal" tabindex="-1" role="dialog" aria-labelledby="disableWorkerLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="disiableWorkerLabel">Disable worker?</h4>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to disable this worker?
+                    <p>
+                        A disabled worker will finish its existing tasks but not start new ones.
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="disableWorkerButton" data-dismiss="modal" class="btn btn-danger">Disable Worker</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Worker(salt=7413760302, workers=4, host=abd, username=abd, pid=6152)</h3>
+                    <div class="box-tools pull-right">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default dropdown-toggle btn-set-workers" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Workers: <span id="label-n-workers" data-worker="Worker(salt=7413760302, workers=4, host=abd, username=abd, pid=6152)">4</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#" id="btn-increment-workers" data-worker="Worker(salt=7413760302, workers=4, host=abd, username=abd, pid=6152)">
+                            <i class="glyphicon glyphicon-plus"></i> Add 1 worker
+                          </a></li>
+                          <li><a href="#" id="btn-decrement-workers" data-worker="Worker(salt=7413760302, workers=4, host=abd, username=abd, pid=6152)">
+                            <i class="glyphicon glyphicon-minus"></i> Remove 1 worker
+                          </a></li>
+                          <li><a href="#" id="btn-set-workers" data-toggle="modal" data-target="#setWorkersModal" data-worker="Worker(salt=7413760302, workers=4, host=abd, username=abd, pid=6152)">
+                            <i class="glyphicon glyphicon-pencil"></i> Set workers ...
+                          </a></li>
+                        </ul>
+                      </div>
+                      <div class="button-tooltip" data-toggle="tooltip" title="Disable Worker">
+                        <button type="button" class="btn btn-sm btn-danger btn-disable-worker" data-toggle="modal" data-target="#disableWorkerModal" data-worker="Worker(salt=7413760302, workers=4, host=abd, username=abd, pid=6152)">
+                          <i class="fa fa-fire-extinguisher"></i>
+                        </button>
+                      </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    Started: 3/1/2023, 9:25:01 AM<br>
+                    Last Checkin: 3/1/2023, 2:03:47 PM<br>
+                    Root Task: <a href="#tab=graph&amp;taskId=CMS-Analysis.RunCoffea__99914b932b&amp;hideDone=1">CMS-Analysis.RunCoffea()</a><br>
+                    Running: 0<br>
+                    Pending: 0<br>
+                    Unique Pending: 0<br>
+
+                      
+                    
+                </div>
+            </div>
+        </div></section>
+            <section id="resourceList" class="tab-pane">
+            <div>
+        <div class="modal fade" id="setResourcesModal" tabindex="-1" role="dialog" aria-labelledby="setResourcesLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="setResourcesLabel">Set resources</h4>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="setResourcesInput">New number of resources:</label>
+                    <input type="text" class="form-control" id="setResourcesInput" placeholder="non-negative integer">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" id="setResourcesButton" data-dismiss="modal" class="btn btn-primary">Set</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div></section>
+        </div> <!-- /.tab-content -->
+        </div> <!-- /.content -->
+        </div> <!-- /.content-wrapper -->
+
+        </div> <!-- /.wrapper -->
+
+
+        <script>
+            visualiserApp(new LuigiAPI("../../api"));
+        </script>
+    
+
+</body></html>

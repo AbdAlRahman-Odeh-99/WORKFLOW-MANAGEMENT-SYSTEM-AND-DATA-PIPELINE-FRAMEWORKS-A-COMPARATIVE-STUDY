@@ -1,0 +1,88 @@
+[MFLOG|0|2023-03-01T22:51:17.758441Z|runtime|07b402fb-ff97-4adb-8ca6-7fd3a69523a8]The command is: 
+[MFLOG|0|2023-03-01T22:51:17.758893Z|runtime|55061cbe-5646-4d47-b42d-96482738853d] 
+[MFLOG|0|2023-03-01T22:51:17.762088Z|runtime|7d4bbcc9-b0b0-4c6d-9065-58e76e8b28c7]        if ! docker stop python-19397 && ! docker rm python-19397; then
+[MFLOG|0|2023-03-01T22:51:17.762418Z|runtime|cb211e9e-fbf5-4ee4-82f6-571c256e70ab]            echo "some_command returned an error"
+[MFLOG|0|2023-03-01T22:51:17.762720Z|runtime|d351b53c-6ec2-4b03-ba34-ddb266a3b0e8]        else
+[MFLOG|0|2023-03-01T22:51:17.763025Z|runtime|efb96c85-2323-41cd-8ba7-aaa47de4d500]            docker stop python-19397 && docker rm python-19397
+[MFLOG|0|2023-03-01T22:51:17.763331Z|runtime|80ac9e8c-24ac-4f52-bed0-b51aff575fc5]        fi &&         docker run         -i         -d         --name python-19397         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start python-19397 &&         docker exec python-19397 bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/flattentrees-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol 19397 &&         docker stop python-19397 &&         docker rm python-19397
+[MFLOG|0|2023-03-01T22:51:17.763637Z|runtime|4280f96a-6e59-45b8-823a-dc773e7c0d9a]        
+[MFLOG|0|2023-03-01T22:51:17.763928Z|runtime|4c8fbd19-f9da-45c3-8857-43f690308634]The output is: 
+[MFLOG|0|2023-03-01T22:51:17.764225Z|runtime|ab17911a-0f08-47a8-8cef-52acd9f58c76] some_command returned an error
+[MFLOG|0|2023-03-01T22:51:17.764522Z|runtime|0ad7289d-f711-4014-9834-8c4a121f906f]996eaff31eeadcb4df8670d9cf09a9966e916dd2cf985743458a572a229d419c
+[MFLOG|0|2023-03-01T22:51:17.764807Z|runtime|c3d498d7-9bab-473b-b905-c31dbb6feda8]python-19397
+[MFLOG|0|2023-03-01T22:51:17.765098Z|runtime|56d3bf41-0ab7-4deb-a78b-0ed86453b134]
+[MFLOG|0|2023-03-01T22:51:17.765846Z|runtime|8fb44e04-5d3d-425b-b13c-7b8a85ea3a36]Return Code: 1
+[MFLOG|0|2023-03-01T22:51:17.766192Z|runtime|df3936c5-7d76-4023-9ee6-4e4c3fb2c83a]The error is: 
+[MFLOG|0|2023-03-01T22:51:17.766507Z|runtime|830e26ab-205a-4df6-8388-1d7e55ceb605] Error response from daemon: No such container: python-19397
+[MFLOG|0|2023-03-01T22:51:17.766832Z|runtime|e4ad08e3-9dfd-4aec-aa40-3661afa8aee2]Error response from daemon: No such container: python-19397
+[MFLOG|0|2023-03-01T22:51:17.767160Z|runtime|d44a8278-2ba6-43f6-9d01-6548820d9e22]--2023-03-01 22:51:16--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/merge_trees.py
+[MFLOG|0|2023-03-01T22:51:17.767472Z|runtime|f9f0606d-861e-4413-9d99-55f172d50282]Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.111.133, ...
+[MFLOG|0|2023-03-01T22:51:17.767775Z|runtime|b5018f29-e615-4339-aa6d-e6a5b3e9b466]Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+[MFLOG|0|2023-03-01T22:51:17.768077Z|runtime|9955807c-a0a9-44de-93f9-fd0190d2f293]HTTP request sent, awaiting response... 200 OK
+[MFLOG|0|2023-03-01T22:51:17.768393Z|runtime|7a9113bc-315c-4137-9b8f-0441597b02ef]Length: 985 [text/plain]
+[MFLOG|0|2023-03-01T22:51:17.771182Z|runtime|fbbc88f6-6876-4c3f-8560-74dde7170f46]Saving to: ‘merge_trees.py’
+[MFLOG|0|2023-03-01T22:51:17.771591Z|runtime|441926e7-b060-4e89-80b2-7f7c0ae921df]
+[MFLOG|0|2023-03-01T22:51:17.773361Z|runtime|8b8bc7bb-e11d-43d4-b70f-214464064585]     0K                                                       100% 39.0M=0s
+[MFLOG|0|2023-03-01T22:51:17.774478Z|runtime|2005c50c-a919-4ee3-974e-25da66528c91]
+[MFLOG|0|2023-03-01T22:51:17.774872Z|runtime|3192d44c-0901-49bc-8668-b7efbdcbf316]2023-03-01 22:51:17 (39.0 MB/s) - ‘merge_trees.py’ saved [985/985]
+[MFLOG|0|2023-03-01T22:51:17.775488Z|runtime|6e051ab1-2ba1-4b01-b9c0-93c700e46a6a]
+[MFLOG|0|2023-03-01T22:51:17.775881Z|runtime|9506610a-d8f4-4368-8555-9ff696395176]Traceback (most recent call last):
+[MFLOG|0|2023-03-01T22:51:17.776340Z|runtime|b3469bed-1dc1-443c-b2b6-aeb3f37ac5a6]  File "/usr/local/venv/lib/python3.10/site-packages/uproot/source/file.py", line 112, in _open
+[MFLOG|0|2023-03-01T22:51:17.776921Z|runtime|155598e5-500f-43af-b8ea-deb2214cc726]    self._file = numpy.memmap(self._file_path, dtype=self._dtype, mode="r")
+[MFLOG|0|2023-03-01T22:51:17.777275Z|runtime|6cca4b3a-183e-4850-bd83-120d7fae750f]  File "/usr/local/venv/lib/python3.10/site-packages/numpy/core/memmap.py", line 228, in __new__
+[MFLOG|0|2023-03-01T22:51:17.777581Z|runtime|4aada14c-1b38-44f5-80b8-580e1460ac69]    f_ctx = open(os_fspath(filename), ('r' if mode == 'c' else mode)+'b')
+[MFLOG|0|2023-03-01T22:51:17.777932Z|runtime|9eea2b9f-fe60-4204-923b-63447b065896]FileNotFoundError: [Errno 2] No such file or directory: '/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19397/myoutput.root'
+[MFLOG|0|2023-03-01T22:51:17.778318Z|runtime|7fca4805-f241-4b79-ae46-800ac5bdaa8a]
+[MFLOG|0|2023-03-01T22:51:17.778684Z|runtime|b89841ca-e5dc-4b53-b31e-961e3b780654]During handling of the above exception, another exception occurred:
+[MFLOG|0|2023-03-01T22:51:17.779077Z|runtime|712d0498-0091-4f71-a45d-7f369032029a]
+[MFLOG|0|2023-03-01T22:51:17.786197Z|runtime|fc6be891-f984-4b52-9f00-9f930ad83eda]Traceback (most recent call last):
+[MFLOG|0|2023-03-01T22:51:17.786620Z|runtime|f1fdeb63-3fd4-4a9e-9d1e-6b024d496b6b]  File "/usr/local/venv/lib/python3.10/site-packages/uproot/source/file.py", line 36, in __init__
+[MFLOG|0|2023-03-01T22:51:17.791304Z|runtime|06dcafc3-d346-4d61-98aa-31f2919e739e]    self._file = open(self._file_path, "rb")
+[MFLOG|0|2023-03-01T22:51:17.791566Z|runtime|35479957-15a4-4661-a42d-fc1db3e30de2]FileNotFoundError: [Errno 2] No such file or directory: '/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19397/myoutput.root'
+[MFLOG|0|2023-03-01T22:51:17.791730Z|runtime|be0e1c5a-ee7c-4453-8902-0bec504dfbb1]
+[MFLOG|0|2023-03-01T22:51:17.791892Z|runtime|a9c0fe03-7a20-4de8-9282-b77a93d222c9]During handling of the above exception, another exception occurred:
+[MFLOG|0|2023-03-01T22:51:17.792044Z|runtime|e54194b9-a714-407b-a621-335d62de1f0e]
+[MFLOG|0|2023-03-01T22:51:17.792190Z|runtime|a4cd9a31-ece8-4f8a-8142-cd5e37864a7e]Traceback (most recent call last):
+[MFLOG|0|2023-03-01T22:51:17.792346Z|runtime|74f114b8-0a94-4476-a109-969e24007f1b]  File "/code/merge_trees.py", line 32, in <module>
+[MFLOG|0|2023-03-01T22:51:17.792509Z|runtime|500daa80-bd57-4d4c-a6e9-5e095a9b62d0]    merge_trees(f_in_path, f_out_path)
+[MFLOG|0|2023-03-01T22:51:17.792671Z|runtime|54d4f6a2-45fb-4516-ae6b-e83f88ec10e0]  File "/code/merge_trees.py", line 10, in merge_trees
+[MFLOG|0|2023-03-01T22:51:17.792820Z|runtime|2d7c6e4d-9f53-4fc4-bb6e-9e70e308058d]    with uproot.open(f_in_path) as f_in:
+[MFLOG|0|2023-03-01T22:51:17.792973Z|runtime|212d96e0-6502-4922-882a-f8b7bc377c19]  File "/usr/local/venv/lib/python3.10/site-packages/uproot/reading.py", line 141, in open
+[MFLOG|0|2023-03-01T22:51:17.794332Z|runtime|98235b08-043f-4b1c-819d-95994adfdaeb]    file = ReadOnlyFile(
+[MFLOG|0|2023-03-01T22:51:17.794534Z|runtime|9cc748e6-ba9e-4d76-8b6a-7ffa13d4285f]  File "/usr/local/venv/lib/python3.10/site-packages/uproot/reading.py", line 580, in __init__
+[MFLOG|0|2023-03-01T22:51:17.794683Z|runtime|3d43d89a-013c-4005-b1d9-c9b9b1033c2a]    self._source = Source(
+[MFLOG|0|2023-03-01T22:51:17.794856Z|runtime|c00eac20-3a09-4069-8ebb-4c7d8068a5cd]  File "/usr/local/venv/lib/python3.10/site-packages/uproot/source/file.py", line 108, in __init__
+[MFLOG|0|2023-03-01T22:51:17.795023Z|runtime|b861e1a2-3f21-4eaa-88df-88b5f174de72]    self._open()
+[MFLOG|0|2023-03-01T22:51:17.795185Z|runtime|120612a4-371f-44dd-a7c9-f5bb004d70eb]  File "/usr/local/venv/lib/python3.10/site-packages/uproot/source/file.py", line 118, in _open
+[MFLOG|0|2023-03-01T22:51:17.795496Z|runtime|219015ab-737b-42f1-ab95-b7c0cae692d1]    self._fallback = uproot.source.file.MultithreadedFileSource(
+[MFLOG|0|2023-03-01T22:51:17.795798Z|runtime|a69433b1-f941-4408-8983-d0b720d23511]  File "/usr/local/venv/lib/python3.10/site-packages/uproot/source/file.py", line 250, in __init__
+[MFLOG|0|2023-03-01T22:51:17.796142Z|runtime|143ca893-7315-410b-b7fb-9bfa62949f42]    self._open()
+[MFLOG|0|2023-03-01T22:51:17.796454Z|runtime|a30f2e56-6721-4ecc-8304-dee4d993c589]  File "/usr/local/venv/lib/python3.10/site-packages/uproot/source/file.py", line 254, in _open
+[MFLOG|0|2023-03-01T22:51:17.796757Z|runtime|a6c97200-12ef-420c-903f-d2d1c233a0ec]    [FileResource(self._file_path) for x in range(self._num_workers)]
+[MFLOG|0|2023-03-01T22:51:17.797533Z|runtime|1807ebea-421e-4905-9c7b-aa57153d93d3]  File "/usr/local/venv/lib/python3.10/site-packages/uproot/source/file.py", line 254, in <listcomp>
+[MFLOG|0|2023-03-01T22:51:17.797944Z|runtime|ee5d3a7b-d490-4f2b-a7fe-e548f3ed52c5]    [FileResource(self._file_path) for x in range(self._num_workers)]
+[MFLOG|0|2023-03-01T22:51:17.802559Z|runtime|f6380a19-1979-4bd8-8e8b-1bb02dbc170a]  File "/usr/local/venv/lib/python3.10/site-packages/uproot/source/file.py", line 38, in __init__
+[MFLOG|0|2023-03-01T22:51:17.802946Z|runtime|2e19fbae-203c-45b2-a66d-058b1062faa7]    raise uproot._util._file_not_found(file_path)
+[MFLOG|0|2023-03-01T22:51:17.803266Z|runtime|abf3b9c1-43ee-4e1f-acfb-a971b43527d9]FileNotFoundError: file not found
+[MFLOG|0|2023-03-01T22:51:19.143092Z|runtime|c3002f00-df03-47a4-83e6-51ed22b9a043]
+[MFLOG|0|2023-03-01T22:51:19.143323Z|runtime|9c5a92ab-51cc-49f5-8509-2bd8afe0a0d7]    '/home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/output/19397/myoutput.root'
+[MFLOG|0|2023-03-01T22:51:19.143466Z|runtime|98d82590-cec6-43a3-ab88-b6fa30865775]
+[MFLOG|0|2023-03-01T22:51:19.143595Z|runtime|e79780a0-8408-4be4-a947-0a72f615adbb]Files may be specified as:
+[MFLOG|0|2023-03-01T22:51:19.143707Z|runtime|527ca49c-b755-4a5f-b6bf-95ac7c68292e]   * str/bytes: relative or absolute filesystem path or URL, without any colons
+[MFLOG|0|2023-03-01T22:51:19.143840Z|runtime|3b36869f-dc9d-4194-9572-16dcdc36fd7f]         other than Windows drive letter or URL schema.
+[MFLOG|0|2023-03-01T22:51:19.143959Z|runtime|90f3ac87-5b4e-4ab0-94a1-c8c5f4c4d874]         Examples: "rel/file.root", "C:\abs\file.root", "http://where/what.root"
+[MFLOG|0|2023-03-01T22:51:19.144071Z|runtime|34cd86d2-4d53-4daa-b567-6124961e5160]   * str/bytes: same with an object-within-ROOT path, separated by a colon.
+[MFLOG|0|2023-03-01T22:51:19.144206Z|runtime|23ee72ac-d31d-40ef-afa6-4ad7b91be3ba]         Example: "rel/file.root:tdirectory/ttree"
+[MFLOG|0|2023-03-01T22:51:19.144400Z|runtime|03e4b1f3-f250-47d4-b470-97fadec369d1]   * pathlib.Path: always interpreted as a filesystem path or URL only (no
+[MFLOG|0|2023-03-01T22:51:19.144664Z|runtime|73b82356-ef5d-4226-bb38-b98f97f82d13]         object-within-ROOT path), regardless of whether there are any colons.
+[MFLOG|0|2023-03-01T22:51:19.144924Z|runtime|039bd6be-b9de-4df9-81d2-fe2cb68ea5a8]         Examples: Path("rel:/file.root"), Path("/abs/path:stuff.root")
+[MFLOG|0|2023-03-01T22:51:19.145171Z|runtime|eaf81bd5-1faa-474c-bd5f-071668a7b7c9]
+[MFLOG|0|2023-03-01T22:51:19.145431Z|runtime|3cc8a005-c018-4910-961d-8c4628bd711e]Functions that accept many files (uproot.iterate, etc.) also allow:
+[MFLOG|0|2023-03-01T22:51:19.145701Z|runtime|8da6d42a-c074-44ea-a8dd-ed8503e1db2b]   * glob syntax in str/bytes and pathlib.Path.
+[MFLOG|0|2023-03-01T22:51:19.145954Z|runtime|235f476a-7ce8-44c4-8640-b2c85c380aa8]         Examples: Path("rel/*.root"), "/abs/*.root:tdirectory/ttree"
+[MFLOG|0|2023-03-01T22:51:19.146241Z|runtime|20b34cc9-70cd-4f18-9d84-0ac2d91898fe]   * dict: keys are filesystem paths, values are objects-within-ROOT paths.
+[MFLOG|0|2023-03-01T22:51:19.146674Z|runtime|1a71e957-c1c3-4e4b-8d19-1f0ee5b9687f]         Example: {"/data_v1/*.root": "ttree_v1", "/data_v2/*.root": "ttree_v2"}
+[MFLOG|0|2023-03-01T22:51:19.146992Z|runtime|bb798193-3873-4350-ad8b-bbb090a73c7d]   * already-open TTree objects.
+[MFLOG|0|2023-03-01T22:51:19.147278Z|runtime|1454782a-2b4f-46fa-a148-58e7f70e9d94]   * iterables of the above.
+[MFLOG|0|2023-03-01T22:51:19.147551Z|runtime|7496ebfe-604a-46fc-98f1-5a45e0728465]
+[MFLOG|0|2023-03-01T22:51:19.147829Z|runtime|6228cafd-7eff-4d10-95a5-623dd225fef8]

@@ -1,0 +1,603 @@
+The flag 'directory' used in rule scatter is only valid for outputs, not inputs.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	15	generate
+	4	hist_shape
+	3	hist_weight
+	2	hist_weight_data
+	1	makews
+	5	merge_all_hist
+	2	merge_hist_shape
+	4	merge_root
+	1	plot
+	1	prepare_dir
+	4	scatter
+	9	select
+	52
+
+[Mon Feb 27 12:14:02 2023]
+rule prepare_dir:
+    output: .mkdir.chkpnt
+    jobid: 1
+
+[Mon Feb 27 12:14:02 2023]
+Finished job 1.
+1 of 52 steps (2%) done
+
+[Mon Feb 27 12:14:02 2023]
+rule scatter:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_jobs.json
+    jobid: 24
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=sig
+
+[Mon Feb 27 12:14:02 2023]
+rule scatter:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_jobs.json
+    jobid: 2
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1
+
+[Mon Feb 27 12:14:02 2023]
+rule scatter:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_jobs.json
+    jobid: 3
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2
+
+[Mon Feb 27 12:14:02 2023]
+rule scatter:
+    input: .mkdir.chkpnt
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_jobs.json
+    jobid: 31
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=data
+
+[Mon Feb 27 12:14:02 2023]
+Finished job 2.
+2 of 52 steps (4%) done
+[Mon Feb 27 12:14:02 2023]
+Finished job 24.
+3 of 52 steps (6%) done
+[Mon Feb 27 12:14:02 2023]
+Finished job 31.
+4 of 52 steps (8%) done
+
+[Mon Feb 27 12:14:02 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_3.root
+    jobid: 34
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=data, jobnumber=3
+
+
+[Mon Feb 27 12:14:02 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_4.root
+    jobid: 35
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=data, jobnumber=4
+
+
+[Mon Feb 27 12:14:02 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_2.root
+    jobid: 33
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=data, jobnumber=2
+[Mon Feb 27 12:14:02 2023]
+Finished job 3.
+5 of 52 steps (10%) done
+
+
+[Mon Feb 27 12:14:02 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_1.root
+    jobid: 32
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=data, jobnumber=1
+
+[Mon Feb 27 12:14:08 2023]
+Finished job 33.
+6 of 52 steps (12%) done
+
+[Mon Feb 27 12:14:08 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_5.root
+    jobid: 36
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=data, jobnumber=5
+
+[Mon Feb 27 12:14:08 2023]
+Finished job 34.
+7 of 52 steps (13%) done
+
+[Mon Feb 27 12:14:08 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_4.root
+    jobid: 5
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2, jobnumber=4
+
+[Mon Feb 27 12:14:08 2023]
+Finished job 32.
+8 of 52 steps (15%) done
+[Mon Feb 27 12:14:08 2023]
+Finished job 35.
+9 of 52 steps (17%) done
+
+[Mon Feb 27 12:14:08 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_2.root
+    jobid: 47
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1, jobnumber=2
+
+
+[Mon Feb 27 12:14:08 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_3.root
+    jobid: 48
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1, jobnumber=3
+
+[Mon Feb 27 12:14:10 2023]
+Finished job 36.
+10 of 52 steps (19%) done
+
+[Mon Feb 27 12:14:10 2023]
+rule merge_root:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_1.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_2.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_3.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_4.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_5.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data.root
+    jobid: 37
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=data
+
+[Mon Feb 27 12:14:10 2023]
+Finished job 47.
+11 of 52 steps (21%) done
+
+[Mon Feb 27 12:14:10 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_4.root
+    jobid: 4
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1, jobnumber=4
+
+[Mon Feb 27 12:14:10 2023]
+Finished job 48.
+12 of 52 steps (23%) done
+
+[Mon Feb 27 12:14:10 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_2.root
+    jobid: 50
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2, jobnumber=2
+
+[Mon Feb 27 12:14:10 2023]
+Finished job 5.
+13 of 52 steps (25%) done
+
+[Mon Feb 27 12:14:10 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_3.root
+    jobid: 51
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2, jobnumber=3
+
+[Mon Feb 27 12:14:11 2023]
+Finished job 37.
+14 of 52 steps (27%) done
+
+[Mon Feb 27 12:14:11 2023]
+rule select:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_signal.root
+    jobid: 38
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=data, suffix=signal
+
+[Mon Feb 27 12:14:12 2023]
+Finished job 4.
+15 of 52 steps (29%) done
+
+[Mon Feb 27 12:14:12 2023]
+rule select:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_control.root
+    jobid: 39
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=data, suffix=control
+
+[Mon Feb 27 12:14:12 2023]
+Finished job 50.
+16 of 52 steps (31%) done
+
+[Mon Feb 27 12:14:12 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_1.root
+    jobid: 46
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1, jobnumber=1
+
+[Mon Feb 27 12:14:12 2023]
+Finished job 51.
+17 of 52 steps (33%) done
+
+[Mon Feb 27 12:14:12 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_1.root
+    jobid: 49
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2, jobnumber=1
+
+[Mon Feb 27 12:14:14 2023]
+Finished job 38.
+18 of 52 steps (35%) done
+
+[Mon Feb 27 12:14:14 2023]
+rule hist_weight_data:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_signal.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_hist.root
+    jobid: 40
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, hist_weight_data=data
+
+[Mon Feb 27 12:14:14 2023]
+Finished job 49.
+19 of 52 steps (37%) done
+
+[Mon Feb 27 12:14:14 2023]
+rule merge_root:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_1.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_2.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_3.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_4.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2.root
+    jobid: 7
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2
+
+[Mon Feb 27 12:14:14 2023]
+Finished job 46.
+20 of 52 steps (38%) done
+
+[Mon Feb 27 12:14:14 2023]
+rule merge_root:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_1.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_2.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_3.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_4.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1.root
+    jobid: 6
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1
+
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_1.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_2.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_3.root.
+[Mon Feb 27 12:14:15 2023]
+Finished job 6.
+21 of 52 steps (40%) done
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_1.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_2.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_3.root.
+[Mon Feb 27 12:14:15 2023]
+Finished job 7.
+22 of 52 steps (42%) done
+
+[Mon Feb 27 12:14:15 2023]
+rule select:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_nominal.root
+    jobid: 13
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2, suffix=nominal
+
+
+[Mon Feb 27 12:14:15 2023]
+rule select:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_up.root
+    jobid: 11
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2, suffix=shape_conv_up
+
+[Mon Feb 27 12:14:15 2023]
+Finished job 39.
+23 of 52 steps (44%) done
+
+[Mon Feb 27 12:14:15 2023]
+rule select:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_dn.root
+    jobid: 12
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2, suffix=shape_conv_dn
+
+[Mon Feb 27 12:14:16 2023]
+Finished job 40.
+24 of 52 steps (46%) done
+
+[Mon Feb 27 12:14:16 2023]
+rule select:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_dn.root
+    jobid: 9
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1, suffix=shape_conv_dn
+
+[Mon Feb 27 12:14:20 2023]
+Finished job 11.
+25 of 52 steps (48%) done
+
+[Mon Feb 27 12:14:20 2023]
+rule hist_shape:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_up.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_up_hist.root
+    jobid: 16
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2, shapevar=shape_conv_up
+
+[Mon Feb 27 12:14:20 2023]
+Finished job 13.
+26 of 52 steps (50%) done
+
+[Mon Feb 27 12:14:20 2023]
+rule hist_weight:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_nominal.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_nominal_hist.root
+    jobid: 19
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2, shapevar_weight=nominal
+
+[Mon Feb 27 12:14:20 2023]
+Finished job 12.
+27 of 52 steps (52%) done
+
+[Mon Feb 27 12:14:20 2023]
+rule hist_shape:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_dn.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_dn_hist.root
+    jobid: 17
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2, shapevar=shape_conv_dn
+
+[Mon Feb 27 12:14:21 2023]
+Finished job 9.
+28 of 52 steps (54%) done
+
+[Mon Feb 27 12:14:21 2023]
+rule select:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_nominal.root
+    jobid: 10
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1, suffix=nominal
+
+[Mon Feb 27 12:14:24 2023]
+Finished job 16.
+29 of 52 steps (56%) done
+
+[Mon Feb 27 12:14:24 2023]
+rule select:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_up.root
+    jobid: 8
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1, suffix=shape_conv_up
+
+[Mon Feb 27 12:14:24 2023]
+Finished job 17.
+30 of 52 steps (58%) done
+
+[Mon Feb 27 12:14:24 2023]
+rule hist_shape:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_dn.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_dn_hist.root
+    jobid: 15
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1, shapevar=shape_conv_dn
+
+[Mon Feb 27 12:14:25 2023]
+Finished job 10.
+31 of 52 steps (60%) done
+
+[Mon Feb 27 12:14:25 2023]
+rule hist_weight:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_nominal.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_nominal_hist.root
+    jobid: 18
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1, shapevar_weight=nominal
+
+[Mon Feb 27 12:14:28 2023]
+Finished job 19.
+32 of 52 steps (62%) done
+
+[Mon Feb 27 12:14:28 2023]
+rule hist_weight_data:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_control.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/qcd_hist.root
+    jobid: 41
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, hist_weight_data=qcd
+
+[Mon Feb 27 12:14:28 2023]
+Finished job 15.
+33 of 52 steps (63%) done
+
+[Mon Feb 27 12:14:28 2023]
+rule merge_hist_shape:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_up_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_dn_hist.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_hist.root
+    jobid: 21
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2
+
+[Mon Feb 27 12:14:28 2023]
+Finished job 8.
+34 of 52 steps (65%) done
+[Mon Feb 27 12:14:29 2023]
+Finished job 21.
+35 of 52 steps (67%) done
+
+[Mon Feb 27 12:14:29 2023]
+rule hist_shape:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_up.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_up_hist.root
+    jobid: 14
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1, shapevar=shape_conv_up
+
+
+[Mon Feb 27 12:14:29 2023]
+rule merge_all_hist:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_nominal_hist.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_merged_hist.root
+    jobid: 23
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc2
+
+[Mon Feb 27 12:14:29 2023]
+Finished job 23.
+36 of 52 steps (69%) done
+
+[Mon Feb 27 12:14:29 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_2.root
+    jobid: 26
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=sig, jobnumber=2
+
+[Mon Feb 27 12:14:30 2023]
+Finished job 41.
+37 of 52 steps (71%) done
+
+[Mon Feb 27 12:14:30 2023]
+rule merge_all_hist:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/qcd_hist.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_merged_hist.root
+    jobid: 42
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=data
+
+[Mon Feb 27 12:14:31 2023]
+Finished job 42.
+38 of 52 steps (73%) done
+
+[Mon Feb 27 12:14:31 2023]
+rule generate:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_jobs.json
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_1.root
+    jobid: 25
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=sig, jobnumber=1
+
+[Mon Feb 27 12:14:31 2023]
+Finished job 26.
+39 of 52 steps (75%) done
+[Mon Feb 27 12:14:32 2023]
+Finished job 14.
+40 of 52 steps (77%) done
+
+[Mon Feb 27 12:14:32 2023]
+rule merge_hist_shape:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_up_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_dn_hist.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_hist.root
+    jobid: 20
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1
+
+[Mon Feb 27 12:14:33 2023]
+Finished job 18.
+41 of 52 steps (79%) done
+[Mon Feb 27 12:14:33 2023]
+Finished job 25.
+42 of 52 steps (81%) done
+
+[Mon Feb 27 12:14:33 2023]
+rule merge_root:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_1.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_2.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig.root
+    jobid: 27
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=sig
+
+[Mon Feb 27 12:14:33 2023]
+Finished job 20.
+43 of 52 steps (83%) done
+
+[Mon Feb 27 12:14:33 2023]
+rule merge_all_hist:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_nominal_hist.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_merged_hist.root
+    jobid: 22
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=mc1
+
+[Mon Feb 27 12:14:34 2023]
+Finished job 22.
+44 of 52 steps (85%) done
+[Mon Feb 27 12:14:34 2023]
+Finished job 27.
+45 of 52 steps (87%) done
+
+[Mon Feb 27 12:14:34 2023]
+rule select:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_nominal.root
+    jobid: 28
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=sig, suffix=nominal
+
+[Mon Feb 27 12:14:35 2023]
+Finished job 28.
+46 of 52 steps (88%) done
+
+[Mon Feb 27 12:14:35 2023]
+rule hist_weight:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_nominal.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_nominal_hist.root
+    jobid: 29
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=sig, shapevar_weight=nominal
+
+[Mon Feb 27 12:14:37 2023]
+Finished job 29.
+47 of 52 steps (90%) done
+
+[Mon Feb 27 12:14:37 2023]
+rule merge_all_hist:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_nominal_hist.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_merged_hist.root
+    jobid: 30
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=sig
+
+[Mon Feb 27 12:14:38 2023]
+Finished job 30.
+48 of 52 steps (92%) done
+
+[Mon Feb 27 12:14:38 2023]
+rule merge_all_hist:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_merged_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_merged_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_merged_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_merged_hist.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/all_merged_hist.root
+    jobid: 43
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search, option=all
+
+[Mon Feb 27 12:14:38 2023]
+Finished job 43.
+49 of 52 steps (94%) done
+
+[Mon Feb 27 12:14:38 2023]
+rule makews:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/all_merged_hist.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/xmldir, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_results.table, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_meas.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_combined_meas_model.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_combined_meas_profileLR.eps, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_channel1_meas_profileLR.eps, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_channel1_meas_model.root
+    jobid: 44
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search
+
+[Mon Feb 27 12:14:48 2023]
+Finished job 44.
+50 of 52 steps (96%) done
+
+[Mon Feb 27 12:14:48 2023]
+rule plot:
+    input: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/xmldir, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_results.table, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_meas.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_combined_meas_model.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_combined_meas_profileLR.eps, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_channel1_meas_profileLR.eps, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_channel1_meas_model.root
+    output: /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/nominal_vals.yml, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/fit_results.yml, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/prefit.pdf, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/postfit.pdf
+    jobid: 45
+    wildcards: base_dir=/home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search
+
+[Mon Feb 27 12:14:58 2023]
+Finished job 45.
+51 of 52 steps (98%) done
+
+[Mon Feb 27 12:14:58 2023]
+localrule all:
+    input: .mkdir.chkpnt, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_jobs.json, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_jobs.json, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_4.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_4.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_up.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_dn.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_nominal.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_up.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_dn.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_nominal.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_up_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_conv_dn_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_up_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_conv_dn_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_nominal_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_nominal_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_shape_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_shape_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_merged_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_merged_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_jobs.json, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_1.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_2.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_nominal.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_nominal_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_merged_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_jobs.json, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_1.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_2.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_3.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_4.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_5.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_signal.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_control.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/qcd_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_merged_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/all_merged_hist.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/xmldir, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_results.table, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_meas.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_combined_meas_model.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_combined_meas_profileLR.eps, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_channel1_meas_profileLR.eps, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/results_channel1_meas_model.root, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/nominal_vals.yml, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/fit_results.yml, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/prefit.pdf, /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/postfit.pdf
+    jobid: 0
+
+Removing temporary output file .mkdir.chkpnt.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc1_4.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/mc2_4.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_1.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/sig_2.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_1.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_2.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_3.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_4.root.
+Removing temporary output file /home/abd/Desktop/Work/Final_Version/Snakemake/data/BSM-Search/data_5.root.
+[Mon Feb 27 12:14:58 2023]
+Finished job 0.
+52 of 52 steps (100%) done
+Complete log: /home/abd/Desktop/Work/Final_Version/Snakemake/dags/BSM-Search/.snakemake/log/2023-02-27T121401.978256.snakemake.log

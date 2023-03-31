@@ -1,0 +1,27 @@
+[MFLOG|0|2023-03-02T02:17:15.141748Z|runtime|6e3cb38c-244b-428d-b588-e97a26dd9064]The command is: 
+[MFLOG|0|2023-03-02T02:17:15.952807Z|runtime|d50c623c-3415-411d-b70a-8bc4f7072882] 
+[MFLOG|0|2023-03-02T02:17:15.952989Z|runtime|0ece37f8-e467-4256-90af-c3418fdb06aa]        docker pull ubuntu:latest
+[MFLOG|0|2023-03-02T02:17:15.953086Z|runtime|fbbd0734-16ed-46f5-8959-da9aa3e0809d]        docker pull cernopendata/cernopendata-client:0.3.0
+[MFLOG|0|2023-03-02T02:17:15.953190Z|runtime|51e8c70e-858a-45fd-8d90-3d71b8c110b6]        docker pull cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493
+[MFLOG|0|2023-03-02T02:17:15.953294Z|runtime|a8e91159-fbad-4fcc-9d4f-bbf099b95468]        docker pull gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+[MFLOG|0|2023-03-02T02:17:15.953392Z|runtime|53e5206a-46f0-4eb6-a25f-62d991177595]        
+[MFLOG|0|2023-03-02T02:17:15.953488Z|runtime|1ad0ab46-6617-4878-b5f8-f472e2b5a8f5]The output is: 
+[MFLOG|0|2023-03-02T02:17:15.953589Z|runtime|e21fb41e-30fd-4eec-81bc-3b79e58cf7bf] latest: Pulling from library/ubuntu
+[MFLOG|0|2023-03-02T02:17:15.953690Z|runtime|2df4ad75-47cf-4267-b2a7-cb83151895e7]Digest: sha256:dad0b9789498ed3cf6c7b3ea3183d7565502d5301751044ccee1d8139a580c07
+[MFLOG|0|2023-03-02T02:17:15.953791Z|runtime|30e2bd5a-e953-46e8-b68b-e9af05085d55]Status: Image is up to date for ubuntu:latest
+[MFLOG|0|2023-03-02T02:17:15.953890Z|runtime|359996e7-bf9e-4cac-9676-5da73ef967a2]docker.io/library/ubuntu:latest
+[MFLOG|0|2023-03-02T02:17:15.953985Z|runtime|e29b4cc7-e3fa-4942-b7bd-37b25ba508ba]0.3.0: Pulling from cernopendata/cernopendata-client
+[MFLOG|0|2023-03-02T02:17:15.954091Z|runtime|3ede585f-6960-4d8e-9ca0-d651c7674628]Digest: sha256:c4f994bc31c57d1888ccca043514b2f3ce45b10778a053d90294ddddb6de41a3
+[MFLOG|0|2023-03-02T02:17:15.954187Z|runtime|dd3df769-93bd-4194-8ee8-421a4e735801]Status: Image is up to date for cernopendata/cernopendata-client:0.3.0
+[MFLOG|0|2023-03-02T02:17:15.954296Z|runtime|6c922ead-8432-4b88-8630-0de8897caf74]docker.io/cernopendata/cernopendata-client:0.3.0
+[MFLOG|0|2023-03-02T02:17:15.954395Z|runtime|bb4c374c-8436-46e4-aab7-52ac53d26e58]Using default tag: latest
+[MFLOG|0|2023-03-02T02:17:15.954491Z|runtime|4724e164-69e8-43ec-9d82-4cdb03e009dd]latest: Pulling from cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493
+[MFLOG|0|2023-03-02T02:17:15.954588Z|runtime|d7b1f63a-ecdb-4a41-8443-8cd57187bf58]Digest: sha256:58b486fcfce85c882ea25de5d1acec054519fa27de3ae48db42bdf5d3ef9c8e2
+[MFLOG|0|2023-03-02T02:17:15.954684Z|runtime|f5bc6c29-5293-44ff-91db-dcd65503c90d]Status: Image is up to date for cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493:latest
+[MFLOG|0|2023-03-02T02:17:15.954780Z|runtime|b7451ef6-cd20-4469-ae9f-b2ca68fe6605]docker.io/cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493:latest
+[MFLOG|0|2023-03-02T02:17:15.954876Z|runtime|42ffc780-52c3-4ae5-b9d4-e42b0c5f1d7b]latest: Pulling from cms-cloud/python-vnc
+[MFLOG|0|2023-03-02T02:17:15.954972Z|runtime|8f2c2d7a-af2a-467e-ac7c-2a64cd0934d4]Digest: sha256:12e122ea9ff95e0334e03cb7e832ce67986abba7c20597a6d70160f626cb0a47
+[MFLOG|0|2023-03-02T02:17:15.955068Z|runtime|95272412-80d0-4b1e-b63f-bb0deaca5fcb]Status: Image is up to date for gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+[MFLOG|0|2023-03-02T02:17:15.955164Z|runtime|ef617e49-4dd5-43f7-8ca5-185714bd64cb]gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+[MFLOG|0|2023-03-02T02:17:15.955261Z|runtime|d8312196-720d-4540-88e8-53ebed741cd2]
+[MFLOG|0|2023-03-02T02:17:15.955357Z|runtime|c6e1372a-c5f3-4714-a8e0-473a5b8c2a33]Return Code: 0

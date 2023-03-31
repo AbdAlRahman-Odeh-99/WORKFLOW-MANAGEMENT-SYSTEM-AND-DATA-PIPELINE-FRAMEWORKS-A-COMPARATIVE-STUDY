@@ -1,0 +1,17 @@
+[MFLOG|0|2023-02-27T08:32:51.116850Z|runtime|c5eab805-6b4f-4c80-86c2-31c977be8578]The command is: 
+[MFLOG|0|2023-02-27T08:32:51.954406Z|runtime|b94c5678-4db1-4473-a4d6-e15fb0476966] 
+[MFLOG|0|2023-02-27T08:32:51.954559Z|runtime|8a332d9e-82c6-4538-a54b-ff03331243ee]        source /home/abd/root/root/bin/thisroot.sh        
+[MFLOG|0|2023-02-27T08:32:51.954669Z|runtime|1ef0961f-dd5f-4f11-84b0-57bf8ec2b2ed]        hadd -f /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/data_merged_hist.root /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/data_hist.root /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/qcd_hist.root
+[MFLOG|0|2023-02-27T08:32:51.954762Z|runtime|5e0d6558-a27a-4e79-b228-f71d8054244b]    
+[MFLOG|0|2023-02-27T08:32:51.954851Z|runtime|674b736e-67b1-41b1-809c-b9f6c755262f]The output is: 
+[MFLOG|0|2023-02-27T08:32:51.954939Z|runtime|c7c6276f-18ea-4030-9863-57abfb8a762d] hadd Target file: /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/data_merged_hist.root
+[MFLOG|0|2023-02-27T08:32:51.955024Z|runtime|aea77890-372a-423c-bda6-bbd81bbd722e]hadd compression setting for all output: 1
+[MFLOG|0|2023-02-27T08:32:51.955138Z|runtime|c0d719b6-060f-426e-b473-a8c9ddf9be18]hadd Source file 1: /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/data_hist.root
+[MFLOG|0|2023-02-27T08:32:51.955256Z|runtime|3c7a8233-1d97-437f-a0fe-83ea1404f993]
+[MFLOG|0|2023-02-27T08:32:51.955369Z|runtime|60c308dd-6e53-4baf-a8f7-9f35fde4b3db]Return Code: 1
+[MFLOG|0|2023-02-27T08:32:51.955486Z|runtime|aed9f1a2-43f5-4723-8574-9f2b6abe1b58]The error is: 
+[MFLOG|0|2023-02-27T08:32:51.955615Z|runtime|0d285d94-752c-4fbc-93ff-8f6c8f83d103] /bin/sh: 2: source: not found
+[MFLOG|0|2023-02-27T08:32:51.955726Z|runtime|4b6dbbb2-beba-4e07-9964-716efce234f7]Error in <TFile::TFile>: file /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/data_hist.root does not exist
+[MFLOG|0|2023-02-27T08:32:51.955839Z|runtime|260cf86e-8273-474f-923d-0e2ba3f0a97a]Error in <TFileMerger::AddFile>: cannot open file /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/data_hist.root
+[MFLOG|0|2023-02-27T08:32:51.955950Z|runtime|f29f309c-753d-45d2-adc7-7c88dd9a5857]hadd exiting due to error in /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/data_hist.root
+[MFLOG|0|2023-02-27T08:32:51.956074Z|runtime|1cb8bf1a-3c58-4e53-845d-182af0695def]

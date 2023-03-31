@@ -1,0 +1,12 @@
+[MFLOG|0|2023-03-02T07:06:14.564350Z|runtime|fa8cb365-82fe-4198-b293-c54a96cbcfa8]The command is: 
+[MFLOG|0|2023-03-02T07:06:15.762228Z|runtime|775a22bf-bcc2-4c74-95c6-e387bce5f72f] 
+[MFLOG|0|2023-03-02T07:06:15.762443Z|runtime|9395b631-fa3d-4416-9eba-c7ccb625f759]        if ! docker stop cernopendata-client-19985 && ! docker rm cernopendata-client-19985; then
+[MFLOG|0|2023-03-02T07:06:15.762582Z|runtime|c5480704-ef5d-4d09-9d17-c44ab6f08e71]            echo "some_command returned an error"
+[MFLOG|0|2023-03-02T07:06:15.762713Z|runtime|26553f62-3dff-4837-8abb-5028e2997bc9]        else
+[MFLOG|0|2023-03-02T07:06:15.762836Z|runtime|2a60930b-d92a-40ee-8d58-510f70cb1676]            docker stop cernopendata-client-19985 && docker rm cernopendata-client-19985
+[MFLOG|0|2023-03-02T07:06:15.762955Z|runtime|e6809091-9453-4c8f-950c-75f230ba3464]        fi &&         docker run         --rm         --name cernopendata-client-19985         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 19985 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_19985.txt;
+[MFLOG|0|2023-03-02T07:06:15.763080Z|runtime|fe114b2f-d428-4632-b933-398aed3f0cd1]        
+[MFLOG|0|2023-03-02T07:06:15.763201Z|runtime|37530ab2-1654-4a85-bbfe-a62eff63a31f]The output is: 
+[MFLOG|0|2023-03-02T07:06:15.763318Z|runtime|046829b1-1feb-42c3-bd90-180304222b0d] some_command returned an error
+[MFLOG|0|2023-03-02T07:06:15.763440Z|runtime|524014de-5f2b-49f4-8e2d-08ee637dbc7e]
+[MFLOG|0|2023-03-02T07:06:15.763553Z|runtime|14d3795c-a4f0-49b6-a792-0d8cb9c83b00]Return Code: 0

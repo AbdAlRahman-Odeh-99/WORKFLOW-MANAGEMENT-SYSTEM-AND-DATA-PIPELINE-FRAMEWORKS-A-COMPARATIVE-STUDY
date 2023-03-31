@@ -1,0 +1,16 @@
+[MFLOG|0|2023-03-01T17:17:58.788724Z|runtime|330eee9a-61d2-4f40-b0a7-340090e66e5a]The command is: 
+[MFLOG|0|2023-03-01T17:18:00.035388Z|runtime|9fbba6aa-d910-4736-8d5f-d66af180a0df] 
+[MFLOG|0|2023-03-01T17:18:00.035617Z|runtime|535dd55c-22d2-4cb3-888b-4ab49ead5b29]        if ! docker stop cernopendata-client-19980 && ! docker rm cernopendata-client-19980; then
+[MFLOG|0|2023-03-01T17:18:00.035770Z|runtime|564ddac7-b73e-4963-ad45-6e7098b2f4e3]            echo "some_command returned an error"
+[MFLOG|0|2023-03-01T17:18:00.035899Z|runtime|2effa077-b7cb-4084-a2a8-9b7f36a06271]        else
+[MFLOG|0|2023-03-01T17:18:00.036014Z|runtime|caaf69a6-75b5-4d00-8b68-1bb6b85c0699]            docker stop cernopendata-client-19980 && docker rm cernopendata-client-19980
+[MFLOG|0|2023-03-01T17:18:00.036134Z|runtime|a7593b63-f47a-4dba-8860-cae721fe5f7e]        fi &&         docker run         --rm         --name cernopendata-client-19980         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         cernopendata/cernopendata-client:0.3.0         get-file-locations --recid 19980 --protocol xrootd > /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/files_19980.txt;
+[MFLOG|0|2023-03-01T17:18:00.036253Z|runtime|ca1d5cdc-4cde-4db9-afc1-dac118771c6a]        
+[MFLOG|0|2023-03-01T17:18:00.036357Z|runtime|6cb78eca-3a74-4633-9d5b-47ce922779fa]The output is: 
+[MFLOG|0|2023-03-01T17:18:00.036461Z|runtime|c67847d0-e8c2-4c02-8396-8082746ba6c6] some_command returned an error
+[MFLOG|0|2023-03-01T17:18:00.036561Z|runtime|2e2c2a67-af65-465a-ab62-9e8e56f14aac]
+[MFLOG|0|2023-03-01T17:18:00.036663Z|runtime|37153106-5521-4d66-8a34-35c441f6b17f]Return Code: 1
+[MFLOG|0|2023-03-01T17:18:00.036765Z|runtime|e848ebb2-f821-4d3d-8aba-68885c7c95b6]The error is: 
+[MFLOG|0|2023-03-01T17:18:00.036868Z|runtime|851c8555-4714-4705-85f6-e212ca365a07] Error response from daemon: No such container: cernopendata-client-19980
+[MFLOG|0|2023-03-01T17:18:00.036969Z|runtime|50f5c046-0eeb-479e-b7c5-d5346e7ec4b4]Error response from daemon: No such container: cernopendata-client-19980
+[MFLOG|0|2023-03-01T17:18:00.037073Z|runtime|059f1700-c210-4b7b-9a56-a918f165d307]

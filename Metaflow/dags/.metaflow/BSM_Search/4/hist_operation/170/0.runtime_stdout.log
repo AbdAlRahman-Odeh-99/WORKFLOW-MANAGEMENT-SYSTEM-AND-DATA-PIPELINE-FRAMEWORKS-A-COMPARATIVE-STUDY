@@ -1,0 +1,20 @@
+[MFLOG|0|2023-02-26T10:08:56.887895Z|runtime|60f994f2-9ba7-401f-8f06-2c9cd5841956]The command is: 
+[MFLOG|0|2023-02-26T10:08:58.731547Z|runtime|9b6a7d99-c66e-43dd-aa03-1f2cb9c9d508] 
+[MFLOG|0|2023-02-26T10:08:58.731766Z|runtime|115079e8-b1ca-4b20-b843-ae3825311c8c]        source /home/abd/root/root/bin/thisroot.sh        
+[MFLOG|0|2023-02-26T10:08:58.731912Z|runtime|3a5a72cc-7f2a-4495-b538-bae8164f08ca]        python /home/abd/Desktop/Work/Final_Version/Metaflow/code/BSM-Search/histogram.py /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_nominal.root /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_nominal_hist.root mc2 0.0125 nominal,weight_var1_up,weight_var1_dn
+[MFLOG|0|2023-02-26T10:08:58.732060Z|runtime|a5439aa8-a2f4-4dd2-be63-9e79d829d9c0]    
+[MFLOG|0|2023-02-26T10:08:58.732193Z|runtime|701b09cf-903a-4d7a-8bce-17aba0c2b088]The output is: 
+[MFLOG|0|2023-02-26T10:08:58.732318Z|runtime|66359f4e-db77-4337-8cd2-b287238a3af3] 
+[MFLOG|0|2023-02-26T10:08:58.732449Z|runtime|75910d0f-bb34-41bb-8976-b88968a6e20c]Return Code: 1
+[MFLOG|0|2023-02-26T10:08:58.732573Z|runtime|64931d7a-124e-4560-9e08-8eecc78926aa]The error is: 
+[MFLOG|0|2023-02-26T10:08:58.732705Z|runtime|4023e949-6828-495c-8f2b-f453a6420cb5] /bin/sh: 2: source: not found
+[MFLOG|0|2023-02-26T10:08:58.732832Z|runtime|0be5697c-3339-40b7-80c0-bf4092564635]Error in <TFile::TFile>: file /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_nominal.root does not exist
+[MFLOG|0|2023-02-26T10:08:58.732966Z|runtime|2ffe6e43-65bb-4e61-afa8-6b277cd57ede]Traceback (most recent call last):
+[MFLOG|0|2023-02-26T10:08:58.733088Z|runtime|d3b623d2-d43c-445a-be89-d6777455f4ee]  File "/home/abd/Desktop/Work/Final_Version/Metaflow/code/BSM-Search/histogram.py", line 42, in <module>
+[MFLOG|0|2023-02-26T10:08:58.733216Z|runtime|c1331dd5-0f4d-4da1-8d11-5f41b6d5f78f]    main()
+[MFLOG|0|2023-02-26T10:08:58.733350Z|runtime|222da149-0a9b-48fe-a23c-6f340490689a]  File "/home/abd/Desktop/Work/Final_Version/Metaflow/code/BSM-Search/histogram.py", line 20, in main
+[MFLOG|0|2023-02-26T10:08:58.733472Z|runtime|dbc5cda9-027b-45eb-bee6-79d1598a2f09]    fin = ROOT.TFile.Open(inputfile)
+[MFLOG|0|2023-02-26T10:08:58.733580Z|runtime|efa2b2ea-94eb-4938-a4c0-100d51b7c2f1]  File "/home/abd/root/root/lib/ROOT/pythonization/_tfile.py", line 67, in _TFileOpen
+[MFLOG|0|2023-02-26T10:08:58.733688Z|runtime|2e76a24a-2d83-406f-9150-aa2e7a68ef35]    raise OSError('Failed to open file {}'.format(str(args[0])))
+[MFLOG|0|2023-02-26T10:08:58.733803Z|runtime|e7a8f0d3-6204-4348-97e8-d659089b8ae8]OSError: Failed to open file /home/abd/Desktop/Work/Final_Version/Metaflow/data/BSM-Search/mc2_nominal.root
+[MFLOG|0|2023-02-26T10:08:58.733913Z|runtime|c0ac875f-c438-4c68-b3eb-376fdc1284d4]

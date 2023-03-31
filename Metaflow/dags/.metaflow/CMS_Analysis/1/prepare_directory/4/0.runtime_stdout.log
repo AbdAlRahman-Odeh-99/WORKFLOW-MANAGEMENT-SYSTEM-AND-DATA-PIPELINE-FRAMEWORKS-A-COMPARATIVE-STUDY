@@ -1,0 +1,15 @@
+[MFLOG|0|2023-03-01T17:17:38.165738Z|runtime|53c2dc54-3eb9-4fb4-9e72-6dc82a61e8d5]The command is: 
+[MFLOG|0|2023-03-01T17:17:39.022475Z|runtime|760d8f78-622c-4fa0-973c-3fd90c73f331] 
+[MFLOG|0|2023-03-01T17:17:39.022657Z|runtime|2a10b523-4433-43b7-a3a8-3ebc10f02f73]        docker run         --name ubuntu         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         ubuntu:latest         bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/prepare-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol &&         docker stop ubuntu &&         docker rm ubuntu
+[MFLOG|0|2023-03-01T17:17:39.022746Z|runtime|982805b7-651e-49d7-a925-b3a94474126a]        
+[MFLOG|0|2023-03-01T17:17:39.022815Z|runtime|cd88b571-1930-4a47-bd28-292a86747c91]The output is: 
+[MFLOG|0|2023-03-01T17:17:39.022881Z|runtime|b9d95904-fe67-4db5-ae80-c7877a9a7126] pip install vector hist mplhep coffea
+[MFLOG|0|2023-03-01T17:17:39.022948Z|runtime|d0126f4c-e6e3-4c29-bb2b-ac7e66f31772]git clone https://github.com/cms-opendata-workshop/workshop2022-lesson-ttbarljetsanalysis-payload.git
+[MFLOG|0|2023-03-01T17:17:39.023011Z|runtime|6b605100-e8e8-4314-896c-8ba2f948faf0]cd workshop2022-lesson-ttbarljetsanalysis-payload
+[MFLOG|0|2023-03-01T17:17:39.023073Z|runtime|c3408e70-e2a9-4c1d-ac85-ddaddbceadf9]cp /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol/code/ntuples.json .
+[MFLOG|0|2023-03-01T17:17:39.023137Z|runtime|c353d076-ea87-4a18-b0ea-21e330995571]python coffeaAnalysis_ttbarljets.py
+[MFLOG|0|2023-03-01T17:17:39.023198Z|runtime|5629b3dc-0fb4-4d53-b036-d39c9da0fb6e]mv *root /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol
+[MFLOG|0|2023-03-01T17:17:39.023260Z|runtime|6cf962be-3976-4e04-8fae-1c4db8371c98]ubuntu
+[MFLOG|0|2023-03-01T17:17:39.023320Z|runtime|9e9e084e-f898-4ec5-9895-b999010e178e]ubuntu
+[MFLOG|0|2023-03-01T17:17:39.023381Z|runtime|ede2e749-94bf-4501-97cb-da4f60046549]
+[MFLOG|0|2023-03-01T17:17:39.023442Z|runtime|388428c3-83c8-4566-bf9f-a43d8f400111]Return Code: 0

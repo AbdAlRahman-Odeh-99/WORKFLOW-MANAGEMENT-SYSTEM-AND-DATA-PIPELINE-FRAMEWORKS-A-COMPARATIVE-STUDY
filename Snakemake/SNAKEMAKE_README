@@ -1,0 +1,35 @@
+https://phoenixnap.com/kb/how-to-install-anaconda-ubuntu-18-04-or-20-04
+Installing Anaconda:
+    sudo apt-get update
+    sudo apt-get install curl
+    cd /tmp
+    curl –O https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh
+    sha256sum Anaconda3-2021.05-Linux-x86_64.sh
+    bash Anaconda3-2021.05-Linux-x86_64.sh
+    source ~/.bashrc
+
+Adding to path (Add the following line in .bashrc): 
+    export PATH="/home/abd/miniconda/bin:$PATH"
+
+To stop the activation of base when opening terminal:
+    conda config --set auto_activate_base false   
+    
+https://snakemake.readthedocs.io/en/stable/getting_started/installation.html
+Installing Mamba:
+    conda install -n base -c conda-forge mamba
+Installing Snakemake:
+    conda activate base
+    mamba create -c conda-forge -c bioconda -n snakemake snakemake
+    
+It can be also installed via termial:
+    sudo apt install snakemake 
+
+To run file:
+    conda activate base
+    snakemake --cores 4 --restart-times 4 -s Snakefile
+    snakemake --report report.html
+
+To build Dag:
+    snakemake --forceall --dag | dot -Tpdf > dag.pdf
+
+

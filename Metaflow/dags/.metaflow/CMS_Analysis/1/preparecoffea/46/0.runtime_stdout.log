@@ -1,0 +1,35 @@
+[MFLOG|0|2023-03-01T22:51:58.025687Z|runtime|013c232c-87c1-4c31-b149-413e4eacb652]The command is: 
+[MFLOG|0|2023-03-01T22:51:58.026000Z|runtime|7f6b2383-9c02-41e2-8c2e-01fd79eb87e6] 
+[MFLOG|0|2023-03-01T22:51:58.026169Z|runtime|e3fb675d-2feb-4ffa-b641-c195c170ef2d]        if ! docker stop prepare-coffea && ! docker rm prepare-coffea; then
+[MFLOG|0|2023-03-01T22:51:58.026303Z|runtime|91eb4c74-7d72-489b-8a78-cf1a94a242fb]            echo "some_command returned an error"
+[MFLOG|0|2023-03-01T22:51:58.026429Z|runtime|4a984927-8063-424b-9eb6-f473c1c5edc6]        else
+[MFLOG|0|2023-03-01T22:51:58.026562Z|runtime|18278421-96a9-47d6-b706-ce83cf255f98]            docker stop prepare-coffea && docker rm prepare-coffea
+[MFLOG|0|2023-03-01T22:51:58.026698Z|runtime|3793f7d0-37c5-435d-990a-0ddc08badce7]        fi &&         docker run         -i         -d         --name prepare-coffea         --mount type=bind,source=/home/abd/Desktop/Work/Final_Version/Metaflow,target=/home/abd/Desktop/Work/Final_Version/Metaflow         gitlab-registry.cern.ch/cms-cloud/python-vnc &&         docker start prepare-coffea &&         docker exec prepare-coffea bash /home/abd/Desktop/Work/Final_Version/Metaflow/code/CMS-Analysis/preparecoffea-bash.sh /home/abd/Desktop/Work/Final_Version/Metaflow/data/CMS-Analysis/vol &&         docker stop prepare-coffea &&         docker rm prepare-coffea
+[MFLOG|0|2023-03-01T22:51:58.026837Z|runtime|8b391d6a-13fa-47f6-9eee-74650117d555]        
+[MFLOG|0|2023-03-01T22:51:58.026970Z|runtime|165664ff-4467-4a61-9674-2f4651847aeb]The output is: 
+[MFLOG|0|2023-03-01T22:51:58.027095Z|runtime|253a7c43-cfe4-47d4-a68c-bb2026b57396] some_command returned an error
+[MFLOG|0|2023-03-01T22:51:58.027215Z|runtime|a41c86e0-9ed5-448f-b1c8-a5dc8a9c1208]571f21eeacbc7478ecd20b5e4d6e9a5736155ebaa1c38468e74576ed93e04480
+[MFLOG|0|2023-03-01T22:51:58.027313Z|runtime|0b9a6d81-858a-449d-960d-c5f9ef9530c3]prepare-coffea
+[MFLOG|0|2023-03-01T22:51:58.027409Z|runtime|48526ef1-56ad-4f4e-8dad-1e1c520e34d6]
+[MFLOG|0|2023-03-01T22:51:58.027503Z|runtime|919322b2-6fe2-4b26-b1c8-0abfc9801537]Return Code: 1
+[MFLOG|0|2023-03-01T22:51:58.027602Z|runtime|114316a2-5322-4972-a6a3-08fa57e9a4ec]The error is: 
+[MFLOG|0|2023-03-01T22:51:58.857483Z|runtime|7b5057a5-9e34-48a7-a62e-3a20b827f1b8] Error response from daemon: No such container: prepare-coffea
+[MFLOG|0|2023-03-01T22:51:58.857645Z|runtime|faf72417-848f-4ad8-82ee-21a836fa3908]Error response from daemon: No such container: prepare-coffea
+[MFLOG|0|2023-03-01T22:51:58.857771Z|runtime|7ba77283-5d56-4353-bc7a-f3ade1d49a48]--2023-03-01 22:51:57--  https://raw.githubusercontent.com/cms-opendata-analyses/PhysObjectExtractorTool/odws2022-ttbaljets-prod/PhysObjectExtractor/scripts/ntuples-gen.py
+[MFLOG|0|2023-03-01T22:51:58.857891Z|runtime|ff91019d-3752-4d2b-aab3-64644b527076]Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.108.133, 185.199.111.133, ...
+[MFLOG|0|2023-03-01T22:51:58.858012Z|runtime|72421332-ca1a-468f-baa2-fbfd86cf4623]Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+[MFLOG|0|2023-03-01T22:51:58.858145Z|runtime|5f2d1019-970d-45b9-b9d0-e5f6f265f196]HTTP request sent, awaiting response... 200 OK
+[MFLOG|0|2023-03-01T22:51:58.858264Z|runtime|bd7b7ce5-4868-43e7-b783-7c3f7e43d5a5]Length: 3551 (3.5K) [text/plain]
+[MFLOG|0|2023-03-01T22:51:58.858380Z|runtime|b1e19380-4b18-459b-a58f-69d0b738282a]Saving to: ‘ntuples-gen.py’
+[MFLOG|0|2023-03-01T22:51:58.858495Z|runtime|61c2050d-7327-4542-a18e-0f1991351b7b]
+[MFLOG|0|2023-03-01T22:51:58.858600Z|runtime|f40049a0-878a-4151-bc32-5d99030c1296]     0K ...                                                   100% 6.56M=0.001s
+[MFLOG|0|2023-03-01T22:51:58.858716Z|runtime|85f3cf1e-a350-43e2-a36b-f8cfb68d683a]
+[MFLOG|0|2023-03-01T22:51:58.858831Z|runtime|bb1221f1-3d16-4e2c-ba4f-89c2c59ae7e8]2023-03-01 22:51:57 (6.56 MB/s) - ‘ntuples-gen.py’ saved [3551/3551]
+[MFLOG|0|2023-03-01T22:51:58.858952Z|runtime|f50a0f0d-6db1-407e-bf3b-e3b7e4fab09b]
+[MFLOG|0|2023-03-01T22:51:58.859067Z|runtime|51819f7e-51dc-427b-984b-249eab92e251]Traceback (most recent call last):
+[MFLOG|0|2023-03-01T22:51:58.859181Z|runtime|9882e2fb-acc7-44ca-9fef-6687b852e326]  File "/code/ntuples-gen.py", line 92, in <module>
+[MFLOG|0|2023-03-01T22:51:58.859302Z|runtime|7e156a1f-ed07-420c-893a-c0ed389057aa]    'path': findRecid("19397")[2],
+[MFLOG|0|2023-03-01T22:51:58.859428Z|runtime|4bd2f4f3-2a06-429c-9952-db40f7dfa771]IndexError: string index out of range
+[MFLOG|0|2023-03-01T22:51:58.859539Z|runtime|9eeb18be-e4b9-4038-93a5-109b3906d048]cat: ntuples.json: No such file or directory
+[MFLOG|0|2023-03-01T22:51:58.859649Z|runtime|24379468-4835-48f3-88bd-c3ff655765cb]mv: cannot stat 'ntuples.json': No such file or directory
+[MFLOG|0|2023-03-01T22:51:58.859761Z|runtime|fc4264e9-758c-4f7f-bd98-653ceb43594b]

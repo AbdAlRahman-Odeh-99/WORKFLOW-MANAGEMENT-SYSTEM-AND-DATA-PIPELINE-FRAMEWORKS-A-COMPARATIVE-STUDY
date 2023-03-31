@@ -1,0 +1,100 @@
+Installing Docker: (https://docs.docker.com/engine/install/ubuntu/)
+    sudo apt-get remove docker docker-engine docker.io containerd runc
+    
+    sudo apt-get update
+    sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/ keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/	ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    sudo chmod a+r /usr/share/keyrings/docker-archive-keyring.gpg
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+    sudo usermod -aG docker $USER && newgrp docker'
+    
+    sudo chmod 666 /var/run/docker.sock
+
+Installing kubectl: (https://v1-18.docs.kubernetes.io/docs/tasks/tools/install-kubectl/)
+    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+    sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+    OR
+    {
+	    chmod +x ./kubectl
+	    sudo mv ./kubectl /usr/local/bin/kubectl
+	    kubectl version --client
+    }
+
+Installing minikube: (https://v1-18.docs.kubernetes.io/docs/tasks/tools/install-minikube/)
+    curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    chmod +x minikube
+    sudo mkdir -p /usr/local/bin/
+    sudo install minikube /usr/local/bin/
+    minikube start
+    
+Installing argo: (https://argoproj.github.io/argo-workflows/quick-start/)
+    kubectl create ns argo
+    kubectl apply -n argo -f https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/quick-start-postgres.yaml
+    # If there are problems with Postgres, use mysql:
+    #kubectl apply -n argo -f https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/quick-start-mysql.yaml
+    kubectl create clusterrolebinding abd-cluster-admin-binding --clusterrole=cluster-admin --user=abd@gmail.com
+    kubectl -n argo port-forward deployment/argo-server 2746:2746
+    https://localhost:2746
+    ###UPDATE: If the above didn't work, use:###
+    #argo server --auth-mode server //Then go to     https://localhost    
+    
+    #V1
+    kubectl create ns argo
+    kubectl apply -n argo -f https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/quick-start-postgres.yaml
+    kubectl create clusterrolebinding abd-cluster-admin-binding --clusterrole=cluster-admin --user=abd@gmail.com
+    kubectl -n argo port-forward deployment/argo-server 2746:2746
+    #V2
+    kubectl create namespace argo
+    kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.4.5/install.yaml
+    kubectl patch deployment \
+		   argo-server \
+		   --namespace argo \
+		   --type='json' \
+		   -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/args", "value": [
+		   "server",
+		   "--auth-mode=server"
+	]}]'
+    kubectl -n argo port-forward deployment/argo-server 2746:2746
+
+
+Installing argo cli: (https://github.com/argoproj/argo-workflows/releases/tag/v3.1.13)
+    # Download the binary 
+    curl -sLO https://github.com/argoproj/argo-workflows/releases/download/v3.1.13/argo-linux-amd64.gz
+    # Unzip
+    gunzip argo-linux-amd64.gz
+    # Make binary executable
+    chmod +x argo-linux-amd64
+    # Move binary to path
+    sudo mv ./argo-linux-amd64 /usr/local/bin/argo
+    # Test installation
+    argo version
+
+If running the workflow results in ErrImagggePull, run:
+minikube image pull quay.io/argoproj/argocli:latest+
+minikube image pull quay.io/argoproj/argoexec:latest
+#BSM-Search
+minikube image pull reanahub/reana-demo-bsm-search
+minikube image pull reanahub/reana-env-root6:6.18.04
+docker pull reanahub/reana-demo-bsm-search
+docker pull reanahub/reana-env-root6:6.18.04
+#POET
+minikube image pull ubuntu:latest
+minikube image pull cernopendata/cernopendata-client:0.3.0
+minikube image pull cmsopendata/cmssw_7_6_7-slc6_amd64_gcc493
+minikube image pull gitlab-registry.cern.ch/cms-cloud/python-vnc:latest
+
+
+List of commands:
+    argo submit -n argo --watch https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml
+    argo list -n argo
+    argo get -n argo @latest
+    argo logs -n argo @latest
